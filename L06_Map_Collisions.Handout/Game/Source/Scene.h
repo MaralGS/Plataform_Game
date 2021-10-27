@@ -2,6 +2,7 @@
 #define __SCENE_H__
 
 #include "Module.h"
+#include "Animation.h"
 
 struct SDL_Texture;
 
@@ -35,6 +36,13 @@ public:
 	float playerX = 50;
 	float playerY = 50;
 	float TerraY = 500;
+	SDL_Texture* player = nullptr;
+	Animation idle;
+	Animation Dead;
+	Animation MoveD;
+	Animation MoveE;
+	Animation Jump;
+	Animation* currentAnimation = nullptr;
 
 private:
 	SDL_Texture* img;

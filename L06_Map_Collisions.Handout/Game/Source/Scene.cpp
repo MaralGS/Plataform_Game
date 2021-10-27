@@ -6,6 +6,8 @@
 #include "Window.h"
 #include "Scene.h"
 #include "Map.h"
+#include "Animation.h"
+
 
 #include "Defs.h"
 #include "Log.h"
@@ -13,6 +15,19 @@
 Scene::Scene() : Module()
 {
 	name.Create("scene");
+
+	//idle anime
+	idle.PushBack({ 4, 4, 20, 36 });
+
+	//mode Dreta sprites
+	MoveD.PushBack({ 2, 80, 24, 34 });
+	MoveD.PushBack({ 55, 81, 16, 33 });
+	MoveD.PushBack({ 96, 81, 31, 33 });
+	MoveD.PushBack({ 146, 80, 31, 33 });
+	MoveD.PushBack({ 199, 81, 16, 33 });
+	MoveD.PushBack({ 240, 81, 28, 33 });
+	MoveD.loop = true;
+	MoveD.speed = 0.2f;
 }
 
 // Destructor
@@ -37,6 +52,11 @@ bool Scene::Start()
 	
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
+	player = app->tex->Load("Assets/textures/SteamMan/Sprites.png");
+
+	currentAnimation = &idle;
+
+
 
 	return true;
 }
@@ -50,12 +70,17 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
-	SDL_Rect Terra{ 0, TerraY,800,200 };
-	app->render->DrawRectangle(Terra, 255, 0, 255);
 
-	SDL_Rect player{ playerX, playerY, 50,50 };
-	app->render->DrawRectangle(player, 255, 255, 0);
-	
+	// Draw map
+	app->map->Draw();
+
+	//draw player
+	SDL_Rect rect = currentAnimation->GetCurrentFrame();
+	app->render->DrawTexture(player, playerX, playerY, &rect);
+	currentAnimation = &idle;
+
+	app->render->camera.y = playerY * -1;
+	app->render->camera.x = playerX * -1;
 
     // L02: DONE 3: Request Load / Save when pressing L/S
 	if(app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
@@ -64,19 +89,13 @@ bool Scene::Update(float dt)
 	if(app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		app->SaveGameRequest();
 
-	if(app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-		app->render->camera.y -= 1;
-
-	if(app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-		app->render->camera.y += 1;
-
-	if(app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		app->render->camera.x -= 1;
-
-	if(app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		app->render->camera.x += 1;
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
+		if (currentAnimation != &MoveE)
+		{
+			MoveE.Reset();
+			currentAnimation = &MoveD;
+		}
 		playerX += 0.5f;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -92,8 +111,7 @@ bool Scene::Update(float dt)
 	}
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
 
-	// Draw map
-	app->map->Draw();
+
 
 	// L03: DONE 7: Set the window title with map/tileset info
 	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
