@@ -16,8 +16,23 @@ Scene::Scene() : Module()
 {
 	name.Create("scene");
 
-	//idle anime
+	//idle anim
 	idle.PushBack({ 4, 4, 20, 36 });
+	idle.PushBack({ 51, 4, 21, 36 });
+	idle.PushBack({ 99, 4, 21, 36 });
+	idle.PushBack({ 148, 4, 20, 36 });
+	idle.loop = true;
+	idle.speed = 0.2f;
+
+	/*
+	idleE.PushBack({ 4, 4, 20, 36 });
+	idleE.PushBack({ 51, 4, 21, 36 });
+	idleE.PushBack({ 99, 4, 21, 36 });
+	idleE.PushBack({ 148, 4, 20, 36 });
+	idleE.loop = true;
+	idleE.speed = 0.2f;*/
+
+
 
 	//mode Dreta sprites
 	MoveD.PushBack({ 2, 80, 24, 34 });
@@ -28,6 +43,18 @@ Scene::Scene() : Module()
 	MoveD.PushBack({ 240, 81, 28, 33 });
 	MoveD.loop = true;
 	MoveD.speed = 0.2f;
+
+	//mode Esquerra sprites
+	MoveE.PushBack({ 246, 116, 24, 34 });
+	MoveE.PushBack({ 201, 117, 16, 33 });
+	MoveE.PushBack({ 145, 117, 31, 33 });
+	MoveE.PushBack({ 57, 117, 16, 33 });
+	MoveE.PushBack({ 4, 117, 28, 33 });
+	MoveE.loop = true;
+	MoveE.speed = 0.2f;
+
+	currentAnimation = &idle;
+
 }
 
 // Destructor
@@ -53,11 +80,6 @@ bool Scene::Start()
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	player = app->tex->Load("Assets/textures/SteamMan/Sprites.png");
-
-	currentAnimation = &idle;
-
-
-
 	return true;
 }
 
@@ -75,12 +97,13 @@ bool Scene::Update(float dt)
 	app->map->Draw();
 
 	//draw player
+
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	app->render->DrawTexture(player, playerX, playerY, &rect);
 	currentAnimation = &idle;
 
-	app->render->camera.y = playerY * -1;
-	app->render->camera.x = playerX * -1;
+	app->render->camera.y = (playerY * -1) + 600;
+	app->render->camera.x = (playerX * -1) + 30;
 
     // L02: DONE 3: Request Load / Save when pressing L/S
 	if(app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
@@ -91,19 +114,26 @@ bool Scene::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		if (currentAnimation != &MoveE)
+		playerX += 0.5f;
+		if (currentAnimation != &MoveD)
 		{
-			MoveE.Reset();
+			MoveD.Reset();
 			currentAnimation = &MoveD;
 		}
-		playerX += 0.5f;
+		
 	}
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
+		if (currentAnimation != &MoveE)
+		{
+			MoveE.Reset();
+			currentAnimation = &MoveE;
+		}
 		playerX -= 0.5f;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 	{
+	
 		playerY -= 2;
 	}
 	if (playerY != TerraY){

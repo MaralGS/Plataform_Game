@@ -33,11 +33,12 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	float playerX = 50;
-	float playerY = 50;
-	float TerraY = 500;
+	float playerX = 60;
+	float playerY = 875;
+	float TerraY = 875;
 	SDL_Texture* player = nullptr;
 	Animation idle;
+	Animation idleE;
 	Animation Dead;
 	Animation MoveD;
 	Animation MoveE;
