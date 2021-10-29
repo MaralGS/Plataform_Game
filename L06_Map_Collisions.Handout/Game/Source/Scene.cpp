@@ -117,9 +117,9 @@ bool Scene::Update(float dt)
 		playerX += 0.5f;
 		if (currentAnimation != &MoveD)
 		{
+			MoveD.Reset();
 			currentAnimation = &MoveD;
 		}
-		MoveD.Reset();
 		
 	}
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
