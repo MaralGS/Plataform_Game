@@ -7770,6 +7770,10 @@
   </data>
  </layer>
  <layer id="7" name="Meta" width="88" height="22">
+  <properties>
+   <property name="Navegation" value="1"/>
+   <property name="NoDraw" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
