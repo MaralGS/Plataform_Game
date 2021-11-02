@@ -80,6 +80,7 @@ bool Scene::Start()
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	player = app->tex->Load("Assets/textures/SteamMan/Sprites.png");
+	currentAnimation = &idle;
 	return true;
 }
 
@@ -92,15 +93,6 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
-
-	// Draw map
-	app->map->Draw();
-
-	//draw player
-
-	SDL_Rect rect = currentAnimation->GetCurrentFrame();
-	app->render->DrawTexture(player, playerX, playerY, &rect);
-	currentAnimation = &idle;
 
 	app->render->camera.y = (playerY * -1) + 600;
 	app->render->camera.x = (playerX * -1) + 30;
@@ -141,7 +133,14 @@ bool Scene::Update(float dt)
 	}
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
 
+	//RENDER
+	// Draw map
+	app->map->Draw();
 
+	//draw player
+	currentAnimation->Update();
+	SDL_Rect rect = currentAnimation->GetCurrentFrame();
+	app->render->DrawTexture(player, playerX, playerY, &rect);
 
 	// L03: DONE 7: Set the window title with map/tileset info
 	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
