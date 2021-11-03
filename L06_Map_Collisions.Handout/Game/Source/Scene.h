@@ -42,7 +42,8 @@ public:
 	Animation Dead;
 	Animation MoveD;
 	Animation MoveE;
-	Animation Jump;
+	Animation JumpE;
+	Animation JumpD;
 	Animation* currentAnimation = nullptr;
 
 private:
