@@ -60,7 +60,7 @@ Scene::Scene() : Module()
 	JumpD.PushBack({ 194, 241, 19, 34 });
 	JumpD.PushBack({ 246, 246, 17, 32 });
 	JumpD.loop = false;
-	JumpD.speed = 0.02f;
+	JumpD.speed = 0.06f;
 	
 	JumpE.PushBack({ 237, 294, 26, 32 });
 	JumpE.PushBack({ 194, 293, 16, 33 });
@@ -112,9 +112,11 @@ bool Scene::PreUpdate()
 bool Scene::Update(float dt)
 {
 
-	app->render->camera.y = (playerY * -1) + 600;
+	
+	app->render->camera.y = -375;
 	app->render->camera.x = (playerX * -1) + 30;
-
+	int dx = 0;
+	int dy = 0;
     // L02: DONE 3: Request Load / Save when pressing L/S
 	if(app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		app->LoadGameRequest();
@@ -124,7 +126,7 @@ bool Scene::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		playerX += 0.5f;
+		dx = 1;
 		if (currentAnimation != &MoveD)
 		{
 			MoveD.Reset();
@@ -135,7 +137,6 @@ bool Scene::Update(float dt)
 	
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
 	{
-		playerX += 0.5f;
 		if (currentAnimation != &idle)
 		{
 			idle.Reset();
@@ -146,12 +147,13 @@ bool Scene::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
+		dx = -1;
 		if (currentAnimation != &MoveE)
 		{
 			MoveE.Reset();
 			currentAnimation = &MoveE;
 		}
-		playerX -= 0.5f;
+		
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
@@ -161,51 +163,63 @@ bool Scene::Update(float dt)
 			idleE.Reset();
 			currentAnimation = &idleE;
 		}
-		playerX -= 0.5f;
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		playerY -= 2;
+		dy = 1;
 		if (currentAnimation != &JumpD)
 		{
-			MoveE.Reset();
+			JumpD.Reset();
 			currentAnimation = &JumpD;
 		}
 	}
 	
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP && app->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		playerY -= 2;
-		if (currentAnimation != &idle)
+		
+		if (currentAnimation != &JumpD)
 		{
-			idle.Reset();
-			currentAnimation = &idle;
-		}
-	}
-	
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT)
-	{
-		playerY += 2;
-		if (currentAnimation != &JumpE)
-		{
-			MoveE.Reset();
-			currentAnimation = &JumpE;
+			JumpD.Reset();
+			currentAnimation = &JumpD;
+
 		}
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP && app->input->GetKey(SDL_SCANCODE_E) == KEY_UP)
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
-		playerY -= 2;
-		if (currentAnimation != &idleE)
+
+		if (currentAnimation != &JumpE)
 		{
-			idleE.Reset();
-			currentAnimation = &idleE;
+			JumpE.Reset();
+			currentAnimation = &JumpE;
 		}
 	}
-	if (playerY != TerraY){
-		playerY += 0.5;
+	
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !isJumping)
+	{
+		yVel = 6;
+		isJumping = true;
 	}
+	dy = -yVel;
+	if (dx != 0 || dy != 0) 
+	{
+		playerX += dx;
+		playerY += dy;
+	}
+	
+	if (playerY < TerraY) {
+		yVel -= 0.1;
+	}
+	else {
+		yVel = 0;
+		isJumping = false;
+		playerY = TerraY;
+		if (app->input->GetKey(SDL_SCANCODE_D) != KEY_REPEAT || app->input->GetKey(SDL_SCANCODE_A) != KEY_REPEAT) {
+			
+		}
+	}
+	
 	
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
 
