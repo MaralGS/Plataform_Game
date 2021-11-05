@@ -198,18 +198,21 @@ bool Scene::Update(float dt)
 	
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !isJumping)
 	{
-		yVel = 6;
+		yVel = 3.5;
 		isJumping = true;
 	}
 	dy = -yVel;
+
 	if (dx != 0 || dy != 0) 
 	{
 		playerX += dx;
 		playerY += dy;
 	}
+
+
 	
 	if (playerY < TerraY) {
-		yVel -= 0.1;
+		yVel -= 0.04;
 	}
 
 	/*if (player != app->map->r == 273) {

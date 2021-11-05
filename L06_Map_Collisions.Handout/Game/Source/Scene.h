@@ -33,7 +33,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-
+	int vides = 3;
 	float playerX = 60;
 	float playerY = 0;
 	float playerHeight;
