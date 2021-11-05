@@ -55,6 +55,7 @@ struct Properties
 	int GetProperty(const char* name, int default_value = 0) const;
 
 	List<Property*> list;
+
 };
 
 // L04: DONE 1: Create a struct for the map layer
@@ -86,6 +87,7 @@ struct MapLayer
 // L03: DONE 1: Create a struct needed to hold the information to Map node
 struct MapData
 {
+
 	int width;
 	int	height;
 	int	tileWidth;
@@ -147,7 +149,9 @@ public:
 
     // L03: DONE 1: Add your struct for map info
 	MapData mapData;
-
+	int gid;
+	TileSet* tileset;
+	SDL_Rect r;
 private:
 
     SString folder;

@@ -211,6 +211,11 @@ bool Scene::Update(float dt)
 	if (playerY < TerraY) {
 		yVel -= 0.1;
 	}
+
+	/*if (player != app->map->r == 273) {
+		yVel -= 0.1;
+	}*/
+
 	else {
 		yVel = 0;
 		isJumping = false;
@@ -220,7 +225,7 @@ bool Scene::Update(float dt)
 		}
 	}
 	
-	
+
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
 
 	//RENDER

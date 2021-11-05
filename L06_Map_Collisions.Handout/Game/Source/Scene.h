@@ -35,7 +35,7 @@ public:
 
 
 	float playerX = 60;
-	float playerY = 875;
+	float playerY = 0;
 	float playerHeight;
 	float TerraY = 875;
 	bool isJumping = false;
