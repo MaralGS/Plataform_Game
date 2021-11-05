@@ -196,6 +196,7 @@ bool Scene::Update(float dt)
 		}
 	}
 	
+	//jump
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !isJumping)
 	{
 		yVel = 3.5;
@@ -213,6 +214,19 @@ bool Scene::Update(float dt)
 	
 	if (playerY < TerraY) {
 		yVel -= 0.04;
+	}
+	//dead
+	if (dead == true)
+	{
+		playerX = 60;
+		playerY = 0;
+		vides--;
+		dead = false;
+	}
+
+	if (playerX == 300)
+	{
+		dead = true;
 	}
 
 	/*if (player != app->map->r == 273) {
