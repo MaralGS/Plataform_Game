@@ -33,11 +33,23 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	bool dead = false;
+	int vides = 3;
+	float playerX = 60;
+	float playerY = 0;
 	float playerHeight;
 	float TerraY = 875;
-
-
-
+	bool isJumping = false;
+	float yVel = 0;
+	SDL_Texture* player = nullptr;
+	Animation idle;
+	Animation idleE;
+	Animation Dead;
+	Animation MoveD;
+	Animation MoveE;
+	Animation JumpE;
+	Animation JumpD;
+	Animation* currentAnimation = nullptr;
 
 private:
 	SDL_Texture* img;
