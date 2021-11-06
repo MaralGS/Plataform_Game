@@ -78,7 +78,7 @@ bool Player::Start()
 	bool ret = true;
 	Dead.Reset();
 	currentAnimation = &idle;
-	
+
 	player = app->tex->Load("Assets/textures/SteamMan/Sprites.png");
 
 	/*
@@ -90,11 +90,10 @@ bool Player::Start()
 	stop = false;
 
 	// L6: DONE 3: Add a collider to the player
-	collider = app->collisions->AddCollider({ playerX, playerY }, Collider::Type::PLAYER);
+	collider = app->collisions->AddCollider({ playerX, playerY }, Collider::Type::PLAYER, this);
 
 	return ret;
 }
-
 /*
 UpdateResult ModulePlayer::Update()
 {
@@ -300,6 +299,7 @@ UpdateResult ModulePlayer::Update()
 
 bool Player::PostUpdate()
 {
+
 	int dx = 0;
 	int dy = 0;
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
@@ -388,9 +388,11 @@ bool Player::PostUpdate()
 		playerY += dy;
 	}
 
-	if (playerY < app->scene->TerraY) {
+
+
+	/*if (playerY < TerraY) {
 		yVel -= 0.04;
-	}
+	}*/
 
 
 	//dead
@@ -407,15 +409,18 @@ bool Player::PostUpdate()
 		dead = true;
 	}*/
 
-	
+	/*if (player != app->map->r == 273) {
+		yVel -= 0.1;
+	}*/
+	/*
 	else {
 		yVel = 0;
 		isJumping = false;
-		playerY = app->scene->TerraY;
+		playerY = TerraY;
 		if (app->input->GetKey(SDL_SCANCODE_D) != KEY_REPEAT || app->input->GetKey(SDL_SCANCODE_A) != KEY_REPEAT) {
 
 		}
-	}
+	}*/
 
 	//draw player
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();

@@ -1,8 +1,8 @@
+
 #include "App.h"
 #include "Render.h"
 #include "Textures.h"
 #include "Map.h"
-#include "Collisions.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -105,10 +105,13 @@ void Map::Draw()
 
 						SDL_Rect r = tileset->GetTileRect(gid);
 						iPoint pos = MapToWorld(x, y);
-						
-						//SDL_Rect position = SDL_Rect({ pos.x, pos.y });
-						Walls.AddCollider({ pos.x, pos.y, 16, 16 }, Collider::Type::WALL);
+
+						app->render->DrawTexture(tileset->texture,
+							pos.x,
+							pos.y,
+							&r);
 					}
+
 				}
 			}
 		}

@@ -4,7 +4,6 @@
 #include "Module.h"
 #include "List.h"
 #include "Point.h"
-#include "Collisions.h"
 
 #include "PugiXml\src\pugixml.hpp"
 
@@ -160,7 +159,7 @@ public:
 
 	// L03: DONE 1: Add your struct for map info
 	MapData mapData;
-	Collisions Walls;
+
 private:
 
 	SString folder;
