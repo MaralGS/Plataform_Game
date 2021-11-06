@@ -44,18 +44,29 @@ struct Properties
 	struct Property
 	{
 		//...
+		SString name;
+		int value;
 	};
-	
+
 	~Properties()
 	{
+		//...
+		ListItem<Property*>* item;
+		item = list.start;
 
+		while (item != NULL)
+		{
+			RELEASE(item->data);
+			item = item->next;
+		}
+
+		list.clear();
 	}
 
 	// L06: TODO 7: Method to ask for the value of a custom property
 	int GetProperty(const char* name, int default_value = 0) const;
 
 	List<Property*> list;
-
 };
 
 // L04: DONE 1: Create a struct for the map layer
@@ -87,7 +98,6 @@ struct MapLayer
 // L03: DONE 1: Create a struct needed to hold the information to Map node
 struct MapData
 {
-
 	int width;
 	int	height;
 	int	tileWidth;
@@ -104,22 +114,22 @@ class Map : public Module
 {
 public:
 
-    Map();
+	Map();
 
-    // Destructor
-    virtual ~Map();
+	// Destructor
+	virtual ~Map();
 
-    // Called before render is available
-    bool Awake(pugi::xml_node& conf);
+	// Called before render is available
+	bool Awake(pugi::xml_node& conf);
 
-    // Called each loop iteration
-    void Draw();
+	// Called each loop iteration
+	void Draw();
 
-    // Called before quitting
-    bool CleanUp();
+	// Called before quitting
+	bool CleanUp();
 
-    // Load new map
-    bool Load(const char* path);
+	// Load new map
+	bool Load(const char* path);
 
 	// L04: DONE 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint MapToWorld(int x, int y) const;
@@ -147,15 +157,13 @@ private:
 
 public:
 
-    // L03: DONE 1: Add your struct for map info
+	// L03: DONE 1: Add your struct for map info
 	MapData mapData;
-	int gid;
-	TileSet* tileset;
-	SDL_Rect r;
+
 private:
 
-    SString folder;
-    bool mapLoaded;
+	SString folder;
+	bool mapLoaded;
 };
 
 #endif // __MAP_H__
