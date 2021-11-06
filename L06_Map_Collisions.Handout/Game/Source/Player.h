@@ -32,7 +32,7 @@ public:
 	bool PostUpdate();
 
 	// Collision callback, called when the player intersects with another collider
-	void OnCollision(Collider* c1, Collider* c2);
+	void OnCollision(Collisions c1, Collisions c2);
 
 public:
 	// Position of the player in the map
@@ -74,7 +74,7 @@ public:
 
 
 	// The player's collider
-	Collider* collider = nullptr;
+	Collisions colliderP;
 
 	// A flag to detect when the player has been destroyed
 	bool win = false;

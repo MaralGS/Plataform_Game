@@ -25,20 +25,17 @@ struct Collider
 public:
 	
 	// Methods
-	Collider(SDL_Rect rectangle, Type type, Collisions* listener = nullptr);
+	Collider(SDL_Rect rectangle, Type type);
 
 	void SetPos(int x, int y);
 
 	bool Intersects(const SDL_Rect& r) const;
 	iPoint getPos();
 
-	void AddListener(Collisions* listener);
-
 	// Variables
 	SDL_Rect rect;
 	bool pendingToDelete = false;
 	Type type;
-	Collisions* listeners[MAX_LISTENERS] = { nullptr };
 };
 
 

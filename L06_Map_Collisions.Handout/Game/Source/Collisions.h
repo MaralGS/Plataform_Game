@@ -19,7 +19,7 @@ public:
 	// Called at the beginning of the application loop
 	// Removes all colliders pending to delete
 	// Checks for new collisions and calls its listeners
-	bool PreUpdate();
+
 
 	// Called at the middle of the application loop
 	// Switches the debug mode on/off
@@ -27,19 +27,19 @@ public:
 
 	// Called at the end of the application loop
 	// Draw all colliders (if debug mode is enabled)
-	bool PostUpdate();
+
 
 	// Removes all existing colliders
 	bool CleanUp();
 
 	// Adds a new collider to the list
-	Collider* AddCollider(SDL_Rect rect, Collider::Type type, Collisions* listener = nullptr);
+	Collider* AddCollider(int x, int y, int w, int h, Collider::Type type);
 
 	// Removes the collider memory and removes it from the colliders array
 	void RemoveCollider(Collider* collider);
 
 	// Draws all existing colliders with some transparency
-	void DebugDraw();
+	void DebugDraw(SDL_Rect Body, int type);
 
 	void OnCollision(Collider* c1, Collider* c2);
 	
@@ -54,6 +54,7 @@ private:
 
 	// Simple debugging flag to draw all colliders
 	bool debug = false;
+	SDL_Rect ColliderW;
 };
 
 #endif // __MODULECOLLISIONS_H__

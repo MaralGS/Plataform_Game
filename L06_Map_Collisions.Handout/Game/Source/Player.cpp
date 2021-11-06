@@ -90,7 +90,8 @@ bool Player::Start()
 	stop = false;
 
 	// L6: DONE 3: Add a collider to the player
-	collider = app->collisions->AddCollider({ playerX, playerY }, Collider::Type::PLAYER);
+	colliderP.AddCollider(100, 100, 50, 100, Collider::Type::PLAYER);
+	colliderP.DebugDraw({ playerX, playerY, 50, 100 }, Collider::Type::PLAYER);
 
 	return ret;
 }
@@ -416,7 +417,7 @@ bool Player::PostUpdate()
 
 		}
 	}
-
+	
 	//draw player
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	app->render->DrawTexture(player, playerX, playerY, &rect);
@@ -424,12 +425,12 @@ bool Player::PostUpdate()
 	return true;
 }
 
-
-void Player::OnCollision(Collider* c1, Collider* c2)
+/*
+void Player::OnCollision(Collisions* c1, Collisions* c2)
 {
-	if ((c1 == collider) && (destroyed == false))
+	if ((c1 == colliderP) && (destroyed == false))
 	{
-		if (c1 == collider && destroyed == false) {
+		if (c1 == colliderP && destroyed == false) {
 			switch (c2->type) {
 			case Collider::Type::WALL:
 				if (c1->rect.y < c2->rect.y) // up
@@ -456,3 +457,4 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 		}
 	}
 }
+*/

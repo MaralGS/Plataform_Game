@@ -105,9 +105,10 @@ void Map::Draw()
 
 						SDL_Rect r = tileset->GetTileRect(gid);
 						iPoint pos = MapToWorld(x, y);
-						
+
 						//SDL_Rect position = SDL_Rect({ pos.x, pos.y });
-						Walls.AddCollider({ pos.x, pos.y, 16, 16 }, Collider::Type::WALL);
+						Walls.AddCollider(pos.x, pos.y, 48, 48, Collider::Type::WALL);
+						Walls.DebugDraw({ pos.x, pos.y, 48, 48 }, 1);
 					}
 				}
 			}
