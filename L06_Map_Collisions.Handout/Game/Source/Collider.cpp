@@ -2,7 +2,7 @@
 #include "Scene.h"
 #include "Log.h"
 
-Collider::Collider(SDL_Rect rectangle, Type type, Collisions* listener) : rect(rectangle), type(type)
+Collider::Collider(SDL_Rect rectangle, Type type, Module* listener) : rect(rectangle), type(type)
 {
 	listeners[0] = listener;
 }
@@ -28,7 +28,7 @@ bool Collider::Intersects(const SDL_Rect& r) const
 		rect.h + rect.y > r.y);
 }
 
-void Collider::AddListener(Collisions* listener)
+void Collider::AddListener(Module* listener)
 {
 	for (int i = 0; i < MAX_LISTENERS; ++i)
 	{

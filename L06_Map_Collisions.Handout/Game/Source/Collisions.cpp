@@ -153,7 +153,7 @@ bool Collisions::CleanUp()
 	return true;
 }
 
-Collider* Collisions::AddCollider(SDL_Rect rect, Collider::Type type, Collisions* listener)
+Collider* Collisions::AddCollider(SDL_Rect rect, Collider::Type type, Module* listener)
 {
 	Collider* ret = nullptr;
 
@@ -179,7 +179,4 @@ void Collisions::RemoveCollider(Collider* collider)
 			colliders[i] = nullptr;
 		}
 	}
-}
-void Collisions::OnCollision(Collider* c1, Collider* c2) {
-
 }

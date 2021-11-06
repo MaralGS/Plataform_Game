@@ -432,9 +432,9 @@ bool Player::PostUpdate()
 
 void Player::OnCollision(Collider* c1, Collider* c2)
 {
-	if ((c1 == collider) && (destroyed == false))
+	if ((c1 == playerC) && (destroyed == false))
 	{
-		if (c1 == collider && destroyed == false) {
+		if (c1 == playerC && destroyed == false) {
 			switch (c2->type) {
 			case Collider::Type::WALL:
 				if (c1->rect.y < c2->rect.y) // up
