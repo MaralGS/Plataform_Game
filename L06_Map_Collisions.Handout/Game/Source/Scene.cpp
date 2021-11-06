@@ -111,7 +111,9 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
-	app->render->camera.y = (playerY * -1) + 550 ;
+
+	
+	app->render->camera.y = -375;
 	app->render->camera.x = (playerX * -1) + 30;
 	int dx = 0;
 	int dy = 0;
@@ -214,7 +216,7 @@ bool Scene::Update(float dt)
 		yVel -= 0.04;
 	}
 	//dead
-	/*if (dead == true)
+	if (dead == true)
 	{
 		playerX = 60;
 		playerY = 0;
@@ -225,7 +227,7 @@ bool Scene::Update(float dt)
 	if (playerX == 300)
 	{
 		dead = true;
-	}*/
+	}
 
 	/*if (player != app->map->r == 273) {
 		yVel -= 0.1;
