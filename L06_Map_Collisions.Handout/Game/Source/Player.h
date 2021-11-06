@@ -8,14 +8,14 @@
 struct SDL_Texture;
 struct Collider;
 
-class ModulePlayer : public Module
+class Player : public Module
 {
 public:
 	// Constructor
-	ModulePlayer();
+	Player();
 
 	// Destructor
-	~ModulePlayer();
+	~Player();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the player
@@ -32,10 +32,6 @@ public:
 	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2);
 
-
-	// Draws gamepad debug info in the screen
-	void DebugDrawGamepadInfo();
-
 public:
 	// Position of the player in the map
 	fPoint position;
@@ -49,6 +45,9 @@ public:
 	int vides = 3;
 	float yVel = 0;
 	bool isJumping = false;
+	bool destroyed = false;
+	void OnCollision(Collider* c1, Collider* c2);
+	struct Collider;
 
 	float playerX = 60;
 	float playerY = 0;
@@ -77,7 +76,6 @@ public:
 	Collider* collider = nullptr;
 
 	// A flag to detect when the player has been destroyed
-	bool godmode = false;
 	bool win = false;
 	bool death = false;
 	bool stop = false;

@@ -10,7 +10,7 @@
 #include "Scene.h"
 
 
-ModulePlayer::ModulePlayer() : Module()
+Player::Player() : Module()
 {
 	//idle anim
 	idle.PushBack({ 4, 4, 20, 36 });
@@ -68,12 +68,12 @@ ModulePlayer::ModulePlayer() : Module()
 	JumpE.speed = 0.02f;
 }
 
-ModulePlayer::~ModulePlayer()
+Player::~Player()
 {
 
 }
 
-bool ModulePlayer::Start()
+bool Player::Start()
 {
 	bool ret = true;
 	Dead.Reset();
@@ -297,7 +297,7 @@ UpdateResult ModulePlayer::Update()
 }
 */
 
-bool ModulePlayer::PostUpdate()
+bool Player::PostUpdate()
 {
 
 	int dx = 0;
@@ -430,10 +430,34 @@ bool ModulePlayer::PostUpdate()
 }
 
 
-void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
+void Player::OnCollision(Collider* c1, Collider* c2)
 {
-	// L6: DONE 5: Detect collision with a wall. If so, destroy the player.
-	/*if ((c1 == collider) && (destroyed == false))
+	if ((c1 == playerC) && (destroyed == false))
 	{
-	}*/
+		if (c1 == playerC && destroyed == false) {
+			switch (c2->type) {
+			case Collider::Type::WALL:
+				if (c1->rect.y < c2->rect.y) // up
+				{
+					playerY -= 0.8f;
+				}
+				else if (c1->rect.y + 2 > c2->rect.y + c2->rect.h) // down
+				{
+					playerY += 0.8f;
+				}
+				if (c1->rect.x < c2->rect.x) // left
+				{
+					playerX -= 0.8f;
+				}
+				else if (c1->rect.x + 2 > c2->rect.x + c2->rect.w) // right
+				{
+					playerX += 0.8f;
+				}; break;
+			case Collider::Type::DEATH:
+				break;
+			case Collider::Type::FINISH:
+				break;
+			}
+		}
+	}
 }
