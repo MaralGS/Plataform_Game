@@ -7,7 +7,7 @@
 #include "Scene.h"
 #include "SString.h"
 
-ModuleCollisions::ModuleCollisions(bool startEnabled) : Module()
+ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 {
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 		colliders[i] = nullptr;
@@ -120,19 +120,19 @@ void ModuleCollisions::DebugDraw()
 		switch (colliders[i]->type)
 		{
 		case Collider::Type::NONE: // white
-			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 255, alpha);
+			app->render->DrawRectangle(colliders[i]->rect, SDL_Color{ 255, 255, 255, alpha });
 			break;
 		case Collider::Type::WALL: // blue
-			app->render->DrawRectangle(colliders[i]->rect,0, 0, 255, alpha);
+			app->render->DrawRectangle(colliders[i]->rect, SDL_Color{ 0, 0, 255, alpha });
 			break;
 		case Collider::Type::PLAYER: // green
-			app->render->DrawRectangle(colliders[i]->rect,0, 255, 0, alpha);
+			app->render->DrawRectangle(colliders[i]->rect, SDL_Color{ 0, 255, 0, alpha });
 			break;
 		case Collider::Type::DEATH: // red
-			app->render->DrawRectangle(colliders[i]->rect, 255, 0, 0, alpha);
+			app->render->DrawRectangle(colliders[i]->rect, SDL_Color{ 255, 0, 0, alpha });
 			break;
 		case Collider::Type::FINISH: // red
-			app->render->DrawRectangle(colliders[i]->rect,255, 0, 0, alpha);
+			app->render->DrawRectangle(colliders[i]->rect, SDL_Color{ 255, 0, 0, alpha });
 			break;
 
 		}
