@@ -25,7 +25,7 @@ public:
 
 	// Called at the middle of the application loop
 	// Processes new input and handles player movement
-	bool Update(float dt);
+	bool Update();
 
 	// Called at the end of the application loop
 	// Performs the render call of the player sprite
