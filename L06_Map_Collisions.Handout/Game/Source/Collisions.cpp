@@ -6,9 +6,8 @@
 #include "Input.h"
 #include "Scene.h"
 #include "SString.h"
-#include "Module.h"
 
-Collisions::Collisions() : Module()
+ModuleCollisions::ModuleCollisions(bool startEnabled) : Module()
 {
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 		colliders[i] = nullptr;
@@ -41,12 +40,16 @@ Collisions::Collisions() : Module()
 }
 
 // Destructor
-Collisions::~Collisions()
+ModuleCollisions::~ModuleCollisions()
+{
+
+}
+void Module::OnCollision(Collider* c1, Collider* c2)
 {
 
 }
 
-bool Collisions::PreUpdate()
+bool ModuleCollisions::PreUpdate()
 {
 	// Remove all colliders scheduled for deletion
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
@@ -92,21 +95,21 @@ bool Collisions::PreUpdate()
 	return true;
 }
 
-bool Collisions::Update()
+bool ModuleCollisions::Update()
 {
 	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) debug = !debug;
 
 	return true;
 }
 
-bool Collisions::PostUpdate()
+bool ModuleCollisions::PostUpdate()
 {
 	if (debug) DebugDraw();
 
 	return true;
 }
 
-void Collisions::DebugDraw()
+void ModuleCollisions::DebugDraw()
 {
 	Uint8 alpha = 80;
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
@@ -137,7 +140,7 @@ void Collisions::DebugDraw()
 }
 
 // Called before quitting
-bool Collisions::CleanUp()
+bool ModuleCollisions::CleanUp()
 {
 
 
@@ -153,7 +156,7 @@ bool Collisions::CleanUp()
 	return true;
 }
 
-Collider* Collisions::AddCollider(SDL_Rect rect, Collider::Type type, Module* listener)
+Collider* ModuleCollisions::AddCollider(SDL_Rect rect, Collider::Type type, Module* listener)
 {
 	Collider* ret = nullptr;
 
@@ -169,7 +172,7 @@ Collider* Collisions::AddCollider(SDL_Rect rect, Collider::Type type, Module* li
 	return ret;
 }
 
-void Collisions::RemoveCollider(Collider* collider)
+void ModuleCollisions::RemoveCollider(Collider* collider)
 {
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
