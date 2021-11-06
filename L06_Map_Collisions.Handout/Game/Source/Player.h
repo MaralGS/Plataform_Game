@@ -4,6 +4,8 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Point.h"
+#include "Collisions.h"
+#include "Collider.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -46,11 +48,11 @@ public:
 	float yVel = 0;
 	bool isJumping = false;
 	bool destroyed = false;
-	void OnCollision(Collider* c1, Collider* c2);
-	struct Collider;
+	
 
-	float playerX = 60;
-	float playerY = 0;
+
+	int playerX = 60;
+	int playerY = 0;
 
 
 	// Countdown to handle shot spacing
@@ -59,7 +61,6 @@ public:
 	SDL_Texture* player = nullptr;
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
-	Animation* currentAnimation = nullptr;
 
 	// A set of animations
 	Animation idle;
