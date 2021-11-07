@@ -160,7 +160,7 @@ bool Scene::Update(float dt)
 			}
 		}
 	}
-	if ( WScrean == false && EnterScreen == false)
+	if ( DeadScreen == false && WScrean == false && EnterScreen == false)
 	{
 		//move
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && moveXD == true)
@@ -227,8 +227,8 @@ bool Scene::Update(float dt)
 		playerY = 875;
 		vides = 1;
 		WScrean = false;
-		EnterScreen = false;
-		dead = true;
+		DeadScreen = false;
+		dead = false;
 	}
 
 	//jump
@@ -267,12 +267,18 @@ bool Scene::Update(float dt)
 		//El player està colisionant amb una o més tiles
 		if ((playerY < app->map->coords[i]->y) && moveY == true) {
 			playerY += yVel;
+
+			if (playerY == 950)
+			{
+				dead = true;
+			}
+
 			if ((playerY >= app->map->coords[i]->y - 40))
 			{
 				moveY = false;
-			
 			}
 			
+
 		}
 
 		/*if ((playerX <= app->map->coords[i]->x))
@@ -297,7 +303,7 @@ bool Scene::Update(float dt)
 	if (EnterScreen == false )
 	{
 		app->map->Draw();
-		if ( WScrean == false)
+		if ( DeadScreen == false && WScrean == false)
 		{
 			app->render->DrawTexture(player, playerX, playerY, &rect);
 		}
@@ -310,7 +316,13 @@ bool Scene::Update(float dt)
 		app->render->DrawTexture(Enter, 0, 300);
 	}
 
-	if (vides == 0)
+	if (vides <= 0)
+	{
+		DeadScreen = true;
+		
+	}
+	
+	if (DeadScreen == true)
 	{
 		app->render->DrawTexture(END, 0, 300);
 	}

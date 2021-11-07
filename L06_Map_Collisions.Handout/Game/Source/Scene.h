@@ -43,6 +43,7 @@ public:
 	bool moveXD = true;
 	bool moveXE = true;
 	bool EnterScreen = true;
+	bool DeadScreen = false;
 	bool WScrean = false;
 	int vides = 1;
 	float playerX = 150;
