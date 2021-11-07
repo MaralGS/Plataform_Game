@@ -104,8 +104,11 @@ bool Player::Update(float dt)
 	colliderP.DebugDraw({ playerX, playerY, 24, 40 }, Collider::Type::PLAYER);
 	
 	for (int i = 0; app->map->Walls1[i] != nullptr; ++i) {
-		if ((ColliderP->rect.x + 64 >= app->map->Walls1[i]->rect.x) && (ColliderP->rect.x <= app->map->Walls1[i]->rect.x + 32) &&
-			(ColliderP->rect.x + 64 >= app->map->Walls1[i]->rect.x) && (ColliderP->rect.y <= app->map->Walls1[i]->rect.x + 32)) {
+		WallR->x = app->map->Walls1[i]->rect.x;
+		PlayerR->x = ColliderP->rect.x;
+
+		if ((PlayerR->x + 64 >= WallR->x) && (ColliderP->rect.x <= app->map->Walls1[i]->rect.x + 32) &&
+			(ColliderP->rect.x + 64 >= app->map->Walls1[i]->rect.y) && (ColliderP->rect.y <= app->map->Walls1[i]->rect.y + 32)) {
 			playerY = 0;
 		}
 	}
