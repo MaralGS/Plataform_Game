@@ -1,3 +1,4 @@
+
 #ifndef __SCENE_H__
 #define __SCENE_H__
 
@@ -33,18 +34,25 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void DebugDraw();
+
+	bool debug = false;
+
 	bool dead = false;
 	bool moveY = true;
 	bool moveXD = true;
 	bool moveXE = true;
-	int vides = 3;
-	float playerX = 60;
-	float playerY = 600;
+	bool En = true;
+	bool MP = true;
+	int vides = 1;
+	float playerX = 150;
+	float playerY = 875;
 	void calculatedFPS();
-	bool isJumping = false;
 	float yVel = 1;
-	float xVel = 1;
+	float xVel = 3;
 	SDL_Texture* player = nullptr;
+	SDL_Texture* Enter = nullptr;
+	SDL_Texture* END = nullptr;
 	Animation idle;
 	Animation idleE;
 	Animation Dead;
@@ -54,7 +62,7 @@ public:
 	Animation JumpD;
 	Animation* currentAnimation = nullptr;
 	float playerHeight;
-	float TerraY = 1100;
+	float TerraY = 950;
 	float fps;
 	float Maxfps = 60.0f;
 	float frameTime;

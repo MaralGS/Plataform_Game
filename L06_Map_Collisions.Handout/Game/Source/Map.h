@@ -139,7 +139,9 @@ public:
 
 	void Colisions(int player);
 
-	iPoint* coords[50];
+	void DrawColisions();
+
+	iPoint* coords[100];
 
 private:
 

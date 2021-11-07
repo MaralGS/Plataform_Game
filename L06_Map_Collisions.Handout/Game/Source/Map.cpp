@@ -49,24 +49,56 @@ void Map::Colisions(int player_x) {
 	int i = 0;
 	ListItem<MapLayer*>* mapLayerItem;
 	mapLayerItem = mapData.layers.start;
-	mapLayerItem = mapLayerItem->next;
-	for (int j = 0; j < 50; j++) {
+
+	for (int j = 0; j < 100; j++) {
 		coords[j] = nullptr;
 	}
+	while (mapLayerItem != NULL) {
 
-	for (int x = (player_x /24) - 2; x < (player_x / 40) + 2; x++)
-	{
-		for (int y = 0; y < mapLayerItem->data->height; y++)
-		{
-			int gid = mapLayerItem->data->Get(x, y);
 
-			if (gid > 0) {
-				coords[i] = new iPoint(MapToWorld(x, y));
+		if (mapLayerItem->data->properties.GetProperty("Navigation") == 1) {
 
-				++i;
+			for (int x = (player_x / 48) - 1; x < (player_x / 48) + 2; x++)
+			{
+				for (int y = 0; y < mapLayerItem->data->height; y++)
+				{
+					int gid = mapLayerItem->data->Get(x, y);
+
+					if (gid > 0) {
+						coords[i] = new iPoint(MapToWorld(x, y));
+						++i;
+					}
+
+				}
 			}
-
 		}
+		mapLayerItem = mapLayerItem->next;
+	}
+}
+
+
+void Map::DrawColisions() {
+	if (mapLoaded == false) return;
+
+	ListItem<MapLayer*>* mapLayerItem;
+	mapLayerItem = mapData.layers.start;
+	mapLayerItem = mapLayerItem->next;
+
+	
+		for (int x = 0; x < mapLayerItem->data->width; x++)
+		{
+			for (int y = 0; y < mapLayerItem->data->height; y++)
+			{
+				int gid = mapLayerItem->data->Get(x, y);
+
+				if (gid > 0) {
+					iPoint pos = MapToWorld(x, y);
+					SDL_Rect rectCollider = { pos.x, pos.y, 32, 32 };
+					app->render->DrawRectangle(rectCollider, 255, 0, 0, 80);
+				}
+
+			}
+		
 	}
 }
 
@@ -111,34 +143,6 @@ void Map::Draw()
 				}
 			}
 		}
-		
-		
-		if (mapLayerItem->data->properties.GetProperty("Navigation") == 1) {
-
-			for (int x = 0; x < mapLayerItem->data->width; x++)
-			{
-				for (int y = 0; y < mapLayerItem->data->height; y++)
-				{
-					// L04: DONE 9: Complete the draw function
-					int gid = mapLayerItem->data->Get(x, y);
-
-					if (gid > 0) {
-
-						//L06: TODO 4: Obtain the tile set using GetTilesetFromTileId
-						//now we always use the firt tileset in the list
-						//TileSet* tileset = mapData.tilesets.start->data;
-
-						iPoint pos = MapToWorld(x, y);
-						SDL_Rect rectangle = {pos.x, pos.y, 48,48};
-						app->render->DrawRectangle(rectangle, 0, 255,255);
-					}
-
-				}
-			}
-		}
-		
-	
-
 		mapLayerItem = mapLayerItem->next;
 	}
 }
