@@ -392,7 +392,7 @@ bool Scene::Update(float dt)
 	//limit frames
 	if (1000.0f / Maxfps > frameTicks)
 	{
-		SDL_Delay(1000.0f / Maxfps - frameTime);
+		SDL_Delay(1000.0f / Maxfps - frameTicks);
 	}
 
 
@@ -431,7 +431,7 @@ bool Scene::CleanUp()
 
 void Scene::calculatedFPS() {
 	
-	/*
+	
 	static const int NUM_SAMPLES = 10;
 	static float frametimes[NUM_SAMPLES];
 	static int currentFrames = 0;
@@ -448,6 +448,7 @@ void Scene::calculatedFPS() {
 
 	int count;
 
+	currentFrames++;
 	if (currentFrames < NUM_SAMPLES)
 	{
 		count = currentFrames;
@@ -474,5 +475,5 @@ void Scene::calculatedFPS() {
 		fps = 60.0f;
 	}
 
-	currentFrames++;*/
+	
 }
