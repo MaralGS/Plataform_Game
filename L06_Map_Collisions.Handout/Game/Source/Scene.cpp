@@ -120,9 +120,12 @@ bool Scene::PreUpdate()
 
 // Called each loop iteration
 bool Scene::Update(float dt)
+
 {
 	app->render->camera.y = (playerY * -1) + 550;
 	app->render->camera.x = (playerX * -1) + 150;
+
+
 
 
 	float startTicks = SDL_GetTicks();
@@ -136,11 +139,18 @@ bool Scene::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
 		app->SaveGameRequest();
 
-	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) {
+	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+	{
 		EnterScreen = false;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+	{
 		debug = !debug;
+	}
+	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
+	{
+		GodMode = !GodMode;
+	}
 	//reset animation
 	{
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
@@ -160,7 +170,7 @@ bool Scene::Update(float dt)
 			}
 		}
 	}
-	if ( DeadScreen == false && WScrean == false && EnterScreen == false)
+	if (DeadScreen == false && WScrean == false && EnterScreen == false)
 	{
 		//move
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && moveXD == true)
@@ -187,39 +197,59 @@ bool Scene::Update(float dt)
 			}
 
 		}
-
-
-
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-		{
-			if (currentAnimation != &JumpD)
+		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && GodMode == true) {
+			if (currentAnimation != &MoveD)
 			{
-				JumpD.Reset();
-				currentAnimation = &JumpD;
+				playerY -= xVel;
+				MoveD.Reset();
+				currentAnimation = &MoveD;
 			}
+
 		}
-
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-		{
-
-			if (currentAnimation != &JumpD)
+		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && GodMode == true) {
+			if (currentAnimation != &MoveD)
 			{
-				JumpD.Reset();
-				currentAnimation = &JumpD;
-
+				playerY += yVel;
+				MoveD.Reset();
+				currentAnimation = &MoveD;
 			}
-		}
 
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-		{
-
-			if (currentAnimation != &JumpE)
-			{
-				JumpE.Reset();
-				currentAnimation = &JumpE;
-			}
 		}
 	}
+
+
+
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+	{
+		if (currentAnimation != &JumpD)
+		{
+			JumpD.Reset();
+			currentAnimation = &JumpD;
+		}
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+
+		if (currentAnimation != &JumpD)
+		{
+			JumpD.Reset();
+			currentAnimation = &JumpD;
+
+		}
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+	{
+
+		if (currentAnimation != &JumpE)
+		{
+			JumpE.Reset();
+			currentAnimation = &JumpE;
+		}
+	}
+
+
 
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
@@ -232,7 +262,7 @@ bool Scene::Update(float dt)
 	}
 
 	//jump
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && moveY == false)
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && moveY == false && GodMode == false)
 	{
 		playerY -= yVel + 100;
 		moveY = true;
@@ -252,20 +282,23 @@ bool Scene::Update(float dt)
 	//dead
 	{
 
-		if (dead == true)
+		if (dead == true && GodMode == false)
 		{
 			playerX = 150;
 			playerY = 875;
 			vides--;
-			
+
 		}
 	}
 	//colisions
 
 	app->map->Colisions(playerX);
-	for (int i = 0; app->map->coords[i] != nullptr; ++i) {
+	for (int i = 0; app->map->coords[i] != nullptr; ++i)
+	{
 		//El player està colisionant amb una o més tiles
-		if ((playerY < app->map->coords[i]->y) && moveY == true) {
+		if ((playerY < app->map->coords[i]->y) && moveY == true && GodMode == false)
+
+		{
 			playerY += yVel;
 
 			if (playerY == 950)
@@ -277,7 +310,7 @@ bool Scene::Update(float dt)
 			{
 				moveY = false;
 			}
-			
+
 
 		}
 
@@ -300,14 +333,14 @@ bool Scene::Update(float dt)
 
 	//RENDER
 	// Draw map
-	if (EnterScreen == false )
+	if (EnterScreen == false)
 	{
 		app->map->Draw();
-		if ( DeadScreen == false && WScrean == false)
+		if (DeadScreen == false && WScrean == false)
 		{
 			app->render->DrawTexture(player, playerX, playerY, &rect);
 		}
-		
+
 	}
 
 
@@ -319,9 +352,9 @@ bool Scene::Update(float dt)
 	if (vides <= 0)
 	{
 		DeadScreen = true;
-		
+
 	}
-	
+
 	if (DeadScreen == true)
 	{
 		app->render->DrawTexture(END, 0, 300);
@@ -330,7 +363,7 @@ bool Scene::Update(float dt)
 	if (playerX == 4000) {
 		WScrean = true;
 	}
-	if ( WScrean == true)
+	if (WScrean == true)
 	{
 		app->render->DrawTexture(WIN, playerX - 100, playerY - 550);
 	}
@@ -345,9 +378,9 @@ bool Scene::Update(float dt)
 
 	// L03: DONE 7: Set the window title with map/tileset info
 	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
-				   app->map->mapData.width, app->map->mapData.height,
-				   app->map->mapData.tileWidth, app->map->mapData.tileHeight,
-				   app->map->mapData.tilesets.count());
+		app->map->mapData.width, app->map->mapData.height,
+		app->map->mapData.tileWidth, app->map->mapData.tileHeight,
+		app->map->mapData.tilesets.count());
 
 	app->win->SetTitle(title.GetString());
 
@@ -357,7 +390,7 @@ bool Scene::Update(float dt)
 
 	float frameTicks = SDL_GetTicks() - startTicks;
 	//limit frames
-	if (1000.0f / Maxfps > frameTicks) 
+	if (1000.0f / Maxfps > frameTicks)
 	{
 		SDL_Delay(1000.0f / Maxfps - frameTime);
 	}
@@ -365,6 +398,8 @@ bool Scene::Update(float dt)
 
 	return true;
 }
+
+
 
 // Called each loop iteration
 bool Scene::PostUpdate()
@@ -374,22 +409,17 @@ bool Scene::PostUpdate()
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
-	if (debug)
-		DebugDraw();
-
-
+	if (debug) {
+		app->map->DrawColisions();
+		for (int i = 0; app->map->coords[i] != nullptr; ++i) {
+			SDL_Rect rectCollider = { app->map->coords[i]->x,app->map->coords[i]->y,48,48 };
+			app->render->DrawRectangle(rectCollider, 0, 70, 250, 80);
+		}
+	}
 	return ret;
 }
 
-void Scene::DebugDraw()
-{
-	app->map->DrawColisions();
 
-	for (int i = 0; app->map->coords[i] != nullptr; ++i) {
-		SDL_Rect rectCollider = { app->map->coords[i]->x,app->map->coords[i]->y,32,32 };
-		app->render->DrawRectangle(rectCollider, 0, 70, 250, 80);
-	}
-}
 // Called before quitting
 bool Scene::CleanUp()
 {

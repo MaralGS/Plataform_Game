@@ -93,8 +93,8 @@ void Map::DrawColisions() {
 
 				if (gid > 0) {
 					iPoint pos = MapToWorld(x, y);
-					SDL_Rect rectCollider = { pos.x, pos.y, 32, 32 };
-					app->render->DrawRectangle(rectCollider, 255, 0, 0, 80);
+					SDL_Rect rectCollider = { pos.x, pos.y, 48, 48 };
+					app->render->DrawRectangle(rectCollider, 255, 128, 0, 80);
 				}
 
 			}

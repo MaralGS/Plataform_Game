@@ -34,8 +34,6 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	void DebugDraw();
-
 	bool debug = false;
 
 	bool dead = false;
@@ -45,6 +43,7 @@ public:
 	bool EnterScreen = true;
 	bool DeadScreen = false;
 	bool WScrean = false;
+	bool GodMode = false;
 	int vides = 1;
 	float playerX = 150;
 	float playerY = 875;
