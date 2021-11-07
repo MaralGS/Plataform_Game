@@ -137,7 +137,7 @@ public:
 	// L05: DONE 2: Add orthographic world to map coordinates
 	iPoint WorldToMap(int x, int y) const;
 
-	void Colisions(int playerX);
+	void Colisions(int player);
 
 	iPoint* coords[50];
 

@@ -112,20 +112,12 @@ bool Scene::Start()
 // Called each loop iteration
 bool Scene::PreUpdate()
 {
-	for (int i = 0; app->map->coords[i] != nullptr; ++i) {
-		SDL_Rect rectCollider = { app->map->coords[i]->x,app->map->coords[i]->y,48,48 };
-		app->render->DrawRectangle(rectCollider, 255, 70, 250);
-	}
 	return true;
 }
 
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
-	
-	
-
-
 	app->render->camera.y = (playerY * -1) + 550;
 	app->render->camera.x = (playerX * -1) + 30;
 	
@@ -282,7 +274,7 @@ bool Scene::Update(float dt)
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 
 	
-	
+
 
 	//RENDER
 	// Draw map
@@ -290,8 +282,8 @@ bool Scene::Update(float dt)
 	app->render->DrawTexture(player, playerX, playerY, &rect);
 
 
-	SDL_Rect rectPlayer = { playerX,playerY,24,40 };
-	app->render->DrawRectangle(rectPlayer, 255, 255, 0);
+
+
 
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
 
