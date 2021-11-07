@@ -27,7 +27,7 @@ Scene::Scene() : Module()
 	idle.PushBack({ 99, 4, 21, 36 });
 	idle.PushBack({ 148, 4, 20, 36 });
 	idle.loop = true;
-	idle.speed = 0.02f;
+	idle.speed = 0.2f;
 
 
 	idleE.PushBack({ 150, 42, 20, 36 });
@@ -35,7 +35,7 @@ Scene::Scene() : Module()
 	idleE.PushBack({ 54, 42, 21, 36 });
 	idleE.PushBack({ 6, 42, 20, 36 });
 	idleE.loop = true;
-	idleE.speed = 0.02f;
+	idleE.speed = 0.2f;
 
 
 
@@ -47,7 +47,7 @@ Scene::Scene() : Module()
 	MoveD.PushBack({ 199, 81, 16, 33 });
 	MoveD.PushBack({ 240, 81, 28, 33 });
 	MoveD.loop = true;
-	MoveD.speed = 0.02f;
+	MoveD.speed = 0.2f;
 
 	//mode Esquerra sprites
 	MoveE.PushBack({ 246, 116, 24, 34 });
@@ -56,7 +56,7 @@ Scene::Scene() : Module()
 	MoveE.PushBack({ 57, 117, 16, 33 });
 	MoveE.PushBack({ 4, 117, 28, 33 });
 	MoveE.loop = true;
-	MoveE.speed = 0.02f;
+	MoveE.speed = 0.2f;
 
 	JumpD.PushBack({ 2, 246, 26, 32 });
 	JumpD.PushBack({ 55, 245, 16, 33 });
@@ -65,7 +65,7 @@ Scene::Scene() : Module()
 	JumpD.PushBack({ 194, 241, 19, 34 });
 	JumpD.PushBack({ 246, 246, 17, 32 });
 	JumpD.loop = false;
-	JumpD.speed = 0.06f;
+	JumpD.speed = 0.6f;
 
 	JumpE.PushBack({ 237, 294, 26, 32 });
 	JumpE.PushBack({ 194, 293, 16, 33 });
@@ -74,7 +74,7 @@ Scene::Scene() : Module()
 	JumpE.PushBack({ 52, 289, 19, 34 });
 	JumpE.PushBack({ 2, 294, 17, 32 });
 	JumpE.loop = false;
-	JumpE.speed = 0.02f;
+	JumpE.speed = 0.2f;
 
 	currentAnimation = &idle;
 
@@ -104,6 +104,7 @@ bool Scene::Start()
 	player = app->tex->Load("Assets/textures/SteamMan/Sprites.png");
 	Enter = app->tex->Load("Assets/textures/Enter_Image.png");
 	END = app->tex->Load("Assets/textures/End_Image.png");
+	WIN = app->tex->Load("Assets/textures/Win_Image.png");
 	currentAnimation = &idle;
 
 	// Load music
@@ -122,22 +123,21 @@ bool Scene::Update(float dt)
 {
 	app->render->camera.y = (playerY * -1) + 550;
 	app->render->camera.x = (playerX * -1) + 150;
-	
+
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	float startTicks = SDL_GetTicks();
 
 
-    // L02: DONE 3: Request Load / Save when pressing L/S
+	// L02: DONE 3: Request Load / Save when pressing L/S
 
-	if(app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		app->LoadGameRequest();
 
-	if(app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
 		app->SaveGameRequest();
 
-	if(app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN){
-		En = false;
-		MP = false;
+	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) {
+		EnterScreen = false;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		debug = !debug;
@@ -160,75 +160,78 @@ bool Scene::Update(float dt)
 			}
 		}
 	}
-		if (MP == false)
+	if ( WScrean == false && EnterScreen == false)
+	{
+		//move
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && moveXD == true)
 		{
-			//move
-			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && moveXD == true)
+			moveXE = true;
+			playerX += xVel;
+			if (currentAnimation != &MoveD)
 			{
-				moveXE = true;
-				playerX += xVel;
-				if (currentAnimation != &MoveD)
-				{
-					MoveD.Reset();
-					currentAnimation = &MoveD;
-				}
-
-			}
-			
-
-			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && moveXE == true)
-			{
-				moveXD = true;
-				playerX -= xVel;
-				if (currentAnimation != &MoveE)
-				{
-					MoveE.Reset();
-					currentAnimation = &MoveE;
-				}
-
+				MoveD.Reset();
+				currentAnimation = &MoveD;
 			}
 
+		}
 
 
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && moveXE == true)
+		{
+			moveXD = true;
+			playerX -= xVel;
+			if (currentAnimation != &MoveE)
 			{
-				if (currentAnimation != &JumpD)
-				{
-					JumpD.Reset();
-					currentAnimation = &JumpD;
-				}
+				MoveE.Reset();
+				currentAnimation = &MoveE;
 			}
 
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		}
+
+
+
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		{
+			if (currentAnimation != &JumpD)
 			{
-
-				if (currentAnimation != &JumpD)
-				{
-					JumpD.Reset();
-					currentAnimation = &JumpD;
-
-				}
-			}
-
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-			{
-
-				if (currentAnimation != &JumpE)
-				{
-					JumpE.Reset();
-					currentAnimation = &JumpE;
-				}
+				JumpD.Reset();
+				currentAnimation = &JumpD;
 			}
 		}
-	
-		if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN && moveXD == true)
+
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
-			playerX = 150;
-			playerY = 875;
-			vides = 1;
+
+			if (currentAnimation != &JumpD)
+			{
+				JumpD.Reset();
+				currentAnimation = &JumpD;
+
+			}
 		}
-	
-//jump
+
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		{
+
+			if (currentAnimation != &JumpE)
+			{
+				JumpE.Reset();
+				currentAnimation = &JumpE;
+			}
+		}
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	{
+		playerX = 150;
+		playerY = 875;
+		vides = 1;
+		WScrean = false;
+		EnterScreen = false;
+		dead = true;
+	}
+
+	//jump
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && moveY == false)
 	{
 		playerY -= yVel + 100;
@@ -248,70 +251,77 @@ bool Scene::Update(float dt)
 
 	//dead
 	{
-		
-		if (playerY == TerraY)
-		{
-			dead = true;
-		}
 
 		if (dead == true)
 		{
 			playerX = 150;
 			playerY = 875;
 			vides--;
-			dead = false;
+			
 		}
-
 	}
 	//colisions
 
 	app->map->Colisions(playerX);
 	for (int i = 0; app->map->coords[i] != nullptr; ++i) {
 		//El player està colisionant amb una o més tiles
-			if ((playerY < app->map->coords[i]->y) && moveY == true) {
+		if ((playerY < app->map->coords[i]->y) && moveY == true) {
 			playerY += yVel;
-			if ((playerY  >= app->map->coords[i]->y - 40))
+			if ((playerY >= app->map->coords[i]->y - 40))
 			{
 				moveY = false;
+			
 			}
+			
 		}
-		
-		/*if ((playerX <= app->map->coords[i]->x)) 
+
+		/*if ((playerX <= app->map->coords[i]->x))
 		{
 			playerX -= 40;
 		}*/
-			
-			/*if ((playerX + 24 == app->map->coords[i]->x)) 
-			{
-			moveXD = false;
-			}*/
+
+		/*if ((playerX + 24 == app->map->coords[i]->x))
+		{
+		moveXD = false;
+		}*/
 	}
 
 	currentAnimation->Update();
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 
-	
+
 
 
 	//RENDER
 	// Draw map
-	if (MP == false)
+	if (EnterScreen == false )
 	{
-	app->map->Draw();
-	app->render->DrawTexture(player, playerX, playerY, &rect);
+		app->map->Draw();
+		if ( WScrean == false)
+		{
+			app->render->DrawTexture(player, playerX, playerY, &rect);
+		}
+		
 	}
-	
 
-	if (En == true)
+
+	if (EnterScreen == true)
 	{
-		app->render->DrawTexture(Enter, 0, 300 );
+		app->render->DrawTexture(Enter, 0, 300);
 	}
-	
+
 	if (vides == 0)
 	{
-		app->render->DrawTexture(Enter, 0, 300 );
+		app->render->DrawTexture(END, 0, 300);
 	}
-	
+
+	if (playerX == 4000) {
+		WScrean = true;
+	}
+	if ( WScrean == true)
+	{
+		app->render->DrawTexture(WIN, playerX - 100, playerY - 550);
+	}
 
 
 

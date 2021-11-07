@@ -42,17 +42,18 @@ public:
 	bool moveY = true;
 	bool moveXD = true;
 	bool moveXE = true;
-	bool En = true;
-	bool MP = true;
+	bool EnterScreen = true;
+	bool WScrean = false;
 	int vides = 1;
 	float playerX = 150;
 	float playerY = 875;
 	void calculatedFPS();
 	float yVel = 1;
-	float xVel = 3;
+	float xVel = 5;
 	SDL_Texture* player = nullptr;
 	SDL_Texture* Enter = nullptr;
 	SDL_Texture* END = nullptr;
+	SDL_Texture* WIN = nullptr;
 	Animation idle;
 	Animation idleE;
 	Animation Dead;
@@ -62,7 +63,7 @@ public:
 	Animation JumpD;
 	Animation* currentAnimation = nullptr;
 	float playerHeight;
-	float TerraY = 950;
+	
 	float fps;
 	float Maxfps = 60.0f;
 	float frameTime;
