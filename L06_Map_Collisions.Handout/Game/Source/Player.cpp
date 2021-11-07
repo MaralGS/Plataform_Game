@@ -90,219 +90,60 @@ bool Player::Start()
 	stop = false;
 
 	// L6: DONE 3: Add a collider to the player
-	colliderP.AddCollider(100, 100, 50, 100, Collider::Type::PLAYER);
-	colliderP.DebugDraw({ playerX, playerY, 50, 100 }, Collider::Type::PLAYER);
+
 
 	return ret;
 }
 
-/*
-UpdateResult ModulePlayer::Update()
+
+bool Player::Update(float dt)
 {
 
-	prevposition = position;
-	// Get gamepad info
-	GamePad& pad = App->input->pads[0];
-
-	// Moving the player with the camera scroll
-	App->player->position.x += 0;
-
-	// Debug key for gamepad rumble testing purposes
-	if (App->input->keys[SDL_SCANCODE_1] == KeyState::KEY_DOWN)
-	{
-		App->input->ShakeController(0, 12, 0.33f);
-	}
-
-	// Debug key for gamepad rumble testing purposes
-	if (App->input->keys[SDL_SCANCODE_2] == KeyState::KEY_DOWN)
-	{
-		App->input->ShakeController(0, 36, 0.66f);
-	}
-
-	// Debug key for gamepad rumble testing purposes
-	if (App->input->keys[SDL_SCANCODE_3] == KeyState::KEY_DOWN)
-	{
-		App->input->ShakeController(0, 60, 1.0f);
-	}
-
-	// L10: TODO: Implement gamepad support
-
-	/*if (pads->left_x < 0.0f) {
-		(App->input->keys[SDL_SCANCODE_LEFT] == KeyState::KEY_REPEAT))
-	}*/
-/*
-	if (App->input->keys[SDL_SCANCODE_LEFT] == KeyState::KEY_REPEAT || pad.left_x < 0.0f)
-	{
-		position.x -= speed;
-		if (currentAnimation != &rightAnim)
-		{
-			rightAnim.Reset();
-			currentAnimation = &rightAnim;
-		}
-	}
-
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == KeyState::KEY_REPEAT || pad.left_x > 0.0f)
-	{
-		position.x += speed;
-		if (currentAnimation != &leftAnim)
-		{
-			leftAnim.Reset();
-			currentAnimation = &leftAnim;
-		}
-	}
-
-	if (App->input->keys[SDL_SCANCODE_DOWN] == KeyState::KEY_REPEAT || pad.left_y > 0.0f)
-	{
-		position.y += speed;
-		if (currentAnimation != &downAnim)
-		{
-			downAnim.Reset();
-			currentAnimation = &downAnim;
-		}
-	}
-
-	if (App->input->keys[SDL_SCANCODE_UP] == KeyState::KEY_REPEAT || pad.left_y < 0.0f)
-	{
-		position.y -= speed;
-		if (currentAnimation != &upAnim)
-		{
-			upAnim.Reset();
-			currentAnimation = &upAnim;
-		}
-	}
-
-	if ((App->input->keys[SDL_SCANCODE_D] == KeyState::KEY_DOWN || pad.x == true)) //|| (pad.x))
-	{
-		if (App->Placebomb->BombUp == true) {
-			App->particles->bom.position.x = App->player->position.x;
-			App->particles->bom.position.y = App->player->position.y;
-			App->Placebomb->PutBomb();
-			App->Placebomb->BombUp = false;
-			App->Placebomb->ExplosionUp = true;
-		}
-		//App->Placebomb->DrawBomb();
-	}
-
-	//Debbug Keys
-
-	//godmode
-	if (App->input->keys[SDL_SCANCODE_F1] == KeyState::KEY_DOWN) {
-		godmode = !godmode;
-	}
-
-	// Switch gamepad debug info && show colliders
-	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN)
-		debugGamepadInfo = !debugGamepadInfo;
-
-
-	//spawn enemy robot
-	if (App->input->keys[SDL_SCANCODE_F9] == KeyState::KEY_DOWN)
-		App->enemies->AddEnemy(Enemy_Type::BROWNROBOT, 53, 155);
-
-	//spawn enemy rabbit
-	if (App->input->keys[SDL_SCANCODE_F10] == KeyState::KEY_DOWN)
-		App->enemies->AddEnemy(Enemy_Type::RABBIT, 150, 200);
-
-	//spawn enemy snail
-	if (App->input->keys[SDL_SCANCODE_F11] == KeyState::KEY_DOWN)
-		App->enemies->AddEnemy(Enemy_Type::CARGOL, 182, 114);
-
-	//spawn powerup bomb+1
-	if (App->input->keys[SDL_SCANCODE_F6] == KeyState::KEY_DOWN)
-
-
-		//spawn powerUp ?
-		if (App->input->keys[SDL_SCANCODE_F7] == KeyState::KEY_DOWN)
-
-
-			//spawn powerUp invincible
-			if (App->input->keys[SDL_SCANCODE_F8] == KeyState::KEY_DOWN)
-
-
-
-				//insta win
-				if (App->input->keys[SDL_SCANCODE_F3] == KeyState::KEY_REPEAT)
-				{
-					App->audio->PlayFx(winFx);
-					win = true;
-				}
-
-	//insta lose
-	if (App->input->keys[SDL_SCANCODE_F4] == KeyState::KEY_DOWN)
-	{
-		lifes = 0;
-		App->audio->PlayFx(deadFx);
-	}
-
-	//close game
-	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KeyState::KEY_DOWN) {
-		return UpdateResult::UPDATE_STOP;
-	}
-
-
-
-
-	// If no up/down movement detected, set the current animation back to idle
-	if (App->input->keys[SDL_SCANCODE_DOWN] == KeyState::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_UP] == KeyState::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_RIGHT] == KeyState::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_LEFT] == KeyState::KEY_IDLE) {
-		if (lifes > 0 && stop == false)
-		{
-			currentAnimation = &idleAnim;
-		}
-
-	}
-
-	// L6: DONE 4: Update collider position to player position
-	collider->SetPos(position.x, position.y + 7);
-
-	currentAnimation->Update();
-
-	// Update shot countdown
-	if (shotCountdown > 0) --shotCountdown;
-
-	if (powerTouch == true) {
-		if (timer < 150) {
-			timer++;
-		}
-		if (timer == 150) {
-			powerTouch = false;
-			timer = 0;
-		}
-	}
-
-	if (death == true)
-	{
-		if (lifes != 0) {
-			if (App->sceneLevel_1->inLevel1 == true)
-			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_1, 160);
-			}
-			if (App->sceneLevel_2->inLevel2 == true)
-			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_2, (Module*)App->sceneLevel_2, 160);
-			}
-			if (App->sceneLevel_Boss->inLevel3 == true)
-			{
-				App->fade->FadeToBlack((Module*)App->sceneLevel_Boss, (Module*)App->sceneLevel_Boss, 160);
-			}
-
-			currentAnimation = &deadAnim;
-			destroyed = true;
-			death = false;
-		}
-		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneDeath, 160);
-	}
-
-	return UpdateResult::UPDATE_CONTINUE;
+	colliderP.AddCollider(playerX, playerY, 50, 100, Collider::Type::PLAYER);
+	colliderP.DebugDraw({ playerX, playerY, 24, 40 }, Collider::Type::PLAYER);
+	
+	return true;
 }
-*/
+
 
 bool Player::PostUpdate()
 {
-	int dx = 0;
-	int dy = 0;
+	//God Mode
+	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && GDMode == true)
+	{
+		playerY += 2;
+		if (currentAnimation != &MoveD)
+		{
+			MoveD.Reset();
+			currentAnimation = &MoveD;
+		}
+
+
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && GDMode == true)
+	{
+		playerY -= 2;
+		if (currentAnimation != &MoveD)
+		{
+			MoveD.Reset();
+			currentAnimation = &MoveD;
+		}
+
+
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+	{
+		GDMode = true;
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
+	{
+		GDMode = false;
+	}
+
+	//move
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
 		dx = 1;
@@ -316,6 +157,7 @@ bool Player::PostUpdate()
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
 	{
+		dx = 0;
 		if (currentAnimation != &idle)
 		{
 			idle.Reset();
@@ -337,6 +179,7 @@ bool Player::PostUpdate()
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
 	{
+		dx = 0;
 		if (currentAnimation != &idleE)
 		{
 			idleE.Reset();
@@ -375,12 +218,21 @@ bool Player::PostUpdate()
 		}
 	}
 
+
 	//jump
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !isJumping)
 	{
 		yVel = 3.5;
 		isJumping = true;
 	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	{
+		playerX = 0;
+		playerY = 0;
+		vides = 3;
+	}
+
 	dy = -yVel;
 
 	if (dx != 0 || dy != 0)
@@ -389,7 +241,7 @@ bool Player::PostUpdate()
 		playerY += dy;
 	}
 
-	if (playerY < app->scene->TerraY) {
+	if (playerY < app->scene->TerraY && GDMode == false) {
 		yVel -= 0.04;
 	}
 
@@ -422,39 +274,10 @@ bool Player::PostUpdate()
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	app->render->DrawTexture(player, playerX, playerY, &rect);
 
+
+
 	return true;
 }
 
-/*
-void Player::OnCollision(Collisions* c1, Collisions* c2)
-{
-	if ((c1 == colliderP) && (destroyed == false))
-	{
-		if (c1 == colliderP && destroyed == false) {
-			switch (c2->type) {
-			case Collider::Type::WALL:
-				if (c1->rect.y < c2->rect.y) // up
-				{
-					playerY -= 0.8f;
-				}
-				else if (c1->rect.y + 2 > c2->rect.y + c2->rect.h) // down
-				{
-					playerY += 0.8f;
-				}
-				if (c1->rect.x < c2->rect.x) // left
-				{
-					playerX -= 0.8f;
-				}
-				else if (c1->rect.x + 2 > c2->rect.x + c2->rect.w) // right
-				{
-					playerX += 0.8f;
-				}; break;
-			case Collider::Type::DEATH:
-				break;
-			case Collider::Type::FINISH:
-				break;
-			}
-		}
-	}
-}
-*/
+
+

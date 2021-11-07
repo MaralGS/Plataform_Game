@@ -12,6 +12,10 @@
 
 #include <stdlib.h>
 
+void calculatedFPS() {
+
+}
+
 enum MainState
 {
 	CREATE = 1,
@@ -31,6 +35,8 @@ int main(int argc, char* args[])
 
 	MainState state = CREATE;
 	int result = EXIT_FAILURE;
+	float fps;
+	float frameTime;
 
 	while(state != EXIT)
 	{

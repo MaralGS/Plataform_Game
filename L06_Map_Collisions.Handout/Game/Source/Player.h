@@ -25,14 +25,14 @@ public:
 
 	// Called at the middle of the application loop
 	// Processes new input and handles player movement
-	bool Update();
+	bool Update(float dt);
 
 	// Called at the end of the application loop
 	// Performs the render call of the player sprite
 	bool PostUpdate();
 
 	// Collision callback, called when the player intersects with another collider
-	void OnCollision(Collisions c1, Collisions c2);
+
 
 public:
 	// Position of the player in the map
@@ -48,9 +48,11 @@ public:
 	float yVel = 0;
 	bool isJumping = false;
 	bool destroyed = false;
+	bool GDMode = false;
 	
 
-
+	int dx = 0;
+	int dy = 0;
 	int playerX = 60;
 	int playerY = 0;
 
@@ -71,7 +73,6 @@ public:
 	Animation JumpE;
 	Animation JumpD;
 	Animation* currentAnimation = nullptr;
-
 
 	// The player's collider
 	Collisions colliderP;
