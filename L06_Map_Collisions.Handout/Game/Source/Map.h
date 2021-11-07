@@ -4,7 +4,6 @@
 #include "Module.h"
 #include "List.h"
 #include "Point.h"
-#include "Collisions.h"
 
 #include "PugiXml\src\pugixml.hpp"
 
@@ -132,13 +131,15 @@ public:
 	// Load new map
 	bool Load(const char* path);
 
-	void Map::CollisionAdd();
-
 	// L04: DONE 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint MapToWorld(int x, int y) const;
 
 	// L05: DONE 2: Add orthographic world to map coordinates
 	iPoint WorldToMap(int x, int y) const;
+
+	void Colisions(int player);
+
+	iPoint* coords[50];
 
 private:
 
@@ -162,8 +163,6 @@ public:
 
 	// L03: DONE 1: Add your struct for map info
 	MapData mapData;
-	Collisions Walls;
-	Collider* Walls1[50];
 private:
 
 	SString folder;

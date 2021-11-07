@@ -33,9 +33,31 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	bool dead = false;
+	bool moveY = true;
+	bool moveXD = true;
+	bool moveXE = true;
+	int vides = 3;
+	float playerX = 60;
+	float playerY = 600;
+	void calculatedFPS();
+	bool isJumping = false;
+	float yVel = 1;
+	float xVel = 1;
+	SDL_Texture* player = nullptr;
+	Animation idle;
+	Animation idleE;
+	Animation Dead;
+	Animation MoveD;
+	Animation MoveE;
+	Animation JumpE;
+	Animation JumpD;
+	Animation* currentAnimation = nullptr;
 	float playerHeight;
-	float TerraY = 875;
-
+	float TerraY = 1100;
+	float fps;
+	float Maxfps = 60.0f;
+	float frameTime;
 
 
 

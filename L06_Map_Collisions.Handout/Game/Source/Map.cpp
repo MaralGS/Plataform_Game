@@ -2,7 +2,6 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Map.h"
-#include "Collisions.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -46,6 +45,31 @@ bool Map::Awake(pugi::xml_node& config)
 	return ret;
 }
 
+void Map::Colisions(int player_x) {
+	int i = 0;
+	ListItem<MapLayer*>* mapLayerItem;
+	mapLayerItem = mapData.layers.start;
+	mapLayerItem = mapLayerItem->next;
+	for (int j = 0; j < 50; j++) {
+		coords[j] = nullptr;
+	}
+
+	for (int x = (player_x /24) - 2; x < (player_x / 40) + 2; x++)
+	{
+		for (int y = 0; y < mapLayerItem->data->height; y++)
+		{
+			int gid = mapLayerItem->data->Get(x, y);
+
+			if (gid > 0) {
+				coords[i] = new iPoint(MapToWorld(x, y));
+
+				++i;
+			}
+
+		}
+	}
+}
+
 // Draw the map (all requried layers)
 void Map::Draw()
 {
@@ -58,6 +82,7 @@ void Map::Draw()
 	// L06: TODO 4: Make sure we draw all the layers and not just the first one
 	while (mapLayerItem != NULL) {
 
+		
 		if (mapLayerItem->data->properties.GetProperty("draw") == 1) {
 
 			for (int x = 0; x < mapLayerItem->data->width; x++)
@@ -87,50 +112,37 @@ void Map::Draw()
 			}
 		}
 		
-	
-		mapLayerItem = mapLayerItem->next;
-	}
-}
-
-void Map::CollisionAdd() {
-	ListItem<MapLayer*>* mapLayerItem;
-	mapLayerItem = mapData.layers.start;
-	while (mapLayerItem != NULL)
-	{
+		
 		if (mapLayerItem->data->properties.GetProperty("Navigation") == 1) {
-			for (int i = 0; i < 50; i++)
+
+			for (int x = 0; x < mapLayerItem->data->width; x++)
 			{
-				Walls1[i] = nullptr;
-				for (int x = 0; x < mapLayerItem->data->width; x++)
+				for (int y = 0; y < mapLayerItem->data->height; y++)
 				{
-					for (int y = 0; y < mapLayerItem->data->height; y++)
-					{
-						// L04: DONE 9: Complete the draw function
-						int gid = mapLayerItem->data->Get(x, y);
+					// L04: DONE 9: Complete the draw function
+					int gid = mapLayerItem->data->Get(x, y);
 
-						if (gid > 0) {
+					if (gid > 0) {
 
-							//L06: TODO 4: Obtain the tile set using GetTilesetFromTileId
-							//now we always use the firt tileset in the list
-							//TileSet* tileset = mapData.tilesets.start->data;
-							TileSet* tileset = GetTilesetFromTileId(gid);
+						//L06: TODO 4: Obtain the tile set using GetTilesetFromTileId
+						//now we always use the firt tileset in the list
+						//TileSet* tileset = mapData.tilesets.start->data;
 
-							SDL_Rect r = tileset->GetTileRect(gid);
-							iPoint pos = MapToWorld(x, y);
-
-							//SDL_Rect position = SDL_Rect({ pos.x, pos.y });
-							Walls1[i] = Walls.AddCollider(pos.x, pos.y, 48, 48, Collider::Type::WALL);
-							Walls.DebugDraw({ pos.x, pos.y, 48, 48 }, 1);
-						}
+						iPoint pos = MapToWorld(x, y);
+						SDL_Rect rectangle = {pos.x, pos.y, 48,48};
+						app->render->DrawRectangle(rectangle, 0, 255,255);
 					}
+
 				}
 			}
 		}
-		mapLayerItem = mapLayerItem->next;
-	}
+		
 	
 
+		mapLayerItem = mapLayerItem->next;
+	}
 }
+
 // L04: DONE 8: Create a method that translates x,y coordinates from map positions to world positions
 iPoint Map::MapToWorld(int x, int y) const
 {
