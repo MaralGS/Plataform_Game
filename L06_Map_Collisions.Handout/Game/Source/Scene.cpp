@@ -102,6 +102,8 @@ bool Scene::Start()
 	//app->map->Load("hello.tmx");
 	app->map->Load("Mapa.tmx");
 	player = app->tex->Load("Assets/textures/SteamMan/Sprites.png");
+	Enter = app->tex->Load("Assets/textures/Enter_Image.png");
+	END = app->tex->Load("Assets/textures/End_Image.png");
 	currentAnimation = &idle;
 
 	// Load music
@@ -119,11 +121,8 @@ bool Scene::PreUpdate()
 bool Scene::Update(float dt)
 {
 	app->render->camera.y = (playerY * -1) + 550;
-	app->render->camera.x = (playerX * -1) + 30;
+	app->render->camera.x = (playerX * -1) + 150;
 	
-	/*app->render->camera.y = (playerY * -1) + 550 ;
-	app->render->camera.x = (playerX * -1) + 30;*/
-
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	float startTicks = SDL_GetTicks();
 
@@ -136,88 +135,104 @@ bool Scene::Update(float dt)
 	if(app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
 		app->SaveGameRequest();
 
-	//move
-	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && moveXD == true)
-	{
-		moveXE = true;
-		playerX += xVel;
-		if (currentAnimation != &MoveD)
-		{
-			MoveD.Reset();
-			currentAnimation = &MoveD;
-		}
-
+	if(app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN){
+		En = false;
+		MP = false;
 	}
+	if (app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+		debug = !debug;
 	//reset animation
 	{
-	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
-	{
-		if (currentAnimation != &idle)
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
 		{
-			idle.Reset();
-			currentAnimation = &idle;
+			if (currentAnimation != &idle)
+			{
+				idle.Reset();
+				currentAnimation = &idle;
+			}
+		}
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
+		{
+			if (currentAnimation != &idleE)
+			{
+				idleE.Reset();
+				currentAnimation = &idleE;
+			}
 		}
 	}
+		if (MP == false)
+		{
+			//move
+			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && moveXD == true)
+			{
+				moveXE = true;
+				playerX += xVel;
+				if (currentAnimation != &MoveD)
+				{
+					MoveD.Reset();
+					currentAnimation = &MoveD;
+				}
+
+			}
+			
+
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && moveXE == true)
+			{
+				moveXD = true;
+				playerX -= xVel;
+				if (currentAnimation != &MoveE)
+				{
+					MoveE.Reset();
+					currentAnimation = &MoveE;
+				}
+
+			}
+
+
+
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			{
+				if (currentAnimation != &JumpD)
+				{
+					JumpD.Reset();
+					currentAnimation = &JumpD;
+				}
+			}
+
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			{
+
+				if (currentAnimation != &JumpD)
+				{
+					JumpD.Reset();
+					currentAnimation = &JumpD;
+
+				}
+			}
+
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			{
+
+				if (currentAnimation != &JumpE)
+				{
+					JumpE.Reset();
+					currentAnimation = &JumpE;
+				}
+			}
+		}
 	
-	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
-	{
-		if (currentAnimation != &idleE)
+		if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN && moveXD == true)
 		{
-			idleE.Reset();
-			currentAnimation = &idleE;
+			playerX = 150;
+			playerY = 875;
+			vides = 1;
 		}
-	}
 	
-	}
-	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && moveXE == true)
+//jump
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && moveY == false)
 	{
-		moveXD = true;
-		playerX -= xVel;
-		if (currentAnimation != &MoveE)
-		{
-			MoveE.Reset();
-			currentAnimation = &MoveE;
-		}
-
-	}
-
-	
-
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-	{
-		if (currentAnimation != &JumpD)
-		{
-			JumpD.Reset();
-			currentAnimation = &JumpD;
-		}
-	}
-
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-
-		if (currentAnimation != &JumpD)
-		{
-			JumpD.Reset();
-			currentAnimation = &JumpD;
-
-		}
-	}
-
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-	{
-
-		if (currentAnimation != &JumpE)
-		{
-			JumpE.Reset();
-			currentAnimation = &JumpE;
-		}
-	}
-
-	//jump
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !isJumping)
-	{
-		yVel = 3.5;
-		isJumping = true;
+		playerY -= yVel + 100;
+		moveY = true;
 	}
 	//jump
 	{
@@ -233,36 +248,38 @@ bool Scene::Update(float dt)
 
 	//dead
 	{
-		/*if (dead == true)
+		
+		if (playerY == TerraY)
 		{
-			playerX = 60;
-			playerY = 0;
+			dead = true;
+		}
+
+		if (dead == true)
+		{
+			playerX = 150;
+			playerY = 875;
 			vides--;
 			dead = false;
 		}
 
-		if (playerX == 300)
-		{
-			dead = true;
-		}*/
 	}
 	//colisions
 
 	app->map->Colisions(playerX);
 	for (int i = 0; app->map->coords[i] != nullptr; ++i) {
 		//El player està colisionant amb una o més tiles
-		if ((playerY < app->map->coords[i]->y) && moveY == true) {
+			if ((playerY < app->map->coords[i]->y) && moveY == true) {
 			playerY += yVel;
-			if ((playerY + 40 >= app->map->coords[i]->y))
+			if ((playerY  >= app->map->coords[i]->y - 40))
 			{
 				moveY = false;
 			}
 		}
 		
-			if ((playerX == app->map->coords[i]->x +24)) 
-			{
-			moveXE = false;
-			}
+		/*if ((playerX <= app->map->coords[i]->x)) 
+		{
+			playerX -= 40;
+		}*/
 			
 			/*if ((playerX + 24 == app->map->coords[i]->x)) 
 			{
@@ -278,8 +295,23 @@ bool Scene::Update(float dt)
 
 	//RENDER
 	// Draw map
+	if (MP == false)
+	{
 	app->map->Draw();
 	app->render->DrawTexture(player, playerX, playerY, &rect);
+	}
+	
+
+	if (En == true)
+	{
+		app->render->DrawTexture(Enter, 0, 300 );
+	}
+	
+	if (vides == 0)
+	{
+		app->render->DrawTexture(Enter, 0, 300 );
+	}
+	
 
 
 
@@ -320,10 +352,22 @@ bool Scene::PostUpdate()
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
-	
+	if (debug)
+		DebugDraw();
+
+
 	return ret;
 }
 
+void Scene::DebugDraw()
+{
+	app->map->DrawColisions();
+
+	for (int i = 0; app->map->coords[i] != nullptr; ++i) {
+		SDL_Rect rectCollider = { app->map->coords[i]->x,app->map->coords[i]->y,32,32 };
+		app->render->DrawRectangle(rectCollider, 0, 70, 250, 80);
+	}
+}
 // Called before quitting
 bool Scene::CleanUp()
 {
