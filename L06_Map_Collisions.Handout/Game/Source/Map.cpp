@@ -87,6 +87,16 @@ void Map::Draw()
 			}
 		}
 		
+	
+		mapLayerItem = mapLayerItem->next;
+	}
+}
+
+void Map::CollisionAdd() {
+	ListItem<MapLayer*>* mapLayerItem;
+	mapLayerItem = mapData.layers.start;
+	while (mapLayerItem != NULL)
+	{
 		if (mapLayerItem->data->properties.GetProperty("Navigation") == 1) {
 			for (int i = 0; i < 50; i++)
 			{
@@ -116,11 +126,11 @@ void Map::Draw()
 				}
 			}
 		}
-
 		mapLayerItem = mapLayerItem->next;
 	}
-}
+	
 
+}
 // L04: DONE 8: Create a method that translates x,y coordinates from map positions to world positions
 iPoint Map::MapToWorld(int x, int y) const
 {

@@ -99,13 +99,17 @@ bool Player::Start()
 
 bool Player::Update(float dt)
 {
+	app->map->CollisionAdd();
 	ColliderP = colliderP.AddCollider(playerX, playerY, 50, 100, Collider::Type::PLAYER);
 	colliderP.DebugDraw({ playerX, playerY, 24, 40 }, Collider::Type::PLAYER);
 	
 	for (int i = 0; app->map->Walls1[i] != nullptr; ++i) {
-		ColliderP->rect.x >= app->map->Walls1[i]->rect.x;
-			return true;
+		if ((ColliderP->rect.x + 64 >= app->map->Walls1[i]->rect.x) && (ColliderP->rect.x <= app->map->Walls1[i]->rect.x + 32) &&
+			(ColliderP->rect.x + 64 >= app->map->Walls1[i]->rect.x) && (ColliderP->rect.y <= app->map->Walls1[i]->rect.x + 32)) {
+			playerY = 0;
+		}
 	}
+		return true;
 }
 
 
