@@ -161,6 +161,7 @@ public:
 	// L03: DONE 1: Add your struct for map info
 	MapData mapData;
 	Collisions Walls;
+	Collider* Walls1[50];
 private:
 
 	SString folder;

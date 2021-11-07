@@ -76,6 +76,7 @@ public:
 
 	// The player's collider
 	Collisions colliderP;
+	Collider* ColliderP;
 
 	// A flag to detect when the player has been destroyed
 	bool win = false;

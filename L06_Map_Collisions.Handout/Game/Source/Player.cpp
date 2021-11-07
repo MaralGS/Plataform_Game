@@ -8,6 +8,7 @@
 #include "Audio.h"
 #include "Collisions.h"
 #include "Scene.h"
+#include "Map.h"
 
 
 Player::Player() : Module()
@@ -98,11 +99,13 @@ bool Player::Start()
 
 bool Player::Update(float dt)
 {
-
-	colliderP.AddCollider(playerX, playerY, 50, 100, Collider::Type::PLAYER);
+	ColliderP = colliderP.AddCollider(playerX, playerY, 50, 100, Collider::Type::PLAYER);
 	colliderP.DebugDraw({ playerX, playerY, 24, 40 }, Collider::Type::PLAYER);
 	
-	return true;
+	for (int i = 0; app->map->Walls1[i] != nullptr; ++i) {
+		ColliderP->rect.x >= app->map->Walls1[i]->rect.x;
+			return true;
+	}
 }
 
 

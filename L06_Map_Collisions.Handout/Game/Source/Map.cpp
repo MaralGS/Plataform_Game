@@ -88,27 +88,30 @@ void Map::Draw()
 		}
 		
 		if (mapLayerItem->data->properties.GetProperty("Navigation") == 1) {
-
-			for (int x = 0; x < mapLayerItem->data->width; x++)
+			for (int i = 0; i < 50; i++)
 			{
-				for (int y = 0; y < mapLayerItem->data->height; y++)
+				Walls1[i] = nullptr;
+				for (int x = 0; x < mapLayerItem->data->width; x++)
 				{
-					// L04: DONE 9: Complete the draw function
-					int gid = mapLayerItem->data->Get(x, y);
+					for (int y = 0; y < mapLayerItem->data->height; y++)
+					{
+						// L04: DONE 9: Complete the draw function
+						int gid = mapLayerItem->data->Get(x, y);
 
-					if (gid > 0) {
+						if (gid > 0) {
 
-						//L06: TODO 4: Obtain the tile set using GetTilesetFromTileId
-						//now we always use the firt tileset in the list
-						//TileSet* tileset = mapData.tilesets.start->data;
-						TileSet* tileset = GetTilesetFromTileId(gid);
+							//L06: TODO 4: Obtain the tile set using GetTilesetFromTileId
+							//now we always use the firt tileset in the list
+							//TileSet* tileset = mapData.tilesets.start->data;
+							TileSet* tileset = GetTilesetFromTileId(gid);
 
-						SDL_Rect r = tileset->GetTileRect(gid);
-						iPoint pos = MapToWorld(x, y);
+							SDL_Rect r = tileset->GetTileRect(gid);
+							iPoint pos = MapToWorld(x, y);
 
-						//SDL_Rect position = SDL_Rect({ pos.x, pos.y });
-						Walls.AddCollider(pos.x, pos.y, 48, 48, Collider::Type::WALL);
-						Walls.DebugDraw({ pos.x, pos.y, 48, 48 }, 1);
+							//SDL_Rect position = SDL_Rect({ pos.x, pos.y });
+							Walls1[i] = Walls.AddCollider(pos.x, pos.y, 48, 48, Collider::Type::WALL);
+							Walls.DebugDraw({ pos.x, pos.y, 48, 48 }, 1);
+						}
 					}
 				}
 			}
