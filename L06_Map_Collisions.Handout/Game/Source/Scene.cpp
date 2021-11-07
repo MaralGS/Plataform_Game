@@ -124,7 +124,7 @@ bool Scene::Update(float dt)
 	app->render->camera.y = (playerY * -1) + 550;
 	app->render->camera.x = (playerX * -1) + 150;
 
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
 	float startTicks = SDL_GetTicks();
 
 
@@ -362,7 +362,7 @@ bool Scene::Update(float dt)
 		SDL_Delay(1000.0f / Maxfps - frameTime);
 	}
 
-	SDL_GL_SetSwapInterval(1);
+
 	return true;
 }
 
@@ -400,6 +400,7 @@ bool Scene::CleanUp()
 
 
 void Scene::calculatedFPS() {
+	
 	/*
 	static const int NUM_SAMPLES = 10;
 	static float frametimes[NUM_SAMPLES];
