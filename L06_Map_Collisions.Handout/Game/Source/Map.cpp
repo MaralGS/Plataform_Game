@@ -49,24 +49,28 @@ void Map::Colisions(int player_x) {
 	int i = 0;
 	ListItem<MapLayer*>* mapLayerItem;
 	mapLayerItem = mapData.layers.start;
-	mapLayerItem = mapLayerItem->next;
-	for (int j = 0; j < 50; j++) {
-		coords[j] = nullptr;
-	}
 
-	for (int x = (player_x /24) - 2; x < (player_x / 40) + 2; x++)
-	{
-		for (int y = 0; y < mapLayerItem->data->height; y++)
+	while (mapLayerItem != NULL) {
+		if (mapLayerItem->data->properties.GetProperty("Navigation") == 1)
 		{
-			int gid = mapLayerItem->data->Get(x, y);
-
-			if (gid > 0) {
-				coords[i] = new iPoint(MapToWorld(x, y));
-
-				++i;
+			for (int j = 0; j < 50; j++) {
+				coords[j] = nullptr;
 			}
+			for (int x = (player_x / 48) - 1; x < (player_x / 48) + 2; x++)
+			{
+				for (int y = 0; y < mapLayerItem->data->height; y++)
+				{
+					int gid = mapLayerItem->data->Get(x, y);
 
+					if (gid > 0) {
+						coords[i] = new iPoint(MapToWorld(x, y));
+						++i;
+					}
+
+				}
+			}
 		}
+		mapLayerItem = mapLayerItem->next;
 	}
 }
 
