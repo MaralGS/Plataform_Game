@@ -2,6 +2,7 @@
 #define __MODULE_H__
 
 #include "SString.h"
+#include "Collider.h"
 
 #include "PugiXml/src/pugixml.hpp"
 
@@ -66,8 +67,10 @@ public:
 	{
 		return true;
 	}
-	
 
+	virtual void OnCollision(Collider* c1, Collider* c2) {
+
+	}
 public:
 
 	SString name;

@@ -36,32 +36,16 @@ public:
 
 	bool debug = false;
 
-	bool dead = false;
-	bool moveY = true;
-	bool moveXD = true;
-	bool moveXE = true;
+	
 	bool EnterScreen = true;
 	bool DeadScreen = false;
 	bool WScrean = false;
-	bool GodMode = false;
-	int vides = 1;
-	float playerX = 150;
-	float playerY = 875;
 	void calculatedFPS();
-	float yVel = 1;
-	float xVel = 5;
-	SDL_Texture* player = nullptr;
+	
+
 	SDL_Texture* Enter = nullptr;
 	SDL_Texture* END = nullptr;
 	SDL_Texture* WIN = nullptr;
-	Animation idle;
-	Animation idleE;
-	Animation Dead;
-	Animation MoveD;
-	Animation MoveE;
-	Animation JumpE;
-	Animation JumpD;
-	Animation* currentAnimation = nullptr;
 	float playerHeight;
 	
 	float fps;

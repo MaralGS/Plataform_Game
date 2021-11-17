@@ -118,6 +118,8 @@ public:
 
 	// Destructor
 	virtual ~Map();
+	
+	bool start();
 
 	// Called before render is available
 	bool Awake(pugi::xml_node& conf);
@@ -137,11 +139,9 @@ public:
 	// L05: DONE 2: Add orthographic world to map coordinates
 	iPoint WorldToMap(int x, int y) const;
 
-	void Colisions(int player);
-
 	void DrawColisions();
 
-	iPoint* coords[100];
+	void DColisions();
 
 private:
 
@@ -165,6 +165,7 @@ public:
 
 	// L03: DONE 1: Add your struct for map info
 	MapData mapData;
+	Collider* MapC[500];
 private:
 
 	SString folder;
