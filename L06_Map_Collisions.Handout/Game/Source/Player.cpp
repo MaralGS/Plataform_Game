@@ -86,10 +86,10 @@ bool Player::Start()
 	// L6: DONE 3: Add a collider to the player
 
 	PlayerC = app->collisions->AddCollider({ PPlayer.x,PPlayer.y,48,48 }, Collider::Type::PLAYER, this);
-	PPlayer.x = 150;
-	PPlayer.y = 875;
-	//PPlayer.x = 0;
-	//PPlayer.y = 0;
+	//PPlayer.x = 150;
+	//PPlayer.y = 775;
+	PPlayer.x = 100;
+	PPlayer.y = 200;
 	return ret;
 }
 
@@ -232,7 +232,11 @@ bool Player::Update(float dt)
 		dead = true;
 	}
 
-	//	playerY += yVel;
+	if (Grav = true)
+	{
+		PPlayer.y += yVel;
+	}
+	
 
 	return true;
 }
@@ -259,14 +263,10 @@ bool Player::PostUpdate()
 void Player::OnCollision(Collider* c1, Collider* c2)
 {
 	// L6: DONE 5: Detect collision with a wall. If so, destroy the player.
-	
 	if ((c1 == PlayerC) && (dead == false))
 	{
-
-		
 		if (godmode == false)
 		{
-
 			if (c1 == PlayerC && dead == false) {
 				switch (c2->type) {
 				case Collider::Type::GROUND:
@@ -274,39 +274,36 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 					{
 
 					}
-					else if (c1->rect.y + 2 > c2->rect.y + c2->rect.h) // down
+					if (c1->rect.y + 26 > c2->rect.y + c2->rect.h) // down
 					{
 						position.y += yVel;
 					}
-
-
+					break;
 				case Collider::Type::WALL:
 					position = prevposition;
-
 					if (c1->rect.x < c2->rect.x + 48) // left
 					{
 						moveXE = false;
 					}
 					else if (c1->rect.x + 2 > c2->rect.x + c2->rect.w) // right
 					{
-						position.x += yVel;
-					}; break;
+						
+					};
 					break;
 				}
 
 			}
 
 		}
+		/*
+			if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::GROUND))
+			{
+				Grav = false;
+			}
 
-		/*if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::GROUND))
-		{
-			yVel = 0;
-		}
-
-		if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::WALL))
-		{
-			moveXE = false;
-		}*/
+			if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::WALL))
+			{
+				//moveXE = false;
+			}*/
 	}
-	
 }
