@@ -126,10 +126,10 @@ void Collisions::DebugDraw()
 			app->render->DrawRectangle(colliders[i]->rect, 0, 0, 255, alpha);
 			break;
 		case Collider::Type::PLAYER: // green
-			app->render->DrawRectangle(colliders[i]->rect,  255, 255, 0, alpha);
+			app->render->DrawRectangle(colliders[i]->rect,  0, 255, 0, alpha);
 			break;
 		case Collider::Type::GROUND: // red
-			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, 80 );
+			app->render->DrawRectangle(colliders[i]->rect, 255, 0, 255, alpha );
 			break;
 		case Collider::Type::FINISH: // red
 			app->render->DrawRectangle(colliders[i]->rect, 255, 0, 0, alpha);
