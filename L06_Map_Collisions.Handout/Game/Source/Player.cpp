@@ -86,11 +86,12 @@ bool Player::Start()
 
 	// L6: DONE 3: Add a collider to the player
 	
-	PlayerC = app->collisions->AddCollider({ PPlayer.x,PPlayer.y,48,48 }, Collider::Type::PLAYER, this);
-	//PPlayer.x = 150;
-	//PPlayer.y = 775;
 	PPlayer.x = 100;
 	PPlayer.y = 200;
+
+	PlayerC = app->collisions->AddCollider({ PPlayer.x,PPlayer.y,48,48 }, Collider::Type::PLAYER, this);
+
+	
 	return ret;
 }
 
@@ -233,7 +234,7 @@ bool Player::Update(float dt)
 		dead = true;
 	}
 
-	if (Grav = true)
+	if (Grav == true)
 	{
 		PPlayer.y += yVel;
 	}
@@ -272,7 +273,17 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 		if (godmode == false)
 		{
 			if (c1 == PlayerC && dead == false) {
-				switch (c2->type) {
+
+				if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::GROUND))
+				{
+					Grav = false;
+				}
+
+				if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::WALL))
+				{
+					//moveXE = false;
+				}
+				/*switch (c2->type) {
 				case Collider::Type::GROUND:
 					if (c1->rect.y < c2->rect.y) // up
 					{
@@ -287,18 +298,19 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 					position = prevposition;
 					if (c1->rect.x < c2->rect.x + 48) // left
 					{
-						
+
 					}
 					else if (c1->rect.x + 2 > c2->rect.x + c2->rect.w) // right
 					{
-						
+
 					};
 					break;
-				}
+				}*/
+
 
 			}
-
 		}
+		
 		/*
 			if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::GROUND))
 			{
