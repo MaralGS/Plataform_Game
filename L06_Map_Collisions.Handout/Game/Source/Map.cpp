@@ -3,6 +3,7 @@
 #include "Textures.h"
 #include "Map.h"
 #include "Collisions.h"
+#include "Player.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -67,8 +68,10 @@ void Map::DrawColisions() {
 
 				if (gid > 0) {
 					iPoint pos = MapToWorld(x, y);
-					SDL_Rect rectCollider = { pos.x, pos.y, 48, 48 };
-					app->render->DrawRectangle(rectCollider, 255, 128, 0, 80);
+					SDL_Rect PLayerColider = { app->player->PPlayer.x, app->player->PPlayer.y, 48, 48 };
+					app->render->DrawRectangle(PLayerColider, 255, 128, 0, 80);
+					//SDL_Rect rectCollider = { pos.x, pos.y, 48, 48 };
+					//app->render->DrawRectangle(rectCollider, 255, 128, 0, 80);
 				}
 
 			}

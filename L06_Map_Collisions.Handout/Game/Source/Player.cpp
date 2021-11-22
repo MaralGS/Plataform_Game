@@ -9,6 +9,7 @@
 #include "Collisions.h"
 #include "Scene.h"
 
+#include "Map.h"
 
 Player::Player() : Module()
 {
@@ -84,7 +85,7 @@ bool Player::Start()
 	// L10: DONE 4: Retrieve the player when playing a second time
 
 	// L6: DONE 3: Add a collider to the player
-
+	
 	PlayerC = app->collisions->AddCollider({ PPlayer.x,PPlayer.y,48,48 }, Collider::Type::PLAYER, this);
 	//PPlayer.x = 150;
 	//PPlayer.y = 775;
@@ -236,9 +237,12 @@ bool Player::Update(float dt)
 	{
 		PPlayer.y += yVel;
 	}
-	
-
+	//SDL_Rect PlayerCollider = { PPlayer.x, PPlayer.y, 48, 48 };
+	//app->render->DrawRectangle(PlayerCollider, 255, 255, 0, 80);
+	app->map->DColisions();
+	app->map->DrawColisions();
 	return true;
+	
 }
 
 bool Player::PostUpdate()
@@ -283,7 +287,7 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 					position = prevposition;
 					if (c1->rect.x < c2->rect.x + 48) // left
 					{
-						moveXE = false;
+						
 					}
 					else if (c1->rect.x + 2 > c2->rect.x + c2->rect.w) // right
 					{

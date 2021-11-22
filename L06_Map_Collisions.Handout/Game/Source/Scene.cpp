@@ -61,7 +61,7 @@ bool Scene::PreUpdate()
 bool Scene::Update(float dt)
 
 {
-	app->map->DColisions();
+	
 	app->render->camera.y = (app->player->PPlayer.y * -1) + 550;
 	app->render->camera.x = (app->player->PPlayer.x * -1) + 150;
 
