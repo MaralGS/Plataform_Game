@@ -489,7 +489,7 @@ void Map::DColisions()
 			}
 		}
 
-		if (mapLayerItem->data->properties.GetProperty("Navigation2") == 1) {
+		if (mapLayerItem->data->properties.GetProperty("Navigation") == 2) {
 
 			for (int x = 0; x < mapLayerItem->data->width; x++)
 			{

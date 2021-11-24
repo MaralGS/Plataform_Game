@@ -223,16 +223,23 @@ bool Player::Update(float dt)
 			vides--;
 
 		}
-	}
 
-	if (PPlayer.y == 1200)
+		if (PPlayer.y == 1200)
+		{
+			dead = true;
+		}
+}
+	//gravity
 	{
-		dead = true;
-	}
+		if (Grav == true)
+		{
+			PPlayer.y += yVel;
+		}
 
-	if (Grav == true)
-	{
-		PPlayer.y += yVel;
+		if (GCollsion == false)
+		{
+			Grav = true;
+		}
 	}
 	//SDL_Rect PlayerCollider = { PPlayer.x, PPlayer.y, 48, 48 };
 	//app->render->DrawRectangle(PlayerCollider, 255, 255, 0, 80);
@@ -263,58 +270,68 @@ bool Player::PostUpdate()
 void Player::OnCollision(Collider* c1, Collider* c2)
 {
 	// L6: DONE 5: Detect collision with a wall. If so, destroy the player.
-	/*if ((c1 == PlayerC) && (dead == false))
+	if ((c1 == PlayerC) && (dead == false))
 	{
 		if (godmode == false)
 		{
-			if (c1 == PlayerC && dead == false) {
+			/*if (c1 == PlayerC && dead == false) {
 
-				if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::GROUND))
-				{
-					Grav = false;
-				}
-
-				if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::WALL))
-				{
-					//moveXE = false;
-				}
-				/*switch (c2->type) {
+				switch (c2->type) {
 				case Collider::Type::GROUND:
 					if (c1->rect.y < c2->rect.y) // up
 					{
 
 					}
-					if (c1->rect.y + 26 > c2->rect.y + c2->rect.h) // down
+					if (Grav == true)
 					{
-						position.y += yVel;
+						if (c1->rect.y  > c2->rect.y - 36 ) // down
+						{
+							Grav = false;
+						}
 					}
 					break;
+
 				case Collider::Type::WALL:
-					position = prevposition;
-					if (c1->rect.x < c2->rect.x + 48) // left
+					if (c1->rect.x < c2->rect.x + 36) // left
 					{
-
+						moveXE = false;
 					}
-					else if (c1->rect.x + 2 > c2->rect.x + c2->rect.w) // right
+					
+					/*if (c1->rect.x + 36 < c2->rect.x) // right
 					{
-
+						moveXD = false;
 					};
 					break;
+				} */ 
+
+				//Ground
+				if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::GROUND)
+				{
+					
+					if (c1->rect.y + 36 >= c2->rect.y)
+					{
+						Grav = false;
+						GCollsion = true;
+					}
 				}
-
-
-			}
-		}*/
-		
-		
-		
-			if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::GROUND))
-			{
-				Grav = false;
-			}
-
-			if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::WALL))
-			{
-				//moveXE = false;
-			}
+				//Wall left
+				if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
+				{
+				if (c1->rect.x+ 3 >= c2->rect.x + c2->rect.w )
+					{
+						moveXE = false;
+					}
+				}
+				//Wall right
+				if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
+				{
+					if (c1->rect.x + c1->rect.w - 2 <= c2->rect.x )
+					{
+						moveXD = false;
+					}
+				}
+				
+			
+		}
 	}
+}

@@ -53,6 +53,7 @@ public:
 	bool moveXD = true;
 	bool moveXE = true;
 	bool Grav = true;
+	bool GCollsion = false;
 
 	int yVel = 1;
 	int xVel = 5;
