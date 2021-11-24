@@ -237,6 +237,7 @@ bool Player::Update(float dt)
 	//SDL_Rect PlayerCollider = { PPlayer.x, PPlayer.y, 48, 48 };
 	//app->render->DrawRectangle(PlayerCollider, 255, 255, 0, 80);
 	app->map->DrawColisions();
+	PlayerC->SetPos(PPlayer.x, PPlayer.y);
 	return true;
 	
 }
