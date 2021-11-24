@@ -38,8 +38,6 @@ public:
 
 public:
 	// Position of the player in the map
-	fPoint position;
-	fPoint prevposition;
 	iPoint PPlayer;
 	// The speed in which we move the player (pixels per frame)
 	float speed = 0.8f;
@@ -64,10 +62,11 @@ public:
 	// Countdown to handle shot spacing
 
 	// The player spritesheet loaded into an SDL_Texture
-	SDL_Texture* player = nullptr;
+	SDL_Texture* player;
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
-	Animation* currentAnimation = nullptr;
+	SDL_Rect rectplayer;
+	Animation* currentAnimation;
 
 	// A set of animations
 	Animation idle;

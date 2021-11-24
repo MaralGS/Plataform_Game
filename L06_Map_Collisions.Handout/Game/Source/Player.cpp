@@ -2,6 +2,7 @@
 
 #include "App.h"
 #include "Textures.h"
+#include "Animation.h"
 #include "Input.h"
 #include "Render.h"
 #include "Window.h"
@@ -19,19 +20,19 @@ Player::Player() : Module()
 	idle.PushBack({ 99, 4, 21, 36 });
 	idle.PushBack({ 148, 4, 20, 36 });
 	idle.loop = true;
-	idle.speed = 0.02f;
+	idle.speed = 0.1f;
 
-
+	//idle Amim Esquerra
 	idleE.PushBack({ 150, 42, 20, 36 });
 	idleE.PushBack({ 102, 42, 21, 36 });
 	idleE.PushBack({ 54, 42, 21, 36 });
 	idleE.PushBack({ 6, 42, 20, 36 });
 	idleE.loop = true;
-	idleE.speed = 0.02f;
+	idleE.speed = 0.1f;
 
 
 
-	//mode Dreta sprites
+	//move Dreta sprites
 	MoveD.PushBack({ 2, 80, 24, 34 });
 	MoveD.PushBack({ 55, 81, 16, 33 });
 	MoveD.PushBack({ 96, 81, 31, 33 });
@@ -39,17 +40,18 @@ Player::Player() : Module()
 	MoveD.PushBack({ 199, 81, 16, 33 });
 	MoveD.PushBack({ 240, 81, 28, 33 });
 	MoveD.loop = true;
-	MoveD.speed = 0.02f;
+	MoveD.speed = 0.1f;
 
-	//mode Esquerra sprites
+	//move Esquerra sprites
 	MoveE.PushBack({ 246, 116, 24, 34 });
 	MoveE.PushBack({ 201, 117, 16, 33 });
 	MoveE.PushBack({ 145, 117, 31, 33 });
 	MoveE.PushBack({ 57, 117, 16, 33 });
 	MoveE.PushBack({ 4, 117, 28, 33 });
 	MoveE.loop = true;
-	MoveE.speed = 0.02f;
+	MoveE.speed = 0.1f;
 
+	// jump right
 	JumpD.PushBack({ 2, 246, 26, 32 });
 	JumpD.PushBack({ 55, 245, 16, 33 });
 	JumpD.PushBack({ 99, 243, 19, 35 });
@@ -59,6 +61,7 @@ Player::Player() : Module()
 	JumpD.loop = false;
 	JumpD.speed = 0.06f;
 
+	// jump left
 	JumpE.PushBack({ 237, 294, 26, 32 });
 	JumpE.PushBack({ 194, 293, 16, 33 });
 	JumpE.PushBack({ 147, 291, 19, 35 });
@@ -77,10 +80,9 @@ Player::~Player()
 bool Player::Start()
 {
 	bool ret = true;
-	Dead.Reset();
-	currentAnimation = &idle;
-
 	player = app->tex->Load("Assets/textures/SteamMan/Sprites.png");
+	currentAnimation = &idle;
+	//Dead.Reset();
 
 	// L10: DONE 4: Retrieve the player when playing a second time
 
@@ -179,53 +181,35 @@ bool Player::Update(float dt)
 			}
 
 		}
-	}
-
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-	{
-		if (currentAnimation != &JumpD)
+		//jump
 		{
-			JumpD.Reset();
-			currentAnimation = &JumpD;
-		}
-	}
-
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-
-		if (currentAnimation != &JumpD)
-		{
-			JumpD.Reset();
-			currentAnimation = &JumpD;
-
-		}
-	}
-
-	//jump
-	{
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && moveY == false && GodMode == false)
-		{
-			if (currentAnimation != &JumpE)
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 			{
-				JumpE.Reset();
-				currentAnimation = &JumpE;
-			}
-			PPlayer.y = PPlayer.y + 100;
-			moveY = true;
-			Grav = true;
-			GCollision = false;
-		}
-	
-	
-		/*else {
-			yVel = 0;
-			isJumping = false;
-			playerY = TerraY;
-			if (app->input->GetKey(SDL_SCANCODE_D) != KEY_REPEAT || app->input->GetKey(SDL_SCANCODE_A) != KEY_REPEAT) {
 
+				if (currentAnimation != &JumpD)
+				{
+					JumpD.Reset();
+					currentAnimation = &JumpD;
+
+				}
 			}
-		}*/
+
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && moveY == false)
+			{
+				if (currentAnimation != &JumpE)
+				{
+					JumpE.Reset();
+					currentAnimation = &JumpE;
+				}
+				PPlayer.y = 600;
+				moveY = true;
+				Grav = true;
+				GCollision = false;
+			}
+		}
 	}
+
+	
 	//dead
 	{
 
@@ -256,14 +240,14 @@ bool Player::PostUpdate()
 
 	
 	//draw player
-	SDL_Rect rect = currentAnimation->GetCurrentFrame();
+	rectplayer = currentAnimation->GetCurrentFrame();
 	
 	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false)
 	{
-		app->render->DrawTexture(player,PPlayer.x, PPlayer.y, &rect);
+		app->render->DrawTexture(player,PPlayer.x, PPlayer.y, &rectplayer);
 	}
 
-
+	currentAnimation->Update();
 
 	return true;
 }
@@ -283,6 +267,7 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 					{
 						GCollision = true;
 						Grav = false;
+						moveY = false;
 					}
 				}
 
