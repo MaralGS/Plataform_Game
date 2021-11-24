@@ -49,7 +49,7 @@ bool Scene::Start()
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	app->player->PPlayer.x = 60;
-	app->player->PPlayer.y = 675;
+	app->player->PPlayer.y = 875;
 	return true;
 }
 

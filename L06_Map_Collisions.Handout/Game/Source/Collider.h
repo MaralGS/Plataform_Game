@@ -14,6 +14,7 @@ struct Collider
 		NONE = -1,
 		PLAYER,
 		WALL,
+		ROOF,
 		GROUND,
 		FINISH,
 		MAX
