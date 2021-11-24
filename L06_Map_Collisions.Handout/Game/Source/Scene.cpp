@@ -48,6 +48,8 @@ bool Scene::Start()
 	WIN = app->tex->Load("Assets/textures/Win_Image.png");
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
+	app->player->PPlayer.x = 0;
+	app->player->PPlayer.y = 0;
 	return true;
 }
 
@@ -59,9 +61,9 @@ bool Scene::PreUpdate()
 
 // Called each loop iteration
 bool Scene::Update(float dt)
-
 {
-	
+
+	app->map->DColisions();
 	app->render->camera.y = (app->player->PPlayer.y * -1) + 550;
 	app->render->camera.x = (app->player->PPlayer.x * -1) + 150;
 

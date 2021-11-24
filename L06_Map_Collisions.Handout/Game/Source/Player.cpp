@@ -86,12 +86,8 @@ bool Player::Start()
 
 	// L6: DONE 3: Add a collider to the player
 	
-	PPlayer.x = 100;
-	PPlayer.y = 200;
+	PlayerC = app->collisions->AddCollider({ PPlayer.x,PPlayer.y,24,36 }, Collider::Type::PLAYER, this);
 
-	PlayerC = app->collisions->AddCollider({ PPlayer.x,PPlayer.y,48,48 }, Collider::Type::PLAYER, this);
-
-	
 	return ret;
 }
 
@@ -240,7 +236,6 @@ bool Player::Update(float dt)
 	}
 	//SDL_Rect PlayerCollider = { PPlayer.x, PPlayer.y, 48, 48 };
 	//app->render->DrawRectangle(PlayerCollider, 255, 255, 0, 80);
-	app->map->DColisions();
 	app->map->DrawColisions();
 	return true;
 	
@@ -256,7 +251,6 @@ bool Player::PostUpdate()
 	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false)
 	{
 		app->render->DrawTexture(player,PPlayer.x, PPlayer.y, &rect);
-	
 	}
 
 
@@ -268,7 +262,7 @@ bool Player::PostUpdate()
 void Player::OnCollision(Collider* c1, Collider* c2)
 {
 	// L6: DONE 5: Detect collision with a wall. If so, destroy the player.
-	if ((c1 == PlayerC) && (dead == false))
+	/*if ((c1 == PlayerC) && (dead == false))
 	{
 		if (godmode == false)
 		{
@@ -305,13 +299,14 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 
 					};
 					break;
-				}*/
+				}
 
 
 			}
-		}
+		}*/
 		
-		/*
+		
+		
 			if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::GROUND))
 			{
 				Grav = false;
@@ -320,6 +315,5 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 			if ((c1->type == Collider::Type::PLAYER) && (c2->type == Collider::Type::WALL))
 			{
 				//moveXE = false;
-			}*/
+			}
 	}
-}
