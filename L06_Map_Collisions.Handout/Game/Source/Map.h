@@ -139,7 +139,7 @@ public:
 	// L05: DONE 2: Add orthographic world to map coordinates
 	iPoint WorldToMap(int x, int y) const;
 
-	void DrawColisions();
+	void DebugColisions();
 
 	void DColisions();
 
@@ -166,6 +166,7 @@ public:
 	// L03: DONE 1: Add your struct for map info
 	MapData mapData;
 	Collider* MapC[500];
+	SDL_Rect* MapT[500];
 private:
 
 	SString folder;

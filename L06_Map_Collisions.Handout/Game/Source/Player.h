@@ -46,6 +46,7 @@ public:
 	int vides = 1;
 	bool isJumping = false;
 	bool GodMode = false;
+	bool Debug = false;
 	bool dead = false;
 	bool moveY = true;
 	bool moveXD = true;

@@ -100,6 +100,10 @@ bool Player::Update(float dt)
 	{
 		GodMode = !GodMode;
 	}
+	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	{
+		Debug = !Debug;
+	}
 
 	//reset animation
 	{
@@ -229,10 +233,14 @@ bool Player::Update(float dt)
 
 	//SDL_Rect PlayerCollider = { PPlayer.x, PPlayer.y, 48, 48 };
 	//app->render->DrawRectangle(PlayerCollider, 255, 255, 0, 80);
-	app->map->DrawColisions();
+	if (Debug == true) {
+		//Debug Collisions
+		app->map->DebugColisions();
+		//Debug Player
+		app->render->DrawRectangle({ PPlayer.x,PPlayer.y,24,36}, 255, 140, 0, 80);
+	}
 	PlayerC->SetPos(PPlayer.x, PPlayer.y);
 	return true;
-	
 }
 
 bool Player::PostUpdate()
@@ -246,7 +254,6 @@ bool Player::PostUpdate()
 	{
 		app->render->DrawTexture(player,PPlayer.x, PPlayer.y, &rectplayer);
 	}
-
 	currentAnimation->Update();
 
 	return true;
