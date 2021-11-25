@@ -32,6 +32,8 @@ public:
 	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2);
 
+	int Timer(int second);
+
 
 	// Draws gamepad debug info in the screen
 	//void DebugDrawGamepadInfo();
@@ -40,11 +42,13 @@ public:
 	// Position of the player in the map
 	iPoint PPlayer;
 	// The speed in which we move the player (pixels per frame)
+	//player General
 	float speed = 0.8f;
-	int timer = 0;
-
 	int vides = 1;
-	bool isJumping = false;
+	int yVel = 5;
+	int xVel = 5;
+	//bools
+	bool isJumping = true;
 	bool GodMode = false;
 	bool Debug = false;
 	bool dead = false;
@@ -53,11 +57,10 @@ public:
 	bool moveXE = true;
 	bool Grav = true;
 	bool GCollision = false;
-
-	int yVel = 1;
-	int xVel = 5;
-	
-
+	bool jumping = false;;
+	//Timer
+	int timer = 0;
+	int Sec;
 
 
 	// Countdown to handle shot spacing

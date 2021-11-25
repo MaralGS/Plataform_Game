@@ -59,7 +59,7 @@ Player::Player() : Module()
 	JumpD.PushBack({ 194, 241, 19, 34 });
 	JumpD.PushBack({ 246, 246, 17, 32 });
 	JumpD.loop = false;
-	JumpD.speed = 0.06f;
+	JumpD.speed = 0.2f;
 
 	// jump left
 	JumpE.PushBack({ 237, 294, 26, 32 });
@@ -69,7 +69,7 @@ Player::Player() : Module()
 	JumpE.PushBack({ 52, 289, 19, 34 });
 	JumpE.PushBack({ 2, 294, 17, 32 });
 	JumpE.loop = false;
-	JumpE.speed = 0.02f;
+	JumpE.speed = 0.2f;
 }
 
 Player::~Player()
@@ -187,9 +187,9 @@ bool Player::Update(float dt)
 		}
 		//jump
 		{
+
 			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 			{
-
 				if (currentAnimation != &JumpD)
 				{
 					JumpD.Reset();
@@ -200,16 +200,30 @@ bool Player::Update(float dt)
 
 			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && moveY == false)
 			{
+				Sec = 3;
 				if (currentAnimation != &JumpE)
 				{
 					JumpE.Reset();
 					currentAnimation = &JumpE;
 				}
-				PPlayer.y = 600;
+				Timer(Sec);
+				jumping = true;
 				moveY = true;
-				Grav = true;
 				GCollision = false;
 			}
+
+			if (jumping == true)
+			{
+				Timer(Sec);
+				if (Sec!=0)
+				{
+					PPlayer.y = PPlayer.y - 10;
+				}
+				Timer(Sec);
+				//Timer(Sec);
+				jumping = true;
+			}
+			
 		}
 	}
 
@@ -317,4 +331,24 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 			
 		}
 	}
+}
+
+int Player::Timer(int second)
+{
+	//puja timer	
+	while (second != 0)
+	{
+		if (timer <= 60) {
+			timer++;
+		}
+		//redueix els sec quan timer esta en 60 i reseteja
+		if (timer == 60) {
+			timer = 0;
+			if (second != 0)
+			{
+				second--;
+			}
+		}
+	}
+	return second;
 }
