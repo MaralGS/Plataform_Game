@@ -206,7 +206,7 @@ bool Player::Update(float dt)
 					JumpE.Reset();
 					currentAnimation = &JumpE;
 				}
-				Timer(Sec);
+				
 				jumping = true;
 				moveY = true;
 				GCollision = false;
@@ -214,14 +214,21 @@ bool Player::Update(float dt)
 
 			if (jumping == true)
 			{
-				Timer(Sec);
-				if (Sec!=0)
-				{
-					PPlayer.y = PPlayer.y - 10;
-				}
-				Timer(Sec);
+				PPlayer.y = PPlayer.y - 10;
+
+					if (timer <= 10) {
+						timer++;
+					}
+					//redueix els sec quan timer esta en 60 i reseteja
+					if (timer == 10) {
+						timer = 0;
+						Sec--;
+					}
+					else if (Sec == 0) {
+						jumping = false;
+					}
 				//Timer(Sec);
-				jumping = true;
+				
 			}
 			
 		}
@@ -333,22 +340,10 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 	}
 }
 
-int Player::Timer(int second)
+/*int Player::Timer(int second)
 {
 	//puja timer	
-	while (second != 0)
-	{
-		if (timer <= 60) {
-			timer++;
-		}
-		//redueix els sec quan timer esta en 60 i reseteja
-		if (timer == 60) {
-			timer = 0;
-			if (second != 0)
-			{
-				second--;
-			}
-		}
-	}
+
 	return second;
 }
+*/

@@ -32,7 +32,7 @@ public:
 	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2);
 
-	int Timer(int second);
+	//int Timer(int second);
 
 
 	// Draws gamepad debug info in the screen
@@ -59,7 +59,7 @@ public:
 	bool GCollision = false;
 	bool jumping = false;;
 	//Timer
-	int timer = 0;
+	float timer = 0;
 	int Sec;
 
 
