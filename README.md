@@ -16,8 +16,8 @@ Source Code: https://github.com/MaralGS/Plataform_Game
  -F3: GodMode
  -L key: Debug
  -F1 Key: Restart
- -F6 Key: Load Game
- -F7 Key: Save Game
+ -F6 Key: Save Game
+ -F7 Key: Load Game
  -Esc Key: Close game
 
 ## Features:
