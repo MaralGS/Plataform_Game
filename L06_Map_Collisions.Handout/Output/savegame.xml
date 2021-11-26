@@ -9,7 +9,7 @@
 	<:anonymous />
 	<:anonymous />
 	<renderer>
-		<camera x="-1065" y="-330" />
-		<player x="1215" y="880" />
+		<camera x="-515" y="-330" />
+		<player x="665" y="880" />
 	</renderer>
 </save_state>

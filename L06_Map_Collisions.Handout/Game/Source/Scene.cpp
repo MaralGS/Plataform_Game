@@ -73,10 +73,10 @@ bool Scene::Update(float dt)
 	// L02: DONE 3: Request Load / Save when pressing L/S
 
 
-	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
 		app->LoadGameRequest();
 
-	if (app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		app->SaveGameRequest();
 
 	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
