@@ -55,9 +55,12 @@ public:
 	bool moveY = true;
 	bool moveXD = true;
 	bool moveXE = true;
+	bool JumpESprite = true;
+	bool JumpDSprite = true;
 	bool Grav = true;
 	bool GCollision = false;
-	bool jumping = false;;
+	bool jumping = false;
+	bool jumping2 = false;
 	//Timer
 	float timer = 0;
 	int Sec;

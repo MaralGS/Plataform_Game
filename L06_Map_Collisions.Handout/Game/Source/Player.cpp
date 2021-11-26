@@ -109,6 +109,7 @@ bool Player::Update(float dt)
 	{
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
 		{
+
 			if (currentAnimation != &idle)
 			{
 				idle.Reset();
@@ -131,26 +132,36 @@ bool Player::Update(float dt)
 		//move
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && moveXD == true)
 		{
+			JumpESprite = true;
+			JumpDSprite = true;
 			moveXE = true;
 			PPlayer.x += xVel;
-			if (currentAnimation != &MoveD)
+			if (jumping2 == false)
 			{
-				MoveD.Reset();
-				currentAnimation = &MoveD;
+				if (currentAnimation != &MoveD)
+				{
+					MoveD.Reset();
+					currentAnimation = &MoveD;
+				}
 			}
-
 		}
 
 
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && moveXE == true)
 		{
 			moveXD = true;
+			JumpDSprite = false;
+			JumpESprite = false;
 			PPlayer.x -= xVel;
-			if (currentAnimation != &MoveE)
+			if (jumping2 == false)
 			{
-				MoveE.Reset();
-				currentAnimation = &MoveE;
+				if (currentAnimation != &MoveE)
+				{
+					MoveE.Reset();
+					currentAnimation = &MoveE;
+				}
 			}
+	
 
 		}
 		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && GodMode == true) {
@@ -188,24 +199,30 @@ bool Player::Update(float dt)
 		//jump
 		{
 
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-			{
-				if (currentAnimation != &JumpD)
-				{
-					JumpD.Reset();
-					currentAnimation = &JumpD;
-
-				}
-			}
-
 			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && moveY == false)
-			{
+			{	
 				Sec = 3;
-				if (currentAnimation != &JumpE)
+				jumping2 = true;
+				if (JumpDSprite == true)
 				{
-					JumpE.Reset();
-					currentAnimation = &JumpE;
+					if (currentAnimation != &JumpD)
+					{
+						JumpD.Reset();
+						currentAnimation = &JumpD;
+
+					}
 				}
+				
+				
+				if (JumpESprite == false)
+				{
+					if (currentAnimation != &JumpE)
+					{
+						JumpE.Reset();
+						currentAnimation = &JumpE;
+					}
+				}
+		
 				
 				jumping = true;
 				moveY = true;
@@ -296,6 +313,7 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 						GCollision = true;
 						Grav = false;
 						moveY = false;
+						jumping2 = false;
 					}
 				}
 
