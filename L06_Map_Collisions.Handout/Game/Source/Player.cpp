@@ -11,6 +11,8 @@
 #include "Scene.h"
 
 #include "Map.h"
+#include "Defs.h"
+#include "Log.h"
 
 Player::Player() : Module()
 {
@@ -75,6 +77,23 @@ Player::Player() : Module()
 Player::~Player()
 {
 
+}
+
+bool Player::Awake(pugi::xml_node& config) {
+
+	LOG("Loading Player");
+	bool ret = true;
+	PPlayer.x = config.child("Position").attribute("PositionX").as_int();
+	PPlayer.y = config.child("Position").attribute("PositionY").as_int();
+	yVel = config.child("Vel").attribute("yVel").as_int();
+	xVel = config.child("Vel").attribute("xVel").as_int();
+	vides = config.child("Vides").attribute("v").as_int();
+	isJumping = config.child("Generals").attribute("isJumping").as_bool();
+	GodMode = config.child("Generals").attribute("GodMode").as_bool();
+	dead = config.child("Generals").attribute("dead").as_bool();
+
+
+	return ret;
 }
 
 bool Player::Start()
@@ -199,7 +218,7 @@ bool Player::Update(float dt)
 		//jump
 		{
 
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && moveY == false)
+ 			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && moveY == false)
 			{	
 				Sec = 3;
 				jumping2 = true;

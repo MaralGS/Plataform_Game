@@ -17,6 +17,8 @@ public:
 	// Destructor
 	~Player();
 
+
+	bool Awake(pugi::xml_node&);
 	// Called when the module is activated
 	// Loads the necessary textures for the player
 	bool Start();
@@ -44,14 +46,14 @@ public:
 	// The speed in which we move the player (pixels per frame)
 	//player General
 	float speed = 0.8f;
-	int vides = 1;
-	int yVel = 5;
-	int xVel = 5;
+	int vides;
+	int yVel;
+	int xVel;
 	//bools
-	bool isJumping = true;
-	bool GodMode = false;
+	bool isJumping;
+	bool GodMode;
 	bool Debug = false;
-	bool dead = false;
+	bool dead;
 	bool moveY = true;
 	bool moveXD = true;
 	bool moveXE = true;

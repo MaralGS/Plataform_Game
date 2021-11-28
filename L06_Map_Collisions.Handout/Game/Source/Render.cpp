@@ -97,6 +97,7 @@ bool Render::LoadState(pugi::xml_node& data)
 	camera.y = data.child("camera").attribute("y").as_int();
 	app->player->PPlayer.x = data.child("player").attribute("x").as_int();
 	app->player->PPlayer.y = data.child("player").attribute("y").as_int();
+	app->player->vides = data.child("Vides").attribute("v").as_int();
 
 	return true;
 }
