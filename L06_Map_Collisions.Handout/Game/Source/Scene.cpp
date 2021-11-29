@@ -7,8 +7,8 @@
 #include "Scene.h"
 #include "Map.h"
 #include "Animation.h"
+#include "EnemCentipide.h"
 #include "Player.h"
-#include "ModuleEnemy.h"
 #include <iostream>
 using namespace std;
 
@@ -47,7 +47,7 @@ bool Scene::Start()
 	Enter = app->tex->Load("Assets/textures/Enter_Image.png");
 	END = app->tex->Load("Assets/textures/End_Image.png");
 	WIN = app->tex->Load("Assets/textures/Win_Image.png");
-	app->Enemies->AddEnemy(Enemy_Type::CENTIPIDE, 60, 875);
+	//app->Enemies->AddEnemy(Enemy_Type::CENTIPIDE, 60, 875);
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	app->player->PPlayer.x;
@@ -90,6 +90,9 @@ bool Scene::Update(float dt)
 	{
 		app->player->PPlayer.x = 150;
 		app->player->PPlayer.y = 875;
+		app->Centipide->PEnemy.x = 300;
+		app->Centipide->PEnemy.y = 875;
+
 		app->player->vides = 1;
 		WScrean = false;
 		DeadScreen = false;

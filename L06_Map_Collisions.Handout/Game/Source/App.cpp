@@ -10,7 +10,7 @@
 #include "Log.h"
 #include "Collisions.h"
 #include "Player.h"
-#include "ModuleEnemy.h"
+#include "EnemCentipide.h"
 
 #include <iostream>
 #include <sstream>
@@ -29,7 +29,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	collisions = new Collisions();
 	player = new Player();
-	Enemies = new ModuleEnemy();
+	Centipide = new EnemCentipide();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -40,7 +40,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(map);
 	AddModule(collisions);
-	AddModule(Enemies);
+	AddModule(Centipide);
 	AddModule(player);
 	// Render last to swap buffer
 	AddModule(render);

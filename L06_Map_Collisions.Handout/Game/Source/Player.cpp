@@ -337,43 +337,48 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 						Grav = false;
 					}*/
 				}
-				//Ground gravity
-				if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::GROUND)
+			//Ground gravity
+			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::GROUND)
+			{
+				if (c1->rect.y <= c2->rect.y)
 				{
-					if (c1->rect.y <= c2->rect.y)
-					{
-						GCollision = true;
-						Grav = false;
-						moveY = false;
-						jumping2 = false;
-					}
+					GCollision = true;
+					Grav = false;
+					moveY = false;
+					jumping2 = false;
 				}
+			}
 
-				//Ground head
+		
 			
 
-				//Wall left
-				if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
-				{
+			//Wall left
+			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
+			{
 				if (c1->rect.x+ 3 >= c2->rect.x + c2->rect.w )
 					{
 						moveXE = false;
 					}
-				}
+			}
 				//Wall right
-				if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
+			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
+			{
+				if (c1->rect.x + c1->rect.w - 2 <= c2->rect.x )
 				{
-					if (c1->rect.x + c1->rect.w - 2 <= c2->rect.x )
-					{
-						moveXD = false;
-					}
+					moveXD = false;
 				}
+			}
 				
 				//Roof
-				if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ROOF)
-				{
-						Sec = 0;
-				}
+			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ROOF)
+			{
+					Sec = 0;
+			}
+				
+			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ECENTIPIDE)
+			{
+				vides--;
+			}
 				
 			
 		}
