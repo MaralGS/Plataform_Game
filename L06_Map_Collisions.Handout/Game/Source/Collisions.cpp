@@ -14,31 +14,31 @@ Collisions::Collisions() : Module()
 
 	matrix[Collider::Type::WALL][Collider::Type::WALL] = false;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER] = true;
-	matrix[Collider::Type::WALL][Collider::Type::FINISH] = false;
+	matrix[Collider::Type::WALL][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::WALL][Collider::Type::GROUND] = false;
 	matrix[Collider::Type::WALL][Collider::Type::ROOF] = false;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
-	matrix[Collider::Type::PLAYER][Collider::Type::FINISH] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::GROUND] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::ROOF] = true;
 
 
-	matrix[Collider::Type::FINISH][Collider::Type::PLAYER] = true;
-	matrix[Collider::Type::FINISH][Collider::Type::FINISH] = false;
-	matrix[Collider::Type::FINISH][Collider::Type::WALL] = false;	
-	matrix[Collider::Type::FINISH][Collider::Type::GROUND] = false;	
-	matrix[Collider::Type::FINISH][Collider::Type::ROOF] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::WALL] = true;	
+	matrix[Collider::Type::ENEMY][Collider::Type::GROUND] = true;	
+	matrix[Collider::Type::ENEMY][Collider::Type::ROOF] = true;
 	
 	matrix[Collider::Type::GROUND][Collider::Type::PLAYER] = true;
-	matrix[Collider::Type::GROUND][Collider::Type::FINISH] = false;
+	matrix[Collider::Type::GROUND][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::GROUND][Collider::Type::WALL] = false;
 	matrix[Collider::Type::GROUND][Collider::Type::GROUND] = false;
 	matrix[Collider::Type::GROUND][Collider::Type::ROOF] = false;
 
 	matrix[Collider::Type::ROOF][Collider::Type::PLAYER] = true;
-	matrix[Collider::Type::ROOF][Collider::Type::FINISH] = false;
+	matrix[Collider::Type::ROOF][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::ROOF][Collider::Type::WALL] = false;
 	matrix[Collider::Type::ROOF][Collider::Type::GROUND] = false;
 	matrix[Collider::Type::ROOF][Collider::Type::ROOF] = false;
@@ -141,7 +141,7 @@ void Collisions::DebugDraw()
 		case Collider::Type::GROUND: // red
 			app->render->DrawRectangle(colliders[i]->rect, 255, 0, 255, alpha );
 			break;
-		case Collider::Type::FINISH: // Yelow
+		case Collider::Type::ENEMY: // Yelow
 			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, alpha);
 			break;
 	

@@ -8,6 +8,8 @@
 #include "Collisions.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "GEnemy.h"
+
 
 #include "Defs.h"
 #include "Log.h"

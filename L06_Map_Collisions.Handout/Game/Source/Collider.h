@@ -16,7 +16,7 @@ struct Collider
 		WALL,
 		ROOF,
 		GROUND,
-		FINISH,
+		ENEMY,
 		MAX
 
 	};
