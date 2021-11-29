@@ -46,8 +46,8 @@ bool EnemCentipide::Start()
 	currentAnimation = &idleAnim;
 	//Dead.Reset();
 
-	PEnemy.x = 300;
-	PEnemy.y = 875;
+	PEnemy.x = 200;
+	PEnemy.y = 475;
 	CentipideC = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 48 ,36 }, Collider::Type::ECENTIPIDE, this);
 
 	return ret;
@@ -56,13 +56,26 @@ bool EnemCentipide::Start()
 bool EnemCentipide::Update(float dt)
 {
 
-	//SDL_Rect PlayerCollider = { PPlayer.x, PPlayer.y, 48, 48 };
-	//app->render->DrawRectangle(PlayerCollider, 255, 255, 0, 80);
 	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
 		Debug = !Debug;
 	}
-	
+
+	//gravity
+	{
+		if (ECGrav == true)
+		{
+			PEnemy.y += ECyVel;
+		}
+
+		if (ECGrav == false && ECGCollision == true)
+		{
+			ECGrav = true;
+			ECGCollision = false;
+		}
+
+	}
+
 	if (Debug == true) {
 		//Debug Collisions
 		app->map->DebugColisions();
@@ -94,5 +107,13 @@ void EnemCentipide::OnCollision(Collider* c1, Collider* c2)
 {
 	// L6: DONE 5: Detect collision with a wall. If so, destroy the player.
 
+	if (c1->type == Collider::Type::ECENTIPIDE && c2->type == Collider::Type::GROUND)
+	{
+		if (c1->rect.y <= c2->rect.y)
+		{
+			ECGCollision = true;
+			ECGrav = false;
+		}
+	}
 
 }

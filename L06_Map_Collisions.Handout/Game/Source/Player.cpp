@@ -331,16 +331,11 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 					{
 						Sec = 0;
 					}
-					
-					/*if (c1->rect.y + 36 >= c2->rect.y)
-					{
-						Grav = false;
-					}*/
 				}
 			//Ground gravity
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::GROUND)
 			{
-				if (c1->rect.y <= c2->rect.y)
+				if (c1->rect.y <= c2->rect.y /* || c1->rect.x + 24 <= c2->rect.x*/)
 				{
 					GCollision = true;
 					Grav = false;
@@ -374,7 +369,7 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 			{
 					Sec = 0;
 			}
-				
+				//Centipide
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ECENTIPIDE)
 			{
 				vides--;

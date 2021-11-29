@@ -46,6 +46,10 @@ public:
 	float speed = 0.8f;
 	bool Debug = false;
 
+	bool ECGrav = true;
+	bool ECGCollision = false;
+	int ECyVel = 5;
+	int ECXVel = 5;
 
 	SDL_Texture* Centipide;
 	SDL_Rect rectCentipide;
