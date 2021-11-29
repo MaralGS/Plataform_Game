@@ -29,7 +29,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	collisions = new Collisions();
 	player = new Player();
-	ModuelEnemy = new ModuleEnemy();
+	Enemies = new ModuleEnemy();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -40,7 +40,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(map);
 	AddModule(collisions);
-	AddModule(ModuelEnemy);
+	AddModule(Enemies);
 	AddModule(player);
 	// Render last to swap buffer
 	AddModule(render);

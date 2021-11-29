@@ -93,7 +93,7 @@ public:
 	Map* map;
 	Collisions* collisions;
 	Player* player;
-	ModuleEnemy* ModuelEnemy;
+	ModuleEnemy* Enemies;
 
 private:
 

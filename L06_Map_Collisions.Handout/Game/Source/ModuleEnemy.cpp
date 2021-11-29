@@ -8,7 +8,7 @@
 #include "Collisions.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "GEnemy.h"
+#include "Ecentipide.h"
 
 
 #include "Defs.h"
@@ -32,7 +32,7 @@ ModuleEnemy::~ModuleEnemy()
 
 bool ModuleEnemy::Start()
 {
-	//enemyTexture = app->textures->Load("Assets/enemies/enemies.png");
+	Centipide = app->tex->Load("Assets/textures/Enemies/Centipide.png");
 	//enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
@@ -127,18 +127,18 @@ void ModuleEnemy::SpawnEnemy(const EnemySpawnpoint& info)
 	{
 		if (enemies[i] == nullptr)
 		{
-			/*switch (info.type)
+			switch (info.type)
 			{
-			case Enemy_Type::BROWNROBOT:
-				enemies[i] = new Enemy_BrownRobot(info.x, info.y);
+			case Enemy_Type::CENTIPIDE:
+				enemies[i] = new Ecentipide(info.x, info.y);
 				break;
 			}
-			enemies[i]->texture = enemyTexture;
+			enemies[i]->texture = Centipide;
 			break;
-		}*/
 		}
 	}
 }
+
 
 void ModuleEnemy::OnCollision(Collider* c1, Collider* c2)
 {

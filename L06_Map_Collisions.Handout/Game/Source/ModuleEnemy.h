@@ -4,13 +4,14 @@
 #include "Module.h"
 #include "Animation.h"
 #include "Point.h"
+#include "Textures.h"
 
 #define MAX_ENEMIES 100
 
 enum class Enemy_Type
 {
 	NO_TYPE,
-	BROWNROBOT,
+	CENTIPIDE,
 };
 
 struct EnemySpawnpoint
@@ -66,7 +67,7 @@ private:
 	Enemy* enemies[MAX_ENEMIES] = { nullptr };
 
 	// The enemies sprite sheet
-	//SDL_Texture* enemyTexture = nullptr;
+	SDL_Texture* Centipide = nullptr;
 
 };
 

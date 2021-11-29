@@ -325,10 +325,22 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (godmode == false)
 		{
+			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::GROUND)
+				{
+					if (c1->rect.y >= c2->rect.y + 28 )
+					{
+						Sec = 0;
+					}
+					
+					/*if (c1->rect.y + 36 >= c2->rect.y)
+					{
+						Grav = false;
+					}*/
+				}
 				//Ground gravity
 				if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::GROUND)
 				{
-					if (c1->rect.y + 36 >= c2->rect.y)
+					if (c1->rect.y <= c2->rect.y)
 					{
 						GCollision = true;
 						Grav = false;
@@ -338,14 +350,7 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 				}
 
 				//Ground head
-				if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::GROUND)
-				{
-					
-					if (c1->rect.y + 36 >= c2->rect.y)
-					{
-						Grav = false;
-					}
-				}
+			
 
 				//Wall left
 				if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)

@@ -35,7 +35,7 @@ void Enemy::Update()
 void Enemy::Draw()
 {
 	if (currentAnim != nullptr);
-		//App->render->DrawTexture(texture, position.x, position.y, &(currentAnim->GetCurrentFrame()));
+	//app->render->DrawTexture(texture, position.x, position.y, &(currentAnim->GetCurrentFrame()));
 }
 
 void Enemy::OnCollision(Collider* c1, Collider* c2)

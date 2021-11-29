@@ -8,6 +8,7 @@
 #include "Map.h"
 #include "Animation.h"
 #include "Player.h"
+#include "ModuleEnemy.h"
 #include <iostream>
 using namespace std;
 
@@ -46,6 +47,7 @@ bool Scene::Start()
 	Enter = app->tex->Load("Assets/textures/Enter_Image.png");
 	END = app->tex->Load("Assets/textures/End_Image.png");
 	WIN = app->tex->Load("Assets/textures/Win_Image.png");
+	app->Enemies->AddEnemy(Enemy_Type::CENTIPIDE, 60, 875);
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	app->player->PPlayer.x;
@@ -99,7 +101,6 @@ bool Scene::Update(float dt)
 	if (EnterScreen == false)
 	{
 		app->map->Draw();
-
 	}
 
 
@@ -159,7 +160,7 @@ bool Scene::PostUpdate()
 {
 	bool ret = true;
 
-
+	
 
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;

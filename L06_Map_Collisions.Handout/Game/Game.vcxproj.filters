@@ -21,7 +21,7 @@
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\ModuleEnemy.cpp" />
-    <ClCompile Include="Source\GEnemy.cpp" />
+    <ClCompile Include="Source\ECentipide.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -63,7 +63,7 @@
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\ModuleEnemy.h" />
-    <ClInclude Include="Source\GEnemy.h" />
+    <ClInclude Include="Source\ECentipide.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
