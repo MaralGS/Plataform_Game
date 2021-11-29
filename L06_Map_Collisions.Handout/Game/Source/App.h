@@ -19,6 +19,7 @@ class Scene;
 class Map;
 class Collisions;
 class Player;
+class ModuleEnemy;
 
 class App
 {
@@ -92,6 +93,7 @@ public:
 	Map* map;
 	Collisions* collisions;
 	Player* player;
+	ModuleEnemy* ModuelEnemy;
 
 private:
 

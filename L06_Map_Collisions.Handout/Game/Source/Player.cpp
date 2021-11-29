@@ -16,6 +16,8 @@
 
 Player::Player() : Module()
 {
+	name.Create("player");
+
 	//idle anim
 	idle.PushBack({ 4, 4, 20, 36 });
 	idle.PushBack({ 51, 4, 21, 36 });
@@ -91,7 +93,6 @@ bool Player::Awake(pugi::xml_node& config) {
 	isJumping = config.child("Generals").attribute("isJumping").as_bool();
 	GodMode = config.child("Generals").attribute("GodMode").as_bool();
 	dead = config.child("Generals").attribute("dead").as_bool();
-
 
 	return ret;
 }
@@ -364,23 +365,13 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 				}
 				
 				//Roof
-				/*if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ROOF)
+				if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ROOF)
 				{
-					if (c1->rect.x + c1->rect.w - 2 <= c2->rect.x )
-					{
-						moveXD = false;
-					}
-				}*/
+						Sec = 0;
+				}
 				
 			
 		}
 	}
 }
 
-/*int Player::Timer(int second)
-{
-	//puja timer	
-
-	return second;
-}
-*/
