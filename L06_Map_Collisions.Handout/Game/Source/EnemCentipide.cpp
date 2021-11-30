@@ -46,7 +46,7 @@ bool EnemCentipide::Start()
 	currentAnimation = &idleAnim;
 	//Dead.Reset();
 
-	PEnemy.x = 200;
+	PEnemy.x = 250;
 	PEnemy.y = 475;
 	CentipideC = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 48 ,36 }, Collider::Type::ECENTIPIDE, this);
 

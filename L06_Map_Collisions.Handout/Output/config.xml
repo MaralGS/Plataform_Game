@@ -23,7 +23,7 @@
     <folder>Assets/maps/</folder>
   </map>
 <player>
-	<Position PositionX = "60" PositionY = "875"/>
+	<Position PositionX = "150" PositionY = "875"/>
 	<Vel yVel = "5" xVel = "5"/>
 	<Generals isJumping = "true" GodMode="false" dead = "false"/>
 	<Vides v="3"/>

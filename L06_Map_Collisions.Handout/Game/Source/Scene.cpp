@@ -45,7 +45,7 @@ bool Scene::Start()
 	//app->map->Load("hello.tmx");
 	app->map->Load("Mapa2.tmx");
 	Enter = app->tex->Load("Assets/textures/Enter_Image.png");
-	END = app->tex->Load("Assets/textures/End_Image.png");
+	END = app->tex->Load("Assets/textures/End_Image_2.png");
 	WIN = app->tex->Load("Assets/textures/Win_Image.png");
 	//app->Enemies->AddEnemy(Enemy_Type::CENTIPIDE, 60, 875);
 	// Load music
@@ -66,8 +66,15 @@ bool Scene::Update(float dt)
 {
 
 	app->map->DColisions();
-	app->render->camera.y = (app->player->PPlayer.y * -1) + 550;
-	app->render->camera.x = (app->player->PPlayer.x * -1) + 150;
+	if (app->player->PPlayer.y <= 875){
+		if (app->player->PPlayer.y >= 600) {
+			app->render->camera.y = (app->player->PPlayer.y * -1) + 550;
+		}
+	}
+
+	if (app->player->PPlayer.x >= 150) {
+		app->render->camera.x = (app->player->PPlayer.x * -1) + 150;
+	}
 
 	float startTicks = SDL_GetTicks();
 
@@ -120,7 +127,7 @@ bool Scene::Update(float dt)
 
 	if (DeadScreen == true)
 	{
-		app->render->DrawTexture(END, 0, 300);
+		app->render->DrawTexture(END, -125, 200);
 	}
 
 	if (app->player->PPlayer.x == 4000) {
