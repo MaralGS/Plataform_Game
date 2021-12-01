@@ -89,6 +89,7 @@ public:
 
 	// The player's collider
 	Collider* PlayerC = nullptr;
+	Collider* AttackP = nullptr;
 
 	// A flag to detect when the player has been destroyed
 	bool godmode = false;
