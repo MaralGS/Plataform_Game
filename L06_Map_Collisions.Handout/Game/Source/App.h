@@ -20,6 +20,7 @@ class Map;
 class Collisions;
 class Player;
 class EnemCentipide;
+class PathFinding;
 
 class App
 {
@@ -94,6 +95,7 @@ public:
 	Collisions* collisions;
 	Player* player;
 	EnemCentipide* Centipide;
+	PathFinding* pathfinding;
 
 private:
 

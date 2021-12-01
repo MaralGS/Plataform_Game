@@ -3,7 +3,6 @@
 #define __SCENE_H__
 
 #include "Module.h"
-#include "Animation.h"
 
 struct SDL_Texture;
 
@@ -56,6 +55,15 @@ public:
 
 private:
 	SDL_Texture* img;
+
+	SDL_Texture* pathTex;
+	SDL_Texture* originTex;
+
+	// L12b: Debug pathfing
+
+	//iPoint origin;
+	bool originSelected = false;
+
 };
 
 #endif // __SCENE_H__

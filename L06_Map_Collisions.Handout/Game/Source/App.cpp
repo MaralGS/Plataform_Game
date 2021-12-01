@@ -11,6 +11,7 @@
 #include "Collisions.h"
 #include "Player.h"
 #include "EnemCentipide.h"
+#include "Pathfinding.h"
 
 #include <iostream>
 #include <sstream>
@@ -27,6 +28,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio();
 	scene = new Scene();
 	map = new Map();
+	pathfinding = new PathFinding();
 	collisions = new Collisions();
 	player = new Player();
 	Centipide = new EnemCentipide();
@@ -38,6 +40,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(scene);
+	AddModule(pathfinding);
 	AddModule(map);
 	AddModule(collisions);
 	AddModule(Centipide);
@@ -58,13 +61,13 @@ App::~App()
 		item = item->prev;
 	}
 
-	modules.clear();
+	modules.Clear();
 }
 
 void App::AddModule(Module* module)
 {
 	module->Init();
-	modules.add(module);
+	modules.Add(module);
 }
 
 // Called before render is available

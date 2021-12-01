@@ -20,6 +20,9 @@
     <ClCompile Include="Source\Collisions.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\EnemCentipide.cpp" />
+    <ClCompile Include="Source\Pathfinding.cpp" />
+    <ClCompile Include="Source\PerfTimer.cpp" />
+    <ClCompile Include="Source\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -60,6 +63,12 @@
     <ClInclude Include="Source\Collisions.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\EnemCentipide.h" />
+    <ClInclude Include="Source\Pathfinding.h" />
+    <ClInclude Include="Source\PerfTimer.h" />
+    <ClInclude Include="Source\Timer.h" />
+    <ClInclude Include="Source\PQueue.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

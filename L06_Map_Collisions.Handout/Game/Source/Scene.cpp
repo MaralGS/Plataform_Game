@@ -9,6 +9,8 @@
 #include "Animation.h"
 #include "EnemCentipide.h"
 #include "Player.h"
+#include "PathFinding.h"
+
 #include <iostream>
 using namespace std;
 
@@ -52,13 +54,47 @@ bool Scene::Start()
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	app->player->PPlayer.x;
 	app->player->PPlayer.y;
+
+	if (app->map->Load("Mapa.tmx") == true)
+	{
+		int w, h;
+		uchar* data = NULL;
+
+		//if (app->map->CreateWalkabilityMap(w, h, &data)) app->pathfinding->SetMap(w, h, data);
+
+		RELEASE_ARRAY(data);
+	}
+	pathTex = app->tex->Load("Assets/maps/path2.png");
+	originTex = app->tex->Load("Assets/maps/x.png");
+
+
 	return true;
 }
 
 // Called each loop iteration
 bool Scene::PreUpdate()
 {
+	/*
+	int mouseX, mouseY;
+	app->input->GetMousePosition(mouseX, mouseY);
+	iPoint p = app->render->ScreenToWorld(mouseX, mouseY);
+	p = app->map->WorldToMap(p.x, p.y);
+	
+	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+	{
+		if (originSelected == true)
+		{
+			app->pathfinding->CreatePath(origin, p);
+			originSelected = false;
+		}
+		else
+		{
+			origin = p;
+			originSelected = true;
+		}
+	}*/
 	return true;
+
 }
 
 // Called each loop iteration
@@ -144,7 +180,7 @@ bool Scene::Update(float dt)
 	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
 		app->map->mapData.width, app->map->mapData.height,
 		app->map->mapData.tileWidth, app->map->mapData.tileHeight,
-		app->map->mapData.tilesets.count());
+		app->map->mapData.tilesets.Count());
 
 	app->win->SetTitle(title.GetString());
 
@@ -158,8 +194,29 @@ bool Scene::Update(float dt)
 	{
 		SDL_Delay(1000.0f / Maxfps - frameTicks);
 	}
+	/*
+	// L03: DONE 7: Set the window title with map/tileset info
+	int mouseX, mouseY;
+	// L12b: Debug pathfinding
+	app->input->GetMousePosition(mouseX, mouseY);
+	iPoint p = app->render->ScreenToWorld(mouseX, mouseY);
+	p = app->map->WorldToMap(p.x, p.y);
+	p = app->map->MapToWorld(p.x, p.y);
 
+	app->render->DrawTexture(pathTex, p.x, p.y);
 
+	const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
+
+	for (uint i = 0; i < path->Count(); ++i)
+	{
+		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+		app->render->DrawTexture(pathTex, pos.x, pos.y);
+	}
+
+	iPoint originScreen = app->map->MapToWorld(origin.x, origin.y);
+	app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
+
+	*/
 	return true;
 }
 

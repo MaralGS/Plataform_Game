@@ -4,8 +4,12 @@
 #include "Module.h"
 #include "List.h"
 #include "Point.h"
+#include "PQueue.h"
+#include "DynArray.h"
 
 #include "PugiXml\src\pugixml.hpp"
+
+#define COST_MAP_SIZE	100
 
 // L03: DONE 2: Create a struct to hold information for a TileSet
 // Ignore Terrain Types and Tile Types for now, but we want the image!
@@ -60,7 +64,7 @@ struct Properties
 			item = item->next;
 		}
 
-		list.clear();
+		list.Clear();
 	}
 
 	// L06: TODO 7: Method to ask for the value of a custom property
@@ -143,6 +147,26 @@ public:
 
 	void DColisions();
 
+	// L10: BFS Pathfinding methods
+	void ResetPath(iPoint start);
+	void DrawPath();
+
+	// L11: More pathfinding methods
+	int MovementCost(int x, int y) const;
+	void ComputePath(int x, int y);
+
+	// L12a: AStar pathfinding
+	void ComputePathAStar(int x, int y);
+
+	// Propagation methods
+	void PropagateBFS();
+
+	// L12a: AStar propagation
+	void PropagateAStar(int heuristic);
+	// L12b: Create walkability map for pathfinding
+	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
+
+
 private:
 
 	// L03: Methods to load all required map data
@@ -169,8 +193,25 @@ public:
 	SDL_Rect* MapT[500];
 private:
 
+	pugi::xml_document mapFile;
 	SString folder;
 	bool mapLoaded;
+
+	// L10: BFS Pathfinding variables
+	PQueue<iPoint> frontier;
+	List<iPoint> visited;
+
+	// L11: Additional variables
+	List<iPoint> breadcrumbs;
+	DynArray<iPoint> path;
+
+	// L11: Dijkstra cost
+	uint costSoFar[COST_MAP_SIZE][COST_MAP_SIZE];
+
+	// L12a: AStar (A*) variables
+	iPoint goalAStar;			// Store goal target tile
+	bool finishAStar = false;	// Detect when reached goal
+	SDL_Texture* tileX = nullptr;
 };
 
 #endif // __MAP_H__
