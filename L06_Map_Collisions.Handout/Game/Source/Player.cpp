@@ -9,6 +9,7 @@
 #include "Audio.h"
 #include "Collisions.h"
 #include "Scene.h"
+#include "EnemCentipide.h"
 
 #include "Map.h"
 #include "Defs.h"
@@ -109,6 +110,7 @@ bool Player::Start()
 	// L6: DONE 3: Add a collider to the player
 	
 	PlayerC = app->collisions->AddCollider({ PPlayer.x,PPlayer.y,24,36 }, Collider::Type::PLAYER, this);
+	AttackP = app->collisions->AddCollider({ PPlayer.x, PPlayer.y, 20, 20 }, Collider::Type::ATTACK, this);
 
 	return ret;
 }
@@ -269,6 +271,12 @@ bool Player::Update(float dt)
 			}
 			
 		}
+		//Player Attack
+		if (app->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		{
+			AttackP->SetPos(PPlayer.x + 20, PPlayer.y);
+			AttackP->pendingToDelete;
+		}
 	}
 
 	
@@ -288,16 +296,17 @@ bool Player::Update(float dt)
 			dead = true;
 		}
 }
-
+	
 	//SDL_Rect PlayerCollider = { PPlayer.x, PPlayer.y, 48, 48 };
 	//app->render->DrawRectangle(PlayerCollider, 255, 255, 0, 80);
 	if (Debug == true) {
 		//Debug Collisions
 		app->map->DebugColisions();
 		//Debug Player
-		app->render->DrawRectangle({ PPlayer.x,PPlayer.y,24,36}, 255, 140, 0, 80);
+		app->collisions->DebugDraw();
 	}
 	PlayerC->SetPos(PPlayer.x, PPlayer.y);
+	AttackP->SetPos(0,0);
 	return true;
 }
 
@@ -332,7 +341,7 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 						Sec = 0;
 					}
 				}*/
-			//Ground gravity
+				//Ground gravity
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::GROUND)
 			{
 				if (c1->rect.y + 25 <= c2->rect.y /* || c1->rect.x + 24 <= c2->rect.x*/)
@@ -344,38 +353,38 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 				}
 			}
 
-		
-			
+
+
 
 			//Wall left
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
 			{
-				if (c1->rect.x+ 3 >= c2->rect.x + c2->rect.w )
-					{
-						moveXE = false;
-					}
+				if (c1->rect.x + 3 >= c2->rect.x + c2->rect.w)
+				{
+					moveXE = false;
+				}
 			}
-				//Wall right
+			//Wall right
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
 			{
-				if (c1->rect.x + c1->rect.w - 2 <= c2->rect.x )
+				if (c1->rect.x + c1->rect.w - 2 <= c2->rect.x)
 				{
 					moveXD = false;
 				}
 			}
-				
-				//Roof
+
+			//Roof
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ROOF)
 			{
-					Sec = 0;
+				Sec = 0;
 			}
-				//Centipide
+			//Centipide
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ECENTIPIDE)
 			{
 				dead = true;
 			}
-				
-			
+
+
 		}
 	}
 }

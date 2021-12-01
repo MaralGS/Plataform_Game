@@ -144,7 +144,9 @@ void Collisions::DebugDraw()
 		case Collider::Type::ECENTIPIDE: // Yelow
 			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, alpha);
 			break;
-	
+		case Collider::Type::ATTACK: // Yelow
+			app->render->DrawRectangle(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
 		case Collider::Type::ROOF: // Dark Green
 			app->render->DrawRectangle(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
