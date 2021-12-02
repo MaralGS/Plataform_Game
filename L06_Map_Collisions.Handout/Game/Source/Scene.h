@@ -3,6 +3,7 @@
 #define __SCENE_H__
 
 #include "Module.h"
+#include "Point.h"
 
 struct SDL_Texture;
 
@@ -45,6 +46,7 @@ public:
 	SDL_Texture* Enter = nullptr;
 	SDL_Texture* END = nullptr;
 	SDL_Texture* WIN = nullptr;
+	
 	float playerHeight;
 	
 	float fps;
@@ -54,14 +56,14 @@ public:
 
 
 private:
-	SDL_Texture* img;
+	
 
+	SDL_Texture* img;
 	SDL_Texture* pathTex;
 	SDL_Texture* originTex;
 
 	// L12b: Debug pathfing
-
-	//iPoint origin;
+	iPoint origin;
 	bool originSelected = false;
 
 };

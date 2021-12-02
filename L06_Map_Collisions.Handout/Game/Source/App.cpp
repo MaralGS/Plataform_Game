@@ -13,6 +13,9 @@
 #include "EnemCentipide.h"
 #include "Pathfinding.h"
 
+#include "Defs.h"
+#include "Log.h"
+
 #include <iostream>
 #include <sstream>
 
@@ -47,6 +50,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(player);
 	// Render last to swap buffer
 	AddModule(render);
+
+	PERF_PEEK(ptimer);
 }
 
 // Destructor
@@ -73,6 +78,7 @@ void App::AddModule(Module* module)
 // Called before render is available
 bool App::Awake()
 {
+	PERF_START(ptimer);
 	pugi::xml_document configFile;
 	pugi::xml_node config;
 	pugi::xml_node configApp;
@@ -114,6 +120,7 @@ bool App::Awake()
 // Called before the first frame
 bool App::Start()
 {
+	PERF_START(ptimer);
 	bool ret = true;
 	ListItem<Module*>* item;
 	item = modules.start;
@@ -123,7 +130,7 @@ bool App::Start()
 		ret = item->data->Start();
 		item = item->next;
 	}
-
+	PERF_PEEK(ptimer);
 	return ret;
 }
 
@@ -174,6 +181,24 @@ void App::FinishUpdate()
 	// L02: DONE 1: This is a good place to call Load / Save methods
 	if (loadGameRequested == true) LoadGame();
 	if (saveGameRequested == true) SaveGame();
+
+	if (lastSecFrameTime.Read() > 1000)
+	{
+		lastSecFrameTime.Start();
+		prevLastSecFrameCount = lastSecFrameCount;
+		lastSecFrameCount = 0;
+	}
+
+	float averageFps = float(frameCount) / startupTime.ReadSec();
+	float secondsSinceStartup = startupTime.ReadSec();
+	uint32 lastFrameMs = frameTime.Read();
+	uint32 framesOnLastUpdate = prevLastSecFrameCount;
+
+	static char title[256];
+	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %I64u ",
+		averageFps, lastFrameMs, framesOnLastUpdate, dt, secondsSinceStartup, frameCount);
+
+	//app->win->SetTitle(title);
 }
 
 // Call modules before each loop iteration

@@ -55,7 +55,7 @@ bool Scene::Start()
 	app->player->PPlayer.x;
 	app->player->PPlayer.y;
 
-	if (app->map->Load("Mapa.tmx") == true)
+	if (app->map->Load("Mapa2.tmx") == true)
 	{
 		int w, h;
 		uchar* data = NULL;
@@ -74,7 +74,7 @@ bool Scene::Start()
 // Called each loop iteration
 bool Scene::PreUpdate()
 {
-	/*
+	
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 	iPoint p = app->render->ScreenToWorld(mouseX, mouseY);
@@ -92,9 +92,8 @@ bool Scene::PreUpdate()
 			origin = p;
 			originSelected = true;
 		}
-	}*/
+	}
 	return true;
-
 }
 
 // Called each loop iteration
@@ -174,16 +173,6 @@ bool Scene::Update(float dt)
 		app->render->DrawTexture(WIN, app->player->PPlayer.x - 100, app->player->PPlayer.y - 550);
 	}
 
-	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
-
-	// L03: DONE 7: Set the window title with map/tileset info
-	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
-		app->map->mapData.width, app->map->mapData.height,
-		app->map->mapData.tileWidth, app->map->mapData.tileHeight,
-		app->map->mapData.tilesets.Count());
-
-	app->win->SetTitle(title.GetString());
-
 	//calculate frames
 	calculatedFPS();
 	cout << fps << endl;
@@ -194,9 +183,25 @@ bool Scene::Update(float dt)
 	{
 		SDL_Delay(1000.0f / Maxfps - frameTicks);
 	}
-	/*
+
+	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
+
 	// L03: DONE 7: Set the window title with map/tileset info
-	int mouseX, mouseY;
+	
+		int mouseX, mouseY;
+		app->input->GetMousePosition(mouseX, mouseY);
+		iPoint mouseTile = app->map->WorldToMap(mouseX - app->render->camera.x, mouseY - app->render->camera.y);
+		
+		SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
+		app->map->mapData.width, app->map->mapData.height,
+		app->map->mapData.tileWidth, app->map->mapData.tileHeight,
+		app->map->mapData.tilesets.Count());
+
+	app->win->SetTitle(title.GetString());
+
+	
+	// L03: DONE 7: Set the window title with map/tileset info
+
 	// L12b: Debug pathfinding
 	app->input->GetMousePosition(mouseX, mouseY);
 	iPoint p = app->render->ScreenToWorld(mouseX, mouseY);
@@ -216,7 +221,7 @@ bool Scene::Update(float dt)
 	iPoint originScreen = app->map->MapToWorld(origin.x, origin.y);
 	app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
 
-	*/
+	
 	return true;
 }
 
@@ -226,8 +231,6 @@ bool Scene::Update(float dt)
 bool Scene::PostUpdate()
 {
 	bool ret = true;
-
-	
 
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
