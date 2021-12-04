@@ -188,7 +188,7 @@ private:
 public:
 
 	// L03: DONE 1: Add your struct for map info
-	MapData data;
+	MapData mapData;
 	Collider* MapC[500];
 	SDL_Rect* MapT[500];
 private:

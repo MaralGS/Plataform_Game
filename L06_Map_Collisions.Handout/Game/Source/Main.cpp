@@ -1,16 +1,7 @@
 #include "App.h"
+
 #include "Defs.h"
 #include "Log.h"
-#include <time.h>
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <stack>
-
-#include <iostream>
-#include <chrono>
-
-using namespace std;
 
 // NOTE: SDL redefines main function
 #include "SDL/include/SDL.h"
@@ -37,13 +28,12 @@ App* app = NULL;
 int main(int argc, char* args[])
 {
 	LOG("Engine starting ...");
-	float Dt = 16.0;
+
 	MainState state = CREATE;
 	int result = EXIT_FAILURE;
-	float CelapsetTime;
+
 	while(state != EXIT)
 	{
-		auto start = chrono::steady_clock::now();
 		switch(state)
 		{
 			// Allocate the engine --------------------------------------------
@@ -89,6 +79,7 @@ int main(int argc, char* args[])
 
 			// Loop all modules until we are asked to leave ---------------------
 			case LOOP:
+			if(app->Update() == false)
 				state = CLEAN;
 			break;
 
@@ -112,11 +103,6 @@ int main(int argc, char* args[])
 			result = EXIT_FAILURE;
 			state = EXIT;
 			break;
-		}
-		auto end = chrono::steady_clock::now();
-		CelapsetTime = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-		if (Dt - CelapsetTime > 0.0f) {
-  			SDL_Delay(Dt - CelapsetTime);
 		}
 	}
 
