@@ -60,7 +60,7 @@ bool Scene::Start()
 		int w, h;
 		uchar* data = NULL;
 
-		//if (app->map->CreateWalkabilityMap(w, h, &data)) app->pathfinding->SetMap(w, h, data);
+		if (app->map->CreateWalkabilityMap(w, h, &data)) app->pathfinding->SetMap(w, h, data);
 
 		RELEASE_ARRAY(data);
 	}
@@ -193,9 +193,9 @@ bool Scene::Update(float dt)
 		iPoint mouseTile = app->map->WorldToMap(mouseX - app->render->camera.x, mouseY - app->render->camera.y);
 		
 		SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
-		app->map->mapData.width, app->map->mapData.height,
-		app->map->mapData.tileWidth, app->map->mapData.tileHeight,
-		app->map->mapData.tilesets.Count());
+		app->map->data.width, app->map->data.height,
+		app->map->data.tileWidth, app->map->data.tileHeight,
+		app->map->data.tilesets.Count());
 
 	app->win->SetTitle(title.GetString());
 

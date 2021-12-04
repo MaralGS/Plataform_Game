@@ -83,6 +83,9 @@ private:
 	// Load / Save
 	bool LoadGame();
 	bool SaveGame() const;
+	void SetDt(float t) {
+		this->dt = t;
+	}
 
 public:
 
