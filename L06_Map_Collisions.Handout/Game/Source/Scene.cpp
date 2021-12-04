@@ -60,7 +60,7 @@ bool Scene::Start()
 		int w, h;
 		uchar* data = NULL;
 
-		//if (app->map->CreateWalkabilityMap(w, h, &data)) app->pathfinding->SetMap(w, h, data);
+		if (app->map->CreateWalkabilityMap(w, h, &data)) app->pathfinding->SetMap(w, h, data);
 
 		RELEASE_ARRAY(data);
 	}
