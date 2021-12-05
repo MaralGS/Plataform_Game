@@ -34,6 +34,8 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void DebugPath();
+
 	bool debug = false;
 
 	
@@ -63,7 +65,7 @@ private:
 	SDL_Texture* originTex;
 
 	// L12b: Debug pathfing
-	iPoint origin;
+	//iPoint origin;
 	bool originSelected = false;
 
 };

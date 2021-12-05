@@ -105,8 +105,6 @@ bool Collisions::PreUpdate()
 
 bool Collisions::Update()
 {
-	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) 
-		debug = !debug;
 
 	return true;
 }

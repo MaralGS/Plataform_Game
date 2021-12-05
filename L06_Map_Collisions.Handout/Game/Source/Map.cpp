@@ -358,14 +358,6 @@ iPoint Map::WorldToMap(int x, int y) const
 		ret.x = x / mapData.tileWidth;
 		ret.y = y / mapData.tileHeight;
 	}
-	else if (mapData.type == MAPTYPE_ISOMETRIC)
-	{
-
-		float half_width = mapData.tileWidth * 0.5f;
-		float half_height = mapData.tileHeight * 0.5f;
-		ret.x = int((x / half_width + y / half_height) / 2);
-		ret.y = int((y / half_height - (x / half_width)) / 2);
-	}
 	else
 	{
 		LOG("Unknown map type");

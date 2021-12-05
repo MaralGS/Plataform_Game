@@ -304,6 +304,8 @@ bool Player::Update(float dt)
 		app->map->DebugColisions();
 		//Debug Player
 		app->collisions->DebugDraw();
+		//Debug Pathfinding
+		app->scene->DebugPath();
 	}
 	PlayerC->SetPos(PPlayer.x, PPlayer.y);
 	AttackP->SetPos(0,0);

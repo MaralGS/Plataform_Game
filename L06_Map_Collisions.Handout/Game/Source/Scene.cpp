@@ -64,7 +64,7 @@ bool Scene::Start()
 
 		RELEASE_ARRAY(data);
 	}
-	pathTex = app->tex->Load("Assets/maps/path2.png");
+	pathTex = app->tex->Load("Assets/maps/path.png");
 	originTex = app->tex->Load("Assets/maps/x.png");
 
 
@@ -74,10 +74,15 @@ bool Scene::Start()
 // Called each loop iteration
 bool Scene::PreUpdate()
 {
+	iPoint p = app->render->ScreenToWorld(app->Centipide->PEnemy.x, app->Centipide->PEnemy.x);
+	p = app->map->WorldToMap(p.x, p.y);
+
+	app->pathfinding->CreatePath(p, app->player->PPlayer);
 	
-	int mouseX, mouseY;
+	/*int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 	iPoint p = app->render->ScreenToWorld(mouseX, mouseY);
+	//iPoint p = app->render->ScreenToWorld(app->Centipide->PEnemy.x, app->Centipide->PEnemy.x);
 	p = app->map->WorldToMap(p.x, p.y);
 	
 	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
@@ -93,6 +98,7 @@ bool Scene::PreUpdate()
 			originSelected = true;
 		}
 	}
+	*/
 	return true;
 }
 
@@ -175,7 +181,6 @@ bool Scene::Update(float dt)
 
 	//calculate frames
 	calculatedFPS();
-	cout << fps << endl;
 
 	float frameTicks = SDL_GetTicks() - startTicks;
 	//limit frames
@@ -185,24 +190,68 @@ bool Scene::Update(float dt)
 	}
 
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
-
-	// L03: DONE 7: Set the window title with map/tileset info
-	
-		int mouseX, mouseY;
-		app->input->GetMousePosition(mouseX, mouseY);
-		iPoint mouseTile = app->map->WorldToMap(mouseX - app->render->camera.x, mouseY - app->render->camera.y);
-		
-		SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
+		// L12b: Debug pathfinding
+	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
 		app->map->mapData.width, app->map->mapData.height,
 		app->map->mapData.tileWidth, app->map->mapData.tileHeight,
 		app->map->mapData.tilesets.Count());
 
 	app->win->SetTitle(title.GetString());
 
-	
-	// L03: DONE 7: Set the window title with map/tileset info
+	return true;
+}
 
-	// L12b: Debug pathfinding
+// Called each loop iteration
+bool Scene::PostUpdate()
+{
+	bool ret = true;
+
+	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+		ret = false;
+	return ret;
+}
+
+// Called before quitting
+bool Scene::CleanUp()
+{
+	LOG("Freeing scene");
+
+	return true;
+}
+
+void Scene::DebugPath()
+{
+	iPoint p = app->render->ScreenToWorld(app->Centipide->PEnemy.x, app->Centipide->PEnemy.y);
+	//iPoint p = app->render->ScreenToWorld(app->player->PPlayer.x, app->player->PPlayer.y);
+	p = app->map->WorldToMap(p.x, p.y);
+	p = app->map->MapToWorld(p.x, p.y);
+
+	app->render->DrawTexture(pathTex, p.x, p.y);
+
+	const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
+
+	for (uint i = 0; i < path->Count(); ++i)
+	{
+		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+		app->render->DrawTexture(pathTex, pos.x, pos.y);
+	}
+
+	iPoint originScreen = app->map->MapToWorld(app->player->PPlayer.x, app->player->PPlayer.y);
+	app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
+	//app->render->DrawTexture(originTex, app->player->PPlayer.x, app->player->PPlayer.y);
+	
+	/*
+	int mouseX, mouseY;
+	app->input->GetMousePosition(mouseX, mouseY);
+	iPoint mouseTile = app->map->WorldToMap(mouseX - app->render->camera.x, mouseY - app->render->camera.y);
+
+	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
+		app->map->mapData.width, app->map->mapData.height,
+		app->map->mapData.tileWidth, app->map->mapData.tileHeight,
+		app->map->mapData.tilesets.Count(), mouseTile.x, mouseTile.y);
+
+	app->win->SetTitle(title.GetString());
+
 	app->input->GetMousePosition(mouseX, mouseY);
 	iPoint p = app->render->ScreenToWorld(mouseX, mouseY);
 	p = app->map->WorldToMap(p.x, p.y);
@@ -218,32 +267,9 @@ bool Scene::Update(float dt)
 		app->render->DrawTexture(pathTex, pos.x, pos.y);
 	}
 
-	iPoint originScreen = app->map->MapToWorld(origin.x, origin.y);
+	iPoint originScreen = app->map->MapToWorld(app->player->PPlayer.x, app->player->PPlayer.y);
 	app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
-
-	
-	return true;
-}
-
-
-
-// Called each loop iteration
-bool Scene::PostUpdate()
-{
-	bool ret = true;
-
-	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
-	return ret;
-}
-
-
-// Called before quitting
-bool Scene::CleanUp()
-{
-	LOG("Freeing scene");
-
-	return true;
+	//app->render->DrawTexture(originTex, app->player->PPlayer.x, app->player->PPlayer.y);*/
 }
 
 

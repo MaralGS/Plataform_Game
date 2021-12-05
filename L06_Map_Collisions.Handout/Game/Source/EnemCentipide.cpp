@@ -55,12 +55,6 @@ bool EnemCentipide::Start()
 
 bool EnemCentipide::Update(float dt)
 {
-
-	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
-	{
-		Debug = !Debug;
-	}
-
 	//gravity
 	{
 		if (ECGrav == true)
