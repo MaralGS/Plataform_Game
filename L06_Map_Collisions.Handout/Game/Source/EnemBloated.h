@@ -19,6 +19,8 @@ public:
 
 	// Called when the module is activated
 	// Loads the necessary textures for the player
+	bool Awake(pugi::xml_node& config);
+
 	bool Start();
 
 	// Called at the middle of the application loop
@@ -45,11 +47,12 @@ public:
 	//player General
 	float speed = 0.8f;
 	bool Debug = false;
-
 	bool ECGrav = true;
 	bool ECGCollision = false;
-	int ECyVel = 5;
-	int ECXVel = 5;
+	bool dead;
+	int ECyVel;
+	int ECXVel;
+	int vides;
 
 	SDL_Texture* Bloated;
 	SDL_Rect rectBloated;

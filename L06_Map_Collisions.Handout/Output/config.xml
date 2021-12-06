@@ -28,4 +28,11 @@
 	<Generals isJumping = "true" GodMode="false" dead = "false"/>
 	<Vides v="3"/>
 </player>
+
+<Enemy2>
+	<Position PositionX = "800" PositionY = "600"/>
+	<Vel yVel = "5" xVel = "5"/>
+	<Generals dead = "false"/>
+	<Vides v="1"/>
+</Enemy2>
 </config>

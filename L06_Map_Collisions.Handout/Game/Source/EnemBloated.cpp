@@ -11,10 +11,13 @@
 #include "Scene.h"
 
 #include "Map.h"
+#include "Defs.h"
+#include "Log.h"
 
 
 EnemBloated::EnemBloated() : Module()
 {
+	name.Create("Enemy2");
 	idleAnim.PushBack({ 16, 11, 46, 48 });
 
 	rightAnim.PushBack({ 376, 147, 46, 48 });
@@ -43,6 +46,21 @@ EnemBloated::~EnemBloated()
 
 }
 
+bool EnemBloated::Awake(pugi::xml_node& config) {
+
+	LOG("Loading Enemy 2");
+	bool ret = true;
+	PEnemy.x = config.child("Position").attribute("PositionX").as_int();
+	PEnemy.y = config.child("Position").attribute("PositionY").as_int();
+	ECyVel = config.child("Vel").attribute("yVel").as_int();
+	ECXVel = config.child("Vel").attribute("xVel").as_int();
+	vides = config.child("Vides").attribute("v").as_int();
+	dead = config.child("Generals").attribute("dead").as_bool();
+
+	return ret;
+}
+
+
 bool EnemBloated::Start()
 {
 	bool ret = true;
@@ -50,8 +68,7 @@ bool EnemBloated::Start()
 	currentAnimation = &idleAnim;
 	//Dead.Reset();
 
-	PEnemy.x = 800;
-	PEnemy.y = 600;
+
 	BloatedC = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 46 ,48 }, Collider::Type::BLOATED, this);
 
 	return ret;

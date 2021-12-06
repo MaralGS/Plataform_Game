@@ -116,10 +116,11 @@ int main(int argc, char* args[])
 		}
 		auto end = chrono::steady_clock::now();
 		auto CelapsetTime = chrono::duration_cast<chrono::milliseconds>(end - start).count();
-		LOG("%f", CelapsetTime);
+	
 		if (dt - CelapsetTime > 0.0f) {
 			SDL_Delay(dt - CelapsetTime);
 		}
+		LOG("delta time is: %f ms", dt - CelapsetTime);
 	}
 
 	LOG("... Bye! :)\n");

@@ -2,11 +2,12 @@
 #include "Window.h"
 #include "Render.h"
 #include "Player.h"
+#include "EnemBloated.h"
 
 #include "Defs.h"
 #include "Log.h"
 
-#define VSYNC true
+#define VSYNC false	
 
 Render::Render() : Module()
 {
@@ -95,10 +96,19 @@ bool Render::LoadState(pugi::xml_node& data)
 {
 	camera.x = data.child("camera").attribute("x").as_int();
 	camera.y = data.child("camera").attribute("y").as_int();
+	//player
 	app->player->PPlayer.x = data.child("player").attribute("x").as_int();
 	app->player->PPlayer.y = data.child("player").attribute("y").as_int();
 	app->player->vides = data.child("Vides").attribute("v").as_int();
-
+	//enemy centipide
+	/*app->Bloated->PEnemy.x = data.child("Enemy2").attribute("x").as_int();
+	app->Bloated->PEnemy.y = data.child("Enemy2").attribute("y").as_int();
+	app->Bloated->vides = data.child("EnemyVides").attribute("v2").as_int();*/
+	//enemy bloated
+	app->Bloated->PEnemy.x = data.child("Enemy2").attribute("x").as_int();
+	app->Bloated->PEnemy.y = data.child("Enemy2").attribute("y").as_int();
+	app->Bloated->vides = data.child("EnemyVides").attribute("v2").as_int();
+	
 	return true;
 }
 
@@ -108,11 +118,16 @@ bool Render::SaveState(pugi::xml_node& data) const
 {
 	pugi::xml_node cam = data.append_child("camera");
 	pugi::xml_node PPlay = data.append_child("player");
+	pugi::xml_node EBloated = data.append_child("Enemy2");
 
 	cam.append_attribute("x") = camera.x;
 	cam.append_attribute("y") = camera.y;
+	//player
 	PPlay.append_attribute("x") = app->player->PPlayer.x;
 	PPlay.append_attribute("y") = app->player->PPlayer.y;
+	//Ebloated
+	EBloated.append_attribute("x") = app->Bloated->PEnemy.x;
+	EBloated.append_attribute("y") = app->Bloated->PEnemy.y;
 
 	return true;
 }

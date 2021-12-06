@@ -5,11 +5,15 @@
 	<textures />
 	<audio />
 	<scene />
+	<pathfinding />
 	<map />
 	<:anonymous />
 	<:anonymous />
+	<Enemy2 />
+	<player />
 	<renderer>
-		<camera x="-515" y="-330" />
-		<player x="665" y="880" />
+		<camera x="0" y="-325" />
+		<player x="80" y="880" />
+		<Enemy2 x="800" y="625" />
 	</renderer>
 </save_state>

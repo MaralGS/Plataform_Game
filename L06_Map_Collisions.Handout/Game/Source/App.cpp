@@ -114,6 +114,7 @@ bool App::Awake()
 			// Send nullptr if the node does not exist in config.xml
 			ret = item->data->Awake(config.child(item->data->name.GetString()));
 			item = item->next;
+			LOG("awake took: %f ms", ret);
 		}
 	}
 
