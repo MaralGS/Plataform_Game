@@ -3,12 +3,20 @@
 #include "Defs.h"
 #include "Log.h"
 
+#include <windows.h>
+#include <stdlib.h>
+#include <time.h>
+#include <stdlib.h>
+#include <iostream>
+#include <chrono>
+using namespace std;
 // NOTE: SDL redefines main function
 #include "SDL/include/SDL.h"
 
 // NOTE: Library linkage is configured in Linker Options
 //#pragma comment(lib, "../Game/Source/External/SDL/libx86/SDL2.lib")
 //#pragma comment(lib, "../Game/Source/External/SDL/libx86/SDL2main.lib")
+
 
 #include <stdlib.h>
 
@@ -29,11 +37,13 @@ int main(int argc, char* args[])
 {
 	LOG("Engine starting ...");
 
+	float dt = 16.0f;
 	MainState state = CREATE;
 	int result = EXIT_FAILURE;
 
 	while(state != EXIT)
 	{
+		auto start = chrono::steady_clock::now();
 		switch(state)
 		{
 			// Allocate the engine --------------------------------------------
@@ -103,6 +113,12 @@ int main(int argc, char* args[])
 			result = EXIT_FAILURE;
 			state = EXIT;
 			break;
+		}
+		auto end = chrono::steady_clock::now();
+		auto CelapsetTime = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+		LOG("%f", CelapsetTime);
+		if (dt - CelapsetTime > 0.0f) {
+			SDL_Delay(dt - CelapsetTime);
 		}
 	}
 

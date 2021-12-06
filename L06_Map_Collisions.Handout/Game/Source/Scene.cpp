@@ -117,7 +117,7 @@ bool Scene::Update(float dt)
 		app->render->camera.x = (app->player->PPlayer.x * -1) + 150;
 	}
 
-	float startTicks = SDL_GetTicks();
+	//float startTicks = SDL_GetTicks();
 
 
 	// L02: DONE 3: Request Load / Save when pressing L/S
@@ -180,14 +180,14 @@ bool Scene::Update(float dt)
 	}
 
 	//calculate frames
-	calculatedFPS();
+	//calculatedFPS();
 
-	float frameTicks = SDL_GetTicks() - startTicks;
+	/*float frameTicks = SDL_GetTicks() - startTicks;
 	//limit frames
 	if (1000.0f / Maxfps > frameTicks)
 	{
 		SDL_Delay(1000.0f / Maxfps - frameTicks);
-	}
+	}*/
 
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
 		// L12b: Debug pathfinding
@@ -273,7 +273,7 @@ void Scene::DebugPath()
 }
 
 
-void Scene::calculatedFPS() {
+/*void Scene::calculatedFPS() {
 	
 	
 	static const int NUM_SAMPLES = 10;
@@ -320,4 +320,4 @@ void Scene::calculatedFPS() {
 	}
 
 	
-}
+}*/
