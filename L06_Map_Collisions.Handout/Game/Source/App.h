@@ -24,6 +24,7 @@ class Player;
 class EnemCentipide;
 class EnemBloated;
 class PathFinding;
+class Attack;
 
 class App
 {
@@ -100,6 +101,7 @@ public:
 	EnemCentipide* Centipide;
 	EnemBloated* Bloated;
 	PathFinding* pathfinding;
+	Attack* attack;
 
 private:
 

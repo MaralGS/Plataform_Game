@@ -275,7 +275,6 @@ bool Player::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
 		{
 			AttackP->SetPos(PPlayer.x + 20, PPlayer.y);
-			AttackP->pendingToDelete;
 		}
 	}
 

@@ -13,6 +13,7 @@
 #include "EnemCentipide.h"
 #include "EnemBloated.h"
 #include "Pathfinding.h"
+#include "Attack.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -37,6 +38,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	player = new Player();
 	Centipide = new EnemCentipide();
 	Bloated = new EnemBloated();
+	attack = new Attack();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -53,6 +55,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(player);
 	// Render last to swap buffer
 	AddModule(render);
+	AddModule(attack);
 
 	PERF_PEEK(ptimer);
 }
