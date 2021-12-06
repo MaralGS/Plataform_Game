@@ -11,6 +11,7 @@
 #include "Collisions.h"
 #include "Player.h"
 #include "EnemCentipide.h"
+#include "EnemBloated.h"
 #include "Pathfinding.h"
 
 #include "Defs.h"
@@ -35,6 +36,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	collisions = new Collisions();
 	player = new Player();
 	Centipide = new EnemCentipide();
+	Bloated = new EnemBloated();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -47,6 +49,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(collisions);
 	AddModule(Centipide);
+	AddModule(Bloated);
 	AddModule(player);
 	// Render last to swap buffer
 	AddModule(render);

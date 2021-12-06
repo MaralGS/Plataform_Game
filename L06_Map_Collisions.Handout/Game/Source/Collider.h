@@ -18,6 +18,7 @@ struct Collider
 		GROUND,
 		ATTACK,
 		ECENTIPIDE,
+		BLOATED,
 		MAX
 
 	};

@@ -22,6 +22,7 @@ class Map;
 class Collisions;
 class Player;
 class EnemCentipide;
+class EnemBloated;
 class PathFinding;
 
 class App
@@ -97,6 +98,7 @@ public:
 	Collisions* collisions;
 	Player* player;
 	EnemCentipide* Centipide;
+	EnemBloated* Bloated;
 	PathFinding* pathfinding;
 
 private:

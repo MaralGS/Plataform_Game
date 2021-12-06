@@ -17,12 +17,14 @@ Collisions::Collisions() : Module()
 	matrix[Collider::Type::WALL][Collider::Type::ECENTIPIDE] = true;
 	matrix[Collider::Type::WALL][Collider::Type::GROUND] = false;
 	matrix[Collider::Type::WALL][Collider::Type::ROOF] = false;
+	matrix[Collider::Type::WALL][Collider::Type::BLOATED] = true;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ECENTIPIDE] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::GROUND] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::ROOF] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::BLOATED] = true;
 
 
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::PLAYER] = true;
@@ -30,22 +32,28 @@ Collisions::Collisions() : Module()
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::WALL] = true;	
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::GROUND] = true;	
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::ROOF] = true;
+	matrix[Collider::Type::ECENTIPIDE][Collider::Type::BLOATED] = false;
+	
+	matrix[Collider::Type::BLOATED][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::BLOATED][Collider::Type::ECENTIPIDE] = false;
+	matrix[Collider::Type::BLOATED][Collider::Type::WALL] = true;
+	matrix[Collider::Type::BLOATED][Collider::Type::GROUND] = true;
+	matrix[Collider::Type::BLOATED][Collider::Type::ROOF] = true;
+	matrix[Collider::Type::BLOATED][Collider::Type::BLOATED] = false;
 	
 	matrix[Collider::Type::GROUND][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::GROUND][Collider::Type::ECENTIPIDE] = true;
 	matrix[Collider::Type::GROUND][Collider::Type::WALL] = false;
 	matrix[Collider::Type::GROUND][Collider::Type::GROUND] = false;
 	matrix[Collider::Type::GROUND][Collider::Type::ROOF] = false;
+	matrix[Collider::Type::GROUND][Collider::Type::BLOATED] = true;
 
 	matrix[Collider::Type::ROOF][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ROOF][Collider::Type::ECENTIPIDE] = true;
 	matrix[Collider::Type::ROOF][Collider::Type::WALL] = false;
 	matrix[Collider::Type::ROOF][Collider::Type::GROUND] = false;
 	matrix[Collider::Type::ROOF][Collider::Type::ROOF] = false;
-
-
-
-
+	matrix[Collider::Type::ROOF][Collider::Type::BLOATED] = true;
 
 }
 
