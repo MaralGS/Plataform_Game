@@ -54,7 +54,7 @@ public:
 	int ECXVel;
 	int vides;
 
-	SDL_Texture* Bird;
+	SDL_Texture* TBird;
 	SDL_Rect rectBird;
 
 

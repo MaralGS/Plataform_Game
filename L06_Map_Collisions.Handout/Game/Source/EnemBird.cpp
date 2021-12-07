@@ -84,12 +84,11 @@ bool EnemBird::Awake(pugi::xml_node& config) {
 bool EnemBird::Start()
 {
 	bool ret = true;
-	Bird = app->tex->Load("Assets/textures/Enemies/Enemi2/Enemi2.png");
+	TBird = app->tex->Load("Assets/textures/Enemies/Enemi2/Enemy2.png");
 	currentAnimation = &idleAnim;
 	//Dead.Reset();
 
-
-	Bird = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 46 ,48 }, Collider::Type::BLOATED, this);
+	Bird = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 47,25 }, Collider::Type::BLOATED, this);
 
 	return ret;
 }
@@ -130,7 +129,7 @@ bool EnemBird::PostUpdate()
 
 	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false)
 	{
-		app->render->DrawTexture(Bird, PEnemy.x, PEnemy.y, &rectBird);
+		app->render->DrawTexture(TBird, PEnemy.x, PEnemy.y, &rectBird);
 	}
 	currentAnimation->Update();
 
