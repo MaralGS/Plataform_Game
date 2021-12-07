@@ -1,5 +1,5 @@
-#ifndef __MODULEBLOATED_H__
-#define  __MODULEBLOATED_H__
+#ifndef __MODULEBIRD_H__
+#define  __MODULEBIRD_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -8,14 +8,14 @@
 struct SDL_Texture;
 struct Collider;
 
-class EnemBloated : public Module
+class EnemBird : public Module
 {
 public:
 	// Constructor
-	EnemBloated();
+	EnemBird();
 
 	// Destructor
-	~EnemBloated();
+	~EnemBird();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the player
@@ -54,14 +54,18 @@ public:
 	int ECXVel;
 	int vides;
 
-	SDL_Texture* Bloated;
-	SDL_Rect rectBloated;
+	SDL_Texture* Bird;
+	SDL_Rect rectBird;
 
 
 	Animation* currentAnimation;
 	Animation idleAnim;
 	Animation rightAnim;
 	Animation leftAnim;
+	Animation leftHurtAnim;
+	Animation rightHurtAnim;
+	Animation rightDeadAnim;
+	Animation leftDeadAnim;
 
 	// Countdown to handle shot spacing
 
@@ -71,7 +75,7 @@ public:
 
 
 	// The player's collider
-	Collider* BloatedC = nullptr;
+	Collider* Bird = nullptr;
 
 	// A flag to detect when the player has been destroyed
 

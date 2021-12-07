@@ -22,7 +22,7 @@ class Map;
 class Collisions;
 class Player;
 class EnemCentipide;
-class EnemBloated;
+class EnemBird;
 class PathFinding;
 class Attack;
 
@@ -99,7 +99,7 @@ public:
 	Collisions* collisions;
 	Player* player;
 	EnemCentipide* Centipide;
-	EnemBloated* Bloated;
+	EnemBird* Bird;
 	PathFinding* pathfinding;
 	Attack* attack;
 

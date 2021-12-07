@@ -2,7 +2,7 @@
 #include "Window.h"
 #include "Render.h"
 #include "Player.h"
-#include "EnemBloated.h"
+#include "EnemBird.h"
 #include "EnemCentipide.h"
 
 #include "Defs.h"
@@ -106,9 +106,9 @@ bool Render::LoadState(pugi::xml_node& data)
 	app->Centipide->PEnemy.y = data.child("Enemy2").attribute("y").as_int();
 	app->Centipide->vides = data.child("EnemyVides").attribute("v2").as_int();
 	//enemy bloated
-	app->Bloated->PEnemy.x = data.child("Enemy2").attribute("x").as_int();
-	app->Bloated->PEnemy.y = data.child("Enemy2").attribute("y").as_int();
-	app->Bloated->vides = data.child("EnemyVides").attribute("v2").as_int();
+	app->Bird->PEnemy.x = data.child("Enemy2").attribute("x").as_int();
+	app->Bird->PEnemy.y = data.child("Enemy2").attribute("y").as_int();
+	app->Bird->vides = data.child("EnemyVides").attribute("v2").as_int();
 	
 	return true;
 }
@@ -130,13 +130,13 @@ bool Render::SaveState(pugi::xml_node& data) const
 	PPlay.append_attribute("y") = app->player->PPlayer.y;
 	PPlay.append_attribute("v") = app->player->vides;
 	//ECentipide
-	ECentipide.append_attribute("x") = app->Bloated->PEnemy.x;
-	ECentipide.append_attribute("y") = app->Bloated->PEnemy.y;
-	ECentipide.append_attribute("v2") = app->Bloated->vides;
+	ECentipide.append_attribute("x") = app->Bird->PEnemy.x;
+	ECentipide.append_attribute("y") = app->Bird->PEnemy.y;
+	ECentipide.append_attribute("v2") = app->Bird->vides;
 	//Ebloated
-	EBloated.append_attribute("x") = app->Bloated->PEnemy.x;
-	EBloated.append_attribute("y") = app->Bloated->PEnemy.y;
-	EBloated.append_attribute("v2") = app->Bloated->vides;
+	EBloated.append_attribute("x") = app->Bird->PEnemy.x;
+	EBloated.append_attribute("y") = app->Bird->PEnemy.y;
+	EBloated.append_attribute("v2") = app->Bird->vides;
 
 	return true;
 }
