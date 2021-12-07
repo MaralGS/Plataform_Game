@@ -272,10 +272,10 @@ bool Player::Update(float dt)
 			
 		}
 		//Player Attack
-		if (app->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		/*if (app->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
 		{
 			AttackP->SetPos(PPlayer.x + 20, PPlayer.y);
-		}
+		}*/
 	}
 
 	
@@ -306,6 +306,7 @@ bool Player::Update(float dt)
 		//Debug Pathfinding
 		app->scene->DebugPath();
 	}
+	
 	PlayerC->SetPos(PPlayer.x, PPlayer.y);
 	AttackP->SetPos(0,0);
 	return true;

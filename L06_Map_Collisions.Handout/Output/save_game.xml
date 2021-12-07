@@ -8,10 +8,8 @@
 	<scene />
 	<renderer>
 		<camera x="0" y="0" />
-		<player x="0" y="0" />
-		<Vides v="3"/>
-		<Enemy1 x="0" y="0">
-		<Enemy2 x="0" y="0">
-		<EnemyVides v1 = "1" v2"1"/ >
+		<player x="0" y="0" v="3" />
+		<Enemy1 x="0" y="0" v1 = "1"/>
+		<Enemy2 x="0" y="0" v2 = "1"/>
 	</renderer>
 </game_state>

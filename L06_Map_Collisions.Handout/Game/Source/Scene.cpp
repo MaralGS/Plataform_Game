@@ -163,7 +163,6 @@ bool Scene::Update(float dt)
 	if (app->player->vides <= 0)
 	{
 		DeadScreen = true;
-
 	}
 
 	if (DeadScreen == true)

@@ -11,10 +11,15 @@
 #include "Scene.h"
 
 #include "Map.h"
+#include "Defs.h"
+#include "Log.h"
+
+
 
 
 EnemCentipide::EnemCentipide() : Module()
 {
+	name.Create("Enemy1");
 	idleAnim.PushBack({ 7, 7, 47, 35 });
 
 	rightAnim.PushBack({ 224, 93, 47, 35 });
@@ -36,7 +41,20 @@ EnemCentipide::EnemCentipide() : Module()
 
 EnemCentipide::~EnemCentipide()
 {
+}
 
+bool EnemCentipide::Awake(pugi::xml_node& config) {
+
+	LOG("Loading Enemy 1");
+	bool ret = true;
+	PEnemy.x = config.child("Position").attribute("PositionX").as_int();
+	PEnemy.y = config.child("Position").attribute("PositionY").as_int();
+	ECyVel = config.child("Vel").attribute("yVel").as_int();
+	ECXVel = config.child("Vel").attribute("xVel").as_int();
+	vides = config.child("Vides").attribute("v").as_int();
+	dead = config.child("Generals").attribute("dead").as_bool();
+
+	return ret;
 }
 
 bool EnemCentipide::Start()
@@ -46,8 +64,6 @@ bool EnemCentipide::Start()
 	currentAnimation = &idleAnim;
 	//Dead.Reset();
 
-	PEnemy.x = 250;
-	PEnemy.y = 475;
 	CentipideC = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 48 ,36 }, Collider::Type::ECENTIPIDE, this);
 
 	return ret;

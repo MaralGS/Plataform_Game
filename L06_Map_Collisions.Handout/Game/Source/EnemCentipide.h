@@ -17,6 +17,7 @@ public:
 	// Destructor
 	~EnemCentipide();
 
+	bool Awake(pugi::xml_node& config);
 	// Called when the module is activated
 	// Loads the necessary textures for the player
 	bool Start();
@@ -45,6 +46,8 @@ public:
 	//player General
 	float speed = 0.8f;
 	bool Debug = false;
+	bool vides;
+	bool dead;
 
 	bool ECGrav = true;
 	bool ECGCollision = false;
