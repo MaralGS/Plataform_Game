@@ -9,6 +9,7 @@
 #include "Audio.h"
 #include "Collisions.h"
 #include "Scene.h"
+#include "Player.h"
 
 #include "Map.h"
 #include "Defs.h"
@@ -125,5 +126,4 @@ void EnemCentipide::OnCollision(Collider* c1, Collider* c2)
 			ECGrav = false;
 		}
 	}
-
 }

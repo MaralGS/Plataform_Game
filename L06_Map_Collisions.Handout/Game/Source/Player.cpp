@@ -110,7 +110,6 @@ bool Player::Start()
 	// L6: DONE 3: Add a collider to the player
 	
 	PlayerC = app->collisions->AddCollider({ PPlayer.x,PPlayer.y,24,36 }, Collider::Type::PLAYER, this);
-	AttackP = app->collisions->AddCollider({ PPlayer.x, PPlayer.y, 20, 20 }, Collider::Type::ATTACK, this);
 
 	return ret;
 }
@@ -308,7 +307,6 @@ bool Player::Update(float dt)
 	}
 	
 	PlayerC->SetPos(PPlayer.x, PPlayer.y);
-	AttackP->SetPos(0,0);
 	return true;
 }
 

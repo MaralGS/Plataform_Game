@@ -32,7 +32,8 @@ Collisions::Collisions() : Module()
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::WALL] = true;	
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::GROUND] = true;	
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::ROOF] = true;
-	matrix[Collider::Type::ECENTIPIDE][Collider::Type::BLOATED] = false;
+	matrix[Collider::Type::ECENTIPIDE][Collider::Type::BLOATED] = false;	
+	matrix[Collider::Type::ECENTIPIDE][Collider::Type::ATTACK] = true;
 	
 	matrix[Collider::Type::BLOATED][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::BLOATED][Collider::Type::ECENTIPIDE] = false;
@@ -54,6 +55,13 @@ Collisions::Collisions() : Module()
 	matrix[Collider::Type::ROOF][Collider::Type::GROUND] = false;
 	matrix[Collider::Type::ROOF][Collider::Type::ROOF] = false;
 	matrix[Collider::Type::ROOF][Collider::Type::BLOATED] = true;
+
+	matrix[Collider::Type::ATTACK][Collider::Type::ATTACK] = false;
+	matrix[Collider::Type::ATTACK][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::ATTACK][Collider::Type::ECENTIPIDE] = true;
+	matrix[Collider::Type::ATTACK][Collider::Type::GROUND] = false;
+	matrix[Collider::Type::ATTACK][Collider::Type::ROOF] = false;
+	matrix[Collider::Type::ATTACK][Collider::Type::BLOATED] = true;
 
 }
 
