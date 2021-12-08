@@ -44,12 +44,10 @@ bool Scene::Awake()
 bool Scene::Start()
 {
 	// L03: DONE: Load map
-	//app->map->Load("hello.tmx");
 	app->map->Load("Mapa2.tmx");
 	Enter = app->tex->Load("Assets/textures/Enter_Image.png");
 	END = app->tex->Load("Assets/textures/End_Image_2.png");
 	WIN = app->tex->Load("Assets/textures/Win_Image.png");
-	//app->Enemies->AddEnemy(Enemy_Type::CENTIPIDE, 60, 875);
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	app->player->PPlayer.x;
@@ -74,31 +72,7 @@ bool Scene::Start()
 // Called each loop iteration
 bool Scene::PreUpdate()
 {
-	iPoint p = app->render->ScreenToWorld(app->Centipide->PEnemy.x, app->Centipide->PEnemy.x);
-	p = app->map->WorldToMap(p.x, p.y);
-
-	app->pathfinding->CreatePath(p, app->player->PPlayer);
 	
-	/*int mouseX, mouseY;
-	app->input->GetMousePosition(mouseX, mouseY);
-	iPoint p = app->render->ScreenToWorld(mouseX, mouseY);
-	//iPoint p = app->render->ScreenToWorld(app->Centipide->PEnemy.x, app->Centipide->PEnemy.x);
-	p = app->map->WorldToMap(p.x, p.y);
-	
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-	{
-		if (originSelected == true)
-		{
-			app->pathfinding->CreatePath(origin, p);
-			originSelected = false;
-		}
-		else
-		{
-			origin = p;
-			originSelected = true;
-		}
-	}
-	*/
 	return true;
 }
 
@@ -220,13 +194,6 @@ bool Scene::CleanUp()
 
 void Scene::DebugPath()
 {
-	iPoint p = app->render->ScreenToWorld(app->Centipide->PEnemy.x, app->Centipide->PEnemy.y);
-	//iPoint p = app->render->ScreenToWorld(app->player->PPlayer.x, app->player->PPlayer.y);
-	p = app->map->WorldToMap(p.x, p.y);
-	p = app->map->MapToWorld(p.x, p.y);
-
-	app->render->DrawTexture(pathTex, p.x, p.y);
-
 	const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
 
 	for (uint i = 0; i < path->Count(); ++i)
@@ -235,23 +202,9 @@ void Scene::DebugPath()
 		app->render->DrawTexture(pathTex, pos.x, pos.y);
 	}
 
-	iPoint originScreen = app->map->MapToWorld(app->player->PPlayer.x, app->player->PPlayer.y);
-	app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
 	//app->render->DrawTexture(originTex, app->player->PPlayer.x, app->player->PPlayer.y);
-	
-	/*
-	int mouseX, mouseY;
-	app->input->GetMousePosition(mouseX, mouseY);
-	iPoint mouseTile = app->map->WorldToMap(mouseX - app->render->camera.x, mouseY - app->render->camera.y);
 
-	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
-		app->map->mapData.width, app->map->mapData.height,
-		app->map->mapData.tileWidth, app->map->mapData.tileHeight,
-		app->map->mapData.tilesets.Count(), mouseTile.x, mouseTile.y);
-
-	app->win->SetTitle(title.GetString());
-
-	app->input->GetMousePosition(mouseX, mouseY);
+	/*app->input->GetMousePosition(mouseX, mouseY);
 	iPoint p = app->render->ScreenToWorld(mouseX, mouseY);
 	p = app->map->WorldToMap(p.x, p.y);
 	p = app->map->MapToWorld(p.x, p.y);

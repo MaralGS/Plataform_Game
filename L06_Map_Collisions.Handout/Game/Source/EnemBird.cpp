@@ -9,6 +9,8 @@
 #include "Audio.h"
 #include "Collisions.h"
 #include "Scene.h"
+#include "PathFinding.h"
+#include "Player.h"
 
 #include "Map.h"
 #include "Defs.h"
@@ -95,6 +97,7 @@ bool EnemBird::Start()
 
 bool EnemBird::Update(float dt)
 {
+	//pathfind();
 	//gravity
 	{
 		if (ECGrav == true)
@@ -150,4 +153,9 @@ void EnemBird::OnCollision(Collider* c1, Collider* c2)
 		}
 	}
 
+}
+
+void EnemBird::pathfind() {
+
+	app->pathfinding->CreatePath(app->map->WorldToMap(PEnemy.x, PEnemy.y), app->map->WorldToMap(app->player->PPlayer.x, app->player->PPlayer.y));
 }

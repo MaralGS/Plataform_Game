@@ -119,7 +119,17 @@ bool Player::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 	{
-		GodMode = !GodMode;
+		if (GodMode == false)
+		{
+			GodMode = true;
+			
+		}
+		else
+		{
+			GodMode = false;
+			GCollision = true;
+		}
+		
 	}
 	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
@@ -189,8 +199,6 @@ bool Player::Update(float dt)
 			if (currentAnimation != &MoveD)
 			{
 				PPlayer.y -= xVel;
-				MoveD.Reset();
-				currentAnimation = &MoveD;
 			}
 
 		}
@@ -198,23 +206,25 @@ bool Player::Update(float dt)
 			if (currentAnimation != &MoveD)
 			{
 				PPlayer.y += yVel;
-				MoveD.Reset();
-				currentAnimation = &MoveD;
 			}
 
 		}
 		//gravity
 		{
-			if (Grav == true)
+			if (GodMode == false)
 			{
-				PPlayer.y += yVel;
-			}
+				if (Grav == true)
+				{
+					PPlayer.y += yVel;
+				}
 
-			if (Grav == false && GCollision == true)
-			{
-				Grav = true;
-				GCollision = false;
+				if (Grav == false && GCollision == true)
+				{
+					Grav = true;
+					GCollision = false;
+				}
 			}
+		
 
 		}
 		//jump
@@ -332,15 +342,8 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 	// L6: DONE 5: Detect collision with a wall. If so, destroy the player.
 	if ((c1 == PlayerC) && (dead == false))
 	{
-		if (godmode == false)
+		if (GodMode == false)
 		{
-			/*if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::GROUND)
-				{
-					if (c1->rect.y >= c2->rect.y + 28)
-					{
-						Sec = 0;
-					}
-				}*/
 				//Ground gravity
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::GROUND)
 			{

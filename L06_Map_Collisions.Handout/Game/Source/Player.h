@@ -92,7 +92,6 @@ public:
 	Collider* AttackP = nullptr;
 
 	// A flag to detect when the player has been destroyed
-	bool godmode = false;
 	bool win = false;
 	bool death = false;
 	bool stop = false;

@@ -36,7 +36,8 @@ public:
 
 	//int Timer(int second);
 
-
+	//pathfind
+	void pathfind();
 	// Draws gamepad debug info in the screen
 	//void DebugDrawGamepadInfo();
 

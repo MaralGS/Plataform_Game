@@ -10,6 +10,7 @@
 #include "Collisions.h"
 #include "Scene.h"
 #include "Player.h"
+#include "PathFinding.h"
 
 #include "Map.h"
 #include "Defs.h"
@@ -72,6 +73,7 @@ bool EnemCentipide::Start()
 
 bool EnemCentipide::Update(float dt)
 {
+	pathfind();
 	//gravity
 	{
 		if (ECGrav == true)
@@ -126,4 +128,10 @@ void EnemCentipide::OnCollision(Collider* c1, Collider* c2)
 			ECGrav = false;
 		}
 	}
+}
+
+void EnemCentipide::pathfind() {
+
+	app->pathfinding->CreatePath(app->map->WorldToMap(PEnemy.x, PEnemy.y), app->map->WorldToMap(app->player->PPlayer.x, app->player->PPlayer.y));
+
 }
