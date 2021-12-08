@@ -30,14 +30,14 @@
 </player>
 
 <Enemy1>
-	<Position PositionX = "250" PositionY = "475"/>
+	<Position PositionX = "918" PositionY = "870"/>
 	<Vel yVel = "5" xVel = "5"/>
 	<Generals dead = "false"/>
 	<Vides v="1"/>
 </Enemy1>
 
 <Enemy2>
-	<Position PositionX = "800" PositionY = "600"/>
+	<Position PositionX = "1400" PositionY = "700"/>
 	<Vel yVel = "5" xVel = "5"/>
 	<Generals dead = "false"/>
 	<Vides v="1"/>

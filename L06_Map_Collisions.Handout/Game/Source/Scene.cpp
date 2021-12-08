@@ -112,8 +112,8 @@ bool Scene::Update(float dt)
 	{
 		app->player->PPlayer.x = 150;
 		app->player->PPlayer.y = 875;
-		app->Centipide->PEnemy.x = 300;
-		app->Centipide->PEnemy.y = 875;
+		app->Centipide->PEnemy.x = 918;
+		app->Centipide->PEnemy.y = 870;
 
 		app->player->vides = 1;
 		WScrean = false;

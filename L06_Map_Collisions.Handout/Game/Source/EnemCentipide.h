@@ -49,6 +49,8 @@ public:
 	float speed = 0.8f;
 	bool Debug = false;
 	bool vides;
+	bool Move = false;
+	bool PathDet = false;
 	bool dead;
 
 	bool ECGrav = true;
@@ -74,6 +76,7 @@ public:
 
 	// The player's collider
 	Collider* CentipideC = nullptr;
+	Collider* DetectorCentipide = nullptr;
 
 	// A flag to detect when the player has been destroyed
 

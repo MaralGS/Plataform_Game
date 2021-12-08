@@ -18,7 +18,8 @@ struct Collider
 		GROUND,
 		ATTACK,
 		ECENTIPIDE,
-		BLOATED,
+		DETECTOR1,
+		BIRD,
 		MAX
 
 	};

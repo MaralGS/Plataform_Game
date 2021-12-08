@@ -17,14 +17,15 @@ Collisions::Collisions() : Module()
 	matrix[Collider::Type::WALL][Collider::Type::ECENTIPIDE] = true;
 	matrix[Collider::Type::WALL][Collider::Type::GROUND] = false;
 	matrix[Collider::Type::WALL][Collider::Type::ROOF] = false;
-	matrix[Collider::Type::WALL][Collider::Type::BLOATED] = true;
+	matrix[Collider::Type::WALL][Collider::Type::BIRD] = true;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ECENTIPIDE] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::GROUND] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::ROOF] = true;
-	matrix[Collider::Type::PLAYER][Collider::Type::BLOATED] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::BIRD] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::DETECTOR1] = true;
 
 
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::PLAYER] = true;
@@ -32,36 +33,39 @@ Collisions::Collisions() : Module()
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::WALL] = true;	
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::GROUND] = true;	
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::ROOF] = true;
-	matrix[Collider::Type::ECENTIPIDE][Collider::Type::BLOATED] = false;	
+	matrix[Collider::Type::ECENTIPIDE][Collider::Type::BIRD] = false;	
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::ATTACK] = true;
 	
-	matrix[Collider::Type::BLOATED][Collider::Type::PLAYER] = true;
-	matrix[Collider::Type::BLOATED][Collider::Type::ECENTIPIDE] = false;
-	matrix[Collider::Type::BLOATED][Collider::Type::WALL] = true;
-	matrix[Collider::Type::BLOATED][Collider::Type::GROUND] = true;
-	matrix[Collider::Type::BLOATED][Collider::Type::ROOF] = true;
-	matrix[Collider::Type::BLOATED][Collider::Type::BLOATED] = false;
+	matrix[Collider::Type::BIRD][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::BIRD][Collider::Type::ECENTIPIDE] = false;
+	matrix[Collider::Type::BIRD][Collider::Type::WALL] = true;
+	matrix[Collider::Type::BIRD][Collider::Type::GROUND] = true;
+	matrix[Collider::Type::BIRD][Collider::Type::ROOF] = true;
+	matrix[Collider::Type::BIRD][Collider::Type::BIRD] = false;
 	
 	matrix[Collider::Type::GROUND][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::GROUND][Collider::Type::ECENTIPIDE] = true;
 	matrix[Collider::Type::GROUND][Collider::Type::WALL] = false;
 	matrix[Collider::Type::GROUND][Collider::Type::GROUND] = false;
 	matrix[Collider::Type::GROUND][Collider::Type::ROOF] = false;
-	matrix[Collider::Type::GROUND][Collider::Type::BLOATED] = true;
+	matrix[Collider::Type::GROUND][Collider::Type::BIRD] = true;
 
 	matrix[Collider::Type::ROOF][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ROOF][Collider::Type::ECENTIPIDE] = true;
 	matrix[Collider::Type::ROOF][Collider::Type::WALL] = false;
 	matrix[Collider::Type::ROOF][Collider::Type::GROUND] = false;
 	matrix[Collider::Type::ROOF][Collider::Type::ROOF] = false;
-	matrix[Collider::Type::ROOF][Collider::Type::BLOATED] = true;
+	matrix[Collider::Type::ROOF][Collider::Type::BIRD] = true;
 
 	matrix[Collider::Type::ATTACK][Collider::Type::ATTACK] = false;
 	matrix[Collider::Type::ATTACK][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ATTACK][Collider::Type::ECENTIPIDE] = true;
 	matrix[Collider::Type::ATTACK][Collider::Type::GROUND] = false;
 	matrix[Collider::Type::ATTACK][Collider::Type::ROOF] = false;
-	matrix[Collider::Type::ATTACK][Collider::Type::BLOATED] = true;
+	matrix[Collider::Type::ATTACK][Collider::Type::BIRD] = true;
+
+	matrix[Collider::Type::DETECTOR1][Collider::Type::PLAYER] = true;
+
 
 }
 
@@ -163,6 +167,12 @@ void Collisions::DebugDraw()
 			break;
 		case Collider::Type::ROOF: // Dark Green
 			app->render->DrawRectangle(colliders[i]->rect, 0, 255, 255, alpha);
+			break;
+		case Collider::Type::BIRD: // Dark Green
+			app->render->DrawRectangle(colliders[i]->rect, 0, 255, 255, alpha);
+			break;
+		case Collider::Type::DETECTOR1: // Dark Green
+			app->render->DrawRectangle(colliders[i]->rect, 209, 196, 233, alpha);
 			break;
 
 		}

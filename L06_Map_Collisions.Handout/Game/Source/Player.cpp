@@ -322,8 +322,6 @@ bool Player::Update(float dt)
 
 bool Player::PostUpdate()
 {
-
-	
 	//draw player
 	rectplayer = currentAnimation->GetCurrentFrame();
 	
@@ -356,9 +354,6 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 				}
 			}
 
-
-
-
 			//Wall left
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
 			{
@@ -387,7 +382,15 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 				dead = true;
 			}
 
+			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DETECTOR1)
+			{
+				app->Centipide->PathDet = true;
+			}
 
+			else
+			{
+				app->Centipide->PathDet = false;
+			}
 		}
 	}
 }

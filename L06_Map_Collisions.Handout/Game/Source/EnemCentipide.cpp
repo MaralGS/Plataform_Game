@@ -67,6 +67,7 @@ bool EnemCentipide::Start()
 	//Dead.Reset();
 
 	CentipideC = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 48 ,36 }, Collider::Type::ECENTIPIDE, this);
+	DetectorCentipide = app->collisions->AddCollider({ PEnemy.x - 300,PEnemy.y - 700, 600, 800 }, Collider::Type::DETECTOR1, this);
 
 	return ret;
 }
@@ -74,6 +75,38 @@ bool EnemCentipide::Start()
 bool EnemCentipide::Update(float dt)
 {
 	pathfind();
+	
+	// move
+	{
+		// esquerra
+		if (Move == false)
+		{
+			currentAnimation = &leftAnim;
+			if (PEnemy.x > 550)
+				{
+					PEnemy.x= PEnemy.x - 3;
+				}
+			else
+			{
+				Move = true;
+			}
+		}
+		// dreta
+		if (Move == true)
+		{
+			currentAnimation = &rightAnim;
+			if (PEnemy.x < 1200)
+				{
+				PEnemy.x = PEnemy.x + 3;
+				}
+			else
+			{
+				Move = false;
+			}
+		}
+	}
+	
+
 	//gravity
 	{
 		if (ECGrav == true)
@@ -102,8 +135,7 @@ bool EnemCentipide::Update(float dt)
 bool EnemCentipide::PostUpdate()
 {
 
-
-	//draw player
+	//draw Centipide
 	rectCentipide = currentAnimation->GetCurrentFrame();
 
 	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false)
@@ -128,10 +160,14 @@ void EnemCentipide::OnCollision(Collider* c1, Collider* c2)
 			ECGrav = false;
 		}
 	}
-}
+	
+} 
 
 void EnemCentipide::pathfind() {
-
-	app->pathfinding->CreatePath(app->map->WorldToMap(PEnemy.x, PEnemy.y), app->map->WorldToMap(app->player->PPlayer.x, app->player->PPlayer.y));
+	if (PathDet == true)
+	{
+		app->pathfinding->CreatePath(app->map->WorldToMap(PEnemy.x, PEnemy.y), app->map->WorldToMap(app->player->PPlayer.x, app->player->PPlayer.y));
+	}
+	
 
 }

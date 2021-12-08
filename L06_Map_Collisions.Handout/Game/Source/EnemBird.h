@@ -48,7 +48,8 @@ public:
 	//player General
 	float speed = 0.8f;
 	bool Debug = false;
-	bool ECGrav = true;
+	//bool ECGrav = true;
+	bool Move = false;
 	bool ECGCollision = false;
 	bool dead;
 	int ECyVel;

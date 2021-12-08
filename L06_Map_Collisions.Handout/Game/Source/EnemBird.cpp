@@ -27,7 +27,7 @@ EnemBird::EnemBird() : Module()
 	rightAnim.PushBack({ 66, 64, 37, 27 });
 	rightAnim.PushBack({ 17, 67, 38, 24 });
 	rightAnim.loop = true;
-	rightAnim.speed = 0.1f;
+	rightAnim.speed = 1.0f;
 
 	// Left 
 	leftAnim.PushBack({ 17, 19, 37, 25 });
@@ -90,7 +90,7 @@ bool EnemBird::Start()
 	currentAnimation = &idleAnim;
 	//Dead.Reset();
 
-	Bird = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 47,25 }, Collider::Type::BLOATED, this);
+	Bird = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 47,25 }, Collider::Type::BIRD, this);
 
 	return ret;
 }
@@ -98,8 +98,39 @@ bool EnemBird::Start()
 bool EnemBird::Update(float dt)
 {
 	//pathfind();
-	//gravity
+		// move
 	{
+		// esquerra
+		if (Move == false)
+		{
+			currentAnimation = &leftAnim;
+			
+			if (PEnemy.y > 500)
+			{
+				PEnemy.y = PEnemy.y - 3;
+			}
+			else
+			{
+				Move = true;
+			}
+		}
+		// dreta
+		if (Move == true)
+		{
+			currentAnimation = &leftAnim;
+			if (PEnemy.y < 800)
+			{
+				PEnemy.y = PEnemy.y + 3;
+			}
+			else
+			{
+				Move = false;
+			}
+		}
+	}
+
+	//gravity
+	/* {
 		if (ECGrav == true)
 		{
 			PEnemy.y += ECyVel;
@@ -111,7 +142,7 @@ bool EnemBird::Update(float dt)
 			ECGCollision = false;
 		}
 
-	}
+	}*/
 
 	if (Debug == true) {
 		//Debug Collisions
@@ -144,14 +175,14 @@ void EnemBird::OnCollision(Collider* c1, Collider* c2)
 {
 	// L6: DONE 5: Detect collision with a wall. If so, destroy the player.
 
-	if (c1->type == Collider::Type::BLOATED && c2->type == Collider::Type::GROUND)
+	/*if (c1->type == Collider::Type::BLOATED && c2->type == Collider::Type::GROUND)
 	{
 		if (c1->rect.y <= c2->rect.y)
 		{
 			ECGCollision = true;
 			ECGrav = false;
 		}
-	}
+	}*/
 
 }
 
