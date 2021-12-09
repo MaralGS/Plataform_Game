@@ -19,6 +19,7 @@ struct Collider
 		ATTACK,
 		ECENTIPIDE,
 		HEAL,
+		AUTOSAVE,
 		DETECTOR1,
 		BIRD,
 		MAX
