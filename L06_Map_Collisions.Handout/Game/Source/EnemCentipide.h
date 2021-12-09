@@ -55,6 +55,7 @@ public:
 
 	bool ECGrav = true;
 	bool ECGCollision = false;
+	bool ECGDead = false;
 	int ECyVel = 5;
 	int ECXVel = 5;
 
@@ -66,6 +67,8 @@ public:
 	Animation idleAnim;
 	Animation rightAnim;
 	Animation leftAnim;
+	Animation DeathAnim;
+
 
 	// Countdown to handle shot spacing
 

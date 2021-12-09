@@ -36,6 +36,13 @@ EnemCentipide::EnemCentipide() : Module()
 	leftAnim.PushBack({ 80, 51, 46, 34 });
 	leftAnim.PushBack({ 151, 50, 47, 35 });
 	leftAnim.PushBack({ 222, 49, 48, 36 });
+
+	DeathAnim.PushBack({ 1, 385, 47, 35 });
+	DeathAnim.PushBack({ 63, 389, 56, 31 });
+	DeathAnim.PushBack({ 130, 396, 61, 24 });
+	DeathAnim.PushBack({ 204, 397, 59, 23 });
+
+
 	leftAnim.loop = true;
 	leftAnim.speed = 0.1f;
 
@@ -78,30 +85,32 @@ bool EnemCentipide::Update(float dt)
 	
 	// move
 	{
-		// esquerra
-		if (Move == false)
-		{
-			currentAnimation = &leftAnim;
-			if (PEnemy.x > 550)
-				{
-					PEnemy.x= PEnemy.x - 3;
-				}
-			else
+		if (ECGDead == false) {
+			// esquerra
+			if (Move == false)
 			{
-				Move = true;
+				currentAnimation = &leftAnim;
+				if (PEnemy.x > 550)
+				{
+					PEnemy.x = PEnemy.x - 3;
+				}
+				else
+				{
+					Move = true;
+				}
 			}
-		}
-		// dreta
-		if (Move == true)
-		{
-			currentAnimation = &rightAnim;
-			if (PEnemy.x < 1200)
-				{
-				PEnemy.x = PEnemy.x + 3;
-				}
-			else
+			// dreta
+			if (Move == true)
 			{
-				Move = false;
+				currentAnimation = &rightAnim;
+				if (PEnemy.x < 1200)
+				{
+					PEnemy.x = PEnemy.x + 3;
+				}
+				else
+				{
+					Move = false;
+				}
 			}
 		}
 	}
@@ -121,7 +130,11 @@ bool EnemCentipide::Update(float dt)
 		}
 
 	}
-
+	if (ECGDead == true) {
+		currentAnimation = &DeathAnim;
+		PEnemy.y = PEnemy.y;
+	}
+	
 	if (Debug == true) {
 		//Debug Collisions
 		app->map->DebugColisions();

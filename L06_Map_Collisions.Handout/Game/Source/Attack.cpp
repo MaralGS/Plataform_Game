@@ -6,6 +6,7 @@
 #include "Collisions.h"
 #include "Player.h"
 #include "Render.h"
+#include "EnemCentipide.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -58,7 +59,7 @@ void Attack::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (c1->type == Collider::Type::ATTACK && c2->type == Collider::Type::ECENTIPIDE)
 		{
-			app->player->dead = true;
+			app->Centipide->CentipideC->pendingToDelete = true;
 		}
 	}
 
