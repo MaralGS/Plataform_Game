@@ -12,10 +12,10 @@
 	<Enemy2 />
 	<player />
 	<renderer>
-		<camera x="-135" y="-325" />
-		<player x="285" y="880" v="1" />
-		<Enemy1 x="594" y="880" v2="true" />
-		<Enemy2 x="1400" y="622" v2="1" />
+		<camera x="0" y="-325" />
+		<player x="150" y="880" v="1" />
+		<Enemy1 x="1400" y="499" v1="1" />
+		<Enemy2 x="1400" y="499" v2="1" />
 	</renderer>
 	<:anonymous />
 </save_state>

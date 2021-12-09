@@ -26,6 +26,7 @@
     <ClCompile Include="Source\EnemBird.cpp" />
     <ClCompile Include="Source\Attack.cpp" />
     <ClCompile Include="Source\Heal.cpp" />
+    <ClCompile Include="Source\AutoSave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -75,6 +76,7 @@
     <ClInclude Include="Source\EnemBird.h" />
     <ClInclude Include="Source\Attack.h" />
     <ClInclude Include="Source\Heal.h" />
+    <ClInclude Include="Source\AutoSave.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

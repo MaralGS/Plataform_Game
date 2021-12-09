@@ -26,6 +26,7 @@ class EnemBird;
 class PathFinding;
 class Attack;
 class Heal;
+class Autosave;
 
 class App
 {
@@ -104,6 +105,7 @@ public:
 	Heal* heal;
 	PathFinding* pathfinding;
 	Attack* attack;
+	AutoSave* autos;
 
 private:
 
