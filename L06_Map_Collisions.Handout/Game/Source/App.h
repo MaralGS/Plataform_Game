@@ -25,6 +25,7 @@ class EnemCentipide;
 class EnemBird;
 class PathFinding;
 class Attack;
+class Heal;
 
 class App
 {
@@ -100,6 +101,7 @@ public:
 	Player* player;
 	EnemCentipide* Centipide;
 	EnemBird* Bird;
+	Heal* heal;
 	PathFinding* pathfinding;
 	Attack* attack;
 

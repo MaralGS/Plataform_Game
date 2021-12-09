@@ -26,6 +26,7 @@ Collisions::Collisions() : Module()
 	matrix[Collider::Type::PLAYER][Collider::Type::ROOF] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::BIRD] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::DETECTOR1] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::HEAL] = true;
 
 
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::PLAYER] = true;
@@ -65,6 +66,7 @@ Collisions::Collisions() : Module()
 	matrix[Collider::Type::ATTACK][Collider::Type::BIRD] = true;
 
 	matrix[Collider::Type::DETECTOR1][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::HEAL][Collider::Type::PLAYER] = true;
 
 
 }
@@ -173,6 +175,9 @@ void Collisions::DebugDraw()
 			break;
 		case Collider::Type::DETECTOR1: // Dark Green
 			app->render->DrawRectangle(colliders[i]->rect, 209, 196, 233, alpha);
+			break;
+		case Collider::Type::HEAL: // Dark Green
+			app->render->DrawRectangle(colliders[i]->rect, 213, 0, 0, alpha);
 			break;
 
 		}

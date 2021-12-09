@@ -54,9 +54,6 @@ public:
 	float fps;
 	float Maxfps = 60.0f;
 	float frameTime;
-
-
-
 private:
 	
 

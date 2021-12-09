@@ -1,5 +1,5 @@
-#ifndef __MODULEPLAYER_H__
-#define __MODULEPLAYER_H__
+#ifndef __MODULEHEAL_H__
+#define  __MODULEHEAL_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -8,17 +8,15 @@
 struct SDL_Texture;
 struct Collider;
 
-class Player : public Module
+class Heal : public Module
 {
 public:
 	// Constructor
-	Player();
+	Heal();
 
 	// Destructor
-	~Player();
+	~Heal();
 
-
-	bool Awake(pugi::xml_node&);
 	// Called when the module is activated
 	// Loads the necessary textures for the player
 	bool Start();
@@ -32,72 +30,37 @@ public:
 	bool PostUpdate();
 
 	// Collision callback, called when the player intersects with another collider
-	void OnCollision(Collider* c1, Collider* c2);
-
-	//int Timer(int second);
-
 
 	// Draws gamepad debug info in the screen
 	//void DebugDrawGamepadInfo();
 
 public:
 	// Position of the player in the map
-	iPoint PPlayer;
+	iPoint Pheal;
 	// The speed in which we move the player (pixels per frame)
 	//player General
 	float speed = 0.8f;
-	int vides;
-	int yVel;
-	int xVel;
-	//bools
-	bool isJumping;
-	bool GodMode;
 	bool Debug = false;
-	bool dead;
-	bool vidaDown = false;
-	bool moveY = true;
-	bool moveXD = true;
-	bool moveXE = true;
-	bool atackX = true;
-	bool JumpESprite = true;
-	bool JumpDSprite = true;
-	bool Grav = true;
-	bool GCollision = false;
-	bool jumping = false;
-	bool jumping2 = false;
-	//Timer
-	float timer = 0;
-	int Sec;
+	bool HPup = true;
+	SDL_Texture* heal;
+	SDL_Rect healrect;
 
 
+	Animation* currentAnimation;
+	Animation idleAnim;
 	// Countdown to handle shot spacing
 
 	// The player spritesheet loaded into an SDL_Texture
-	SDL_Texture* player;
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
-	SDL_Rect rectplayer;
-	Animation* currentAnimation;
-
-	// A set of animations
-	Animation idle;
-	Animation idleE;
-	Animation Dead;
-	Animation MoveD;
-	Animation MoveE;
-	Animation JumpE;
-	Animation JumpD;
-	Animation AtackD;
-	Animation AtackE;
 
 
 	// The player's collider
-	Collider* PlayerC = nullptr;
+	Collider* healcol = nullptr;
 
 	// A flag to detect when the player has been destroyed
-	bool win = false;
-	bool death = false;
-	bool stop = false;
+
 };
 
-#endif // __MODULEPLAYER_H__
+#endif // __MODULEHEAL_H__
+

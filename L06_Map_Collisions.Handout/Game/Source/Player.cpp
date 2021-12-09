@@ -11,6 +11,7 @@
 #include "Scene.h"
 #include "EnemCentipide.h"
 #include "Attack.h"
+#include "Heal.h"
 
 #include "Map.h"
 #include "Defs.h"
@@ -429,20 +430,36 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 			//Centipide
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ECENTIPIDE)
 			{
-				dead = true;
+				vides--;
+				vidaDown = true;
+				if (vides == 0)
+				{
+					dead = true;
+				}
+				
+			}
+			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HEAL)
+			{
+				vides++;
+				app->heal->HPup = false;
+				app->heal->healcol->SetPos(0, 0);
 			}
 
 		}
 		//path detector
-		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DETECTOR1)
 		{
-			app->Centipide->PathDet = true;
+			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DETECTOR1)
+			{
+				app->Centipide->PathDet = true;
+			}
+
+		
+			else
+			{
+				app->Centipide->PathDet = false;
+			}
 		}
 
-		else
-		{
-			app->Centipide->PathDet = false;
-		}
 	}
 }
 

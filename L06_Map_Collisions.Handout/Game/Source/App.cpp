@@ -13,6 +13,7 @@
 #include "EnemCentipide.h"
 #include "EnemBird.h"
 #include "Pathfinding.h"
+#include "Heal.h"
 #include "Attack.h"
 
 #include "Defs.h"
@@ -38,6 +39,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	player = new Player();
 	Centipide = new EnemCentipide();
 	Bird = new EnemBird();
+	heal = new Heal();
 	attack = new Attack();
 
 	// Ordered for awake / Start / Update
@@ -52,6 +54,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(collisions);
 	AddModule(Centipide);
 	AddModule(Bird);
+	AddModule(heal);
 	AddModule(player);
 	// Render last to swap buffer
 	AddModule(render);

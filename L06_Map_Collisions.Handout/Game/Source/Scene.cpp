@@ -10,6 +10,7 @@
 #include "EnemCentipide.h"
 #include "Player.h"
 #include "PathFinding.h"
+#include "Heal.h"
 
 #include <iostream>
 using namespace std;
@@ -48,10 +49,14 @@ bool Scene::Start()
 	Enter = app->tex->Load("Assets/textures/Enter_Image.png");
 	END = app->tex->Load("Assets/textures/End_Image_2.png");
 	WIN = app->tex->Load("Assets/textures/Win_Image.png");
+	
+
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	app->player->PPlayer.x;
 	app->player->PPlayer.y;
+	app->heal->Pheal.x = 600;
+	app->heal->Pheal.y = 700;
 
 	if (app->map->Load("Mapa2.tmx") == true)
 	{
@@ -115,12 +120,18 @@ bool Scene::Update(float dt)
 		app->Centipide->PEnemy.x = 918;
 		app->Centipide->PEnemy.y = 870;
 
-		app->player->vides = 1;
+		app->player->vides = 3;
 		WScrean = false;
 		DeadScreen = false;
 		app->player->dead = false;
 	}
 
+	if (app->player->vidaDown == true && app->player->vides != 0 )
+	{
+		app->player->PPlayer.x = 150;
+		app->player->PPlayer.y = 875;
+		app->player->vidaDown = false;
+	}
 	//RENDER
 	// Draw map
 	if (EnterScreen == false)
