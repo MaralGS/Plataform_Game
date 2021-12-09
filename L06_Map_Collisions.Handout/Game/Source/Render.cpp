@@ -100,15 +100,15 @@ bool Render::LoadState(pugi::xml_node& data)
 	//player
 	app->player->PPlayer.x = data.child("player").attribute("x").as_int();
 	app->player->PPlayer.y = data.child("player").attribute("y").as_int();
-	app->player->vides = data.child("Vides").attribute("v").as_int();
+	app->player->vides = data.child("player").attribute("v").as_int();
 	//enemy centipide
-	app->Centipide->PEnemy.x = data.child("Enemy2").attribute("x").as_int();
-	app->Centipide->PEnemy.y = data.child("Enemy2").attribute("y").as_int();
-	app->Centipide->vides = data.child("EnemyVides").attribute("v2").as_int();
+	app->Centipide->PEnemy.x = data.child("Enemy1").attribute("x").as_int();
+	app->Centipide->PEnemy.y = data.child("Enemy1").attribute("y").as_int();
+	app->Centipide->vides = data.child("Enemy1").attribute("v1").as_int();
 	//enemy bloated
 	app->Bird->PEnemy.x = data.child("Enemy2").attribute("x").as_int();
 	app->Bird->PEnemy.y = data.child("Enemy2").attribute("y").as_int();
-	app->Bird->vides = data.child("EnemyVides").attribute("v2").as_int();
+	app->Bird->vides = data.child("Enemy2").attribute("v2").as_int();
 	
 	return true;
 }
@@ -130,9 +130,9 @@ bool Render::SaveState(pugi::xml_node& data) const
 	PPlay.append_attribute("y") = app->player->PPlayer.y;
 	PPlay.append_attribute("v") = app->player->vides;
 	//ECentipide
-	ECentipide.append_attribute("x") = app->Bird->PEnemy.x;
-	ECentipide.append_attribute("y") = app->Bird->PEnemy.y;
-	ECentipide.append_attribute("v2") = app->Bird->vides;
+	ECentipide.append_attribute("x") = app->Centipide->PEnemy.x;
+	ECentipide.append_attribute("y") = app->Centipide->PEnemy.y;
+	ECentipide.append_attribute("v2") = app->Centipide->vides;
 	//Ebloated
 	EBloated.append_attribute("x") = app->Bird->PEnemy.x;
 	EBloated.append_attribute("y") = app->Bird->PEnemy.y;
