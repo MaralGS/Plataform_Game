@@ -285,35 +285,32 @@ bool Player::Update(float dt)
 		}
 		//jump
 		{
-
  			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && moveY == false)
 			{	
-				Sec = 3;
-				jumping2 = true;
-				if (JumpDSprite == true)
-				{
-					if (currentAnimation != &JumpD)
+					Sec = 3;
+					jumping2 = true;
+					if (JumpDSprite == true)
 					{
-						JumpD.Reset();
-						currentAnimation = &JumpD;
+						if (currentAnimation != &JumpD)
+						{
+							JumpD.Reset();
+							currentAnimation = &JumpD;
 
+						}
 					}
-				}
-				
-				
-				if (JumpESprite == false)
-				{
-					if (currentAnimation != &JumpE)
+
+
+					if (JumpESprite == false)
 					{
-						JumpE.Reset();
-						currentAnimation = &JumpE;
+						if (currentAnimation != &JumpE)
+						{
+							JumpE.Reset();
+							currentAnimation = &JumpE;
+						}
 					}
-				}
-		
-				
-				jumping = true;
-				moveY = true;
-				GCollision = false;
+					jumping = true;
+					moveY = true;
+					GCollision = false;
 			}
 
 			if (jumping == true)

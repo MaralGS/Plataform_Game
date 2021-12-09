@@ -22,10 +22,10 @@
 Heal::Heal() : Module()
 {
 	idleAnim.PushBack({ 11, 21, 21, 18 });
-	idleAnim.PushBack({ 42, 18, 21, 21 });
-	idleAnim.PushBack({ 74, 14, 21, 25 });
-	idleAnim.PushBack({ 107, 18, 21, 25 });
-	idleAnim.PushBack({ 141, 21, 21, 25 });
+	idleAnim.PushBack({ 42, 18, 21, 23 });
+	idleAnim.PushBack({ 75, 14, 21, 27 });
+	idleAnim.PushBack({ 107, 18, 21, 24 });
+	idleAnim.PushBack({ 141, 21, 21, 22 });
 	idleAnim.loop = true;
 	idleAnim.speed = 0.1f;
 

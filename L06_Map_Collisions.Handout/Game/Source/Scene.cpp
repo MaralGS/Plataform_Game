@@ -119,6 +119,8 @@ bool Scene::Update(float dt)
 		app->player->PPlayer.y = 875;
 		app->Centipide->PEnemy.x = 918;
 		app->Centipide->PEnemy.y = 870;
+		app->heal->HPup = true;
+		app->heal->healcol->SetPos(600, 700);
 
 		app->player->vides = 3;
 		WScrean = false;
@@ -163,17 +165,6 @@ bool Scene::Update(float dt)
 		app->render->DrawTexture(WIN, app->player->PPlayer.x - 100, app->player->PPlayer.y - 550);
 	}
 
-	//calculate frames
-	//calculatedFPS();
-
-	/*float frameTicks = SDL_GetTicks() - startTicks;
-	//limit frames
-	if (1000.0f / Maxfps > frameTicks)
-	{
-		SDL_Delay(1000.0f / Maxfps - frameTicks);
-	}*/
-
-	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
 		// L12b: Debug pathfinding
 	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
 		app->map->mapData.width, app->map->mapData.height,
@@ -213,53 +204,3 @@ void Scene::DebugPath()
 		app->render->DrawTexture(pathTex, pos.x, pos.y);
 	}
 }
-
-
-/*void Scene::calculatedFPS() {
-	
-	
-	static const int NUM_SAMPLES = 10;
-	static float frametimes[NUM_SAMPLES];
-	static int currentFrames = 0;
-
-	static float prevTicks = SDL_GetTicks();
-
-	float currenTicks;
-	currenTicks = SDL_GetTicks();
-
-	frameTime = currenTicks - prevTicks;
-	frametimes[currentFrames % NUM_SAMPLES] = frameTime;
-
-	prevTicks = currenTicks;
-
-	int count;
-
-	currentFrames++;
-	if (currentFrames < NUM_SAMPLES)
-	{
-		count = currentFrames;
-	}
-
-	else
-	{
-		count = NUM_SAMPLES;
-	}
-
-	float frameTimeAverage = 0;
-	for (int i = 0; i < count; i++) {
-		frameTimeAverage += frametimes[i];
-	}
-
-	frameTimeAverage /= count;
-
-	if (frameTimeAverage > 0)
-	{
-		fps = 1000.0f / frameTimeAverage;
-	}
-	else
-	{
-		fps = 60.0f;
-	}
-
-	
-}*/
