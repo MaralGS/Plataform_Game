@@ -42,7 +42,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	Bird = new EnemBird();
 	heal = new Heal();
 	attack = new Attack();
-	autos = new Autosave();
+	autos = new AutoSave();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp

@@ -36,15 +36,17 @@ EnemCentipide::EnemCentipide() : Module()
 	leftAnim.PushBack({ 80, 51, 46, 34 });
 	leftAnim.PushBack({ 151, 50, 47, 35 });
 	leftAnim.PushBack({ 222, 49, 48, 36 });
-
-	DeathAnim.PushBack({ 1, 385, 47, 35 });
-	DeathAnim.PushBack({ 63, 389, 56, 31 });
-	DeathAnim.PushBack({ 130, 396, 61, 24 });
-	DeathAnim.PushBack({ 204, 397, 59, 23 });
-
-
 	leftAnim.loop = true;
 	leftAnim.speed = 0.1f;
+
+	DeathAnim.PushBack({ 10, 382, 47, 35 });
+	DeathAnim.PushBack({ 72, 386, 56, 31 });
+	DeathAnim.PushBack({ 139, 393, 61, 24 });
+	DeathAnim.PushBack({ 213, 394, 59, 23 });
+	DeathAnim.loop = false;
+	DeathAnim.speed = 0.05f;
+
+	
 
 }
 
@@ -84,7 +86,7 @@ bool EnemCentipide::Update(float dt)
 	pathfind();
 	
 	// move
-	{
+	
 		if (ECGDead == false) {
 			// esquerra
 			if (Move == false)
@@ -112,8 +114,9 @@ bool EnemCentipide::Update(float dt)
 					Move = false;
 				}
 			}
+			CentipideC->SetPos(PEnemy.x, PEnemy.y);
 		}
-	}
+
 	
 
 	//gravity
@@ -132,6 +135,7 @@ bool EnemCentipide::Update(float dt)
 	}
 	if (ECGDead == true) {
 		currentAnimation = &DeathAnim;
+		CentipideC->SetPos(0,0);
 	}
 	
 	if (Debug == true) {
@@ -140,7 +144,7 @@ bool EnemCentipide::Update(float dt)
 		//Debug Player
 		app->render->DrawRectangle({ PEnemy.x,PEnemy.y,47,37 }, 255, 140, 0, 80);
 	}
-	CentipideC->SetPos(PEnemy.x, PEnemy.y);
+	
 	return true;
 }
 
@@ -150,7 +154,7 @@ bool EnemCentipide::PostUpdate()
 	//draw Centipide
 	rectCentipide = currentAnimation->GetCurrentFrame();
 
-	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false)
+	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false && ECGDead == false)
 	{
 		app->render->DrawTexture(Centipide, PEnemy.x, PEnemy.y, &rectCentipide);
 	}

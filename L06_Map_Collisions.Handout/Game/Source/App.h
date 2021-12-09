@@ -26,7 +26,7 @@ class EnemBird;
 class PathFinding;
 class Attack;
 class Heal;
-class Autosave;
+class AutoSave;
 
 class App
 {

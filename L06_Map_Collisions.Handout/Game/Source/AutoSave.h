@@ -8,14 +8,14 @@
 struct SDL_Texture;
 struct Collider;
 
-class Autosave : public Module
+class AutoSave : public Module
 {
 public:
 	// Constructor
-	Autosave();
+	AutoSave();
 
 	// Destructor
-	~Autosave();
+	~AutoSave();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the player

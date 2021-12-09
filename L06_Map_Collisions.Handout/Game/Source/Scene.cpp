@@ -8,9 +8,11 @@
 #include "Map.h"
 #include "Animation.h"
 #include "EnemCentipide.h"
+#include "EnemBird.h"
 #include "Player.h"
 #include "PathFinding.h"
 #include "Heal.h"
+#include "Collisions.h"
 
 #include <iostream>
 using namespace std;
@@ -119,9 +121,12 @@ bool Scene::Update(float dt)
 		app->player->PPlayer.y = 875;
 		app->Centipide->PEnemy.x = 918;
 		app->Centipide->PEnemy.y = 870;
+		app->Bird->PEnemy.x = 1400;
+		app->Bird->PEnemy.y = 700;
 		app->heal->HPup = true;
 		app->heal->healcol->SetPos(600, 700);
-
+		app->Centipide->ECGDead = false;
+		app->Bird->EBDead = false;
 		app->player->vides = 3;
 		WScrean = false;
 		DeadScreen = false;

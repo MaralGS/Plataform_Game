@@ -44,6 +44,7 @@ Collisions::Collisions() : Module()
 	matrix[Collider::Type::BIRD][Collider::Type::GROUND] = true;
 	matrix[Collider::Type::BIRD][Collider::Type::ROOF] = true;
 	matrix[Collider::Type::BIRD][Collider::Type::BIRD] = false;
+	matrix[Collider::Type::BIRD][Collider::Type::ATTACK] = true;
 	
 	matrix[Collider::Type::GROUND][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::GROUND][Collider::Type::ECENTIPIDE] = true;

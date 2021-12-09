@@ -435,6 +435,16 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 				}
 				
 			}
+			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BIRD)
+			{
+				vides--;
+				vidaDown = true;
+				if (vides == 0)
+				{
+					dead = true;
+				}
+
+			}
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HEAL)
 			{
 				vides++;

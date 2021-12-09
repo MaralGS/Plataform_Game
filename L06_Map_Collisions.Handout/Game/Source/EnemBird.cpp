@@ -100,32 +100,36 @@ bool EnemBird::Update(float dt)
 	//pathfind();
 		// move
 	{
-		// esquerra
-		if (Move == false)
+		if (EBDead == false)
 		{
-			currentAnimation = &leftAnim;
-			
-			if (PEnemy.y > 500)
+			// esquerra
+			if (Move == false)
 			{
-				PEnemy.y = PEnemy.y - 3;
+				currentAnimation = &leftAnim;
+
+				if (PEnemy.y > 500)
+				{
+					PEnemy.y = PEnemy.y - 3;
+				}
+				else
+				{
+					Move = true;
+				}
 			}
-			else
+			// dreta
+			if (Move == true)
 			{
-				Move = true;
+				currentAnimation = &leftAnim;
+				if (PEnemy.y < 800)
+				{
+					PEnemy.y = PEnemy.y + 3;
+				}
+				else
+				{
+					Move = false;
+				}
 			}
-		}
-		// dreta
-		if (Move == true)
-		{
-			currentAnimation = &leftAnim;
-			if (PEnemy.y < 800)
-			{
-				PEnemy.y = PEnemy.y + 3;
-			}
-			else
-			{
-				Move = false;
-			}
+			Bird->SetPos(PEnemy.x, PEnemy.y);
 		}
 	}
 
@@ -143,14 +147,17 @@ bool EnemBird::Update(float dt)
 		}
 
 	}*/
-
+	if (EBDead == true) {
+		//currentAnimation = &DeathAnim;
+		Bird->SetPos(0, 0);
+	}
 	if (Debug == true) {
 		//Debug Collisions
 		app->map->DebugColisions();
 		//Debug Player
 		app->render->DrawRectangle({ PEnemy.x,PEnemy.y,47,37 }, 255, 140, 0, 80);
 	}
-	Bird->SetPos(PEnemy.x, PEnemy.y);
+	
 	return true;
 }
 
@@ -159,7 +166,7 @@ bool EnemBird::PostUpdate()
 	//draw player
 	rectBird = currentAnimation->GetCurrentFrame();
 
-	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false)
+	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false && EBDead == false)
 	{
 		app->render->DrawTexture(TBird, PEnemy.x, PEnemy.y, &rectBird);
 	}

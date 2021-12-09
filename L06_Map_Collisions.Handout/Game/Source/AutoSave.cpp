@@ -19,7 +19,7 @@
 
 
 
-Autosave::Autosave() : Module()
+AutoSave::AutoSave() : Module()
 {
 	idleAnim.PushBack({ 11, 21, 21, 18 });
 	idleAnim.PushBack({ 42, 18, 21, 23 });
@@ -31,12 +31,12 @@ Autosave::Autosave() : Module()
 
 }
 
-Autosave::~Autosave()
+AutoSave::~AutoSave()
 {
 }
 
 
-bool Autosave::Start()
+bool AutoSave::Start()
 {
 	bool ret = true;
 	//Asave = app->tex->Load("Assets/textures/meat.png");
@@ -46,13 +46,13 @@ bool Autosave::Start()
 	return ret;
 }
 
-bool Autosave::Update(float dt)
+bool AutoSave::Update(float dt)
 {
 
 	return true;
 }
 
-bool Autosave::PostUpdate()
+bool AutoSave::PostUpdate()
 {
 
 	//draw Centipide
