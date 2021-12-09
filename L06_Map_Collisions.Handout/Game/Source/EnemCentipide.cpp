@@ -132,7 +132,6 @@ bool EnemCentipide::Update(float dt)
 	}
 	if (ECGDead == true) {
 		currentAnimation = &DeathAnim;
-		PEnemy.y = PEnemy.y;
 	}
 	
 	if (Debug == true) {
