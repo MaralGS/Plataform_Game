@@ -156,8 +156,6 @@ bool EnemBird::Update(float dt)
 
 bool EnemBird::PostUpdate()
 {
-
-
 	//draw player
 	rectBird = currentAnimation->GetCurrentFrame();
 

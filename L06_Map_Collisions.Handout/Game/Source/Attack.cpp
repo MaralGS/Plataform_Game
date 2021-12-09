@@ -37,11 +37,6 @@ bool Attack::Start()
 
 bool Attack::Update(float dt)
 {
-	if (app->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
-		{
-			AttackP->SetPos(app->player->PPlayer.x + 20, app->player->PPlayer.y);
-		}
-	//AttackP->SetPos(0,0);
 	return true;
 }
 

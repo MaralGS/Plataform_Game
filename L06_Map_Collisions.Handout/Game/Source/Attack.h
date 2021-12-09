@@ -30,7 +30,7 @@ public:
 
 	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2);
-
+	//bool atackEnable = false;
 	Collider* AttackP = nullptr;
 };
 

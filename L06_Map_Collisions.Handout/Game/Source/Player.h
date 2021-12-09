@@ -57,6 +57,7 @@ public:
 	bool moveY = true;
 	bool moveXD = true;
 	bool moveXE = true;
+	bool atackX = true;
 	bool JumpESprite = true;
 	bool JumpDSprite = true;
 	bool Grav = true;
@@ -85,11 +86,12 @@ public:
 	Animation MoveE;
 	Animation JumpE;
 	Animation JumpD;
+	Animation AtackD;
+	Animation AtackE;
 
 
 	// The player's collider
 	Collider* PlayerC = nullptr;
-	Collider* AttackP = nullptr;
 
 	// A flag to detect when the player has been destroyed
 	bool win = false;

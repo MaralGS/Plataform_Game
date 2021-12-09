@@ -172,7 +172,7 @@ void EnemCentipide::OnCollision(Collider* c1, Collider* c2)
 			ECGrav = false;
 		}
 	}
-	
+
 } 
 
 void EnemCentipide::pathfind() {
@@ -180,6 +180,4 @@ void EnemCentipide::pathfind() {
 	{
 		app->pathfinding->CreatePath(app->map->WorldToMap(PEnemy.x, PEnemy.y), app->map->WorldToMap(app->player->PPlayer.x, app->player->PPlayer.y));
 	}
-	
-
 }

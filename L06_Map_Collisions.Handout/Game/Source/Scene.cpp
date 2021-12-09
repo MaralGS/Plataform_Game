@@ -201,27 +201,6 @@ void Scene::DebugPath()
 		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
 		app->render->DrawTexture(pathTex, pos.x, pos.y);
 	}
-
-	//app->render->DrawTexture(originTex, app->player->PPlayer.x, app->player->PPlayer.y);
-
-	/*app->input->GetMousePosition(mouseX, mouseY);
-	iPoint p = app->render->ScreenToWorld(mouseX, mouseY);
-	p = app->map->WorldToMap(p.x, p.y);
-	p = app->map->MapToWorld(p.x, p.y);
-
-	app->render->DrawTexture(pathTex, p.x, p.y);
-
-	const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
-
-	for (uint i = 0; i < path->Count(); ++i)
-	{
-		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-		app->render->DrawTexture(pathTex, pos.x, pos.y);
-	}
-
-	iPoint originScreen = app->map->MapToWorld(app->player->PPlayer.x, app->player->PPlayer.y);
-	app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
-	//app->render->DrawTexture(originTex, app->player->PPlayer.x, app->player->PPlayer.y);*/
 }
 
 

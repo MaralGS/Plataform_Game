@@ -10,6 +10,7 @@
 #include "Collisions.h"
 #include "Scene.h"
 #include "EnemCentipide.h"
+#include "Attack.h"
 
 #include "Map.h"
 #include "Defs.h"
@@ -75,6 +76,26 @@ Player::Player() : Module()
 	JumpE.PushBack({ 2, 294, 17, 32 });
 	JumpE.loop = false;
 	JumpE.speed = 0.2f;
+
+	//atackD
+	AtackD.PushBack({ 2, 337, 17, 36 });
+	AtackD.PushBack({ 50, 337, 17, 36 });
+	AtackD.PushBack({ 97, 335, 19, 38 });
+	AtackD.PushBack({ 146, 340, 26, 33 });
+	AtackD.PushBack({ 194, 342, 25, 31 });
+	AtackD.PushBack({ 242, 339, 17, 34 });
+	AtackD.loop = false;
+	AtackD.speed = 0.2f;
+
+	//atackE
+	AtackE.PushBack({ 242, 390, 17, 36 });
+	AtackE.PushBack({ 194, 390, 17, 36 });
+	AtackE.PushBack({ 145, 388, 19, 38 });
+	AtackE.PushBack({ 89, 393, 26, 33 });
+	AtackE.PushBack({ 42, 395, 25, 31 });
+	AtackE.PushBack({ 2, 392, 17, 34 });
+	AtackE.loop = false;
+	AtackE.speed = 0.2f;
 }
 
 Player::~Player()
@@ -101,7 +122,7 @@ bool Player::Awake(pugi::xml_node& config) {
 bool Player::Start()
 {
 	bool ret = true;
-	player = app->tex->Load("Assets/textures/SteamMan/Sprites.png");
+	player = app->tex->Load("Assets/textures/SteamMan/Sprites2.png");
 	currentAnimation = &idle;
 	//Dead.Reset();
 
@@ -136,6 +157,38 @@ bool Player::Update(float dt)
 		Debug = !Debug;
 	}
 
+	//atack
+	if (atackX == true)
+	{
+		if (app->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		{
+			app->attack->AttackP->SetPos(PPlayer.x + 20, PPlayer.y);
+			AtackD.Reset();
+			currentAnimation = &AtackD;
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_M) == KEY_UP)
+		{
+			app->attack->AttackP->SetPos(0, 0);
+		}
+	}
+	
+	if (atackX == false)
+	{
+		if (app->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+		{
+			app->attack->AttackP->SetPos(PPlayer.x - 20, PPlayer.y);
+						AtackE.Reset();
+			currentAnimation = &AtackE;
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_M) == KEY_UP)
+		{
+			app->attack->AttackP->SetPos(0, 0);
+		}
+	}
+	
+
 	//reset animation
 	{
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
@@ -157,12 +210,13 @@ bool Player::Update(float dt)
 		}
 	}
 
-
+	//movement
 	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false)
 	{
 		//move
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && moveXD == true)
 		{
+			atackX = true;
 			JumpESprite = true;
 			JumpDSprite = true;
 			moveXE = true;
@@ -180,6 +234,7 @@ bool Player::Update(float dt)
 
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && moveXE == true)
 		{
+			atackX = false;
 			moveXD = true;
 			JumpDSprite = false;
 			JumpESprite = false;
@@ -280,11 +335,6 @@ bool Player::Update(float dt)
 			}
 			
 		}
-		//Player Attack
-		/*if (app->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
-		{
-			AttackP->SetPos(PPlayer.x + 20, PPlayer.y);
-		}*/
 	}
 
 	
@@ -382,15 +432,16 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 				dead = true;
 			}
 
-			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DETECTOR1)
-			{
-				app->Centipide->PathDet = true;
-			}
+		}
+		//path detector
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DETECTOR1)
+		{
+			app->Centipide->PathDet = true;
+		}
 
-			else
-			{
-				app->Centipide->PathDet = false;
-			}
+		else
+		{
+			app->Centipide->PathDet = false;
 		}
 	}
 }
