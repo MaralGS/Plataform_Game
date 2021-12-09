@@ -12,6 +12,7 @@
 #include "EnemCentipide.h"
 #include "Attack.h"
 #include "Heal.h"
+#include "AutoSave.h"
 
 #include "Map.h"
 #include "Defs.h"
@@ -123,7 +124,7 @@ bool Player::Awake(pugi::xml_node& config) {
 bool Player::Start()
 {
 	bool ret = true;
-	player = app->tex->Load("Assets/textures/SteamMan/Sprites2.png");
+	player = app->tex->Load("Assets/textures/SteamMan/Sprites.png");
 	currentAnimation = &idle;
 	//Dead.Reset();
 
@@ -451,6 +452,11 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 				app->heal->HPup = false;
 				app->heal->healcol->SetPos(0, 0);
 			}
+			
+			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::AUTOSAVE)
+			{
+				app->autos->autosave = true;
+			}
 
 		}
 		//path detector
@@ -459,8 +465,6 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 			{
 				app->Centipide->PathDet = true;
 			}
-
-		
 			else
 			{
 				app->Centipide->PathDet = false;

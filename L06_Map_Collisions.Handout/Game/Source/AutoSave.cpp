@@ -21,14 +21,9 @@
 
 AutoSave::AutoSave() : Module()
 {
-	idleAnim.PushBack({ 11, 21, 21, 18 });
-	idleAnim.PushBack({ 42, 18, 21, 23 });
-	idleAnim.PushBack({ 75, 14, 21, 27 });
-	idleAnim.PushBack({ 107, 18, 21, 24 });
-	idleAnim.PushBack({ 141, 21, 21, 22 });
-	idleAnim.loop = true;
-	idleAnim.speed = 0.1f;
+	RedFlag.PushBack({ 119, 5, 76, 128 });
 
+	GreenFlag.PushBack({ 13, 5, 76, 128 });
 }
 
 AutoSave::~AutoSave()
@@ -39,15 +34,36 @@ AutoSave::~AutoSave()
 bool AutoSave::Start()
 {
 	bool ret = true;
-	//Asave = app->tex->Load("Assets/textures/meat.png");
-	currentAnimation = &idleAnim;
+	Asave = app->tex->Load("Assets/textures/Flags.png");
+	currentAnimation = &RedFlag;
 
-	Asavecol = app->collisions->AddCollider({ PAsave.x,PAsave.y, 21 ,18 }, Collider::Type::HEAL, this);
+	Asavecol = app->collisions->AddCollider({ PAsave.x - 5,PAsave.y - 650, 80 ,800 }, Collider::Type::AUTOSAVE, this);
 	return ret;
 }
 
 bool AutoSave::Update(float dt)
 {
+	if (autosave == false)
+	{
+			currentAnimation = &RedFlag;
+	}
+
+	if (autosave == true)
+	{
+		if (FlagGreen == false)
+		{
+			currentAnimation = &GreenFlag;
+			FlagGreen = true;
+			saved = true;
+		}
+			
+	}
+		
+	if (saved == true)
+	{
+		app->SaveGameRequest();
+		saved = false;
+	}
 
 	return true;
 }
@@ -58,7 +74,12 @@ bool AutoSave::PostUpdate()
 	//draw Centipide
 	Asaverect = currentAnimation->GetCurrentFrame();
 
-	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false && HPup == true)
+	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false && autosave == false)
+	{
+		app->render->DrawTexture(Asave, PAsave.x, PAsave.y, &Asaverect);
+	}
+	
+	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false && autosave == true)
 	{
 		app->render->DrawTexture(Asave, PAsave.x, PAsave.y, &Asaverect);
 	}

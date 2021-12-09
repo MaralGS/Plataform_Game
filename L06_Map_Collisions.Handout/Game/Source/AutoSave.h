@@ -41,13 +41,16 @@ public:
 	//player General
 	float speed = 0.8f;
 	bool Debug = false;
-	bool HPup = true;
+	bool autosave = false;
+	bool saved = false;
+	bool FlagGreen = false;
 	SDL_Texture* Asave;
 	SDL_Rect Asaverect;
 
 
 	Animation* currentAnimation;
-	Animation idleAnim;
+	Animation RedFlag;
+	Animation GreenFlag;
 	// Countdown to handle shot spacing
 
 	// The player spritesheet loaded into an SDL_Texture

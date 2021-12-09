@@ -13,6 +13,7 @@
 #include "PathFinding.h"
 #include "Heal.h"
 #include "Collisions.h"
+#include "AutoSave.h"
 
 #include <iostream>
 using namespace std;
@@ -55,10 +56,15 @@ bool Scene::Start()
 
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
+	//position player
 	app->player->PPlayer.x;
 	app->player->PPlayer.y;
+	//position powerup
 	app->heal->Pheal.x = 600;
 	app->heal->Pheal.y = 700;
+	//position flag
+	app->autos->PAsave.x = 1500;
+	app->autos->PAsave.y = 790;
 
 	if (app->map->Load("Mapa2.tmx") == true)
 	{
@@ -117,20 +123,32 @@ bool Scene::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
-		app->player->PPlayer.x = 150;
-		app->player->PPlayer.y = 875;
+		//Enemy Centipide reset
 		app->Centipide->PEnemy.x = 918;
 		app->Centipide->PEnemy.y = 870;
+		app->Centipide->ECGDead = false;
+		//Enemy bird reset
 		app->Bird->PEnemy.x = 1400;
 		app->Bird->PEnemy.y = 700;
-		app->heal->HPup = true;
-		app->heal->healcol->SetPos(600, 700);
-		app->Centipide->ECGDead = false;
 		app->Bird->EBDead = false;
-		app->player->vides = 3;
+		//screens reset
 		WScrean = false;
 		DeadScreen = false;
+		//power up reset
+		app->heal->HPup = true;
+		app->heal->healcol->SetPos(600, 700);
+		//player reset
 		app->player->dead = false;
+		app->player->vides = 3;
+		app->player->PPlayer.x = 150;
+		app->player->PPlayer.y = 875;
+		//autosave restart
+		app->autos->PAsave.x = 1500;
+		app->autos->PAsave.y = 790;
+		app->autos->active = false;
+		app->autos->autosave = false;
+		app->autos->FlagGreen = false;
+		app->SaveGameRequest();
 	}
 
 	if (app->player->vidaDown == true && app->player->vides != 0 )
