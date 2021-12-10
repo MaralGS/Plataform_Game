@@ -339,22 +339,7 @@ bool Player::Update(float dt)
 	
 	//dead
 	{
-
-		/*if (dead == true && GodMode == false)
-		{
-			if (app->autos->FlagGreen == false)
-			{
-				PPlayer.x = 150;
-				PPlayer.y = 875;
-				vides--;
-			}
-			
-			else
-			{
-				vides--;
-			}
-		}*/
-
+	
 		if (PPlayer.y == 1000)
 		{
 			vides--;
@@ -446,7 +431,6 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 				{
 					dead = true;
 				}
-				
 			}
 			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BIRD)
 			{

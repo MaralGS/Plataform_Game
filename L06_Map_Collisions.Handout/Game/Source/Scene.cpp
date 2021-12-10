@@ -187,7 +187,7 @@ bool Scene::Update(float dt)
 
 	if (DeadScreen == true)
 	{
-		app->render->DrawTexture(END, -125, 200);
+		app->render->DrawTexture(END, app->player->PPlayer.x - 270, app->player->PPlayer.y - 620);
 	}
 
 	if (app->player->PPlayer.x == 4000) {
@@ -195,7 +195,7 @@ bool Scene::Update(float dt)
 	}
 	if (WScrean == true)
 	{
-		app->render->DrawTexture(WIN, app->player->PPlayer.x - 100, app->player->PPlayer.y - 550);
+		app->render->DrawTexture(WIN, app->player->PPlayer.x - 270, app->player->PPlayer.y - 615);
 	}
 
 		// L12b: Debug pathfinding
