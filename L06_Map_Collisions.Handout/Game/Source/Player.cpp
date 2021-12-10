@@ -340,17 +340,29 @@ bool Player::Update(float dt)
 	//dead
 	{
 
-		if (dead == true && GodMode == false)
+		/*if (dead == true && GodMode == false)
 		{
-			PPlayer.x = 150;
-			PPlayer.y = 875;
-			vides--;
-
-		}
+			if (app->autos->FlagGreen == false)
+			{
+				PPlayer.x = 150;
+				PPlayer.y = 875;
+				vides--;
+			}
+			
+			else
+			{
+				vides--;
+			}
+		}*/
 
 		if (PPlayer.y == 1000)
 		{
-			dead = true;
+			vides--;
+			vidaDown = true;
+			if (vides == 0 && GodMode == false && app->autos->FlagGreen == false)
+			{
+				dead = true;
+			}
 		}
 }
 	

@@ -14,8 +14,8 @@
 	<:anonymous />
 	<player />
 	<renderer>
-		<camera x="0" y="-325" />
-		<player x="150" y="875" v="3" />
+		<camera x="-1270" y="-225" />
+		<player x="150" y="870" v="3" />
 		<Enemy1 x="921" y="870" v2="true" />
 		<Enemy2 x="1400" y="697" v2="1" />
 	</renderer>

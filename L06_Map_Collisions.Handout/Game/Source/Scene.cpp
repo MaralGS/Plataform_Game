@@ -153,9 +153,19 @@ bool Scene::Update(float dt)
 
 	if (app->player->vidaDown == true && app->player->vides != 0 )
 	{
-		app->player->PPlayer.x = 150;
-		app->player->PPlayer.y = 875;
-		app->player->vidaDown = false;
+		if (app->autos->FlagGreen == false)
+		{
+			app->player->PPlayer.x = 150;
+			app->player->PPlayer.y = 875;
+			app->player->vidaDown = false;
+		}
+	
+		else
+		{
+			app->player->PPlayer.x = 1500;
+			app->player->PPlayer.y = 855;
+			app->player->vidaDown = false;
+		}
 	}
 	//RENDER
 	// Draw map
