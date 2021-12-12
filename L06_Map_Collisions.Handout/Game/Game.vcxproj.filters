@@ -28,6 +28,8 @@
     <ClCompile Include="Source\Heal.cpp" />
     <ClCompile Include="Source\AutoSave.cpp" />
     <ClCompile Include="Source\Coins.cpp" />
+    <ClCompile Include="Source\Hud.cpp" />
+    <ClCompile Include="Source\Fonts.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -79,6 +81,8 @@
     <ClInclude Include="Source\Heal.h" />
     <ClInclude Include="Source\AutoSave.h" />
     <ClInclude Include="Source\Coins.h" />
+    <ClInclude Include="Source\Hud.h" />
+    <ClInclude Include="Source\Fonts.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

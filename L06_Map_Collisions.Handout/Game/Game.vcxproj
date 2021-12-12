@@ -96,7 +96,9 @@
     <ClCompile Include="Source\Collisions.cpp" />
     <ClCompile Include="Source\EnemBird.cpp" />
     <ClCompile Include="Source\EnemCentipide.cpp" />
+    <ClCompile Include="Source\Fonts.cpp" />
     <ClCompile Include="Source\Heal.cpp" />
+    <ClCompile Include="Source\Hud.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\Audio.cpp" />
@@ -118,7 +120,9 @@
     <ClInclude Include="Source\Collisions.h" />
     <ClInclude Include="Source\EnemBird.h" />
     <ClInclude Include="Source\EnemCentipide.h" />
+    <ClInclude Include="Source\Fonts.h" />
     <ClInclude Include="Source\Heal.h" />
+    <ClInclude Include="Source\Hud.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Pathfinding.h" />
     <ClInclude Include="Source\PerfTimer.h" />

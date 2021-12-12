@@ -27,7 +27,9 @@ class PathFinding;
 class Attack;
 class Heal;
 class AutoSave;
+class Hud;
 class Coins;
+class ModuleFonts;
 
 class App
 {
@@ -107,7 +109,9 @@ public:
 	PathFinding* pathfinding;
 	Attack* attack;
 	AutoSave* autos;
+	Hud* hud;
 	Coins* coins;
+	ModuleFonts* fonts;
 
 	int FpsN;
 	int FpsD;

@@ -15,6 +15,7 @@
 #include "Collisions.h"
 #include "AutoSave.h"
 #include "Coins.h"
+#include "Hud.h"
 
 #include <iostream>
 using namespace std;
@@ -61,11 +62,12 @@ bool Scene::Start()
 	app->player->PPlayer.x;
 	app->player->PPlayer.y;
 	//position powerup
-	app->heal->Pheal.x = 600;
-	app->heal->Pheal.y = 700;
+	app->heal->Pheal.x = 800;
+	app->heal->Pheal.y = 650;
 	//position flag
 	app->autos->PAsave.x = 1500;
 	app->autos->PAsave.y = 790;
+
 
 	if (app->map->Load("Mapa2.tmx") == true)
 	{

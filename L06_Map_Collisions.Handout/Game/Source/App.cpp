@@ -17,6 +17,8 @@
 #include "Attack.h"
 #include "AutoSave.h"
 #include "Coins.h"
+#include "hud.h"
+#include "Fonts.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -44,7 +46,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	heal = new Heal();
 	attack = new Attack();
 	autos = new AutoSave();
+	hud = new Hud();
 	coins = new Coins();
+	fonts = new ModuleFonts();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -54,6 +58,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(scene);
 	AddModule(pathfinding);
+	AddModule(fonts);
+	AddModule(hud);
 	AddModule(map);
 	AddModule(collisions);
 	AddModule(Centipide);
@@ -61,6 +67,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(coins);
 	AddModule(heal);
 	AddModule(autos);
+
 	AddModule(player);
 	
 	// Render last to swap buffer
