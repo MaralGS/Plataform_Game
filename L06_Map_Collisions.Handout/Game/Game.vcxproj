@@ -91,6 +91,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Attack.cpp" />
     <ClCompile Include="Source\AutoSave.cpp" />
+    <ClCompile Include="Source\Coins.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
     <ClCompile Include="Source\Collisions.cpp" />
     <ClCompile Include="Source\EnemBird.cpp" />
@@ -112,6 +113,7 @@
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\Attack.h" />
     <ClInclude Include="Source\AutoSave.h" />
+    <ClInclude Include="Source\Coins.h" />
     <ClInclude Include="Source\Collider.h" />
     <ClInclude Include="Source\Collisions.h" />
     <ClInclude Include="Source\EnemBird.h" />
