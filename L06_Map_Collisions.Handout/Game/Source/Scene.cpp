@@ -51,7 +51,7 @@ bool Scene::Start()
 	// L03: DONE: Load map
 	app->map->Load("mapa.tmx");
 	Enter = app->tex->Load("Assets/textures/Screen/enter_image.png");
-	END = app->tex->Load("Assets/textures/Screen/end_image.png.png");
+	END = app->tex->Load("Assets/textures/Screen/end_image.png");
 	WIN = app->tex->Load("Assets/textures/Screen/win_image.png");
 	
 
