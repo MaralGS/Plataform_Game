@@ -71,7 +71,7 @@ bool EnemCentipide::Awake(pugi::xml_node& config) {
 bool EnemCentipide::Start()
 {
 	bool ret = true;
-	Centipide = app->tex->Load("Assets/textures/Enemies/Enemy1/Centipide.png");
+	Centipide = app->tex->Load("Assets/Textures/Enemies/Enemy1/centipide.png");
 	currentAnimation = &idleAnim;
 	//Dead.Reset();
 

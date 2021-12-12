@@ -40,9 +40,9 @@ bool Hud::Start()
 {
 	bool ret = true;
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
-	scoreFont = app->fonts->Load("Assets/textures/fonts.png", lookupTable,2);
-	Vida = app->tex->Load("Assets/textures/cuadrat_puntuacio_vida.png");
-	points = app->tex->Load("Assets/textures/cuadrat_puntuacio_vida.png");
+	scoreFont = app->fonts->Load("Assets/Textures/Fonts/fonts.png", lookupTable,2);
+	Vida = app->tex->Load("Assets/Textures/Screen/cuadrat_puntuacio_vida.png");
+	points = app->tex->Load("Assets/Textures/Screen/cuadrat_puntuacio_vida.png");
 	currentAnimation = &idleAnim;
 
 	return ret;
