@@ -33,7 +33,7 @@ public:
 	// Loads the necessary textures for the map background
 	bool Start();
 
-	bool Update();
+	bool Update(float dt);
 
 	// Called at the end of the application loop.
 	// Performs the render call of all the parts of the scene's background

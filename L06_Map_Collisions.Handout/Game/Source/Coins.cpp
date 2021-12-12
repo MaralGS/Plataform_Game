@@ -13,7 +13,7 @@ Coins::Coins() : Module()
 	idle.PushBack({ 11, 29, 5, 16 });
 	idle.PushBack({ 28, 28, 12, 17 });
 	idle.loop = true;
-	idle.speed = 0.1f;
+	idle.speed = 0.001f;
 }
 
 Coins::~Coins()
@@ -27,7 +27,7 @@ bool Coins::Start()
 	bool ret = true;
 
 	TextureCoin = app->tex->Load("Assets/textures/Coins.png");
-
+	
 	for (int i = 0; i < NUM_COINS; i++)
 	{
 		currentAnimation[i] = &idle;
@@ -40,13 +40,13 @@ bool Coins::Start()
 	return ret;
 }
 
-bool Coins::Update()
+bool Coins::Update(float dt)
 {
 	for (int i = 0; i < NUM_COINS; i++)
 	{
 		currentAnimation[i]->Update();
 
-		if (coin[i].Destroyed)
+		if (coin[i].Destroyed == true)
 		{
 			coin[i].dead = true;
 			coin[i].collider->pendingToDelete = true;
@@ -58,10 +58,9 @@ bool Coins::Update()
 
 bool Coins::PostUpdate()
 {
-
 	for (int i = 0; i < NUM_COINS; i++)
 	{
-		if (coin[i].dead == false)
+		if (coin[i].dead == false && app->scene->EnterScreen == false)
 		{
 			app->render->DrawTexture(coin[i].coinsT, coin[i].x, coin[i].y, &(currentAnimation[i]->GetCurrentFrame()));
 		}

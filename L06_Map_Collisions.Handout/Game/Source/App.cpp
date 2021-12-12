@@ -58,12 +58,14 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(collisions);
 	AddModule(Centipide);
 	AddModule(Bird);
+	AddModule(coins);
 	AddModule(heal);
 	AddModule(autos);
-	AddModule(coins);
 	AddModule(player);
+	
 	// Render last to swap buffer
 	AddModule(render);
+	
 	AddModule(attack);
 	
 

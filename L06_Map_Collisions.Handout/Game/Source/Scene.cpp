@@ -14,6 +14,7 @@
 #include "Heal.h"
 #include "Collisions.h"
 #include "AutoSave.h"
+#include "Coins.h"
 
 #include <iostream>
 using namespace std;
@@ -145,9 +146,10 @@ bool Scene::Update(float dt)
 		//autosave restart
 		app->autos->PAsave.x = 1500;
 		app->autos->PAsave.y = 790;
-		app->autos->active = false;
+		app->autos->saved = false;
 		app->autos->autosave = false;
 		app->autos->FlagGreen = false;
+		app->coins->Enable();
 		app->SaveGameRequest();
 	}
 

@@ -48,14 +48,11 @@ bool AutoSave::Update(float dt)
 			currentAnimation = &RedFlag;
 	}
 
-	if (autosave == true)
+	if (autosave == true && FlagGreen == false)
 	{
-		if (FlagGreen == false)
-		{
 			currentAnimation = &GreenFlag;
 			FlagGreen = true;
 			saved = true;
-		}
 			
 	}
 		
