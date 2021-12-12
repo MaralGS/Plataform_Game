@@ -27,7 +27,7 @@ bool Coins::Start()
 
 	bool ret = true;
 
-	TextureCoin = app->tex->Load("Assets/textures/Coins.png");
+	TextureCoin = app->tex->Load("Assets/Textures/Coins/coins.png");
 	
 	for (int i = 0; i < NUM_COINS; i++)
 	{

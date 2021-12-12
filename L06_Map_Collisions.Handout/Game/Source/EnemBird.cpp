@@ -86,7 +86,7 @@ bool EnemBird::Awake(pugi::xml_node& config) {
 bool EnemBird::Start()
 {
 	bool ret = true;
-	TBird = app->tex->Load("Assets/textures/Enemies/Enemi2/Enemy2.png");
+	TBird = app->tex->Load("Assets/textures/Enemies/Enemy2/enemy2.png");
 	currentAnimation = &idleAnim;
 	//Dead.Reset();
 
