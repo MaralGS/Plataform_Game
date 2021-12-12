@@ -124,7 +124,7 @@ bool Player::Awake(pugi::xml_node& config) {
 bool Player::Start()
 {
 	bool ret = true;
-	player = app->tex->Load("Assets/textures/SteamMan/Sprites.png");
+	player = app->tex->Load("Assets/Textures/Steam_Man/sprites.png");
 	currentAnimation = &idle;
 	//Dead.Reset();
 

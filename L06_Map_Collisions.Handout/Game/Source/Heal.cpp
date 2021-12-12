@@ -39,7 +39,7 @@ Heal::~Heal()
 bool Heal::Start()
 {
 	bool ret = true;
-	heal = app->tex->Load("Assets/textures/meat.png");
+	heal = app->tex->Load("Assets/textures/Meat/meat.png");
 	currentAnimation = &idleAnim;
 
 	healcol = app->collisions->AddCollider({ Pheal.x,Pheal.y, 21 ,18 }, Collider::Type::HEAL, this);
