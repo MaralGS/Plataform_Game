@@ -37,7 +37,7 @@
 </Enemy1>
 
 <Enemy2>
-	<Position PositionX = "1400" PositionY = "700"/>
+	<Position PositionX = "1700" PositionY = "700"/>
 	<Vel yVel = "5" xVel = "5"/>
 	<Generals dead = "false"/>
 	<Vides v="1"/>

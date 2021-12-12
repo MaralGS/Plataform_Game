@@ -97,12 +97,13 @@ bool EnemBird::Start()
 
 bool EnemBird::Update(float dt)
 {
-	//pathfind();
+	pathfind();
 		// move
 	{
 		if (EBDead == false && PathDet == false)
 		{
 			// esquerra
+			PEnemy.x;
 			if (Move == false)
 			{
 				currentAnimation = &leftAnim;
@@ -132,12 +133,12 @@ bool EnemBird::Update(float dt)
 			CBird->SetPos(PEnemy.x, PEnemy.y);
 		}
 
-		if (EBDead == false && PathDet == true) {
+		/*if (EBDead == false && PathDet == true) {
 			// esquerra
 			if (Move == false)
-			{
-				PEnemy.x++;
+			{	
 				currentAnimation = &leftAnim;
+				PEnemy.x++;
 			}
 			// dreta
 			else if (Move == true)
@@ -160,7 +161,7 @@ bool EnemBird::Update(float dt)
 				PEnemy.y--;
 			}
 			CBird->SetPos(PEnemy.x, PEnemy.y);
-		}
+		}*/
 	}
 
 	if (EBDead == true) {
@@ -229,20 +230,20 @@ void EnemBird::pathfind() {
 			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
 			if (app->player->PPlayer.x < pos.x)
 			{
-				Move = true;
+				PEnemy.x--;
 			}
 			else if (app->player->PPlayer.x > pos.x)
 			{
-				Move = false;
+				PEnemy.x++;
 			}
 			
 			if (app->player->PPlayer.y < pos.y)
 			{
-				MoveY = true;
+				PEnemy.y--;
 			}
 			else if (app->player->PPlayer.y > pos.y)
 			{
-				MoveY = false;
+				PEnemy.y++;
 			}
 			CBird->SetPos(PEnemy.x, PEnemy.y);
 		}

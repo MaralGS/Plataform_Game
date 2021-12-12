@@ -339,7 +339,6 @@ bool Player::Update(float dt)
 	
 	//dead
 	{
-	
 		if (PPlayer.y == 1000)
 		{
 			vides--;
@@ -349,7 +348,7 @@ bool Player::Update(float dt)
 				dead = true;
 			}
 		}
-}
+	}
 	
 	//SDL_Rect PlayerCollider = { PPlayer.x, PPlayer.y, 48, 48 };
 	//app->render->DrawRectangle(PlayerCollider, 255, 255, 0, 80);
