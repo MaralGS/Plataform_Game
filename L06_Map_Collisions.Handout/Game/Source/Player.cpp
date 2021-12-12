@@ -140,7 +140,7 @@ bool Player::Start()
 bool Player::Update(float dt)
 {
 
-	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 	{
 		if (GodMode == false)
 		{

@@ -65,7 +65,6 @@ public:
     // L02: DONE 1: Create methods to request Load / Save
 	void LoadGameRequest();
 	void SaveGameRequest() const;
-
 private:
 
 	// Load config file
@@ -90,6 +89,7 @@ private:
 	// Load / Save
 	bool LoadGame();
 	bool SaveGame() const;
+
 
 public:
 
@@ -116,6 +116,7 @@ public:
 	int FpsN;
 	int FpsD;
 	int Lastms;
+	
 private:
 
 	float DeltaTime;

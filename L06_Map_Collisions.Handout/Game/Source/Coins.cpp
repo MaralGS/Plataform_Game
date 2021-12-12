@@ -115,7 +115,7 @@ bool Coins::PostUpdate()
 {
 	for (int i = 0; i < NUM_COINS; i++)
 	{
-		if (coin[i].dead == false && app->scene->EnterScreen == false)
+		if (coin[i].dead == false && app->scene->EnterScreen == false && app->scene->DeadScreen == false && app->scene->WScrean == false)
 		{
 			app->render->DrawTexture(coin[i].coinsT, coin[i].x, coin[i].y, &(currentAnimation[i]->GetCurrentFrame()));
 		}

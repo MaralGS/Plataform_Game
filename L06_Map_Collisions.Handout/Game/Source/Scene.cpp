@@ -16,7 +16,6 @@
 #include "AutoSave.h"
 #include "Coins.h"
 #include "Hud.h"
-
 #include <iostream>
 using namespace std;
 
@@ -128,6 +127,7 @@ bool Scene::Update(float dt)
 	{
 		debug = !debug;
 	}
+
 	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 	{
 		//Enemy Centipide reset
@@ -203,7 +203,7 @@ bool Scene::Update(float dt)
 	}
 	if (WScrean == true)
 	{
-		app->render->DrawTexture(WIN, app->player->PPlayer.x - 270, app->player->PPlayer.y - 615);
+		app->render->DrawTexture(WIN, 2800, app->player->PPlayer.y - 350);
 	}
 
 		// L12b: Debug pathfinding

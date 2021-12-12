@@ -2,6 +2,7 @@
 
 #include "Defs.h"
 #include "Log.h"
+#include "Input.h"
 
 #include <windows.h>
 #include <stdlib.h>
@@ -35,8 +36,8 @@ App* app = NULL;
 
 int main(int argc, char* args[])
 {
+	
 	LOG("Engine starting ...");
-
 	float dt = 16.0f;
 	MainState state = CREATE;
 	int result = EXIT_FAILURE;
@@ -91,6 +92,17 @@ int main(int argc, char* args[])
 			case LOOP:
 			if(app->Update() == false)
 				state = CLEAN;
+			if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
+			{
+				if (dt == 16.0f)
+				{
+					dt = 33.f;
+				}
+				else
+				{
+					dt = 16.0f;
+				}
+			}
 			break;
 
 			// Cleanup allocated memory -----------------------------------------
@@ -122,6 +134,7 @@ int main(int argc, char* args[])
 		}
 		LOG("delta time is: %f ms", dt - CelapsetTime);
 	}
+
 
 	LOG("... Bye! :)\n");
 
