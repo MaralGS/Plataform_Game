@@ -86,8 +86,7 @@ bool EnemCentipide::Update(float dt)
 	pathfind();
 	
 	// move
-	
-		if (ECGDead == false) {
+		if (ECGDead == false  && PathDet == false) {
 			// esquerra
 			if (Move == false)
 			{
@@ -113,6 +112,22 @@ bool EnemCentipide::Update(float dt)
 				{
 					Move = false;
 				}
+			}
+			CentipideC->SetPos(PEnemy.x, PEnemy.y);
+		}
+		
+		if (ECGDead == false  && PathDet == true) {
+			// esquerra
+			if (Move == false)
+			{
+				PEnemy.x++;
+				currentAnimation = &leftAnim;
+			}
+			// dreta
+			else if (Move == true)
+			{
+				currentAnimation = &rightAnim;
+				PEnemy.x--;
 			}
 			CentipideC->SetPos(PEnemy.x, PEnemy.y);
 		}
@@ -177,11 +192,39 @@ void EnemCentipide::OnCollision(Collider* c1, Collider* c2)
 		}
 	}
 
+	//path detector
+	{
+		if (c1->type == Collider::Type::DETECTOR1 && c2->type == Collider::Type::PLAYER)
+		{
+			PathDet = true;
+		}
+		else
+		{
+			PathDet = false;
+		}
+	}
+
 } 
 
 void EnemCentipide::pathfind() {
 	if (PathDet == true)
 	{
 		app->pathfinding->CreatePath(app->map->WorldToMap(PEnemy.x, PEnemy.y), app->map->WorldToMap(app->player->PPlayer.x, app->player->PPlayer.y));
+
+		const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
+
+			for (uint i = 0; i < path->Count(); ++i)
+			{
+				iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+				if (app->player->PPlayer.x < pos.x)
+				{
+					Move = true;
+				}
+				else if (app->player->PPlayer.x > pos.x)
+				{
+					Move = false;
+				}
+				CentipideC->SetPos(PEnemy.x, PEnemy.y);
+			}
 	}
 }

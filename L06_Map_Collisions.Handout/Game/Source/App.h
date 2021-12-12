@@ -107,7 +107,12 @@ public:
 	Attack* attack;
 	AutoSave* autos;
 
+	int FpsN;
+	int FpsD;
+	int Lastms;
 private:
+
+	float DeltaTime;
 
 	int argc;
 	char** args;

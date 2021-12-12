@@ -199,10 +199,11 @@ bool Scene::Update(float dt)
 	}
 
 		// L12b: Debug pathfinding
-	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
+	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d, FPS: %d , Avf.FPS: %d, Last Ms: %d ",
 		app->map->mapData.width, app->map->mapData.height,
 		app->map->mapData.tileWidth, app->map->mapData.tileHeight,
-		app->map->mapData.tilesets.Count());
+		app->map->mapData.tilesets.Count(), app->FpsN, app->FpsD, app->Lastms);
+	
 
 	app->win->SetTitle(title.GetString());
 

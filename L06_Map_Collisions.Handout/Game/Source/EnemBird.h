@@ -50,9 +50,11 @@ public:
 	bool Debug = false;
 	//bool ECGrav = true;
 	bool Move = false;
+	bool MoveY = false;
 	bool ECGCollision = false;
 	bool EBDead = false;
 	bool dead;
+	bool PathDet;
 	int ECyVel;
 	int ECXVel;
 	int vides;
@@ -78,7 +80,8 @@ public:
 
 
 	// The player's collider
-	Collider* Bird = nullptr;
+	Collider* CBird = nullptr;
+	Collider* DetectorBird = nullptr;
 
 	// A flag to detect when the player has been destroyed
 

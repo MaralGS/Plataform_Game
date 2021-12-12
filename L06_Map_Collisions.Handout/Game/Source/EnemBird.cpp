@@ -90,8 +90,8 @@ bool EnemBird::Start()
 	currentAnimation = &idleAnim;
 	//Dead.Reset();
 
-	Bird = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 47,25 }, Collider::Type::BIRD, this);
-
+	CBird = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 47,25 }, Collider::Type::BIRD, this);
+	DetectorBird = app->collisions->AddCollider({ PEnemy.x - 300,PEnemy.y - 700, 600, 800 }, Collider::Type::DETECTOR1, this);
 	return ret;
 }
 
@@ -100,7 +100,7 @@ bool EnemBird::Update(float dt)
 	//pathfind();
 		// move
 	{
-		if (EBDead == false)
+		if (EBDead == false && PathDet == false)
 		{
 			// esquerra
 			if (Move == false)
@@ -129,27 +129,43 @@ bool EnemBird::Update(float dt)
 					Move = false;
 				}
 			}
-			Bird->SetPos(PEnemy.x, PEnemy.y);
+			CBird->SetPos(PEnemy.x, PEnemy.y);
+		}
+
+		if (EBDead == false && PathDet == true) {
+			// esquerra
+			if (Move == false)
+			{
+				PEnemy.x++;
+				currentAnimation = &leftAnim;
+			}
+			// dreta
+			else if (Move == true)
+			{
+				currentAnimation = &rightAnim;
+				PEnemy.x--;
+			}
+			CBird->SetPos(PEnemy.x, PEnemy.y);
+			
+			// Up
+			if (MoveY == false)
+			{
+				PEnemy.y++;
+				currentAnimation = &leftAnim;
+			}
+			// Down
+			else if (MoveY == true)
+			{
+				currentAnimation = &rightAnim;
+				PEnemy.y--;
+			}
+			CBird->SetPos(PEnemy.x, PEnemy.y);
 		}
 	}
 
-	//gravity
-	/* {
-		if (ECGrav == true)
-		{
-			PEnemy.y += ECyVel;
-		}
-
-		if (ECGrav == false && ECGCollision == true)
-		{
-			ECGrav = true;
-			ECGCollision = false;
-		}
-
-	}*/
 	if (EBDead == true) {
 		//currentAnimation = &DeathAnim;
-		Bird->SetPos(0, 0);
+		CBird->SetPos(0, 0);
 	}
 	if (Debug == true) {
 		//Debug Collisions
@@ -180,18 +196,55 @@ void EnemBird::OnCollision(Collider* c1, Collider* c2)
 {
 	// L6: DONE 5: Detect collision with a wall. If so, destroy the player.
 
-	/*if (c1->type == Collider::Type::BLOATED && c2->type == Collider::Type::GROUND)
+	if (c1->type == Collider::Type::BIRD && c2->type == Collider::Type::GROUND)
 	{
 		if (c1->rect.y <= c2->rect.y)
 		{
 			ECGCollision = true;
-			ECGrav = false;
+
 		}
-	}*/
+	}
+	{
+		if (c1->type == Collider::Type::DETECTOR1 && c2->type == Collider::Type::PLAYER)
+		{
+			PathDet = true;
+		}
+		else
+		{
+			PathDet = false;
+		}
+	}
 
 }
 
 void EnemBird::pathfind() {
+	if (PathDet == true)
+	{
+		app->pathfinding->CreatePath(app->map->WorldToMap(PEnemy.x, PEnemy.y), app->map->WorldToMap(app->player->PPlayer.x, app->player->PPlayer.y));
 
-	app->pathfinding->CreatePath(app->map->WorldToMap(PEnemy.x, PEnemy.y), app->map->WorldToMap(app->player->PPlayer.x, app->player->PPlayer.y));
+		const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
+
+		for (uint i = 0; i < path->Count(); ++i)
+		{
+			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+			if (app->player->PPlayer.x < pos.x)
+			{
+				Move = true;
+			}
+			else if (app->player->PPlayer.x > pos.x)
+			{
+				Move = false;
+			}
+			
+			if (app->player->PPlayer.y < pos.y)
+			{
+				MoveY = true;
+			}
+			else if (app->player->PPlayer.y > pos.y)
+			{
+				MoveY = false;
+			}
+			CBird->SetPos(PEnemy.x, PEnemy.y);
+		}
+	}
 }

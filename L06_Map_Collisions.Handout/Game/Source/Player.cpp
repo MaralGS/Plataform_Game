@@ -455,18 +455,6 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 			}
 
 		}
-		//path detector
-		{
-			if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DETECTOR1)
-			{
-				app->Centipide->PathDet = true;
-			}
-			else
-			{
-				app->Centipide->PathDet = false;
-			}
-		}
-
 	}
 }
 
