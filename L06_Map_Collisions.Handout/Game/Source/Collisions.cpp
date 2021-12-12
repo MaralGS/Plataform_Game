@@ -28,7 +28,12 @@ Collisions::Collisions() : Module()
 	matrix[Collider::Type::PLAYER][Collider::Type::DETECTOR1] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::HEAL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::AUTOSAVE] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::COINS] = true;
 
+	matrix[Collider::Type::COINS][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::COINS][Collider::Type::GROUND] = false;
+	matrix[Collider::Type::COINS][Collider::Type::ECENTIPIDE] = false;
+	matrix[Collider::Type::COINS][Collider::Type::BIRD] = false;
 
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ECENTIPIDE][Collider::Type::ECENTIPIDE] = false;
@@ -185,7 +190,9 @@ void Collisions::DebugDraw()
 		case Collider::Type::AUTOSAVE: // Dark Green
 			app->render->DrawRectangle(colliders[i]->rect, 213, 0, 0, alpha);
 			break;
-
+		case Collider::Type::COINS: // Dark Green
+			app->render->DrawRectangle(colliders[i]->rect, 0, 255, 0, alpha);
+			break;
 		}
 	}
 }

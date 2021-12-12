@@ -27,6 +27,7 @@ class PathFinding;
 class Attack;
 class Heal;
 class AutoSave;
+class Coins;
 
 class App
 {
@@ -106,6 +107,7 @@ public:
 	PathFinding* pathfinding;
 	Attack* attack;
 	AutoSave* autos;
+	Coins* coins;
 
 private:
 

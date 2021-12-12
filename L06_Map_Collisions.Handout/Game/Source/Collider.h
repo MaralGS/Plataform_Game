@@ -3,7 +3,7 @@
 
 #include "SDL/include/SDL_Rect.h"
 
-#define MAX_LISTENERS 10
+#define MAX_LISTENERS 15
 
 class Module;
 
@@ -22,6 +22,7 @@ struct Collider
 		AUTOSAVE,
 		DETECTOR1,
 		BIRD,
+		COINS,
 		MAX
 
 	};
