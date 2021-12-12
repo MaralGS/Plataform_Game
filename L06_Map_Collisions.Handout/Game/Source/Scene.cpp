@@ -49,10 +49,10 @@ bool Scene::Awake()
 bool Scene::Start()
 {
 	// L03: DONE: Load map
-	app->map->Load("Mapa2.tmx");
-	Enter = app->tex->Load("Assets/textures/Enter_Image.png");
-	END = app->tex->Load("Assets/textures/End_Image_2.png");
-	WIN = app->tex->Load("Assets/textures/Win_Image.png");
+	app->map->Load("mapa.tmx");
+	Enter = app->tex->Load("Assets/textures/Screen/enter_image.png");
+	END = app->tex->Load("Assets/textures/Screen/end_image.png.png");
+	WIN = app->tex->Load("Assets/textures/Screen/win_image.png");
 	
 
 	// Load music
@@ -68,7 +68,7 @@ bool Scene::Start()
 	app->autos->PAsave.y = 790;
 
 
-	if (app->map->Load("Mapa2.tmx") == true)
+	if (app->map->Load("mapa.tmx") == true)
 	{
 		int w, h;
 		uchar* data = NULL;
@@ -78,7 +78,7 @@ bool Scene::Start()
 		RELEASE_ARRAY(data);
 	}
 	pathTex = app->tex->Load("Assets/maps/path.png");
-	originTex = app->tex->Load("Assets/maps/x.png");
+
 
 
 	return true;
