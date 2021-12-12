@@ -21,6 +21,7 @@ struct Collider
 		HEAL,
 		AUTOSAVE,
 		DETECTOR1,
+		DETECTOR2,
 		BIRD,
 		COINS,
 		MAX
