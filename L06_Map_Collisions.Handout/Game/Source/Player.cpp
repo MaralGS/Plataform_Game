@@ -154,10 +154,6 @@ bool Player::Update(float dt)
 		}
 		
 	}
-	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
-	{
-		Debug = !Debug;
-	}
 
 	//atack
 	if (atackX == true)
@@ -352,14 +348,6 @@ bool Player::Update(float dt)
 	
 	//SDL_Rect PlayerCollider = { PPlayer.x, PPlayer.y, 48, 48 };
 	//app->render->DrawRectangle(PlayerCollider, 255, 255, 0, 80);
-	if (Debug == true) {
-		//Debug Collisions
-		app->map->DebugColisions();
-		//Debug Player
-		app->collisions->DebugDraw();
-		//Debug Pathfinding
-		app->scene->DebugPath();
-	}
 	
 	PlayerC->SetPos(PPlayer.x, PPlayer.y);
 	return true;

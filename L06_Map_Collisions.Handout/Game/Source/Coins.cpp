@@ -4,6 +4,7 @@
 #include "Render.h"
 #include "Collisions.h"
 #include "Scene.h"
+#include "Hud.h"
 
 
 Coins::Coins() : Module()
@@ -133,6 +134,7 @@ void Coins::OnCollision(Collider* c1, Collider* c2)
 			if (c2->type == Collider::Type::PLAYER)
 			{
 				coin[i].Destroyed = true;
+				app->hud->score += 100;
 			}
 		}
 	}

@@ -6,6 +6,8 @@
 	<audio />
 	<scene />
 	<pathfinding />
+	<:anonymous />
+	<:anonymous />
 	<map />
 	<:anonymous />
 	<Enemy1 />
@@ -15,10 +17,10 @@
 	<:anonymous />
 	<player />
 	<renderer>
-		<camera x="-1330" y="-265" />
-		<player x="1480" y="820" v="3" />
-		<Enemy1 x="1045" y="885" v2="false" />
-		<Enemy2 x="1628" y="748" v2="1" />
+		<camera x="-1370" y="-205" />
+		<player x="1525" y="760" v="4" />
+		<Enemy1 x="1031" y="885" v2="true" />
+		<Enemy2 x="1614" y="742" v2="1" />
 	</renderer>
 	<:anonymous />
 </save_state>

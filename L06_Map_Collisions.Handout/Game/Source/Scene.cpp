@@ -102,9 +102,10 @@ bool Scene::Update(float dt)
 			app->render->camera.y = (app->player->PPlayer.y * -1) + 550;
 		}
 	}
-
-	if (app->player->PPlayer.x >= 150) {
-		app->render->camera.x = (app->player->PPlayer.x * -1) + 150;
+	if (app->player->PPlayer.x <= 3072) {
+		if (app->player->PPlayer.x >= 150) {
+			app->render->camera.x = (app->player->PPlayer.x * -1) + 150;
+		}
 	}
 
 	//float startTicks = SDL_GetTicks();
@@ -113,18 +114,21 @@ bool Scene::Update(float dt)
 	// L02: DONE 3: Request Load / Save when pressing L/S
 
 
-	if (app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		app->LoadGameRequest();
 
-	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		app->SaveGameRequest();
 
 	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 	{
 		EnterScreen = false;
 	}
-
-	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	{
+		debug = !debug;
+	}
+	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 	{
 		//Enemy Centipide reset
 		app->Centipide->PEnemy.x = 918;
@@ -207,7 +211,15 @@ bool Scene::Update(float dt)
 		app->map->mapData.width, app->map->mapData.height,
 		app->map->mapData.tileWidth, app->map->mapData.tileHeight,
 		app->map->mapData.tilesets.Count(), app->FpsN, app->FpsD, app->Lastms);
-	
+
+	if (debug == true) {
+		//Debug Collisions
+		app->map->DebugColisions();
+		//Debug Player
+		app->collisions->DebugDraw();
+		//Debug Pathfinding
+		app->scene->DebugPath();
+	}
 
 	app->win->SetTitle(title.GetString());
 

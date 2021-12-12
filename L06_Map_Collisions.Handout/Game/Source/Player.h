@@ -52,7 +52,6 @@ public:
 	//bools
 	bool isJumping;
 	bool GodMode;
-	bool Debug = false;
 	bool dead;
 	bool vidaDown = false;
 	bool moveY = true;

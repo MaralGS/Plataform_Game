@@ -53,13 +53,13 @@ bool Hud::Update(float dt)
 	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false)
 	{
 		//points
-		sprintf_s(scoreText, "pts;%2d", points);
+		sprintf_s(scoreText, "pts;%2d", score);
 		//app->fonts->DrawTxt(app->render->camera.x + 30, app->render->camera.y + 350, scoreFont, scoreText);
-		app->fonts->DrawTxt(app->player->PPlayer.x - 120, 20, scoreFont, scoreText);
+		app->fonts->DrawTxt(app->player->PPlayer.x - 120, app->player->PPlayer.y - 855, scoreFont, scoreText);
 
 		sprintf_s(scoreText, "hp;%2d", app->player->vides);
 		//app->fonts->DrawTxt(app->render->camera.x + 30, app->render->camera.y + 350, scoreFont, scoreText);
-		app->fonts->DrawTxt(app->player->PPlayer.x + 980, 20, scoreFont, scoreText);
+		app->fonts->DrawTxt(app->player->PPlayer.x + 980, app->player->PPlayer.y - 855, scoreFont, scoreText);
 
 	}
 	
@@ -69,14 +69,12 @@ bool Hud::Update(float dt)
 bool Hud::PostUpdate()
 {
 
-	//draw Centipide
-	rect = currentAnimation->GetCurrentFrame();
 	rect = currentAnimation->GetCurrentFrame();
 
 	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false)
 	{
-		app->render->DrawTexture(points, app->player->PPlayer.x - 140, 330, &rect);
-		app->render->DrawTexture(Vida, app->player->PPlayer.x + 970, 330, &rect);
+		app->render->DrawTexture(points, app->player->PPlayer.x - 140, app->player->PPlayer.y - 550, &rect);
+		app->render->DrawTexture(Vida, app->player->PPlayer.x + 970, app->player->PPlayer.y - 550, &rect);
 	}
 	currentAnimation->Update();
 

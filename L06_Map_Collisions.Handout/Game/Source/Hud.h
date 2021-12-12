@@ -48,6 +48,7 @@ public:
 	//fonts
 	int scoreFont = -1;
 	char scoreText[150] = { "\0" };
+	int score = 0;
 
 	Animation* currentAnimation;
 	Animation idleAnim;
