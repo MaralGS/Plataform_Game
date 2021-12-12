@@ -61,7 +61,7 @@ bool AutoSave::Update(float dt)
 		app->SaveGameRequest();
 		saved = false;
 	}
-
+	Asavecol->SetPos(PAsave.x, PAsave.y);
 	return true;
 }
 

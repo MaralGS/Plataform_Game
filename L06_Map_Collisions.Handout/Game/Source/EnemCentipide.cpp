@@ -116,22 +116,22 @@ bool EnemCentipide::Update(float dt)
 			CentipideC->SetPos(PEnemy.x, PEnemy.y);
 		}
 		
-		if (ECGDead == false  && PathDet == true) {
+		/*if (ECGDead == false && PathDet == true) {
 			// esquerra
 			if (Move == false)
 			{
 				PEnemy.x++;
-				currentAnimation = &leftAnim;
+				currentAnimation = &rightAnim;
 			}
 			// dreta
 			else if (Move == true)
 			{
-				currentAnimation = &rightAnim;
+				currentAnimation = &leftAnim;
 				PEnemy.x--;
 			}
 			CentipideC->SetPos(PEnemy.x, PEnemy.y);
 		}
-
+		*/
 	
 
 	//gravity
@@ -147,6 +147,9 @@ bool EnemCentipide::Update(float dt)
 			ECGCollision = false;
 		}
 
+	}
+	if (PEnemy.y == 1000) {
+		ECGDead = true;
 	}
 	if (ECGDead == true) {
 		currentAnimation = &DeathAnim;
@@ -213,18 +216,31 @@ void EnemCentipide::pathfind() {
 
 		const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
 
-			for (uint i = 0; i < path->Count(); ++i)
+	for (uint i = 0; i < path->Count(); ++i)
+	{
+		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+		if (app->player->PPlayer.x < pos.x)
+		{
+			PEnemy.x--;
+		}
+		else if (app->player->PPlayer.x > pos.x)
+		{
+			PEnemy.x++;
+		}
+		CentipideC->SetPos(PEnemy.x, PEnemy.y);
+	}
+			/*for (uint i = 0; i < path->Count(); ++i)
 			{
 				iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
 				if (app->player->PPlayer.x < pos.x)
 				{
-					Move = true;
+					Move = false;
 				}
 				else if (app->player->PPlayer.x > pos.x)
 				{
-					Move = false;
+					Move = true;
 				}
 				CentipideC->SetPos(PEnemy.x, PEnemy.y);
-			}
+			}*/
 	}
 }
