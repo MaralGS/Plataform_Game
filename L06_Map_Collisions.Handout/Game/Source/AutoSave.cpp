@@ -34,7 +34,7 @@ AutoSave::~AutoSave()
 bool AutoSave::Start()
 {
 	bool ret = true;
-	Asave = app->tex->Load("Assets/textures/Flags.png");
+	Asave = app->tex->Load("Assets/textures/Screen/flags.png");
 	currentAnimation = &RedFlag;
 
 	Asavecol = app->collisions->AddCollider({ PAsave.x - 5,PAsave.y - 650, 80 ,800 }, Collider::Type::AUTOSAVE, this);
