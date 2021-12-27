@@ -55,11 +55,11 @@ bool Hud::Update(float dt)
 		//points
 		sprintf_s(scoreText, "pts;%2d", score);
 		//app->fonts->DrawTxt(app->render->camera.x + 30, app->render->camera.y + 350, scoreFont, scoreText);
-		app->fonts->DrawTxt(app->player->PPlayer.x - 120, app->player->PPlayer.y - 855, scoreFont, scoreText);
+		app->fonts->DrawTxt(50, 20, scoreFont, scoreText);
 
 		sprintf_s(scoreText, "hp;%2d", app->player->vides);
 		//app->fonts->DrawTxt(app->render->camera.x + 30, app->render->camera.y + 350, scoreFont, scoreText);
-		app->fonts->DrawTxt(app->player->PPlayer.x + 980, app->player->PPlayer.y - 855, scoreFont, scoreText);
+		app->fonts->DrawTxt(1150, 20, scoreFont, scoreText);
 
 	}
 	
