@@ -20,6 +20,7 @@
 #include "hud.h"
 #include "Fonts.h"
 #include "Menu_Screen.h"
+#include "FadeToBlack.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -51,6 +52,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	menu = new Menu_Screen();
 	coins = new Coins();
 	fonts = new ModuleFonts();
+	fadetoblack = new FadetoBlack();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -70,6 +72,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(coins);
 	AddModule(heal);
 	AddModule(autos);
+	AddModule(fadetoblack);
 
 	AddModule(player);
 	

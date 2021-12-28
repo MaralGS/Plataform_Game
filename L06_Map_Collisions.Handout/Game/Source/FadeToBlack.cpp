@@ -1,33 +1,34 @@
 #include "FadeToBlack.h"
+#include "Window.h"
 
 #include "App.h"
 #include "Render.h"
 
 #include "SDL/include/SDL_render.h"
 
-ModuleFadeToBlack::ModuleFadeToBlack() : Module()
+FadetoBlack::FadetoBlack() : Module()
 {
-	screenRect = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
+	screenRect = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE }; 
 }
 
-ModuleFadeToBlack::~ModuleFadeToBlack()
+FadetoBlack::~FadetoBlack()
 {
 
 }
 
-bool ModuleFadeToBlack::Start()
+bool FadetoBlack::Start()
 {
-	LOG("Preparing Fade Screen");
+	
 
 	// Enable blending mode for transparency
-	SDL_SetRenderDrawBlendMode(App->render->renderer, SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawBlendMode(app->render->renderer, SDL_BLENDMODE_BLEND);
 	return true;
 }
 
-UpdateResult ModuleFadeToBlack::Update()
+bool FadetoBlack::Update()
 {
 	// Exit this function if we are not performing a fade
-	if (currentStep == Fade_Step::NONE) return UpdateResult::UPDATE_CONTINUE;
+	if (currentStep == Fade_Step::NONE) return true;
 
 	if (currentStep == Fade_Step::TO_BLACK)
 	{
@@ -50,24 +51,24 @@ UpdateResult ModuleFadeToBlack::Update()
 		}
 	}
 
-	return UpdateResult::UPDATE_CONTINUE;
+	return true;
 }
 
-UpdateResult ModuleFadeToBlack::PostUpdate()
+bool FadetoBlack::PostUpdate()
 {
 	// Exit this function if we are not performing a fade
-	if (currentStep == Fade_Step::NONE) return UpdateResult::UPDATE_CONTINUE;
+	if (currentStep == Fade_Step::NONE) return true;
 
 	float fadeRatio = (float)frameCount / (float)maxFadeFrames;
 
 	// Render the black square with alpha on the screen
-	SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(fadeRatio * 255.0f));
-	SDL_RenderFillRect(App->render->renderer, &screenRect);
+	SDL_SetRenderDrawColor(app->render->renderer, 0, 0, 0, (Uint8)(fadeRatio * 255.0f));
+	SDL_RenderFillRect(app->render->renderer, &screenRect);
 
-	return UpdateResult::UPDATE_CONTINUE;
+	return true;
 }
 
-bool ModuleFadeToBlack::FadeToBlack(Module* moduleToDisable, Module* moduleToEnable, float frames)
+bool FadetoBlack::FadeToBlack(Module* moduleToDisable, Module* moduleToEnable, float frames)
 {
 	bool ret = false;
 

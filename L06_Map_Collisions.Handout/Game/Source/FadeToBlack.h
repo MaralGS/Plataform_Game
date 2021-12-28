@@ -1,18 +1,23 @@
-#ifndef __MODULEFADETOBLACK_H__
-#define __MODULEFADETOBLACK_H__
+#ifndef __FADETOBLACK_H__
+#define __FADETOBLACK_H__
 
 #include "Module.h"
 
 #include "SDL\include\SDL_rect.h"
 
-class ModuleFadeToBlack : public Module
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+
+#define SCREEN_SIZE 1
+
+class FadetoBlack : public Module
 {
 public:
 	// Constructor
-	ModuleFadeToBlack();
+	FadetoBlack();
 
 	// Destructor
-	~ModuleFadeToBlack();
+	~FadetoBlack();
 
 	// Called when the module is activated
 	// Enables the blending mode for transparency
@@ -52,4 +57,4 @@ private:
 	Module* moduleToDisable = nullptr;
 };
 
-#endif //__MODULEFADETOBLACK_H__
+#endif //__FADETOBLACK_H__
