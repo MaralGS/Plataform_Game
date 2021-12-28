@@ -19,6 +19,7 @@
 #include "Coins.h"
 #include "hud.h"
 #include "Fonts.h"
+#include "Menu_Screen.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -47,6 +48,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	attack = new Attack();
 	autos = new AutoSave();
 	hud = new Hud();
+	menu = new Menu_Screen();
 	coins = new Coins();
 	fonts = new ModuleFonts();
 
@@ -56,6 +58,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(input);
 	AddModule(tex);
 	AddModule(audio);
+	AddModule(menu);
 	AddModule(scene);
 	AddModule(pathfinding);
 	AddModule(fonts);

@@ -30,6 +30,7 @@ class AutoSave;
 class Hud;
 class Coins;
 class ModuleFonts;
+class Menu_Screen;
 
 class App
 {
@@ -108,8 +109,9 @@ public:
 	Heal* heal;
 	PathFinding* pathfinding;
 	Attack* attack;
-	AutoSave* autos;
 	Hud* hud;
+	AutoSave* autos;
+	Menu_Screen* menu;
 	Coins* coins;
 	ModuleFonts* fonts;
 

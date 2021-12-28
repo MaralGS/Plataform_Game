@@ -94,7 +94,6 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
-
 	app->map->DColisions();
 	if (app->player->PPlayer.y <= 875){
 		if (app->player->PPlayer.y >= 600) {

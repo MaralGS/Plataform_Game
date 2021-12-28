@@ -30,6 +30,7 @@
     <ClCompile Include="Source\Coins.cpp" />
     <ClCompile Include="Source\Hud.cpp" />
     <ClCompile Include="Source\Fonts.cpp" />
+    <ClCompile Include="Source\Menu_Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -83,6 +84,7 @@
     <ClInclude Include="Source\Coins.h" />
     <ClInclude Include="Source\Hud.h" />
     <ClInclude Include="Source\Fonts.h" />
+    <ClInclude Include="Source\Menu_Screen.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
