@@ -30,7 +30,11 @@
     <ClCompile Include="Source\Coins.cpp" />
     <ClCompile Include="Source\Hud.cpp" />
     <ClCompile Include="Source\Fonts.cpp" />
+<<<<<<< Updated upstream
     <ClCompile Include="Source\Menu_Screen.cpp" />
+=======
+    <ClCompile Include="Source\FadeToBlack.cpp" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -84,7 +88,11 @@
     <ClInclude Include="Source\Coins.h" />
     <ClInclude Include="Source\Hud.h" />
     <ClInclude Include="Source\Fonts.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="Source\Menu_Screen.h" />
+=======
+    <ClInclude Include="Source\FadeToBlack.h" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

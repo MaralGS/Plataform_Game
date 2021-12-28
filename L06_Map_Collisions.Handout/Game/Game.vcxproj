@@ -96,6 +96,7 @@
     <ClCompile Include="Source\Collisions.cpp" />
     <ClCompile Include="Source\EnemBird.cpp" />
     <ClCompile Include="Source\EnemCentipide.cpp" />
+    <ClCompile Include="Source\FadeToBlack.cpp" />
     <ClCompile Include="Source\Fonts.cpp" />
     <ClCompile Include="Source\Heal.cpp" />
     <ClCompile Include="Source\Hud.cpp" />
@@ -121,6 +122,7 @@
     <ClInclude Include="Source\Collisions.h" />
     <ClInclude Include="Source\EnemBird.h" />
     <ClInclude Include="Source\EnemCentipide.h" />
+    <ClInclude Include="Source\FadeToBlack.h" />
     <ClInclude Include="Source\Fonts.h" />
     <ClInclude Include="Source\Heal.h" />
     <ClInclude Include="Source\Hud.h" />
