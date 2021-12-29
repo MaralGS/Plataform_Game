@@ -35,24 +35,24 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 
 	win = new Window(true);
 	input = new Input(true);
-	render = new Render();
-	tex = new Textures();
-	audio = new Audio();
-	scene = new Scene();
-	map = new Map();
-	pathfinding = new PathFinding();
-	collisions = new Collisions();
-	player = new Player();
-	Centipide = new EnemCentipide();
-	Bird = new EnemBird();
-	heal = new Heal();
-	attack = new Attack();
-	autos = new AutoSave();
-	menu = new Menu_Screen();
-	hud = new Hud();
-	coins = new Coins();
-	fonts = new ModuleFonts();
-	fadetoblack = new FadetoBlack();
+	render = new Render(true);
+	tex = new Textures(true);
+	audio = new Audio(true);
+	scene = new Scene(false);
+	map = new Map(false);
+	pathfinding = new PathFinding(true);
+	collisions = new Collisions(true);
+	player = new Player(false);
+	Centipide = new EnemCentipide(false);
+	Bird = new EnemBird(false);
+	heal = new Heal(false);
+	attack = new Attack(false);
+	autos = new AutoSave(true);
+	menu = new Menu_Screen(true);
+	hud = new Hud(false);
+	coins = new Coins(false);
+	fonts = new ModuleFonts(true);
+	fadetoblack = new FadetoBlack(true);
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp

@@ -19,7 +19,7 @@
 
 
 
-AutoSave::AutoSave() : Module()
+AutoSave::AutoSave(bool startEnabled) : Module()
 {
 	RedFlag.PushBack({ 119, 5, 76, 128 });
 

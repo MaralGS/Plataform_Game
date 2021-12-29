@@ -19,7 +19,7 @@
 
 
 
-EnemCentipide::EnemCentipide() : Module()
+EnemCentipide::EnemCentipide(bool startEnabled) : Module()
 {
 	name.Create("Enemy1");
 	idleAnim.PushBack({ 7, 7, 47, 35 });

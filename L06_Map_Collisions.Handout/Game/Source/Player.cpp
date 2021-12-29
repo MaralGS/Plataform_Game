@@ -18,7 +18,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-Player::Player() : Module()
+Player::Player(bool startEnabled) : Module()
 {
 	name.Create("player");
 

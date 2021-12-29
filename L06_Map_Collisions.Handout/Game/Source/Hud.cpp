@@ -23,7 +23,7 @@
 
 
 
-Hud::Hud() : Module()
+Hud::Hud(bool startEnabled) : Module()
 {
 	idleAnim.PushBack({ 5, 6, 144, 44 });
 	idleAnim.loop = true;

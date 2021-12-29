@@ -12,7 +12,7 @@ class EnemCentipide : public Module
 {
 public:
 	// Constructor
-	EnemCentipide();
+	EnemCentipide(bool startEnabled);
 
 	// Destructor
 	~EnemCentipide();

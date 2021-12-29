@@ -12,7 +12,7 @@ class Heal : public Module
 {
 public:
 	// Constructor
-	Heal();
+	Heal(bool startEnabled);
 
 	// Destructor
 	~Heal();

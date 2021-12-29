@@ -9,7 +9,7 @@ class Menu_Screen : public Module
 {
 public:
 
-	Menu_Screen();
+	Menu_Screen(bool startEnabled);
 
 	// Destructor
 	virtual ~Menu_Screen();

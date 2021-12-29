@@ -14,7 +14,7 @@ class FadetoBlack : public Module
 {
 public:
 	// Constructor
-	FadetoBlack();
+	FadetoBlack(bool startEnabled);
 
 	// Destructor
 	~FadetoBlack();

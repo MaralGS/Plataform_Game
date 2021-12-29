@@ -12,7 +12,7 @@ class EnemBird : public Module
 {
 public:
 	// Constructor
-	EnemBird();
+	EnemBird(bool startEnabled);
 
 	// Destructor
 	~EnemBird();
