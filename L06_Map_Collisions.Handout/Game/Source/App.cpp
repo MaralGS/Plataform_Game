@@ -48,8 +48,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	heal = new Heal();
 	attack = new Attack();
 	autos = new AutoSave();
-	hud = new Hud();
 	menu = new Menu_Screen();
+	hud = new Hud();
 	coins = new Coins();
 	fonts = new ModuleFonts();
 	fadetoblack = new FadetoBlack();

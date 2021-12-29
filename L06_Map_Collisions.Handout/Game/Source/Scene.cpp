@@ -184,7 +184,7 @@ bool Scene::Update(float dt)
 
 	if (EnterScreen == true)
 	{
-		app->render->DrawTexture(Enter, 0, 300);
+		//app->render->DrawTexture(Enter, 0, 300);
 	}
 
 	if (app->player->vides <= 0)

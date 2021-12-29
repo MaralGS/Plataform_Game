@@ -5,8 +5,6 @@
 #include "Render.h"
 #include "Window.h"
 #include "Menu_Screen.h"
-#include "Map.h"
-#include "PathFinding.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -34,7 +32,7 @@ bool Menu_Screen::Start()
 {
 	// L03: DONE: Load map
 	// L12b: Create walkability map on map loading
-	
+	play = app->tex->Load("Assets/textures/Screen/Play.png");
 
 	return true;
 }
@@ -42,11 +40,6 @@ bool Menu_Screen::Start()
 // Called each loop iteration
 bool Menu_Screen::PreUpdate()
 {
-	int mouseX, mouseY;
-	app->input->GetMousePosition(mouseX, mouseY);
-	
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-	}
 
 	return true;
 }
@@ -60,6 +53,11 @@ bool Menu_Screen::Update(float dt)
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 
+	app->render->DrawTexture(play, 100, 100);
+
+	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 100 && mouseX < 170 && mouseY >100 && mouseY < 150 ) {
+		Disable();
+	}
 	return true;
 }
 

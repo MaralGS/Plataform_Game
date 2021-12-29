@@ -31,7 +31,7 @@ class Hud;
 class Coins;
 class ModuleFonts;
 class Menu_Screen;
-class FadeToBlack;
+class FadetoBlack;
 
 class App
 {

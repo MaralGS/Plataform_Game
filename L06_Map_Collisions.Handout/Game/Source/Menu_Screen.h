@@ -33,8 +33,8 @@ public:
 	bool CleanUp();
 
 private:
-	SDL_Texture* pathTex;
-	SDL_Texture* originTex;
+
+	SDL_Texture* play;
 
 	// L12b: Debug pathfing
 	iPoint origin;
