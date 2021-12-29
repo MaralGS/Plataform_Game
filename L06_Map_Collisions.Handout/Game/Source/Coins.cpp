@@ -7,7 +7,7 @@
 #include "Hud.h"
 
 
-Coins::Coins(bool startEnabled) : Module()
+Coins::Coins() : Module()
 {
 	idle.PushBack({ 5, 6, 16, 17 });
 	idle.PushBack({ 28, 6, 12, 17 });

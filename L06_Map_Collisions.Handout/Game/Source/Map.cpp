@@ -10,7 +10,7 @@
 
 #include <math.h>
 
-Map::Map(bool startEnabled) : Module(), mapLoaded(false)
+Map::Map() : Module(), mapLoaded(false)
 {
 	name.Create("map");
 }

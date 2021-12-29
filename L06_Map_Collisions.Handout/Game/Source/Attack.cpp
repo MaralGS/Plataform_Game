@@ -16,7 +16,7 @@
 #include <iostream>
 
 
-Attack::Attack(bool startEnabled) : Module()
+Attack::Attack() : Module()
 {
 
 

@@ -7,7 +7,7 @@
 #include "SString.h"
 
 
-Collisions::Collisions(bool startEnabled) : Module()
+Collisions::Collisions() : Module()
 {
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 		colliders[i] = nullptr;

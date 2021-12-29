@@ -19,7 +19,7 @@
 
 
 
-Heal::Heal(bool startEnabled) : Module()
+Heal::Heal() : Module()
 {
 	idleAnim.PushBack({ 11, 21, 21, 18 });
 	idleAnim.PushBack({ 42, 18, 21, 23 });

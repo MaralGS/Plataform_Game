@@ -9,7 +9,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-Menu_Screen::Menu_Screen(bool startEnabled) : Module()
+Menu_Screen::Menu_Screen() : Module()
 {
 	name.Create("Menu");
 }

@@ -11,7 +11,7 @@ class Attack : public Module
 {
 public:
 	// Constructor
-	Attack(bool startEnabled);
+	Attack();
 
 	// Destructor
 	~Attack();

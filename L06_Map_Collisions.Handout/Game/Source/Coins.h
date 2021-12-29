@@ -24,7 +24,7 @@ class Coins : public Module
 {
 public:
 	//Constructor
-	Coins(bool startEnabled);
+	Coins();
 
 	//Destructor
 	~Coins();

@@ -17,7 +17,7 @@
 #include "Log.h"
 
 
-EnemBird::EnemBird(bool startEnabled) : Module()
+EnemBird::EnemBird() : Module()
 {
 	name.Create("Enemy2");
 	idleAnim.PushBack({ 17, 19, 37, 25 });

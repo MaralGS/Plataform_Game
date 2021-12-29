@@ -25,7 +25,7 @@ using namespace std;
 
 
 
-Scene::Scene(bool startEnabled) : Module()
+Scene::Scene() : Module()
 {
 	name.Create("scene");
 }

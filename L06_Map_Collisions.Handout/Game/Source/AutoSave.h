@@ -12,7 +12,7 @@ class AutoSave : public Module
 {
 public:
 	// Constructor
-	AutoSave(bool startEnabled);
+	AutoSave();
 
 	// Destructor
 	~AutoSave();

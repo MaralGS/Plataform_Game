@@ -10,7 +10,7 @@
 
 #define VSYNC false	
 
-Render::Render(bool startEnabled) : Module()
+Render::Render() : Module()
 {
 	name.Create("renderer");
 	background.r = 0;

@@ -12,7 +12,7 @@ class Hud : public Module
 {
 public:
 	// Constructor
-	Hud(bool startEnabled);
+	Hud();
 
 	// Destructor
 	~Hud();
