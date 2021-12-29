@@ -33,8 +33,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 {
 	frames = 0;
 
-	win = new Window();
-	input = new Input();
+	win = new Window(true);
+	input = new Input(true);
 	render = new Render();
 	tex = new Textures();
 	audio = new Audio();
@@ -60,8 +60,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(input);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(menu);
 	AddModule(scene);
+	AddModule(menu);
+
 	AddModule(pathfinding);
 	AddModule(fonts);
 	AddModule(hud);

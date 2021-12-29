@@ -178,7 +178,7 @@ bool Scene::Update(float dt)
 	// Draw map
 	if (EnterScreen == false)
 	{
-		//app->map->Draw();
+		app->map->Draw();
 	}
 
 

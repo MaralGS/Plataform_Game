@@ -5,6 +5,7 @@
 	<textures />
 	<audio />
 	<scene />
+	<Menu />
 	<pathfinding />
 	<:anonymous />
 	<:anonymous />
@@ -15,12 +16,13 @@
 	<:anonymous />
 	<:anonymous />
 	<:anonymous />
+	<:anonymous />
 	<player />
 	<renderer>
-		<camera x="-1330" y="-235" />
-		<player x="1485" y="790" v="3" />
-		<Enemy1 x="1065" y="885" v2="true" />
-		<Enemy2 x="1618" y="704" v2="1" />
+		<camera x="-1330" y="-300" />
+		<player x="1485" y="855" v="3" />
+		<Enemy1 x="449" y="2080" v2="true" />
+		<Enemy2 x="1624" y="783" v2="1" />
 	</renderer>
 	<:anonymous />
 </save_state>
