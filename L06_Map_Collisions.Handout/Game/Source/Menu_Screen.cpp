@@ -4,6 +4,8 @@
 #include "Audio.h"
 #include "Render.h"
 #include "Window.h"
+#include "Player.h"
+#include "Scene.h"
 #include "Menu_Screen.h"
 
 #include "Defs.h"
@@ -36,6 +38,11 @@ bool Menu_Screen::Start()
 	// L12b: Create walkability map on map loading
 	play = app->tex->Load("Assets/textures/Screen/Play.png");
 
+	if (app->scene->active == true)
+	{
+		app->scene->Disable();
+	}
+
 	return true;
 }
 
@@ -55,10 +62,11 @@ bool Menu_Screen::Update(float dt)
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 
-	
+	app->render->DrawTexture(play, 100, 100);
 
 	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 100 && mouseX < 170 && mouseY >100 && mouseY < 150 ) {
 		Disable();
+		app->scene->Enable();
 	}
 	return true;
 }

@@ -33,8 +33,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 {
 	frames = 0;
 
-	win = new Window(true);
-	input = new Input(true);
+	win = new Window();
+	input = new Input();
 	render = new Render();
 	tex = new Textures();
 	audio = new Audio();

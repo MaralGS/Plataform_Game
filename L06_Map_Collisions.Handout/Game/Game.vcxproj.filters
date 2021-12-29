@@ -1,108 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Source\Window.cpp" />
-    <ClCompile Include="Source\Textures.cpp" />
-    <ClCompile Include="Source\Scene.cpp" />
-    <ClCompile Include="Source\Render.cpp" />
-    <ClCompile Include="Source\Main.cpp" />
-    <ClCompile Include="Source\Input.cpp" />
-    <ClCompile Include="Source\Audio.cpp" />
-    <ClCompile Include="Source\App.cpp" />
-    <ClCompile Include="Source\Log.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp">
-      <Filter>External\PugiXml</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Map.cpp" />
-    <ClCompile Include="Source\Collider.cpp" />
-    <ClCompile Include="Source\Collisions.cpp" />
-    <ClCompile Include="Source\Player.cpp" />
-    <ClCompile Include="Source\EnemCentipide.cpp" />
-    <ClCompile Include="Source\Pathfinding.cpp" />
-    <ClCompile Include="Source\PerfTimer.cpp" />
-    <ClCompile Include="Source\Timer.cpp" />
-    <ClCompile Include="Source\EnemBird.cpp" />
     <ClCompile Include="Source\Attack.cpp" />
-    <ClCompile Include="Source\Heal.cpp" />
     <ClCompile Include="Source\AutoSave.cpp" />
     <ClCompile Include="Source\Coins.cpp" />
-    <ClCompile Include="Source\Hud.cpp" />
-    <ClCompile Include="Source\Fonts.cpp" />
-<<<<<<< Updated upstream
-    <ClCompile Include="Source\Menu_Screen.cpp" />
-=======
+    <ClCompile Include="Source\Collider.cpp" />
+    <ClCompile Include="Source\Collisions.cpp" />
+    <ClCompile Include="Source\EnemBird.cpp" />
+    <ClCompile Include="Source\EnemCentipide.cpp" />
     <ClCompile Include="Source\FadeToBlack.cpp" />
->>>>>>> Stashed changes
+    <ClCompile Include="Source\Fonts.cpp" />
+    <ClCompile Include="Source\Heal.cpp" />
+    <ClCompile Include="Source\Hud.cpp" />
+    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\App.cpp" />
+    <ClCompile Include="Source\Audio.cpp" />
+    <ClCompile Include="Source\Input.cpp" />
+    <ClCompile Include="Source\Map.cpp" />
+    <ClCompile Include="Source\Menu_Screen.cpp" />
+    <ClCompile Include="Source\Pathfinding.cpp" />
+    <ClCompile Include="Source\PerfTimer.cpp" />
+    <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\Scene.cpp" />
+    <ClCompile Include="Source\Render.cpp" />
+    <ClCompile Include="Source\Textures.cpp" />
+    <ClCompile Include="Source\Timer.cpp" />
+    <ClCompile Include="Source\Window.cpp" />
+    <ClCompile Include="Source\Log.cpp" />
+    <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Window.h" />
-    <ClInclude Include="Source\Textures.h" />
-    <ClInclude Include="Source\Scene.h" />
-    <ClInclude Include="Source\Render.h" />
-    <ClInclude Include="Source\Module.h" />
-    <ClInclude Include="Source\Input.h" />
-    <ClInclude Include="Source\Audio.h" />
-    <ClInclude Include="Source\App.h" />
-    <ClInclude Include="Source\Defs.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\DynArray.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\List.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Log.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Point.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SString.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp">
-      <Filter>External\PugiXml</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp">
-      <Filter>External\PugiXml</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Animation.h" />
-    <ClInclude Include="Source\Collider.h" />
-    <ClInclude Include="Source\Collisions.h" />
-    <ClInclude Include="Source\Player.h" />
-    <ClInclude Include="Source\EnemCentipide.h" />
-    <ClInclude Include="Source\Pathfinding.h" />
-    <ClInclude Include="Source\PerfTimer.h" />
-    <ClInclude Include="Source\Timer.h" />
-    <ClInclude Include="Source\PQueue.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EnemBird.h" />
     <ClInclude Include="Source\Attack.h" />
-    <ClInclude Include="Source\Heal.h" />
     <ClInclude Include="Source\AutoSave.h" />
     <ClInclude Include="Source\Coins.h" />
-    <ClInclude Include="Source\Hud.h" />
-    <ClInclude Include="Source\Fonts.h" />
-<<<<<<< Updated upstream
-    <ClInclude Include="Source\Menu_Screen.h" />
-=======
+    <ClInclude Include="Source\Collider.h" />
+    <ClInclude Include="Source\Collisions.h" />
+    <ClInclude Include="Source\EnemBird.h" />
+    <ClInclude Include="Source\EnemCentipide.h" />
     <ClInclude Include="Source\FadeToBlack.h" />
->>>>>>> Stashed changes
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="External">
-      <UniqueIdentifier>{83a966c7-b4bb-4eff-9c2c-3ff3c7b55a60}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utils">
-      <UniqueIdentifier>{2cad778a-d356-48b0-9fee-587f1bbb187e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="External\PugiXml">
-      <UniqueIdentifier>{2855ff7f-53a1-413d-a75b-18b4ade921dd}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="Source\Fonts.h" />
+    <ClInclude Include="Source\Heal.h" />
+    <ClInclude Include="Source\Hud.h" />
+    <ClInclude Include="Source\Map.h" />
+    <ClInclude Include="Source\Menu_Screen.h" />
+    <ClInclude Include="Source\Pathfinding.h" />
+    <ClInclude Include="Source\PerfTimer.h" />
+    <ClInclude Include="Source\Player.h" />
+    <ClInclude Include="Source\PQueue.h" />
+    <ClInclude Include="Source\Scene.h" />
+    <ClInclude Include="Source\Audio.h" />
+    <ClInclude Include="Source\Input.h" />
+    <ClInclude Include="Source\App.h" />
+    <ClInclude Include="Source\Module.h" />
+    <ClInclude Include="Source\Render.h" />
+    <ClInclude Include="Source\Textures.h" />
+    <ClInclude Include="Source\Timer.h" />
+    <ClInclude Include="Source\Window.h" />
+    <ClInclude Include="Source\Defs.h" />
+    <ClInclude Include="Source\List.h" />
+    <ClInclude Include="Source\Log.h" />
+    <ClInclude Include="Source\Point.h" />
+    <ClInclude Include="Source\SString.h" />
+    <ClInclude Include="Source\DynArray.h" />
+    <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp" />
+    <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp" />
   </ItemGroup>
 </Project>
