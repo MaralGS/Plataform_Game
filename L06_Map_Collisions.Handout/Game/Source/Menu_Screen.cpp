@@ -16,7 +16,9 @@ Menu_Screen::Menu_Screen() : Module()
 
 // Destructor
 Menu_Screen::~Menu_Screen()
-{}
+{
+
+}
 
 // Called before render is available
 bool Menu_Screen::Awake()
@@ -40,7 +42,7 @@ bool Menu_Screen::Start()
 // Called each loop iteration
 bool Menu_Screen::PreUpdate()
 {
-
+app->render->DrawTexture(play, 100, 100);
 	return true;
 }
 
@@ -53,7 +55,7 @@ bool Menu_Screen::Update(float dt)
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 
-	app->render->DrawTexture(play, 100, 100);
+	
 
 	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 100 && mouseX < 170 && mouseY >100 && mouseY < 150 ) {
 		Disable();
@@ -65,7 +67,9 @@ bool Menu_Screen::Update(float dt)
 bool Menu_Screen::PostUpdate()
 {
 	bool ret = true;
-
+	SDL_Rect l = { 200, 100, 70, 50 };
+	app->render->DrawRectangle(l, 255, 255, 0);
+	
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
