@@ -35,6 +35,8 @@ public:
 private:
 
 	SDL_Texture* play;
+	bool EnterScreen = true;
+	SDL_Texture* Enter = nullptr;
 
 	// L12b: Debug pathfing
 	iPoint origin;

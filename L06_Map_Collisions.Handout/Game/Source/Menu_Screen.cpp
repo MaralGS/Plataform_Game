@@ -37,6 +37,7 @@ bool Menu_Screen::Start()
 	// L03: DONE: Load map
 	// L12b: Create walkability map on map loading
 	play = app->tex->Load("Assets/textures/Screen/Play.png");
+	Enter = app->tex->Load("Assets/textures/Screen/enter_image.png");
 
 	if (app->scene->active == true)
 	{
@@ -49,7 +50,6 @@ bool Menu_Screen::Start()
 // Called each loop iteration
 bool Menu_Screen::PreUpdate()
 {
-app->render->DrawTexture(play, 100, 100);
 	return true;
 }
 
@@ -63,10 +63,20 @@ bool Menu_Screen::Update(float dt)
 	app->input->GetMousePosition(mouseX, mouseY);
 
 	app->render->DrawTexture(play, 100, 100);
+	
+	if (EnterScreen == true)
+	{
+		app->render->DrawTexture(Enter, 0, 0);
+		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
+		{
+			EnterScreen = false;
+		}
+	}
 
 	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 100 && mouseX < 170 && mouseY >100 && mouseY < 150 ) {
 		Disable();
 		app->scene->Enable();
+		app->scene->EnterScreen = false;
 	}
 	return true;
 }
@@ -75,8 +85,6 @@ bool Menu_Screen::Update(float dt)
 bool Menu_Screen::PostUpdate()
 {
 	bool ret = true;
-	SDL_Rect l = { 200, 100, 70, 50 };
-	app->render->DrawRectangle(l, 255, 255, 0);
 	
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;

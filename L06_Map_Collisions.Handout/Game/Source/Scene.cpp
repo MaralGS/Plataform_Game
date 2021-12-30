@@ -118,10 +118,6 @@ bool Scene::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		app->SaveGameRequest();
 
-	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
-	{
-		EnterScreen = false;
-	}
 	if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 	{
 		debug = !debug;
@@ -180,13 +176,6 @@ bool Scene::Update(float dt)
 	{
 		app->map->Draw();
 	}
-
-
-	if (EnterScreen == true)
-	{
-		app->render->DrawTexture(Enter, 0, 300);
-	}
-
 	if (app->player->vides <= 0)
 	{
 		DeadScreen = true;
