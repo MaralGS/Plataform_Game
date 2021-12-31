@@ -45,6 +45,9 @@ public:
 	SDL_Texture* Vida;
 	SDL_Rect rect;
 	 
+	int timerS = 59;
+	int timerM = 0;
+	int comodin = 0;
 	//fonts
 	int scoreFont = -1;
 	char scoreText[150] = { "\0" };

@@ -21,6 +21,7 @@
 #include "Fonts.h"
 #include "Menu_Screen.h"
 #include "FadeToBlack.h"
+#include "MenuOpcionGame.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -53,6 +54,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	coins = new Coins();
 	fonts = new ModuleFonts();
 	fadetoblack = new FadetoBlack();
+	OpcionMenu = new MenuOpcionGame();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -66,6 +68,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(pathfinding);
 	AddModule(fonts);
 	AddModule(hud);
+	AddModule(OpcionMenu);
 	AddModule(map);
 	AddModule(collisions);
 	AddModule(Centipide);

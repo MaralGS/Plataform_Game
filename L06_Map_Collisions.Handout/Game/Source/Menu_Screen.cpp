@@ -8,6 +8,7 @@
 #include "Scene.h"
 #include "Menu_Screen.h"
 #include "EnemCentipide.h"
+#include "MenuOpcionGame.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -44,7 +45,10 @@ bool Menu_Screen::Start()
 	{
 		app->scene->Disable();
 	}
-
+	if (app->OpcionMenu->active == true)
+	{
+		app->OpcionMenu->Disable();
+	}
 	return true;
 }
 

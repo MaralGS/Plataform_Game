@@ -60,9 +60,31 @@ bool Hud::Update(float dt)
 		sprintf_s(scoreText, "hp;%2d", app->player->vides);
 		//app->fonts->DrawTxt(app->render->camera.x + 30, app->render->camera.y + 350, scoreFont, scoreText);
 		app->fonts->DrawTxt(1150, 20, scoreFont, scoreText);
+		
+		
+		sprintf_s(scoreText, "time;%2d;%2d",timerM, timerS);
+		//app->fonts->DrawTxt(app->render->camera.x + 30, app->render->camera.y + 350, scoreFont, scoreText);
+		app->fonts->DrawTxt(900, 20, scoreFont, scoreText);
 
 	}
 	
+	if (comodin <= 60) {
+		comodin++;
+	}
+	if (comodin == 60) {
+		comodin = 0;
+		if (timerM != 60 || timerS != 60)
+		{
+			timerS++;
+
+		}
+
+	}
+	if (timerS == 60) {
+
+		timerM++;
+		timerS = 0;
+	}
 	return true;
 }
 
@@ -73,8 +95,8 @@ bool Hud::PostUpdate()
 
 	if (app->scene->DeadScreen == false && app->scene->WScrean == false && app->scene->EnterScreen == false)
 	{
-		app->render->DrawTexture(points, app->player->PPlayer.x - 140, app->player->PPlayer.y - 550, &rect);
-		app->render->DrawTexture(Vida, app->player->PPlayer.x + 970, app->player->PPlayer.y - 550, &rect);
+		//app->render->DrawTexture(points, app->player->PPlayer.x - 140, app->player->PPlayer.y - 550, &rect);
+		//app->render->DrawTexture(Vida, app->player->PPlayer.x + 970, app->player->PPlayer.y - 550, &rect);
 	}
 	currentAnimation->Update();
 

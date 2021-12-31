@@ -16,6 +16,7 @@
 #include "AutoSave.h"
 #include "Coins.h"
 #include "Hud.h"
+#include "MenuOpcionGame.h"
 #include <iostream>
 using namespace std;
 
@@ -211,6 +212,13 @@ bool Scene::Update(float dt)
 
 	app->win->SetTitle(title.GetString());
 
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	{
+		app->scene->Disable();
+		app->OpcionMenu->Enable();
+		app->render->camera.x = 0;
+		app->render->camera.y = 0;
+	}
 	return true;
 }
 

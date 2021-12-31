@@ -32,6 +32,7 @@ class Coins;
 class ModuleFonts;
 class Menu_Screen;
 class FadetoBlack;
+class MenuOpcionGame;
 
 class App
 {
@@ -116,6 +117,7 @@ public:
 	Coins* coins;
 	ModuleFonts* fonts;
 	FadetoBlack* fadetoblack;
+	MenuOpcionGame* OpcionMenu;
 
 	int FpsN;
 	int FpsD;

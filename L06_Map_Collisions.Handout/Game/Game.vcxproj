@@ -105,6 +105,7 @@
     <ClCompile Include="Source\Audio.cpp" />
     <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Map.cpp" />
+    <ClCompile Include="Source\MenuOpcionGame.cpp" />
     <ClCompile Include="Source\Menu_Screen.cpp" />
     <ClCompile Include="Source\Pathfinding.cpp" />
     <ClCompile Include="Source\PerfTimer.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="Source\Heal.h" />
     <ClInclude Include="Source\Hud.h" />
     <ClInclude Include="Source\Map.h" />
+    <ClInclude Include="Source\MenuOpcionGame.h" />
     <ClInclude Include="Source\Menu_Screen.h" />
     <ClInclude Include="Source\Pathfinding.h" />
     <ClInclude Include="Source\PerfTimer.h" />
