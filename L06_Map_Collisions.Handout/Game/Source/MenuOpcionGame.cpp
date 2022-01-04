@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Scene.h"
 #include "MenuOpcionGame.h"
+#include "Menu_Screen.h"
 #include "EnemCentipide.h"
 
 #include "Defs.h"
@@ -53,7 +54,7 @@ bool MenuOpcionGame::Update(float dt)
 	SDL_Rect Resume = { 100, 100, 150, 90 };
 	app->render->DrawRectangle(Resume, 255, 0, 0);
 
-	SDL_Rect Imenu = { 800, 100, 150, 90 };  
+	SDL_Rect Imenu = { 700, 100, 150, 90 };  
 	app->render->DrawRectangle(Imenu, 255, 255, 0);
 
 	SDL_Rect Exit = { 800, 500, 150, 90 };
@@ -69,9 +70,9 @@ bool MenuOpcionGame::Update(float dt)
 	}
 
 	//Return menu initial
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 800 && mouseX < 1050 && mouseY > 100 && mouseY < 190) {
+	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 800 && mouseX < 950 && mouseY > 100 && mouseY < 190) {
 		Disable();
-		app->OpcionMenu->Enable();
+		app->menu->Enable();
 	}
 	return true;
 }

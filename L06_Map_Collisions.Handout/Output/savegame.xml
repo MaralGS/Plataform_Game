@@ -9,6 +9,7 @@
 	<pathfinding />
 	<:anonymous />
 	<:anonymous />
+	<Menu />
 	<map />
 	<:anonymous />
 	<Enemy1 />
@@ -19,10 +20,10 @@
 	<:anonymous />
 	<player />
 	<renderer>
-		<camera x="-1335" y="-300" />
-		<player x="1485" y="850" v="4" />
-		<Enemy1 x="840" y="13140" v2="false" />
-		<Enemy2 x="1626" y="754" v2="1" />
+		<camera x="-1335" y="-325" />
+		<player x="1485" y="880" v="1" />
+		<Enemy1 x="1565" y="4485" v2="false" />
+		<Enemy2 x="1483" y="653" v2="1" />
 	</renderer>
 	<:anonymous />
 </save_state>
