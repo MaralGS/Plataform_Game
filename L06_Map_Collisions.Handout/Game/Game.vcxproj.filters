@@ -29,6 +29,8 @@
     <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Source\MenuOpcionGame.cpp" />
+    <ClCompile Include="Source\GuiButton.cpp" />
+    <ClCompile Include="Source\GuiManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation.h" />
@@ -67,5 +69,8 @@
     <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Source\MenuOpcionGame.h" />
+    <ClInclude Include="Source\GuiButton.h" />
+    <ClInclude Include="Source\GuiControl.h" />
+    <ClInclude Include="Source\GuiManager.h" />
   </ItemGroup>
 </Project>

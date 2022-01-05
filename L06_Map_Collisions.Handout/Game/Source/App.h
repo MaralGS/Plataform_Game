@@ -33,6 +33,7 @@ class ModuleFonts;
 class Menu_Screen;
 class FadetoBlack;
 class MenuOpcionGame;
+class GuiManager;
 
 class App
 {
@@ -118,6 +119,7 @@ public:
 	ModuleFonts* fonts;
 	FadetoBlack* fadetoblack;
 	MenuOpcionGame* OpcionMenu;
+	GuiManager* guiManager;
 
 	int FpsN;
 	int FpsD;
