@@ -22,7 +22,6 @@
 #include "Menu_Screen.h"
 #include "FadeToBlack.h"
 #include "MenuOpcionGame.h"
-#include "GuiManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -56,7 +55,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	fonts = new ModuleFonts();
 	fadetoblack = new FadetoBlack();
 	OpcionMenu = new MenuOpcionGame();
-	guiManager = new GuiManager();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -79,7 +77,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(heal);
 	AddModule(autos);
 	AddModule(fadetoblack);
-	AddModule(guiManager);
 
 	AddModule(player);
 	
