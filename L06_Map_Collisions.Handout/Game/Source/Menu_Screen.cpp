@@ -9,6 +9,8 @@
 #include "Menu_Screen.h"
 #include "EnemCentipide.h"
 #include "MenuOpcionGame.h"
+#include "GuiManager.h"
+
 
 #include "Defs.h"
 #include "Log.h"
@@ -118,6 +120,34 @@ bool Menu_Screen::PostUpdate()
 		ret = false;
 	}
 	return ret;
+}
+
+
+bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
+{
+
+	switch (control->type)
+	{
+	case GuiControlType::BUTTON:
+	{
+		//Checks the GUI element ID
+		if (control->id == 1)
+		{
+			LOG("Click on button 1");
+		}
+
+		if (control->id == 2)
+		{
+			LOG("Click on button 2");
+		}
+
+	}
+	//Other cases here
+
+	default: break;
+	}
+
+	return true;
 }
 
 // Called before quitting

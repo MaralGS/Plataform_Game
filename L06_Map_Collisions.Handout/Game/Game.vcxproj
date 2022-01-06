@@ -98,6 +98,8 @@
     <ClCompile Include="Source\EnemCentipide.cpp" />
     <ClCompile Include="Source\FadeToBlack.cpp" />
     <ClCompile Include="Source\Fonts.cpp" />
+    <ClCompile Include="Source\GuiButton.cpp" />
+    <ClCompile Include="Source\GuiManager.cpp" />
     <ClCompile Include="Source\Heal.cpp" />
     <ClCompile Include="Source\Hud.cpp" />
     <ClCompile Include="Source\Main.cpp" />
@@ -125,6 +127,9 @@
     <ClInclude Include="Source\EnemCentipide.h" />
     <ClInclude Include="Source\FadeToBlack.h" />
     <ClInclude Include="Source\Fonts.h" />
+    <ClInclude Include="Source\GuiButton.h" />
+    <ClInclude Include="Source\GuiControl.h" />
+    <ClInclude Include="Source\GuiManager.h" />
     <ClInclude Include="Source\Heal.h" />
     <ClInclude Include="Source\Hud.h" />
     <ClInclude Include="Source\Map.h" />

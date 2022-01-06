@@ -68,6 +68,11 @@ public:
 		return true;
 	}
 
+	virtual bool OnGuiMouseClickEvent(GuiControl* control)
+	{
+		return true;
+	}
+
 	virtual void OnCollision(Collider* c1, Collider* c2) {
 
 	}

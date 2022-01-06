@@ -29,6 +29,7 @@ public:
 	// Called before all Updates
 	bool PostUpdate();
 
+	bool OnGuiMouseClickEvent(GuiControl* control);
 	// Called before quitting
 	bool CleanUp();
 
