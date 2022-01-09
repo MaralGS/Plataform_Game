@@ -40,11 +40,18 @@ bool Menu_Screen::Start()
 {
 	// L03: DONE: Load map
 	// L12b: Create walkability map on map loading
-	play = app->tex->Load("Assets/textures/Screen/Play.png");
+	playS = app->tex->Load("Assets/textures/Screen/Play.png");
+	play2S = app->tex->Load("Assets/textures/Screen/Play2.png");
+	ConS = app->tex->Load("Assets/textures/Screen/Continue.png");
+	Con2S = app->tex->Load("Assets/textures/Screen/Continue2.png");
+	OptS = app->tex->Load("Assets/textures/Screen/Options.png");
+	Opt2S = app->tex->Load("Assets/textures/Screen/Options2.png");
+	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
+	Ex2S = app->tex->Load("Assets/textures/Screen/Exit2.png");
 	Enter = app->tex->Load("Assets/textures/Screen/enter_image.png");
 
 	// L14: TODO 2: Declare a GUI Button and create it using the GuiManager
-	btn1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { (app->win->GetWidth() / 2) - 300, app->win->GetWidth() / 10, 160, 40 }, this);
+	btn1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 0, 0, 160, 40 }, this);
 	btn2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Test2", { (app->win->GetWidth() / 2) + 300, app->win->GetWidth() / 10, 160, 40 }, this);
 
 	if (app->scene->active == true)
@@ -67,19 +74,13 @@ bool Menu_Screen::PreUpdate()
 // Called each loop iteration
 bool Menu_Screen::Update(float dt)
 {
-	SDL_Rect Play = {100, 100, 150, 90};
-	app->render->DrawRectangle(Play, 255, 0, 0);
-
-	SDL_Rect Continue = { 800, 100, 150, 90 };
-	app->render->DrawRectangle(Continue, 255, 255, 0);
-	
-	SDL_Rect Exit = { 800, 500, 150, 90 };
-	app->render->DrawRectangle(Exit, 0, 255, 0);
-
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 
-	//app->render->DrawTexture(play, 100, 100);
+	app->render->DrawTexture(playS, 150, 150);
+	app->render->DrawTexture(ConS, 950, 150);
+	app->render->DrawTexture(OptS, 100, 500);
+	app->render->DrawTexture(ExS, 800, 500);
 	
 	if (EnterScreen == true)
 	{
@@ -90,26 +91,55 @@ bool Menu_Screen::Update(float dt)
 		}
 	}
 
-	//Play
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 100 && mouseX < 250 && mouseY > 100 && mouseY < 190 && EnterScreen == false ) {
-		Disable();
-		app->scene->Enable();
-		app->Centipide->Enable();
-		app->scene->EnterScreen = false;
+	// Check
+	{
+		if (mouseX > 150 && mouseX < 300 && mouseY > 150 && mouseY < 240 && EnterScreen == false) {
+			app->render->DrawTexture(play2S, 150, 150);
+		}
+		
+		if (mouseX > 950 && mouseX < 1200 && mouseY > 150 && mouseY < 240 && EnterScreen == false) {
+			app->render->DrawTexture(Con2S, 950, 150);
+		}
 
+		if (mouseX > 100 && mouseX < 250 && mouseY > 500 && mouseY < 590 && EnterScreen == false)
+		{
+			app->render->DrawTexture(Opt2S, 100, 500);
+		}
+
+		if (mouseX > 800 && mouseX < 1050 && mouseY > 500 && mouseY < 590 && EnterScreen == false) {
+			app->render->DrawTexture(Ex2S, 800, 500);
+		}
 	}
 
-	//continue
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 800 && mouseX < 1050 && mouseY > 100 && mouseY < 190 && EnterScreen == false ) {
-		Disable();
-		app->scene->Enable();
-		app->LoadGameRequest();
-		app->scene->EnterScreen = false;
+	//click
+	{
+		//Play
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 100 && mouseX < 250 && mouseY > 100 && mouseY < 190 && EnterScreen == false ) {
+			Disable();
+			app->scene->Enable();
+			app->Centipide->Enable();
+			app->scene->EnterScreen = false;
+
+		}
+
+		//continue
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 800 && mouseX < 1050 && mouseY > 100 && mouseY < 190 && EnterScreen == false ) {
+			Disable();
+			app->scene->Enable();
+			app->LoadGameRequest();
+			app->scene->EnterScreen = false;
+		}
+
+		//Options
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 100 && mouseX < 250 && mouseY > 500 && mouseY < 590 && EnterScreen == false)
+		{
+			Opt = true;
+		}
 	}
-
-
-
-
+	if (Opt == true)
+	{
+	app->guiManager->Draw();
+	}
 	return true;
 }
 
