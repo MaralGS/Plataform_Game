@@ -7,6 +7,7 @@
 #include "PugiXml/src/pugixml.hpp"
 
 class App;
+class GuiControl;
 
 class Module
 {
@@ -68,7 +69,8 @@ public:
 		return true;
 	}
 
-	virtual bool OnGuiMouseClickEvent(GuiControl* control){
+	virtual bool OnGuiMouseClickEvent(GuiControl* control)
+	{
 		return true;
 	}
 
