@@ -68,8 +68,7 @@ public:
 		return true;
 	}
 
-	virtual bool OnGuiMouseClickEvent(GuiControl* control)
-	{
+	virtual bool OnGuiMouseClickEvent(GuiControl* control){
 		return true;
 	}
 

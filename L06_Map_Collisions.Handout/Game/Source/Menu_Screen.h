@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Point.h"
+#include "GuiButton.h"
 struct SDL_Texture;
 
 class Menu_Screen : public Module
@@ -42,6 +43,8 @@ private:
 	// L12b: Debug pathfing
 	iPoint origin;
 	bool originSelected = false;
+	GuiButton* btn1;
+	GuiButton* btn2;
 
 };
 
