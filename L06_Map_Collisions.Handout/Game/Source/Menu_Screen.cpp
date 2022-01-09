@@ -79,8 +79,8 @@ bool Menu_Screen::Update(float dt)
 
 	app->render->DrawTexture(playS, 150, 150);
 	app->render->DrawTexture(ConS, 950, 150);
-	app->render->DrawTexture(OptS, 100, 500);
-	app->render->DrawTexture(ExS, 800, 500);
+	app->render->DrawTexture(OptS, 150, 500);
+	app->render->DrawTexture(ExS, 950, 500);
 	
 	if (EnterScreen == true)
 	{
@@ -93,21 +93,22 @@ bool Menu_Screen::Update(float dt)
 
 	// Check
 	{
+		//play
 		if (mouseX > 150 && mouseX < 300 && mouseY > 150 && mouseY < 240 && EnterScreen == false) {
 			app->render->DrawTexture(play2S, 150, 150);
 		}
-		
+		//Continue
 		if (mouseX > 950 && mouseX < 1200 && mouseY > 150 && mouseY < 240 && EnterScreen == false) {
 			app->render->DrawTexture(Con2S, 950, 150);
 		}
-
-		if (mouseX > 100 && mouseX < 250 && mouseY > 500 && mouseY < 590 && EnterScreen == false)
+		//options
+		if (mouseX > 150 && mouseX < 300 && mouseY > 500 && mouseY < 590 && EnterScreen == false)
 		{
-			app->render->DrawTexture(Opt2S, 100, 500);
+			app->render->DrawTexture(Opt2S, 150, 500);
 		}
-
-		if (mouseX > 800 && mouseX < 1050 && mouseY > 500 && mouseY < 590 && EnterScreen == false) {
-			app->render->DrawTexture(Ex2S, 800, 500);
+		//Exit
+		if (mouseX > 950 && mouseX < 1200 && mouseY > 500 && mouseY < 590 && EnterScreen == false) {
+			app->render->DrawTexture(Ex2S, 950, 500);
 		}
 	}
 
