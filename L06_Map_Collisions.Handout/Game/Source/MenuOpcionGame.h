@@ -31,11 +31,15 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
-
+	
+	SDL_Texture* ResS;
+	SDL_Texture* IMenS;
+	SDL_Texture* OptS;
+	SDL_Texture* ExS;
 
 private:
 
-	SDL_Texture* play;
+	
 	bool EnterScreen = true;
 	SDL_Texture* Enter = nullptr;
 

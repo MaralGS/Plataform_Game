@@ -39,6 +39,10 @@ bool MenuOpcionGame::Start()
 	// L03: DONE: Load map
 	// L12b: Create walkability map on map loading
 
+	ResS = app->tex->Load("Assets/textures/Screen/resume.png");
+	IMenS = app->tex->Load("Assets/textures/Screen/initial_menu.png");
+	OptS = app->tex->Load("Assets/textures/Screen/Options.png");
+	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
 	return true;
 }
 
@@ -51,17 +55,15 @@ bool MenuOpcionGame::PreUpdate()
 // Called each loop iteration
 bool MenuOpcionGame::Update(float dt)
 {
-	SDL_Rect Resume = { 100, 100, 150, 90 };
-	app->render->DrawRectangle(Resume, 255, 0, 0);
-
-	SDL_Rect Imenu = { 800, 100, 150, 90 };  
-	app->render->DrawRectangle(Imenu, 255, 255, 0);
-
-	SDL_Rect Exit = { 800, 500, 150, 90 };
-	app->render->DrawRectangle(Exit, 0, 255, 0);  
 
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
+
+	app->render->DrawTexture(ResS, 150, 150);
+	app->render->DrawTexture(IMenS, 950, 150);
+	app->render->DrawTexture(OptS, 150, 500);
+	app->render->DrawTexture(ExS, 950, 500);
+
 
 	//Resume
 	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 100 && mouseX < 250 && mouseY > 100 && mouseY < 190) {
