@@ -68,7 +68,7 @@ bool GuiButton::Draw(Render* render)
 	//L14: TODO 4: Draw the button according the GuiControl State
 	case GuiControlState::FOCUSED:
 	{
-		render->DrawRectangle(bounds, 255, 255, 255, 160);
+		render->DrawRectangle(bounds, 255, 255, 255, 60);
 	} break;
 	case GuiControlState::PRESSED:
 	{

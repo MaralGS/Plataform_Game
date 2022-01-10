@@ -105,19 +105,15 @@ bool Menu_Screen::Update(float dt)
 bool Menu_Screen::PostUpdate()
 {
 	bool ret = true;
+	if (EndGame == true) ret = false;
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
-	//Exit
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 800 && mouseX < 1050 && mouseY > 500 && mouseY < 590 && EnterScreen == false ) {
-		ret = false;
-	}
 	return ret;
 }
 
 
 bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 {
-
 	switch (control->type)
 	{
 	case GuiControlType::BUTTON:
@@ -126,25 +122,27 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 		if (control->id == 1)
 		{
 			Disable();
+			app->guiManager->Disable();
 			app->scene->Enable();
 			app->Centipide->Enable();
 			app->scene->EnterScreen = false;
 			LOG("Click on button 1");
 		}
 
-		if (control->id == 2)
+		else if (control->id == 2)
 		{
 			Disable();
+			app->guiManager->Disable();
 			app->scene->Enable();
 			app->LoadGameRequest();
 			app->scene->EnterScreen = false;
 			LOG("Click on button 2");
 		}
 
-		if (control->id == 3)
-		{
-			LOG("Click on button 3");
+		else if (control->id == 4) {
+			EndGame = true;
 		}
+
 
 	}
 	//Other cases here

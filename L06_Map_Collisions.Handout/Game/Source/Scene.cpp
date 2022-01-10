@@ -16,6 +16,7 @@
 #include "AutoSave.h"
 #include "Coins.h"
 #include "Hud.h"
+#include "Menu_Screen.h"
 #include "MenuOpcionGame.h"
 #include <iostream>
 using namespace std;
@@ -218,6 +219,7 @@ bool Scene::Update(float dt)
 		app->OpcionMenu->Enable();
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;
+		app->menu->EnterScreen = true;
 	}
 	return true;
 }

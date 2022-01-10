@@ -30,7 +30,8 @@ public:
 	// Called before all Updates
 	bool PostUpdate();
 
-	
+	bool OnGuiMouseClickEvent(GuiControl* control);
+
 	// Called before quitting
 	bool CleanUp();
 	bool EnterScreen = true;
@@ -48,13 +49,14 @@ private:
 
 	SDL_Texture* MbS;
 
-	bool OnGuiMouseClickEvent(GuiControl* control);
+	
 
 	SDL_Texture* Enter = nullptr;
 
 	// L12b: Debug pathfing
 	iPoint origin;
 	bool originSelected = false;
+	bool EndGame = false;
 	GuiButton* btnPlay;
 	GuiButton* btnConf;
 	GuiButton* btnOpt;
