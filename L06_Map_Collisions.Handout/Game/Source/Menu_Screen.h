@@ -46,6 +46,8 @@ private:
 
 	SDL_Texture* ExS;
 
+	SDL_Texture* MbS;
+
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
 	SDL_Texture* Enter = nullptr;

@@ -44,6 +44,7 @@ bool MenuOpcionGame::Start()
 	IMenS = app->tex->Load("Assets/textures/Screen/initial_menu.png");
 	OptS = app->tex->Load("Assets/textures/Screen/Options.png");
 	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
+	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 
 	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 150, 150, 150, 90 }, this);
 	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Test1", { 950, 150, 150, 90 }, this);
@@ -65,6 +66,7 @@ bool MenuOpcionGame::Update(float dt)
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 
+	app->render->DrawTexture(MbS, 0, 0);
 	app->render->DrawTexture(ResS, 150, 150);
 	app->render->DrawTexture(IMenS, 950, 150);
 	app->render->DrawTexture(OptS, 150, 500);

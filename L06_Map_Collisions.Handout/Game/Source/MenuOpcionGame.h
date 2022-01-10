@@ -39,6 +39,7 @@ public:
 	SDL_Texture* IMenS;
 	SDL_Texture* OptS;
 	SDL_Texture* ExS;
+	SDL_Texture* MbS;
 
 private:
 

@@ -45,6 +45,7 @@ bool Menu_Screen::Start()
 	OptS = app->tex->Load("Assets/textures/Screen/Options.png");
 	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
 	Enter = app->tex->Load("Assets/textures/Screen/enter_image.png");
+	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 
 	// L14: TODO 2: Declare a GUI Button and create it using the GuiManager
 	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 150, 150, 150, 90 }, this);
@@ -77,6 +78,7 @@ bool Menu_Screen::Update(float dt)
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 
+	app->render->DrawTexture(MbS, 0, 0);
 	app->render->DrawTexture(playS, 150, 150);
 	app->render->DrawTexture(ConS, 950, 150);
 	app->render->DrawTexture(OptS, 150, 500);
