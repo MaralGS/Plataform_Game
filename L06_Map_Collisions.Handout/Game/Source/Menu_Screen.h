@@ -30,33 +30,35 @@ public:
 	// Called before all Updates
 	bool PostUpdate();
 
-	bool OnGuiMouseClickEvent(GuiControl* control);
+	
 	// Called before quitting
 	bool CleanUp();
+	bool EnterScreen = true;
 
 	bool Opt = false;
 private:
 
 	SDL_Texture* playS;
-	SDL_Texture* play2S;
 
 	SDL_Texture* ConS;
-	SDL_Texture* Con2S;
-	
+
 	SDL_Texture* OptS;
-	SDL_Texture* Opt2S;
 
 	SDL_Texture* ExS;
-	SDL_Texture* Ex2S;
 
-	bool EnterScreen = true;
+	bool OnGuiMouseClickEvent(GuiControl* control);
+
 	SDL_Texture* Enter = nullptr;
 
 	// L12b: Debug pathfing
 	iPoint origin;
 	bool originSelected = false;
-	GuiButton* btn1;
-	GuiButton* btn2;
+	GuiButton* btnPlay;
+	GuiButton* btnConf;
+	GuiButton* btnOpt;
+	GuiButton* btnExit;
+	GuiButton* btnOpt1;
+	GuiButton* btnOpt2;
 
 };
 

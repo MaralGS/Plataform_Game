@@ -214,7 +214,7 @@ bool Scene::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
-		app->scene->Disable();
+		Disable();
 		app->OpcionMenu->Enable();
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;

@@ -41,19 +41,19 @@ bool Menu_Screen::Start()
 	// L03: DONE: Load map
 	// L12b: Create walkability map on map loading
 	playS = app->tex->Load("Assets/textures/Screen/Play.png");
-	play2S = app->tex->Load("Assets/textures/Screen/Play2.png");
 	ConS = app->tex->Load("Assets/textures/Screen/Continue.png");
-	Con2S = app->tex->Load("Assets/textures/Screen/Continue2.png");
 	OptS = app->tex->Load("Assets/textures/Screen/Options.png");
-	Opt2S = app->tex->Load("Assets/textures/Screen/Options2.png");
 	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
-	Ex2S = app->tex->Load("Assets/textures/Screen/Exit2.png");
 	Enter = app->tex->Load("Assets/textures/Screen/enter_image.png");
 
 	// L14: TODO 2: Declare a GUI Button and create it using the GuiManager
-	btn1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 0, 0, 160, 40 }, this);
-	btn2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Test2", { (app->win->GetWidth() / 2) + 300, app->win->GetWidth() / 10, 160, 40 }, this);
-
+	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 150, 150, 150, 90 }, this);
+	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Test1", { 950, 150, 150, 90 }, this);
+	btnOpt  = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "Test1", { 150, 500, 150, 90 }, this);
+	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, 500, 150, 90 }, this);
+	//btnOpt1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 950, 300, 150, 90 }, this);
+	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
+	
 	if (app->scene->active == true)
 	{
 		app->scene->Disable();
@@ -91,53 +91,8 @@ bool Menu_Screen::Update(float dt)
 		}
 	}
 
-	// Check
-	{
-		//play
-		if (mouseX > 150 && mouseX < 300 && mouseY > 150 && mouseY < 240 && EnterScreen == false) {
-			app->render->DrawTexture(play2S, 150, 150);
-		}
-		//Continue
-		if (mouseX > 950 && mouseX < 1200 && mouseY > 150 && mouseY < 240 && EnterScreen == false) {
-			app->render->DrawTexture(Con2S, 950, 150);
-		}
-		//options
-		if (mouseX > 150 && mouseX < 300 && mouseY > 500 && mouseY < 590 && EnterScreen == false)
-		{
-			app->render->DrawTexture(Opt2S, 150, 500);
-		}
-		//Exit
-		if (mouseX > 950 && mouseX < 1200 && mouseY > 500 && mouseY < 590 && EnterScreen == false) {
-			app->render->DrawTexture(Ex2S, 950, 500);
-		}
-	}
 
-	//click
-	{
-		//Play
-		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 100 && mouseX < 250 && mouseY > 100 && mouseY < 190 && EnterScreen == false ) {
-			Disable();
-			app->scene->Enable();
-			app->Centipide->Enable();
-			app->scene->EnterScreen = false;
-
-		}
-
-		//continue
-		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 800 && mouseX < 1050 && mouseY > 100 && mouseY < 190 && EnterScreen == false ) {
-			Disable();
-			app->scene->Enable();
-			app->LoadGameRequest();
-			app->scene->EnterScreen = false;
-		}
-
-		//Options
-		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 100 && mouseX < 250 && mouseY > 500 && mouseY < 590 && EnterScreen == false)
-		{
-			Opt = true;
-		}
-	}
-	if (Opt == true)
+	if (EnterScreen == false)
 	{
 	app->guiManager->Draw();
 	}
@@ -168,12 +123,25 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 		//Checks the GUI element ID
 		if (control->id == 1)
 		{
+			Disable();
+			app->scene->Enable();
+			app->Centipide->Enable();
+			app->scene->EnterScreen = false;
 			LOG("Click on button 1");
 		}
 
 		if (control->id == 2)
 		{
+			Disable();
+			app->scene->Enable();
+			app->LoadGameRequest();
+			app->scene->EnterScreen = false;
 			LOG("Click on button 2");
+		}
+
+		if (control->id == 3)
+		{
+			LOG("Click on button 3");
 		}
 
 	}

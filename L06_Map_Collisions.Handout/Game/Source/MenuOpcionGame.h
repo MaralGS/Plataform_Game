@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Point.h"
+#include "GuiButton.h"
 struct SDL_Texture;
 
 class MenuOpcionGame : public Module
@@ -31,6 +32,8 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
+
+
 	
 	SDL_Texture* ResS;
 	SDL_Texture* IMenS;
@@ -39,10 +42,15 @@ public:
 
 private:
 
-	
+	GuiButton* btnPlay;
+	GuiButton* btnConf;
+	GuiButton* btnOpt;
+	GuiButton* btnExit;
+
 	bool EnterScreen = true;
 	SDL_Texture* Enter = nullptr;
 
+	bool OnGuiMouseClickEvent(GuiControl* control);
 	// L12b: Debug pathfing
 	iPoint origin;
 	bool originSelected = false;
