@@ -55,8 +55,6 @@ bool Menu_Screen::Start()
 	//btnOpt1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 950, 300, 150, 90 }, this);
 	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
 	
-	app->Centipide->Disable();
-
 	if (app->scene->active == true)
 	{
 		app->scene->Disable();
@@ -80,12 +78,11 @@ bool Menu_Screen::Update(float dt)
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 
-	    app->render->DrawTexture(MbS, 0, 0);
-		app->render->DrawTexture(playS, 150, 150);
-		app->render->DrawTexture(ConS, 950, 150);
-		app->render->DrawTexture(OptS, 150, 500);
-		app->render->DrawTexture(ExS, 950, 500);
-
+	app->render->DrawTexture(MbS, 0, 0);
+	app->render->DrawTexture(playS, 150, 150);
+	app->render->DrawTexture(ConS, 950, 150);
+	app->render->DrawTexture(OptS, 150, 500);
+	app->render->DrawTexture(ExS, 950, 500);
 	
 	if (EnterScreen == true)
 	{
@@ -117,45 +114,40 @@ bool Menu_Screen::PostUpdate()
 
 bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 {
-	
-		switch (control->type)
+	switch (control->type)
+	{
+	case GuiControlType::BUTTON:
+	{
+		//Checks the GUI element ID
+		if (control->id == 1)
 		{
-		case GuiControlType::BUTTON:
-		{
-			//Checks the GUI element ID
-			if (control->id == 1)
-			{
-				Disable();
-				app->scene->Enable();
-				app->Centipide->Enable();
-				app->scene->EnterScreen = false;
-				MenuScreen = false;
-
-				LOG("Click on button 1");
-			}
-
-			else if (control->id == 2)
-			{
-				Disable();
-				app->scene->Enable();
-				app->LoadGameRequest();
-				app->scene->EnterScreen = false;
-				MenuScreen = false;
-
-				LOG("Click on button 2");
-			}
-
-			else if (control->id == 4) {
-				EndGame = true;
-			}
-
-
+			Disable();
+			app->scene->Enable();
+			app->Centipide->Enable();
+			app->scene->EnterScreen = false;
+			LOG("Click on button 1");
 		}
-		//Other cases here
 
-		default: break;
-	
+		else if (control->id == 2)
+		{
+			Disable();
+			app->scene->Enable();
+			app->LoadGameRequest();
+			app->scene->EnterScreen = false;
+			LOG("Click on button 2");
+		}
+
+		else if (control->id == 4) {
+			EndGame = true;
+		}
+
+
 	}
+	//Other cases here
+
+	default: break;
+	}
+
 	return true;
 }
 

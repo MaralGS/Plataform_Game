@@ -68,7 +68,7 @@ bool Scene::Start()
 	//position flag
 	app->autos->PAsave.x = 1500;
 	app->autos->PAsave.y = 790;
-	app->Centipide->Enable();
+
 
 	if (app->map->Load("mapa.tmx") == true)
 	{
@@ -220,7 +220,6 @@ bool Scene::Update(float dt)
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;
 		app->menu->EnterScreen = true;
-		app->OpcionMenu->OptionMenu = true;
 	}
 	return true;
 }
