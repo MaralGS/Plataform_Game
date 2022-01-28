@@ -35,6 +35,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 	bool EnterScreen = true;
+	bool MenuScreen = true;
 
 	bool Opt = false;
 private:

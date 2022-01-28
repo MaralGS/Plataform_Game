@@ -33,7 +33,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-
+	bool OptionMenu = false;
 	
 	SDL_Texture* ResS;
 	SDL_Texture* IMenS;

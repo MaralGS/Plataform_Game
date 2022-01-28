@@ -152,6 +152,7 @@ bool EnemCentipide::Update(float dt)
 		ECGDead = true;
 	}
 	if (ECGDead == true) {
+		LOG("Esta mort? %c", ECGDead);
 		currentAnimation = &DeathAnim;
 		CentipideC->SetPos(0,0);
 	}
