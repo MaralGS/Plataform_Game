@@ -122,7 +122,6 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 		if (control->id == 1)
 		{
 			Disable();
-			app->guiManager->Disable();
 			app->scene->Enable();
 			app->Centipide->Enable();
 			app->scene->EnterScreen = false;
@@ -132,7 +131,6 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 		else if (control->id == 2)
 		{
 			Disable();
-			app->guiManager->Disable();
 			app->scene->Enable();
 			app->LoadGameRequest();
 			app->scene->EnterScreen = false;

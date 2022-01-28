@@ -101,12 +101,14 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 		if (control->id == 1)
 		{
 			app->scene->Enable();
+			Disable();
 			LOG("Click on button 1");
 		}
 
 		if (control->id == 2)
 		{
 			app->menu->Enable();
+			Disable();
 			LOG("Click on button 2");
 		}
 
