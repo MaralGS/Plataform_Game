@@ -18,6 +18,7 @@
 #include "Hud.h"
 #include "Menu_Screen.h"
 #include "MenuOpcionGame.h"
+#include "GuiManager.h"
 #include <iostream>
 using namespace std;
 
@@ -221,6 +222,7 @@ bool Scene::Update(float dt)
 		app->render->camera.y = 0;
 		app->menu->EnterScreen = true;
 		app->OpcionMenu->OptionMenu = true;
+		app->guiManager->Enable();
 	}
 	return true;
 }

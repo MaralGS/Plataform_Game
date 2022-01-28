@@ -122,38 +122,40 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 		{
 		case GuiControlType::BUTTON:
 		{
-			//Checks the GUI element ID
-			if (control->id == 1)
+			if (Open == true)
 			{
-				Disable();
-				app->scene->Enable();
-				app->Centipide->Enable();
-				app->scene->EnterScreen = false;
-				MenuScreen = false;
+				//Checks the GUI element ID
+				if (control->id == 1)
+				{
+					Disable();
+					app->scene->Enable();
+					app->Centipide->Enable();
+					app->scene->EnterScreen = false;
+					MenuScreen = false;
+					app->guiManager->Disable();
+					LOG("Click on button 1");
+					Open = false;
+				}
 
-				LOG("Click on button 1");
-			}
+				else if (control->id == 2)
+				{
+					Disable();
+					app->scene->Enable();
+					app->LoadGameRequest();
+					app->scene->EnterScreen = false;
+					MenuScreen = false;
+					app->guiManager->Disable();
+					LOG("Click on button 2");
+					Open = false;
+				}
 
-			else if (control->id == 2)
-			{
-				Disable();
-				app->scene->Enable();
-				app->LoadGameRequest();
-				app->scene->EnterScreen = false;
-				MenuScreen = false;
-
-				LOG("Click on button 2");
-			}
-
-			else if (control->id == 4) {
-				EndGame = true;
-			}
-
-
-		}
-		//Other cases here
+				else if (control->id == 4) {
+					EndGame = true;
+				}
 
 		default: break;
+			}
+		}
 	
 	}
 	return true;

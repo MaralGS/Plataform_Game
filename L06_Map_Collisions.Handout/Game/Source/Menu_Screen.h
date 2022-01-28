@@ -36,7 +36,7 @@ public:
 	bool CleanUp();
 	bool EnterScreen = true;
 	bool MenuScreen = true;
-
+	bool Open = true;
 	bool Opt = false;
 private:
 

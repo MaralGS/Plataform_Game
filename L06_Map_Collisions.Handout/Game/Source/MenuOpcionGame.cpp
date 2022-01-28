@@ -46,10 +46,10 @@ bool MenuOpcionGame::Start()
 	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 
-	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 150, -450, 150, 90 }, this);
-	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Test1", { 950, -450, 150, 90 }, this);
-	btnOpt = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "Test1", { 150, -100, 150, 90 }, this);
-	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, -100, 150, 90 }, this);
+	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 150, 150, 150, 90 }, this);
+	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Test1", { 950, 150, 150, 90 }, this);
+	btnOpt = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "Test1", { 150, 500, 150, 90 }, this);
+	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, 500, 150, 90 }, this);
 	return true;
 }
 
@@ -65,14 +65,11 @@ bool MenuOpcionGame::Update(float dt)
 
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
-
-	app->render->camera.y = 600;
-
-		app->render->DrawTexture(MbS, 0, -600);
-		app->render->DrawTexture(ResS, 150, -450);
-		app->render->DrawTexture(IMenS, 950, -450);
-		app->render->DrawTexture(OptS, 150, -100);
-		app->render->DrawTexture(ExS, 950, -100);
+	app->render->DrawTexture(MbS, 0, 0);
+	app->render->DrawTexture(ResS, 150, 150);
+	app->render->DrawTexture(IMenS, 950, 150);
+	app->render->DrawTexture(OptS, 150, 500);
+	app->render->DrawTexture(ExS, 950, 500);
 
 	app->guiManager->Draw();
 
@@ -94,7 +91,8 @@ bool MenuOpcionGame::PostUpdate()
 
 bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 {
-
+	if (app->menu->Open == false)
+	{
 		switch (control->type)
 		{
 		case GuiControlType::BUTTON:
@@ -105,7 +103,9 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 				app->scene->Enable();
 				Disable();
 				OptionMenu = false;
+				app->guiManager->Disable();
 				LOG("Click on button 1");
+
 			}
 
 			if (control->id == 2)
@@ -115,9 +115,10 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 				OptionMenu = false;
 				app->menu->MenuScreen = true;
 				LOG("Click on button 2");
+				app->menu->Open = true;
 			}
 
-			if (control->id == 3)
+			if (control->id == 4)
 			{
 				LOG("Click on button 3");
 			}
@@ -127,7 +128,7 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 
 		default: break;
 		}
-
+	}
 	return true;
 }
 
