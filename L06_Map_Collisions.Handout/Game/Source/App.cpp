@@ -44,6 +44,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	pathfinding = new PathFinding();
 	collisions = new Collisions();
+	OpcionMenu = new MenuOpcionGame();
 	player = new Player();
 	Centipide = new EnemCentipide();
 	Bird = new EnemBird();
@@ -55,7 +56,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	coins = new Coins();
 	fonts = new ModuleFonts();
 	fadetoblack = new FadetoBlack();
-	OpcionMenu = new MenuOpcionGame();
 	guiManager = new GuiManager();
 
 
