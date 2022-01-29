@@ -45,6 +45,8 @@ bool MenuOpcionGame::Start()
 	OptS = app->tex->Load("Assets/textures/Screen/Options.png");
 	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
+	ClickFx = app->audio->LoadFx("Assets/audio/fx/Click.wav");
+	
 
 	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "Test1", { 150, 150, 150, 90 }, this);
 	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 8, "Test1", { 950, 150, 150, 90 }, this);
@@ -62,6 +64,11 @@ bool MenuOpcionGame::PreUpdate()
 // Called each loop iteration
 bool MenuOpcionGame::Update(float dt)
 {
+
+	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN)
+	{
+		app->audio->PlayFx(ClickFx);
+	}
 
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);

@@ -49,6 +49,7 @@ private:
 	GuiButton* btnExit;
 
 	bool EnterScreen = true;
+	int ClickFx = 1;
 	SDL_Texture* Enter = nullptr;
 
 	bool OnGuiMouseClickEvent(GuiControl* control);

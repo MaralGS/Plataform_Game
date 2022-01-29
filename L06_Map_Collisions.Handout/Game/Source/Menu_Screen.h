@@ -53,6 +53,8 @@ private:
 
 	SDL_Texture* Credclick;
 
+	int ClickFx = 1;
+
 	
 
 	SDL_Texture* Enter = nullptr;

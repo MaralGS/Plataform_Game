@@ -49,6 +49,7 @@ bool Menu_Screen::Start()
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 	Cred = app->tex->Load("Assets/textures/Screen/credits.png");
 	Credclick = app->tex->Load("Assets/textures/Screen/creditsclick.png");
+	ClickFx = app->audio->LoadFx("Assets/audio/fx/Click.wav");
 
 	// L14: TODO 2: Declare a GUI Button and create it using the GuiManager
 	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 150, 150, 150, 90 }, this);
@@ -80,6 +81,11 @@ bool Menu_Screen::PreUpdate()
 // Called each loop iteration
 bool Menu_Screen::Update(float dt)
 {
+	
+	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN)
+	{
+		app->audio->PlayFx(ClickFx);
+	}
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 
