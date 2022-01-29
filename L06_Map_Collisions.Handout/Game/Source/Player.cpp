@@ -332,6 +332,10 @@ bool Player::Update(float dt)
 		}
 	}
 
+	if (PPlayer.x < 550 || PPlayer.x > 1200)
+	{
+		app->Centipide->PathDet = false;
+	}
 	
 	//dead
 	{

@@ -77,7 +77,7 @@ bool EnemBird::Awake(pugi::xml_node& config) {
 	ECyVel = config.child("Vel").attribute("yVel").as_int();
 	ECXVel = config.child("Vel").attribute("xVel").as_int();
 	vides = config.child("Vides").attribute("v").as_int();
-	dead = config.child("Generals").attribute("dead").as_bool();
+	EBDead = config.child("Generals").attribute("dead").as_bool();
 
 	return ret;
 }

@@ -54,7 +54,6 @@ public:
 	bool MoveY = false;
 	bool ECGCollision = false;
 	bool EBDead = false;
-	bool dead;
 	bool PathDet;
 	int ECyVel;
 	int ECXVel;

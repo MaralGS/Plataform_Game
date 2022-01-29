@@ -51,7 +51,6 @@ public:
 	int vides;
 	bool Move = false;
 	bool PathDet = false;
-	bool dead;
 
 	bool ECGrav = true;
 	bool ECGCollision = false;

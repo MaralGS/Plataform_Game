@@ -60,7 +60,7 @@ bool EnemCentipide::Awake(pugi::xml_node& config) {
 	ECyVel = config.child("Vel").attribute("yVel").as_int();
 	ECXVel = config.child("Vel").attribute("xVel").as_int();
 	vides = config.child("Vides").attribute("v").as_int();
-	dead = config.child("Generals").attribute("dead").as_bool();
+	ECGDead = config.child("Generals").attribute("dead").as_bool();
 
 	return ret;
 }
@@ -111,10 +111,7 @@ bool EnemCentipide::Update(float dt)
 			}
 			CentipideC->SetPos(PEnemy.x, PEnemy.y);
 		}
-		if (PEnemy.x < 550 || PEnemy.x > 1200)
-		{
-			PathDet = false;
-		}
+
 	//gravity
 	{
 		if (ECGrav == true && app->scene->EnterScreen == false)

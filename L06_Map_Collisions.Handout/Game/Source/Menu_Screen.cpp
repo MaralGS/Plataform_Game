@@ -8,6 +8,7 @@
 #include "Scene.h"
 #include "Menu_Screen.h"
 #include "EnemCentipide.h"
+#include "EnemBird.h"
 #include "MenuOpcionGame.h"
 #include "GuiManager.h"
 #include "Hud.h"
@@ -199,6 +200,8 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					app->render->camera.y = (app->player->PPlayer.y * -1) + 550;
 					app->render->camera.x = (app->player->PPlayer.x * -1) + 150;
 					app->scene->EnterScreen = false;
+					app->Centipide->ECGDead = false;
+					app->Bird->EBDead = false;
 					MenuScreen = false;
 					app->player->dead = false;
 					app->player->vides = 3;
