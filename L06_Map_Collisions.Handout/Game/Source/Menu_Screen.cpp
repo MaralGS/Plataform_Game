@@ -64,6 +64,10 @@ bool Menu_Screen::Start()
 	credit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 550, 600, 150, 90 }, this);
 	btnFullScreen = (GuiCheckBox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 12, "Test1", { 728, 323, 35, 35 }, this);
 	btnFullScreen->checked = false;
+	FPS = (GuiCheckBox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 13, "Test1", { 726, 450, 35, 35 }, this);
+	FPS->checked = false;
+	CloseOpt = (GuiCheckBox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 14, "Test1", { 830,215, 35, 35 }, this);
+	CloseOpt->checked = false;
 
 	
 	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
@@ -134,6 +138,8 @@ bool Menu_Screen::Update(float dt)
 		app->render->DrawTexture(MbS, 0, 0);
 		app->render->DrawTexture(OptionMenu, 360, 200);
 		btnFullScreen->Draw(app->render);
+		FPS->Draw(app->render);
+		CloseOpt->Draw(app->render);
 	}
 	return true;
 }
@@ -227,6 +233,19 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 						SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_FULLSCREEN);
 					}
 					else SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_MAXIMIZED);
+				}
+				if (control->id == 13)
+				{
+					FPS->checked = !FPS->checked;
+					if (FPS->checked == true) {
+						app->Maxfps = false;
+					}
+					else app->Maxfps = true;
+				}
+				if (control->id == 14)
+				{
+					CloseOpt->checked = !CloseOpt->checked;
+					Opt = false;
 				}
 				break;
 			}

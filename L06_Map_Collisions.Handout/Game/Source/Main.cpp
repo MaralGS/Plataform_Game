@@ -92,17 +92,15 @@ int main(int argc, char* args[])
 			case LOOP:
 			if(app->Update() == false)
 				state = CLEAN;
-			if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
+			if (app->Maxfps == true)
 			{
-				if (dt == 16.0f)
-				{
-					dt = 33.f;
-				}
-				else
-				{
-					dt = 16.0f;
-				}
+				dt = 32.f;
 			}
+			if (app->Maxfps == false)
+			{
+				dt = 16.0f;
+			}
+	
 			break;
 
 			// Cleanup allocated memory -----------------------------------------

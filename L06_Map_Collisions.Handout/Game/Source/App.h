@@ -124,7 +124,8 @@ public:
 	int FpsN;
 	int FpsD;
 	int Lastms;
-	
+	bool Maxfps = false;
+
 private:
 
 	float DeltaTime;
