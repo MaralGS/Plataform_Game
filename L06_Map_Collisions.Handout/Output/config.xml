@@ -27,7 +27,13 @@
 	<Vel yVel = "5" xVel = "5"/>
 	<Generals isJumping = "true" GodMode="false" dead = "false"/>
 	<Vides v = "3"/>
+
 </player>
+<Time>
+	<Points p = "0"/>
+	<Minuts M = "0"/>
+	<Seconds S = "0"/>
+</Time>
 
 <Enemy1>
 	<Position PositionX = "918" PositionY = "870"/>

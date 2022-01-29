@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "EnemBird.h"
 #include "EnemCentipide.h"
+#include "Hud.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -101,6 +102,10 @@ bool Render::LoadState(pugi::xml_node& data)
 	app->player->PPlayer.x = data.child("player").attribute("x").as_int();
 	app->player->PPlayer.y = data.child("player").attribute("y").as_int();
 	app->player->vides = data.child("player").attribute("v").as_int();
+	//HuD
+	app->hud->score = data.child("player").attribute("p").as_int();
+	app->hud->timerM = data.child("Time").attribute("M").as_int();
+	app->hud->timerS = data.child("Time").attribute("S").as_int();
 	//enemy centipide
 	app->Centipide->PEnemy.x = data.child("Enemy1").attribute("x").as_int();
 	app->Centipide->PEnemy.y = data.child("Enemy1").attribute("y").as_int();
@@ -121,6 +126,7 @@ bool Render::SaveState(pugi::xml_node& data) const
 	pugi::xml_node PPlay = data.append_child("player");
 	pugi::xml_node ECentipide = data.append_child("Enemy1");
 	pugi::xml_node EBloated = data.append_child("Enemy2");
+	pugi::xml_node Time = data.append_child("Time");
 	
 
 	cam.append_attribute("x") = camera.x;
@@ -129,6 +135,7 @@ bool Render::SaveState(pugi::xml_node& data) const
 	PPlay.append_attribute("x") = app->player->PPlayer.x;
 	PPlay.append_attribute("y") = app->player->PPlayer.y;
 	PPlay.append_attribute("v") = app->player->vides;
+	PPlay.append_attribute("p") = app->hud->score;
 	//ECentipide
 	ECentipide.append_attribute("x") = app->Centipide->PEnemy.x;
 	ECentipide.append_attribute("y") = app->Centipide->PEnemy.y;
@@ -137,7 +144,9 @@ bool Render::SaveState(pugi::xml_node& data) const
 	EBloated.append_attribute("x") = app->Bird->PEnemy.x;
 	EBloated.append_attribute("y") = app->Bird->PEnemy.y;
 	EBloated.append_attribute("v2") = app->Bird->vides;
-
+	//time
+	Time.append_attribute("M") = app->hud->timerM;
+	Time.append_attribute("S") = app->hud->timerS;
 	return true;
 }
 

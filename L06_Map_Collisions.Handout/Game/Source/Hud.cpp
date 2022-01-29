@@ -25,6 +25,7 @@
 
 Hud::Hud() : Module()
 {
+	name.Create("Time");
 	idleAnim.PushBack({ 5, 6, 144, 44 });
 	idleAnim.loop = true;
 	idleAnim.speed = 0.1f;
@@ -35,6 +36,16 @@ Hud::~Hud()
 {
 }
 
+bool Hud::Awake(pugi::xml_node& config) {
+
+	LOG("Loading Player");
+	bool ret = true;
+	score = config.child("Points").attribute("p").as_int();
+	timerM = config.child("Minuts").attribute("M").as_int();
+	timerS = config.child("Seconds").attribute("S").as_int();
+
+	return ret;
+}
 
 bool Hud::Start()
 {

@@ -5,11 +5,9 @@
 	<textures />
 	<audio />
 	<scene />
-	<Menu />
 	<pathfinding />
 	<:anonymous />
-	<:anonymous />
-	<Menu />
+	<Time />
 	<map />
 	<guiManager />
 	<:anonymous />
@@ -19,12 +17,15 @@
 	<:anonymous />
 	<:anonymous />
 	<:anonymous />
+	<Menu />
+	<Menu />
 	<player />
 	<renderer>
-		<camera x="-1330" y="-230" />
-		<player x="1485" y="785" v="3" />
-		<Enemy1 x="1065" y="885" v2="true" />
-		<Enemy2 x="1624" y="782" v2="1" />
+		<camera x="-1335" y="-270" />
+		<player x="1485" y="825" v="3" p="700" />
+		<Enemy1 x="1054" y="905" v2="false" />
+		<Enemy2 x="1608" y="794" v2="1" />
+		<Time M="0" S="22" />
 	</renderer>
 	<:anonymous />
 </save_state>

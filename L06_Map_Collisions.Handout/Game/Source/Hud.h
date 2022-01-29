@@ -17,6 +17,8 @@ public:
 	// Destructor
 	~Hud();
 
+	bool Awake(pugi::xml_node&);
+
 	// Called when the module is activated
 	// Loads the necessary textures for the player
 	bool Start();
@@ -45,14 +47,14 @@ public:
 	SDL_Texture* Vida;
 	SDL_Rect rect;
 	 
-	int timerS = 0;
-	int timerM = 0;
+	int timerS;
+	int timerM;
 	int comodin = 0;
-	bool pause = false;
+	bool pause = true;
 	//fonts
 	int scoreFont = -1;
 	char scoreText[150] = { "\0" };
-	int score = 0;
+	int score;
 
 	Animation* currentAnimation;
 	Animation idleAnim;

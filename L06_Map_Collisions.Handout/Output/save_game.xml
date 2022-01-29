@@ -8,7 +8,8 @@
 	<scene />
 	<renderer>
 		<camera x="0" y="0" />
-		<player x="0" y="0" v="0" />
+		<player x="0" y="0" v="0" p="0"/>
+		<Time M="0" S="0"/>
 		<Enemy1 x="0" y="0" v1 = "0"/>
 		<Enemy2 x="0" y="0" v2 = "0"/>
 	</renderer>
