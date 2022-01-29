@@ -99,6 +99,7 @@ bool Menu_Screen::Update(float dt)
 	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN)
 	{
 		app->audio->PlayFx(ClickFx);
+		app->audio->PlayFx(ClickFx);
 	}
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
@@ -115,7 +116,13 @@ bool Menu_Screen::Update(float dt)
 		creditExit->Draw(app->render);
 	}
 
-
+	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
+		btnExit->debug = !btnExit->debug;
+		btnConf->debug = !btnConf->debug;
+		btnPlay->debug = !btnPlay->debug;
+		btnOpt->debug = !btnOpt->debug;
+		credit->debug = !credit->debug;
+	}
 	
 	if (EScreen == true)
 	{

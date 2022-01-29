@@ -84,7 +84,12 @@ bool MenuOpcionGame::Update(float dt)
 	{
 		app->audio->PlayFx(ClickFx);
 	}
-
+	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
+		btnExit->debug = !btnExit->debug;
+		btnConf->debug = !btnConf->debug;
+		btnPlay->debug = !btnPlay->debug;
+		btnOpt->debug = !btnOpt->debug;
+	}
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 	app->render->DrawTexture(MbS, 0, 0);

@@ -49,40 +49,73 @@ bool GuiButton::Update(float dt)
 
 bool GuiButton::Draw(Render* render)
 {
+	if (debug == false) {
+		// Draw the right button depending on state
+		switch (state)
+		{
 
-	// Draw the right button depending on state
-	switch (state)
-	{
+		case GuiControlState::DISABLED:
+		{
+			render->DrawRectangle(bounds, 0, 0, 0, 0);
+		} break;
 
-	case GuiControlState::DISABLED:
-	{
-		render->DrawRectangle(bounds, 0, 0, 0, 0);
-	} break;
+		case GuiControlState::NORMAL:
+		{
+			render->DrawRectangle(bounds, 255, 0, 0, 0);
 
-	case GuiControlState::NORMAL:
-	{
-		render->DrawRectangle(bounds, 255, 0, 0, 0);
+		} break;
 
-	} break;
+		//L14: TODO 4: Draw the button according the GuiControl State
+		case GuiControlState::FOCUSED:
+		{
+			render->DrawRectangle(bounds, 255, 255, 255, 60);
+		} break;
+		case GuiControlState::PRESSED:
+		{
+			render->DrawRectangle(bounds, 91, 194, 54, 90);
+		} break;
 
-	//L14: TODO 4: Draw the button according the GuiControl State
-	case GuiControlState::FOCUSED:
-	{
-		render->DrawRectangle(bounds, 255, 255, 255, 60);
-	} break;
-	case GuiControlState::PRESSED:
-	{
-		render->DrawRectangle(bounds, 91, 194, 54, 90);
-	} break;
+		/******/
 
-	/******/
+		case GuiControlState::SELECTED: render->DrawRectangle(bounds, 0, 255, 0, 255);
+			break;
 
-	case GuiControlState::SELECTED: render->DrawRectangle(bounds, 0, 255, 0, 255);
-		break;
-
-	default:
-		break;
+		default:
+			break;
+		}
 	}
+	else if (debug == true) {
+	
+		switch (state)
+		{
 
+		case GuiControlState::DISABLED:
+		{
+			render->DrawRectangle(bounds, 255, 0, 0, 50);
+		} break;
+
+		case GuiControlState::NORMAL:
+		{
+			render->DrawRectangle(bounds, 0, 255, 0, 50);
+
+		} break;
+
+	
+		case GuiControlState::FOCUSED:
+		{
+			render->DrawRectangle(bounds, 255, 0, 0, 60);
+		} break;
+		case GuiControlState::PRESSED:
+		{
+			render->DrawRectangle(bounds, 0, 0, 255, 90);
+		} break;
+
+		case GuiControlState::SELECTED: render->DrawRectangle(bounds, 255, 0, 0, 255);
+			break;
+
+		default:
+			break;
+		}
+	}
 	return false;
 }
