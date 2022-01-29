@@ -55,8 +55,8 @@ bool Menu_Screen::Start()
 	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Test1", { 950, 150, 150, 90 }, this);
 	btnOpt  = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "Test1", { 150, 500, 150, 90 }, this);
 	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, 500, 150, 90 }, this);
-	credit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 550, 600, 150, 90 }, this);
 	creditExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 478, 598, 383, 100 }, this);
+	credit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 550, 600, 150, 90 }, this);
 	//btnOpt1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 950, 300, 150, 90 }, this);
 	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
 
@@ -83,20 +83,15 @@ bool Menu_Screen::Update(float dt)
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 
-	if (Credits == false)
-	{
-		app->render->DrawTexture(MbS, 0, 0);
-		app->render->DrawTexture(playS, 150, 150);
-		app->render->DrawTexture(ConS, 950, 150);
-		app->render->DrawTexture(OptS, 150, 500);
-		app->render->DrawTexture(ExS, 950, 500);
-		app->render->DrawTexture(Credclick, 550, 600);
-	}
-
 	if (Credits == true)
 	{
+		LOG("Polla");
 		app->render->DrawTexture(Cred, 0, 0);
+		creditExit->Draw(app->render);
 	}
+
+
+	
 	if (EnterScreen == true)
 	{
 		app->render->DrawTexture(Enter, 0, 0);
@@ -107,9 +102,20 @@ bool Menu_Screen::Update(float dt)
 	}
 
 
-	if (EnterScreen == false)
+	if (EnterScreen == false && Credits == false)
 	{
-	app->guiManager->Draw();
+		LOG("Polla");
+		app->render->DrawTexture(MbS, 0, 0);
+		app->render->DrawTexture(playS, 150, 150);
+		app->render->DrawTexture(ConS, 950, 150);
+		app->render->DrawTexture(OptS, 150, 500);
+		app->render->DrawTexture(ExS, 950, 500);
+		app->render->DrawTexture(Credclick, 550, 600);
+		btnConf->Draw(app->render);
+		btnPlay->Draw(app->render);
+		btnOpt->Draw(app->render);
+		btnExit->Draw(app->render);
+		credit->Draw(app->render);
 	}
 	return true;
 }
@@ -133,8 +139,6 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 			{
 			case GuiControlType::BUTTON:
 			{
-				if (Credits == false)
-				{
 					//Checks the GUI element ID
 					if (control->id == 1)
 					{
@@ -168,32 +172,34 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 						LOG("Click on button 2");
 
 					}
-
-					else if (control->id == 6)
-					{
-						Credits = true;
-						LOG("Click on button 2");
-					}
-					
 					else if (control->id == 3)
 					{
-						
+
 						LOG("Click on button 2");
 					}
-
 					else if (control->id == 4) {
 						EndGame = true;
 					}
-				}
-				if (control->id == 5)
-				{
-					Credits = false;
-					LOG("Click on button 1");
 
-				}
+					else if (control->id == 5)
+					{
+						Credits = false;
+
+					}
+					else if (control->id == 6)
+					{
+						Credits = true;
+						btnConf->state = GuiControlState::NORMAL;
+						btnPlay->state = GuiControlState::NORMAL;
+						btnOpt->state = GuiControlState::NORMAL;
+						btnExit->state = GuiControlState::NORMAL;
+						credit->state = GuiControlState::NORMAL;
+						LOG("Click on button 2");
+					}
+			
 			default: break;
 			}
-		}
+			}
 	}
 	return true;
 }
