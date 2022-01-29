@@ -51,7 +51,9 @@ bool Menu_Screen::Start()
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 	Cred = app->tex->Load("Assets/textures/Screen/credits.png");
 	Credclick = app->tex->Load("Assets/textures/Screen/creditsclick.png");
+	OptionMenu = app->tex->Load("Assets/textures/Screen/menu_opcions.png");
 	ClickFx = app->audio->LoadFx("Assets/audio/fx/click.wav");
+
 
 	// L14: TODO 2: Declare a GUI Button and create it using the GuiManager
 	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 150, 150, 150, 90 }, this);
@@ -60,7 +62,9 @@ bool Menu_Screen::Start()
 	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, 500, 150, 90 }, this);
 	creditExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 478, 598, 383, 100 }, this);
 	credit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 550, 600, 150, 90 }, this);
-	btnFullScreen = new GuiCheckBox(6, { 300, 300, 50, 50 }, "FullScreen");
+	btnFullScreen = new GuiCheckBox(7, { 500, 300, 50, 50 }, "FullScreen");
+	btnFullScreen->state = GuiControlState::NORMAL;
+	btnFullScreen->checked = false;
 	btnFullScreen->SetObserver(this);
 	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
 
@@ -127,6 +131,9 @@ bool Menu_Screen::Update(float dt)
 		credit->Draw(app->render);
 		btnFullScreen->Draw(app->render);
 	}
+	if (Opt == true) {
+		app->render->DrawTexture(OptionMenu, 0, 0);
+	}
 	return true;
 }
 
@@ -186,7 +193,7 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					}
 					else if (control->id == 3)
 					{
-
+						Opt = true;
 						LOG("Click on button 2");
 					}
 					else if (control->id == 4) {
@@ -208,9 +215,21 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 						credit->state = GuiControlState::NORMAL;
 						LOG("Click on button 2");
 					}
-			
-			default: break;
+					break;
 			}
+			case GuiControlType::CHECKBOX:
+			{
+				if (control->id == 7)
+				{
+					LOG("Hola");
+					if (btnFullScreen->checked == true) {
+						SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_FULLSCREEN);
+					}
+					else SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_MAXIMIZED);
+				}
+					break;
+			}
+			default: break;
 			}
 	}
 	return true;
