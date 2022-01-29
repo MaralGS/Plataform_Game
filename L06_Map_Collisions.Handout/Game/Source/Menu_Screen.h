@@ -5,6 +5,7 @@
 #include "Point.h"
 #include "GuiButton.h"
 #include "GuiCheckBox.h"
+#include "GuiSlider.h"
 struct SDL_Texture;
 
 class Menu_Screen : public Module
@@ -77,6 +78,7 @@ private:
 	GuiCheckBox* FPS;
 	GuiButton* CloseOpt;
 	GuiButton* btnOpt2;
+	GuiSlider* Volume;
 
 };
 

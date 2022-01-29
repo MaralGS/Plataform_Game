@@ -15,7 +15,7 @@ public:
     GuiSlider(uint32 id, SDL_Rect bounds, const char* text);
     virtual ~GuiSlider();
 
-    bool Update(float dt, bool camera, Render* render);
+    bool Update(float dt);
     bool Draw(bool camera, Render* render, Input* input);
 
     int GetValue();
