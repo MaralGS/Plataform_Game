@@ -158,6 +158,8 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 					app->guiManager->Sec = 1;
 					app->scene->EnterScreen = false;
 					app->hud->pause = false;
+					app->render->camera.y = (app->player->PPlayer.y * -1) + 550;
+					app->render->camera.x = (app->player->PPlayer.x * -1) + 150;
 					LOG("Click on button 1");
 					OptionMenu = false;
 
