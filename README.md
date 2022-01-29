@@ -26,9 +26,13 @@ Source Code: https://github.com/MaralGS/Plataform_Game
  
  -F7 Key: Load Game
 
+ -F8 Key: View GUI bounds rectangles and state in different colors
+
  -F9 Key: Show Coliders
 
  -F10 Key: God Mode
+
+ -F11 Key: Enable/Disable FPS cap to 30
  
  -Esc Key: Options Menu Enter Game
 
