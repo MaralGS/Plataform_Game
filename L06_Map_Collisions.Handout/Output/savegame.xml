@@ -22,10 +22,10 @@
 	<player />
 	<renderer>
 		<camera x="0" y="-325" />
-		<player x="150" y="875" v="3" p="0" />
-		<Enemy1 x="915" y="870" v1="1" />
-		<Enemy2 x="1400" y="703" v2="1" />
-		<Time M="0" S="1" />
+		<player x="150" y="875" v="3" p="300" />
+		<Enemy1 x="903" y="870" v1="1" />
+		<Enemy2 x="1400" y="697" v2="1" />
+		<Time M="0" S="7" />
 	</renderer>
 	<:anonymous />
 </save_state>
