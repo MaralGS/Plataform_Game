@@ -69,7 +69,11 @@ bool Menu_Screen::Start()
 	CloseOpt = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 14, "Test1", { 830,215, 35, 35 }, this);
 
 	Volume = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 15, "Test1", { 410, 323, 180, 30 }, this);
+	Volume->maxValue = app->audio->maxMusicValue;
+	Volume->minValue = 0;
 	FX = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 16, "Test1", { 410, 448, 180, 30 }, this);
+	FX->maxValue = app->audio->maxFxValue;
+	FX->minValue = 0;
 	if (app->scene->active == true)
 	{
 		app->scene->Disable();
@@ -272,11 +276,11 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 			{
 				if (control->id == 15)
 				{
-					
+					app->audio->MusicVolumeControl(Volume->GetValue());
 				}
 				if (control->id == 16)
 				{
-					
+					app->audio->FxVolumeControl(FX->GetValue());
 				}
 				break;
 			}
