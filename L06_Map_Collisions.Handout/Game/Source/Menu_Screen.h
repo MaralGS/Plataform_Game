@@ -52,7 +52,9 @@ private:
 
 	SDL_Texture* Cred;
 
-	SDL_Texture* Credclick;
+	SDL_Texture* Credclick; 
+
+	SDL_Texture* OptionMenu;
 
 	int ClickFx = 1;
 

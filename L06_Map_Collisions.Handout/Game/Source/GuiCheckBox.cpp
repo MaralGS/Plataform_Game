@@ -1,6 +1,5 @@
 #include "GuiCheckBox.h"
 
-
 GuiCheckBox::GuiCheckBox(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(GuiControlType::CHECKBOX, id)
 {
     this->bounds = bounds;
@@ -67,7 +66,7 @@ bool GuiCheckBox::Draw(Render* render)
         } break;
         case GuiControlState::NORMAL:
         {
-            if (checked) render->DrawRectangle(bounds, 255, 255, 255, 125);
+            if (checked) render->DrawRectangle(bounds, 0, 0, 255, 125);
             else render->DrawRectangle(bounds, 0, 255, 0, 100 );
         } break;
         case GuiControlState::FOCUSED: render->DrawRectangle(bounds, 255, 255, 255, 50 );
