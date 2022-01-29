@@ -49,6 +49,38 @@ GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, const char
 
 bool GuiManager::Update(float dt)
 {
+	//timer for Menu_Screen
+	if (T1 == false)
+	{
+		if (timer <= 10) {
+			timer++;
+		}
+		//redueix els sec quan timer esta en 60 i reseteja
+		if (timer == 10) {
+			timer = 0;
+			Sec--;
+		}
+		else if (Sec == 0) {
+			CheackA1 = false;
+			T1 = true;
+		}
+	}
+	//timer for MenuOpcionGame
+	if (T2 == false)
+	{
+		if (timer <= 10) {
+			timer++;
+		}
+		//redueix els sec quan timer esta en 60 i reseteja
+		if (timer == 10) {
+			timer = 0;
+			Sec--;
+		}
+		else if (Sec == 0) {
+			CheackA1 = true;
+			T2 = true;
+		}
+	}
 	accumulatedTime += dt;
 	if (accumulatedTime >= updateMsCycle) doLogic = true;
 

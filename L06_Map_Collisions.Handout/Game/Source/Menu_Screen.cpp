@@ -54,7 +54,7 @@ bool Menu_Screen::Start()
 	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, 500, 150, 90 }, this);
 	//btnOpt1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 950, 300, 150, 90 }, this);
 	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
-	app->Centipide->Disable();
+	//app->Centipide->Disable();
 
 	if (app->scene->active == true)
 	{
@@ -116,13 +116,13 @@ bool Menu_Screen::PostUpdate()
 
 bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 {
-	if (Open == true)
+	if (app->guiManager->CheackA1 == true)
 	{
-		switch (control->type)
-		{
-		case GuiControlType::BUTTON:
-		{
-			
+			switch (control->type)
+			{
+			case GuiControlType::BUTTON:
+			{
+
 				//Checks the GUI element ID
 				if (control->id == 1)
 				{
@@ -131,8 +131,14 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					app->Centipide->Enable();
 					app->scene->EnterScreen = false;
 					MenuScreen = false;
+					app->player->dead = false;
+					app->player->vides = 3;
+					app->player->PPlayer.x = 150;
+					app->player->PPlayer.y = 875;
+					app->guiManager->T1 = false;
+					app->guiManager->Sec = 1;
 					LOG("Click on button 1");
-					Open = false;
+				
 				}
 
 				else if (control->id == 2)
@@ -142,18 +148,19 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					app->LoadGameRequest();
 					app->scene->EnterScreen = false;
 					MenuScreen = false;
+					app->guiManager->T1 = false;
+					app->guiManager->Sec = 1;
 					LOG("Click on button 2");
-					Open = false;
+
 				}
 
 				else if (control->id == 4) {
 					EndGame = true;
 				}
 
-		default: break;
+			default: break;
 			}
 		}
-	
 	}
 	return true;
 }

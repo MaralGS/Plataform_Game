@@ -46,10 +46,10 @@ bool MenuOpcionGame::Start()
 	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 
-	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 150, 150, 150, 90 }, this);
-	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Test1", { 950, 150, 150, 90 }, this);
-	btnOpt = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "Test1", { 150, 500, 150, 90 }, this);
-	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, 500, 150, 90 }, this);
+	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 150, 150, 150, 90 }, this);
+	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 950, 150, 150, 90 }, this);
+	btnOpt = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "Test1", { 150, 500, 150, 90 }, this);
+	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 8, "Test1", { 950, 500, 150, 90 }, this);
 	return true;
 }
 
@@ -79,50 +79,50 @@ bool MenuOpcionGame::Update(float dt)
 // Called each loop iteration
 bool MenuOpcionGame::PostUpdate()
 {
+
 	bool ret = true;
+	if (EndGame == true) ret = false;
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
-	//Exit game
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && mouseX > 800 && mouseX < 1050 && mouseY > 500 && mouseY < 590) {
-		ret = false;
-	}
 	return ret;
 }
 
 bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 {
-	if (app->menu->Open == false)
+	if (app->guiManager->CheackA1 == false)
 	{
 		switch (control->type)
 		{
-		case GuiControlType::BUTTON:
-		{
-			//Checks the GUI element ID
-			if (control->id == 1)
+			case GuiControlType::BUTTON:
 			{
-				Disable();
-				app->scene->Enable();
-				LOG("Click on button 1");
+				//Checks the GUI element ID
+				if (control->id == 5)
+				{
+					Disable();
+					app->scene->Enable();
+					app->guiManager->Sec = 1;
+					LOG("Click on button 1");
 
+				}
+
+				if (control->id == 6)
+				{
+					Disable();
+					app->menu->Enable();
+					app->guiManager->T2 = false;
+					app->guiManager->Sec = 1;
+					LOG("Click on button 2");
+
+				}
+
+				if (control->id == 8)
+				{
+					EndGame = true;
+				}
+				//Other cases here
+
+			default: break;
 			}
-
-			if (control->id == 2)
-			{
-				Disable();
-				app->menu->Enable();
-				LOG("Click on button 2");
-	
-			}
-
-			if (control->id == 4)
-			{
-				LOG("Click on button 3");
-			}
-
-		}
-		//Other cases here
-
-		default: break;
 		}
 	}
 	return true;

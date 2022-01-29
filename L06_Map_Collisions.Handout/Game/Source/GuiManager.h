@@ -40,6 +40,11 @@ public:
 	float accumulatedTime = 0.0f;
 	float updateMsCycle = 0.0f;
 	bool doLogic = false;
+	bool CheackA1 = true;
+	bool T1 = true;
+	bool T2 = true;
+	float timer = 0;
+	int Sec;
 
 	SDL_Texture* texture;
 

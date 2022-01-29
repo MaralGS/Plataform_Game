@@ -55,6 +55,7 @@ private:
 	// L12b: Debug pathfing
 	iPoint origin;
 	bool originSelected = false;
+	bool EndGame = false;
 
 };
 
