@@ -183,6 +183,7 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					app->guiManager->Sec = 1;
 					app->hud->pause = false;
 					LOG("Click on button 1");
+					EScreen = true;
 				}
 
 				else if (control->id == 2)
@@ -195,6 +196,7 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					app->guiManager->T1 = false;
 					app->guiManager->Sec = 1;
 					app->hud->pause = false;
+					EScreen = true;
 					LOG("Click on button 2");
 
 				}

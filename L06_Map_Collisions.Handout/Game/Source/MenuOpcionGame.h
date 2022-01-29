@@ -4,6 +4,9 @@
 #include "Module.h"
 #include "Point.h"
 #include "GuiButton.h"
+#include "GuiCheckBox.h"
+#include "GuiSlider.h"
+
 struct SDL_Texture;
 
 class MenuOpcionGame : public Module
@@ -40,6 +43,7 @@ public:
 	SDL_Texture* OptS;
 	SDL_Texture* ExS;
 	SDL_Texture* MbS;
+	SDL_Texture* OptionMenu2;
 
 private:
 
@@ -47,8 +51,15 @@ private:
 	GuiButton* btnConf;
 	GuiButton* btnOpt;
 	GuiButton* btnExit;
+	GuiCheckBox* btnFullScreen;
+	GuiCheckBox* FPS;
+	GuiButton* CloseOpt;
+	GuiButton* btnOpt2;
+	GuiSlider* Volume;
+	GuiSlider* FX;
 
 	bool EnterScreen = true;
+	bool Opt = false;
 	int ClickFx = 1;
 	SDL_Texture* Enter = nullptr;
 

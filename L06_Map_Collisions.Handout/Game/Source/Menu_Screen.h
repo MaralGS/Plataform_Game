@@ -38,7 +38,7 @@ public:
 	bool CleanUp();
 	bool EScreen = true;
 	bool MenuScreen = true;
-	bool Opt = false;
+
 private:
 
 	SDL_Texture* playS;
@@ -66,6 +66,7 @@ private:
 	// L12b: Debug pathfing
 	iPoint origin;
 	bool originSelected = false;
+	bool Opt = false;
 	bool EndGame = false;
 	bool Credits = false;
 	GuiButton* btnPlay;

@@ -218,6 +218,7 @@ bool Scene::Update(float dt)
 		app->render->camera.y = 0;
 		app->menu->EScreen = true;
 		EnterScreen = true;
+		app->OpcionMenu->OptionMenu = true;
 		app->hud->pause = true;
 	}
 	return true;
