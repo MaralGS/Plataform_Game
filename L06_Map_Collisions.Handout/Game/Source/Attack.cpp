@@ -31,6 +31,7 @@ Attack::~Attack()
 bool Attack::Start()
 {
 	AttackP = app->collisions->AddCollider({0,0,30,30}, Collider::Type::ATTACK, this);
+
 	return true;
 }
 

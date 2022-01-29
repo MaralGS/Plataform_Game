@@ -57,7 +57,6 @@ bool Menu_Screen::Start()
 	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 478, 598, 383, 100 }, this);
 	//btnOpt1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 950, 300, 150, 90 }, this);
 	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
-	//app->Centipide->Disable();
 
 	if (app->scene->active == true)
 	{
@@ -136,9 +135,12 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					//Checks the GUI element ID
 					if (control->id == 1)
 					{
+
 						Disable();
 						app->scene->Enable();
-						app->Centipide->Enable();
+						app->Centipide->PEnemy.x = 918;
+						app->Centipide->PEnemy.y = 870;
+						app->Centipide->ECGDead = false;
 						app->scene->EnterScreen = false;
 						MenuScreen = false;
 						app->player->dead = false;

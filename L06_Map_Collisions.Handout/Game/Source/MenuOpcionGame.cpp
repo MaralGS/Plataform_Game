@@ -96,7 +96,7 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 			case GuiControlType::BUTTON:
 			{
 				//Checks the GUI element ID
-				if (control->id == 5)
+				if (control->id == 6)
 				{
 					Disable();
 					app->scene->Enable();
@@ -105,7 +105,7 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 
 				}
 
-				if (control->id == 6)
+				if (control->id == 7)
 				{
 					Disable();
 					app->menu->Enable();

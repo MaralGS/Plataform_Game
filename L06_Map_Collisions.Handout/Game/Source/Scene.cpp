@@ -80,9 +80,6 @@ bool Scene::Start()
 		RELEASE_ARRAY(data);
 	}
 	pathTex = app->tex->Load("Assets/maps/path.png");
-
-
-
 	return true;
 }
 

@@ -74,7 +74,6 @@ bool EnemCentipide::Start()
 	Centipide = app->tex->Load("Assets/Textures/Enemies/Enemy1/centipide.png");
 	currentAnimation = &idleAnim;
 	//Dead.Reset();
-
 	CentipideC = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 48 ,36 }, Collider::Type::ECENTIPIDE, this);
 	DetectorCentipide = app->collisions->AddCollider({ PEnemy.x - 300,PEnemy.y - 700, 600, 800 }, Collider::Type::DETECTOR1, this);
 
@@ -116,24 +115,6 @@ bool EnemCentipide::Update(float dt)
 			CentipideC->SetPos(PEnemy.x, PEnemy.y);
 		}
 		
-		/*if (ECGDead == false && PathDet == true) {
-			// esquerra
-			if (Move == false)
-			{
-				PEnemy.x++;
-				currentAnimation = &rightAnim;
-			}
-			// dreta
-			else if (Move == true)
-			{
-				currentAnimation = &leftAnim;
-				PEnemy.x--;
-			}
-			CentipideC->SetPos(PEnemy.x, PEnemy.y);
-		}
-		*/
-	
-
 	//gravity
 	{
 		if (ECGrav == true)
@@ -143,7 +124,7 @@ bool EnemCentipide::Update(float dt)
 
 		if (ECGrav == false && ECGCollision == true)
 		{
-			ECGrav = true;
+		//	ECGrav = true;
 			ECGCollision = false;
 		}
 
@@ -217,31 +198,18 @@ void EnemCentipide::pathfind(float dt) {
 
 		const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
 
-	for (uint i = 0; i < path->Count(); ++i)
-	{
-		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-		if (app->player->PPlayer.x < pos.x)
+		for (uint i = 0; i < path->Count(); ++i)
 		{
-			PEnemy.x--;
-		}
-		else if (app->player->PPlayer.x > pos.x)
-		{
-			PEnemy.x++;
-		}
-		CentipideC->SetPos(PEnemy.x, PEnemy.y);
-	}
-			/*for (uint i = 0; i < path->Count(); ++i)
+			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+			if (app->player->PPlayer.x < pos.x)
 			{
-				iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-				if (app->player->PPlayer.x < pos.x)
-				{
-					Move = false;
-				}
-				else if (app->player->PPlayer.x > pos.x)
-				{
-					Move = true;
-				}
-				CentipideC->SetPos(PEnemy.x, PEnemy.y);
-			}*/
+				PEnemy.x--;
+			}
+			else if (app->player->PPlayer.x > pos.x)
+			{
+				PEnemy.x++;
+			}
+			CentipideC->SetPos(PEnemy.x, PEnemy.y);
+		}
 	}
 }

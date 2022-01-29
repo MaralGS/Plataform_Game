@@ -132,36 +132,6 @@ bool EnemBird::Update(float dt)
 			}
 			CBird->SetPos(PEnemy.x, PEnemy.y);
 		}
-
-		/*if (EBDead == false && PathDet == true) {
-			// esquerra
-			if (Move == false)
-			{	
-				currentAnimation = &leftAnim;
-				PEnemy.x++;
-			}
-			// dreta
-			else if (Move == true)
-			{
-				currentAnimation = &rightAnim;
-				PEnemy.x--;
-			}
-			CBird->SetPos(PEnemy.x, PEnemy.y);
-			
-			// Up
-			if (MoveY == false)
-			{
-				PEnemy.y++;
-				currentAnimation = &leftAnim;
-			}
-			// Down
-			else if (MoveY == true)
-			{
-				currentAnimation = &rightAnim;
-				PEnemy.y--;
-			}
-			CBird->SetPos(PEnemy.x, PEnemy.y);
-		}*/
 	}
 
 	if (EBDead == true) {
