@@ -1,4 +1,7 @@
 #include "GuiCheckBox.h"
+#include "Render.h"
+#include "App.h"
+#include "Audio.h"
 
 GuiCheckBox::GuiCheckBox(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(GuiControlType::CHECKBOX, id)
 {
@@ -10,46 +13,34 @@ GuiCheckBox::~GuiCheckBox()
 {
 }
 
-bool GuiCheckBox::Update(Input* input, float dt, bool camera, Render* render, Audio* audio, int hover, int click)
+bool GuiCheckBox::Update(float dt)
 {
-    bool ret = true;
-
     if (state != GuiControlState::DISABLED)
     {
+        // L14: TODO 3: Update the state of the GUiButton according to the mouse position
         int mouseX, mouseY;
-        input->GetMousePosition(mouseX, mouseY);
+        app->input->GetMousePosition(mouseX, mouseY);
 
-        if (camera == true)
-        {
-            mouseX = mouseX + render->camera.x * -1;
-            mouseY = mouseY + render->camera.y * -1;
-        }
-
-        // Check collision between mouse and button bounds
         if ((mouseX > bounds.x) && (mouseX < (bounds.x + bounds.w)) &&
             (mouseY > bounds.y) && (mouseY < (bounds.y + bounds.h)))
         {
-            if (state != GuiControlState::FOCUSED && state != GuiControlState::PRESSED) audio->PlayFx(hover);
-
             state = GuiControlState::FOCUSED;
 
-            if (input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_DOWN)
+            if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT)
             {
                 state = GuiControlState::PRESSED;
             }
 
             // If mouse button pressed -> Generate event!
-            if (input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP)
+            if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP)
             {
-                checked = !checked;
-                ret = NotifyObserver();
-                audio->PlayFx(click);
+                NotifyObserver();
             }
         }
         else state = GuiControlState::NORMAL;
     }
 
-    return ret;
+    return false;
 }
 
 bool GuiCheckBox::Draw(Render* render)
@@ -66,12 +57,12 @@ bool GuiCheckBox::Draw(Render* render)
         } break;
         case GuiControlState::NORMAL:
         {
-            if (checked) render->DrawRectangle(bounds, 0, 0, 255, 125);
-            else render->DrawRectangle(bounds, 0, 255, 0, 100 );
+            if (checked) render->DrawRectangle(bounds, 0, 0, 0, 125);
+            else render->DrawRectangle(bounds, 255, 255, 255, 100 );
         } break;
         case GuiControlState::FOCUSED: render->DrawRectangle(bounds, 255, 255, 255, 50 );
             break;
-        case GuiControlState::PRESSED: render->DrawRectangle(bounds, 0, 0, 255, 100 );
+        case GuiControlState::PRESSED: render->DrawRectangle(bounds, 255, 255, 255, 150 );
             break;
         case GuiControlState::SELECTED: render->DrawRectangle(bounds, 0, 255, 0, 255);
             break;

@@ -15,8 +15,11 @@ public:
     GuiCheckBox(uint32 id, SDL_Rect bounds, const char* text);
     virtual ~GuiCheckBox();
 
-    bool Update(Input* input, float dt, bool camera, Render* render, Audio* audio, int hover, int click);
+    bool Update(float dt);
     bool Draw(Render* render);
+
+    int mouseX, mouseY;
+    unsigned int click;
 
     bool checked;
 

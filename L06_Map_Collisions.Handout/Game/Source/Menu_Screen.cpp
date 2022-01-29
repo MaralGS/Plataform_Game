@@ -62,10 +62,10 @@ bool Menu_Screen::Start()
 	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, 500, 150, 90 }, this);
 	creditExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 478, 598, 383, 100 }, this);
 	credit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 550, 600, 150, 90 }, this);
-	btnFullScreen = new GuiCheckBox(7, { 500, 300, 50, 50 }, "FullScreen");
-	btnFullScreen->state = GuiControlState::NORMAL;
+	btnFullScreen = (GuiCheckBox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 12, "Test1", { 728, 323, 35, 35 }, this);
 	btnFullScreen->checked = false;
-	btnFullScreen->SetObserver(this);
+
+	
 	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
 
 	if (app->scene->active == true)
@@ -115,7 +115,7 @@ bool Menu_Screen::Update(float dt)
 	}
 
 
-	if (EScreen == false && Credits == false)
+	if (EScreen == false && Credits == false && Opt == false)
 	{
 		LOG("hola");
 		app->render->DrawTexture(MbS, 0, 0);
@@ -129,10 +129,11 @@ bool Menu_Screen::Update(float dt)
 		btnOpt->Draw(app->render);
 		btnExit->Draw(app->render);
 		credit->Draw(app->render);
-		btnFullScreen->Draw(app->render);
 	}
 	if (Opt == true) {
-		app->render->DrawTexture(OptionMenu, 0, 0);
+		app->render->DrawTexture(MbS, 0, 0);
+		app->render->DrawTexture(OptionMenu, 360, 200);
+		btnFullScreen->Draw(app->render);
 	}
 	return true;
 }
@@ -156,78 +157,78 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 			{
 			case GuiControlType::BUTTON:
 			{
-					//Checks the GUI element ID
-					if (control->id == 1)
-					{
+				//Checks the GUI element ID
+				if (control->id == 1)
+				{
 
-						Disable();
-						app->scene->Enable();
-						app->Centipide->PEnemy.x = 918;
-						app->Centipide->PEnemy.y = 870;
-						app->Centipide->ECGDead = false;
-						app->scene->EnterScreen = false;
-						MenuScreen = false;
-						app->player->dead = false;
-						app->player->vides = 3;
-						app->player->PPlayer.x = 150;
-						app->player->PPlayer.y = 875;
-						app->guiManager->T1 = false;
-						app->guiManager->Sec = 1;
-						app->hud->pause = false;
-						LOG("Click on button 1");
+					Disable();
+					app->scene->Enable();
+					app->Centipide->PEnemy.x = 918;
+					app->Centipide->PEnemy.y = 870;
+					app->Centipide->ECGDead = false;
+					app->scene->EnterScreen = false;
+					MenuScreen = false;
+					app->player->dead = false;
+					app->player->vides = 3;
+					app->player->PPlayer.x = 150;
+					app->player->PPlayer.y = 875;
+					app->guiManager->T1 = false;
+					app->guiManager->Sec = 1;
+					app->hud->pause = false;
+					LOG("Click on button 1");
 
-					}
+				}
 
-					else if (control->id == 2)
-					{
-						Disable();
-						app->scene->Enable();
-						app->LoadGameRequest();
-						app->scene->EnterScreen = false;
-						MenuScreen = false;
-						app->guiManager->T1 = false;
-						app->guiManager->Sec = 1;
-						app->hud->pause = false;
-						LOG("Click on button 2");
+				else if (control->id == 2)
+				{
+					Disable();
+					app->scene->Enable();
+					app->LoadGameRequest();
+					app->scene->EnterScreen = false;
+					MenuScreen = false;
+					app->guiManager->T1 = false;
+					app->guiManager->Sec = 1;
+					app->hud->pause = false;
+					LOG("Click on button 2");
 
-					}
-					else if (control->id == 3)
-					{
-						Opt = true;
-						LOG("Click on button 2");
-					}
-					else if (control->id == 4) {
-						EndGame = true;
-					}
+				}
+				else if (control->id == 3)
+				{
+					Opt = true;
+					LOG("Click on button 2");
+				}
+				else if (control->id == 4) {
+					EndGame = true;
+				}
 
-					else if (control->id == 5)
-					{
-						Credits = false;
+				else if (control->id == 5)
+				{
+					Credits = false;
 
-					}
-					else if (control->id == 6)
-					{
-						Credits = true;
-						btnConf->state = GuiControlState::NORMAL;
-						btnPlay->state = GuiControlState::NORMAL;
-						btnOpt->state = GuiControlState::NORMAL;
-						btnExit->state = GuiControlState::NORMAL;
-						credit->state = GuiControlState::NORMAL;
-						LOG("Click on button 2");
-					}
-					break;
+				}
+				else if (control->id == 6)
+				{
+					Credits = true;
+					btnConf->state = GuiControlState::NORMAL;
+					btnPlay->state = GuiControlState::NORMAL;
+					btnOpt->state = GuiControlState::NORMAL;
+					btnExit->state = GuiControlState::NORMAL;
+					credit->state = GuiControlState::NORMAL;
+					LOG("Click on button 2");
+				}
+				break;
 			}
 			case GuiControlType::CHECKBOX:
 			{
-				if (control->id == 7)
+				if (control->id == 12)
 				{
-					LOG("Hola");
+					btnFullScreen->checked = !btnFullScreen->checked;
 					if (btnFullScreen->checked == true) {
 						SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_FULLSCREEN);
 					}
 					else SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_MAXIMIZED);
 				}
-					break;
+				break;
 			}
 			default: break;
 			}
