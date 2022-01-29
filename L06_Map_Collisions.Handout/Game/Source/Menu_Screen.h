@@ -49,6 +49,8 @@ private:
 
 	SDL_Texture* MbS;
 
+	SDL_Texture* Cred;
+
 	
 
 	SDL_Texture* Enter = nullptr;
@@ -57,6 +59,7 @@ private:
 	iPoint origin;
 	bool originSelected = false;
 	bool EndGame = false;
+	bool Credits = false;
 	GuiButton* btnPlay;
 	GuiButton* btnConf;
 	GuiButton* btnOpt;

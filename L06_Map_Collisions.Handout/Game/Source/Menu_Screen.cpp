@@ -40,18 +40,21 @@ bool Menu_Screen::Start()
 {
 	// L03: DONE: Load map
 	// L12b: Create walkability map on map loading
-	playS = app->tex->Load("Assets/textures/Screen/Play.png");
-	ConS = app->tex->Load("Assets/textures/Screen/Continue.png");
-	OptS = app->tex->Load("Assets/textures/Screen/Options.png");
-	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
+	playS = app->tex->Load("Assets/textures/Screen/play.png");
+	ConS = app->tex->Load("Assets/textures/Screen/continue.png");
+	OptS = app->tex->Load("Assets/textures/Screen/options.png");
+	ExS = app->tex->Load("Assets/textures/Screen/exit.png");
 	Enter = app->tex->Load("Assets/textures/Screen/enter_image.png");
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
+	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
+	Cred = app->tex->Load("Assets/textures/Screen/credits.png");
 
 	// L14: TODO 2: Declare a GUI Button and create it using the GuiManager
 	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 150, 150, 150, 90 }, this);
 	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Test1", { 950, 150, 150, 90 }, this);
 	btnOpt  = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "Test1", { 150, 500, 150, 90 }, this);
 	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, 500, 150, 90 }, this);
+	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 478, 598, 383, 100 }, this);
 	//btnOpt1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 950, 300, 150, 90 }, this);
 	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
 	//app->Centipide->Disable();
@@ -79,13 +82,19 @@ bool Menu_Screen::Update(float dt)
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
 
-	    app->render->DrawTexture(MbS, 0, 0);
+	if (Credits == false)
+	{
+		app->render->DrawTexture(MbS, 0, 0);
 		app->render->DrawTexture(playS, 150, 150);
 		app->render->DrawTexture(ConS, 950, 150);
 		app->render->DrawTexture(OptS, 150, 500);
 		app->render->DrawTexture(ExS, 950, 500);
+	}
 
-	
+	if (Credits == true)
+	{
+		app->render->DrawTexture(Cred, 0, 0);
+	}
 	if (EnterScreen == true)
 	{
 		app->render->DrawTexture(Enter, 0, 0);
@@ -122,42 +131,55 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 			{
 			case GuiControlType::BUTTON:
 			{
-
-				//Checks the GUI element ID
-				if (control->id == 1)
+				if (Credits == false)
 				{
-					Disable();
-					app->scene->Enable();
-					app->Centipide->Enable();
-					app->scene->EnterScreen = false;
-					MenuScreen = false;
-					app->player->dead = false;
-					app->player->vides = 3;
-					app->player->PPlayer.x = 150;
-					app->player->PPlayer.y = 875;
-					app->guiManager->T1 = false;
-					app->guiManager->Sec = 1;
+					//Checks the GUI element ID
+					if (control->id == 1)
+					{
+						Disable();
+						app->scene->Enable();
+						app->Centipide->Enable();
+						app->scene->EnterScreen = false;
+						MenuScreen = false;
+						app->player->dead = false;
+						app->player->vides = 3;
+						app->player->PPlayer.x = 150;
+						app->player->PPlayer.y = 875;
+						app->guiManager->T1 = false;
+						app->guiManager->Sec = 1;
+						LOG("Click on button 1");
+
+					}
+
+					else if (control->id == 2)
+					{
+						Disable();
+						app->scene->Enable();
+						app->LoadGameRequest();
+						app->scene->EnterScreen = false;
+						MenuScreen = false;
+						app->guiManager->T1 = false;
+						app->guiManager->Sec = 1;
+						LOG("Click on button 2");
+
+					}
+
+					else if (control->id == 3)
+					{
+						Credits = true;
+						LOG("Click on button 2");
+					}
+
+					else if (control->id == 4) {
+						EndGame = true;
+					}
+				}
+				if (control->id == 5)
+				{
+					Credits = false;
 					LOG("Click on button 1");
-				
-				}
-
-				else if (control->id == 2)
-				{
-					Disable();
-					app->scene->Enable();
-					app->LoadGameRequest();
-					app->scene->EnterScreen = false;
-					MenuScreen = false;
-					app->guiManager->T1 = false;
-					app->guiManager->Sec = 1;
-					LOG("Click on button 2");
 
 				}
-
-				else if (control->id == 4) {
-					EndGame = true;
-				}
-
 			default: break;
 			}
 		}
