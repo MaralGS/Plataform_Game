@@ -62,7 +62,11 @@ bool MenuOpcionGame::Start()
 	CloseOpt = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 19, "Test1", { 830,215, 35, 35 }, this);
 
 	Volume = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 20, "Test1", { 410, 323, 180, 30 }, this);
+	Volume->maxValue = app->audio->maxMusicValue;
+	Volume->minValue = 0;
 	FX = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 21, "Test1", { 410, 448, 180, 30 }, this);
+	FX->maxValue = app->audio->maxFxValue;
+	FX->minValue = 0;
 	return true;
 }
 
@@ -208,10 +212,11 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 			{
 				if (control->id == 20)
 				{
-
+					app->audio->MusicVolumeControl(Volume->GetValue());
 				}
 				if (control->id == 21)
 				{
+					app->audio->FxVolumeControl(FX->GetValue());
 
 				}
 				break;
