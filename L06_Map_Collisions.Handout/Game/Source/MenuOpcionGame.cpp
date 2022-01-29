@@ -43,8 +43,8 @@ bool MenuOpcionGame::Start()
 
 	ResS = app->tex->Load("Assets/textures/Screen/resume.png");
 	IMenS = app->tex->Load("Assets/textures/Screen/initial_menu.png");
-	OptS = app->tex->Load("Assets/textures/Screen/Options.png");
-	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
+	OptS = app->tex->Load("Assets/textures/Screen/options.png");
+	ExS = app->tex->Load("Assets/textures/Screen/exit.png");
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 	ClickFx = app->audio->LoadFx("Assets/audio/fx/click.wav");
 	
