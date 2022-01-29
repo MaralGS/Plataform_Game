@@ -94,6 +94,17 @@ bool MenuOpcionGame::Update(float dt)
 		btnConf->Draw(app->render);
 		btnOpt->Draw(app->render);
 		btnExit->Draw(app->render);
+		btnExit->state = GuiControlState::NORMAL;
+		btnConf->state = GuiControlState::NORMAL;
+		btnPlay->state = GuiControlState::NORMAL;
+		btnOpt->state = GuiControlState::NORMAL;
+
+		btnFullScreen->state = GuiControlState::DISABLED;
+		FPS->state = GuiControlState::DISABLED;
+		CloseOpt->state = GuiControlState::DISABLED;
+		FX->state = GuiControlState::DISABLED;
+		Volume->state = GuiControlState::DISABLED;
+		
 	}
 	if (Opt == true) {
 		app->render->DrawTexture(MbS, 0, 0);
@@ -103,6 +114,15 @@ bool MenuOpcionGame::Update(float dt)
 		CloseOpt->Draw(app->render);
 		Volume->Draw(true, app->render, app->input);
 		FX->Draw(true, app->render, app->input);
+		btnFullScreen->state = GuiControlState::NORMAL;
+		FPS->state = GuiControlState::NORMAL;
+		CloseOpt->state = GuiControlState::NORMAL;
+		FX->state = GuiControlState::NORMAL;
+		Volume->state = GuiControlState::NORMAL;
+		btnExit->state = GuiControlState::DISABLED;
+		btnConf->state = GuiControlState::DISABLED;
+		btnPlay->state = GuiControlState::DISABLED;
+		btnOpt->state = GuiControlState::DISABLED;
 	}
 	return true;
 }

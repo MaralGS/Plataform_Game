@@ -101,6 +101,11 @@ bool Menu_Screen::Update(float dt)
 	if (Credits == true)
 	{
 		LOG("hola");
+		btnExit->state = GuiControlState::DISABLED;
+		btnConf->state = GuiControlState::DISABLED;
+		btnPlay->state = GuiControlState::DISABLED;
+		btnOpt->state = GuiControlState::DISABLED;
+		credit->state = GuiControlState::DISABLED;
 		app->render->DrawTexture(Cred, 0, 0);
 		creditExit->Draw(app->render);
 	}
@@ -116,7 +121,6 @@ bool Menu_Screen::Update(float dt)
 		}
 	}
 
-
 	if (EScreen == false && Credits == false && Opt == false)
 	{
 		LOG("hola");
@@ -131,7 +135,17 @@ bool Menu_Screen::Update(float dt)
 		btnOpt->Draw(app->render);
 		btnExit->Draw(app->render);
 		credit->Draw(app->render);
-	
+		btnExit->state = GuiControlState::NORMAL;
+		btnConf->state = GuiControlState::NORMAL;
+		btnPlay->state = GuiControlState::NORMAL;
+		btnOpt->state = GuiControlState::NORMAL;
+		credit->state = GuiControlState::NORMAL;
+
+		btnFullScreen->state = GuiControlState::DISABLED;
+		FPS->state = GuiControlState::DISABLED;
+		CloseOpt->state = GuiControlState::DISABLED;
+		FX->state = GuiControlState::DISABLED;
+		Volume->state = GuiControlState::DISABLED;
 	}
 	if (Opt == true) {
 		app->render->DrawTexture(MbS, 0, 0);
@@ -141,6 +155,16 @@ bool Menu_Screen::Update(float dt)
 		CloseOpt->Draw(app->render);
 		Volume->Draw(true, app->render, app->input);
 		FX->Draw(true, app->render, app->input);
+		btnFullScreen->state = GuiControlState::NORMAL;
+		FPS->state = GuiControlState::NORMAL;
+		CloseOpt->state = GuiControlState::NORMAL;
+		FX->state = GuiControlState::NORMAL;
+		Volume->state = GuiControlState::NORMAL;
+		btnExit->state = GuiControlState::DISABLED;
+		btnConf->state = GuiControlState::DISABLED;
+		btnPlay->state = GuiControlState::DISABLED;
+		btnOpt->state = GuiControlState::DISABLED;
+		credit->state = GuiControlState::DISABLED;
 
 	}
 	return true;
@@ -217,11 +241,6 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 				else if (control->id == 6)
 				{
 					Credits = true;
-					btnConf->state = GuiControlState::NORMAL;
-					btnPlay->state = GuiControlState::NORMAL;
-					btnOpt->state = GuiControlState::NORMAL;
-					btnExit->state = GuiControlState::NORMAL;
-					credit->state = GuiControlState::NORMAL;
 					LOG("Click on button 2");
 				}
 				else if (control->id == 14)
