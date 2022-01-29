@@ -248,6 +248,18 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 				}
 				break;
 			}
+			case GuiControlType::SLIDER:
+			{
+				if (control->id == 15)
+				{
+					
+				}
+				if (control->id == 16)
+				{
+					
+				}
+				break;
+			}
 			default: break;
 			}
 	}
