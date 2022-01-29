@@ -66,11 +66,7 @@ bool Menu_Screen::Start()
 	btnFullScreen->checked = false;
 	FPS = (GuiCheckBox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 13, "Test1", { 726, 450, 35, 35 }, this);
 	FPS->checked = false;
-	CloseOpt = (GuiCheckBox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 14, "Test1", { 830,215, 35, 35 }, this);
-	CloseOpt->checked = false;
-
-	
-	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
+	CloseOpt = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 14, "Test1", { 830,215, 35, 35 }, this);
 
 	if (app->scene->active == true)
 	{
@@ -222,6 +218,10 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					credit->state = GuiControlState::NORMAL;
 					LOG("Click on button 2");
 				}
+				else if (control->id == 14)
+				{
+					Opt = false;
+				}
 				break;
 			}
 			case GuiControlType::CHECKBOX:
@@ -241,11 +241,6 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 						app->Maxfps = false;
 					}
 					else app->Maxfps = true;
-				}
-				if (control->id == 14)
-				{
-					CloseOpt->checked = !CloseOpt->checked;
-					Opt = false;
 				}
 				break;
 			}

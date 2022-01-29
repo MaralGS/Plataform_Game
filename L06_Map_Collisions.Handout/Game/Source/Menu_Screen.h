@@ -75,7 +75,7 @@ private:
 	GuiButton* credit;
 	GuiCheckBox* btnFullScreen;
 	GuiCheckBox* FPS;
-	GuiCheckBox* CloseOpt;
+	GuiButton* CloseOpt;
 	GuiButton* btnOpt2;
 
 };

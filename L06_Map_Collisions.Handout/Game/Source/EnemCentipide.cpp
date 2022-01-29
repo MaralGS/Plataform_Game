@@ -45,9 +45,6 @@ EnemCentipide::EnemCentipide() : Module()
 	DeathAnim.PushBack({ 213, 394, 59, 23 });
 	DeathAnim.loop = false;
 	DeathAnim.speed = 0.05f;
-
-	
-
 }
 
 EnemCentipide::~EnemCentipide()
