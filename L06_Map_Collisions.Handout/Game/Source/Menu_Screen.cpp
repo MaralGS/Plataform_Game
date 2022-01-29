@@ -54,7 +54,6 @@ bool Menu_Screen::Start()
 	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, 500, 150, 90 }, this);
 	//btnOpt1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 950, 300, 150, 90 }, this);
 	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
-	
 	app->Centipide->Disable();
 
 	if (app->scene->active == true)
@@ -117,13 +116,13 @@ bool Menu_Screen::PostUpdate()
 
 bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 {
-	
+	if (Open == true)
+	{
 		switch (control->type)
 		{
 		case GuiControlType::BUTTON:
 		{
-			if (Open == true)
-			{
+			
 				//Checks the GUI element ID
 				if (control->id == 1)
 				{
@@ -132,7 +131,6 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					app->Centipide->Enable();
 					app->scene->EnterScreen = false;
 					MenuScreen = false;
-					app->guiManager->Disable();
 					LOG("Click on button 1");
 					Open = false;
 				}
@@ -144,7 +142,6 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					app->LoadGameRequest();
 					app->scene->EnterScreen = false;
 					MenuScreen = false;
-					app->guiManager->Disable();
 					LOG("Click on button 2");
 					Open = false;
 				}

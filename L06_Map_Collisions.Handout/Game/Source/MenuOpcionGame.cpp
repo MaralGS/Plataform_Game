@@ -100,22 +100,18 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 			//Checks the GUI element ID
 			if (control->id == 1)
 			{
-				app->scene->Enable();
 				Disable();
-				OptionMenu = false;
-				app->guiManager->Disable();
+				app->scene->Enable();
 				LOG("Click on button 1");
 
 			}
 
 			if (control->id == 2)
 			{
-				app->menu->Enable();
 				Disable();
-				OptionMenu = false;
-				app->menu->MenuScreen = true;
+				app->menu->Enable();
 				LOG("Click on button 2");
-				app->menu->Open = true;
+	
 			}
 
 			if (control->id == 4)
