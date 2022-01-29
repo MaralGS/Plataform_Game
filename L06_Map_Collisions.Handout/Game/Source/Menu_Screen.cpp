@@ -50,7 +50,7 @@ bool Menu_Screen::Start()
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 	Cred = app->tex->Load("Assets/textures/Screen/credits.png");
-	Credclick = app->tex->Load("Assets/textures/Screen/creditsclick.png");
+	Credclick = app->tex->Load("Assets/textures/Screen/credits_click.png");
 	OptionMenu = app->tex->Load("Assets/textures/Screen/menu_opcions.png");
 	ClickFx = app->audio->LoadFx("Assets/audio/fx/click.wav");
 
