@@ -180,7 +180,7 @@ void EnemCentipide::OnCollision(Collider* c1, Collider* c2)
 		{
 			PathDet = true;
 		}
-		if (c1->type == Collider::Type::DETECTOR1 && c2->type != Collider::Type::PLAYER)
+		else
 		{
 			PathDet = false;
 		}
