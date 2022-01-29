@@ -72,7 +72,7 @@ bool EnemCentipide::Start()
 	currentAnimation = &idleAnim;
 	//Dead.Reset();
 	CentipideC = app->collisions->AddCollider({ PEnemy.x,PEnemy.y, 48 ,36 }, Collider::Type::ECENTIPIDE, this);
-	DetectorCentipide = app->collisions->AddCollider({ PEnemy.x - 300,PEnemy.y - 700, 600, 800 }, Collider::Type::DETECTOR1, this);
+	DetectorCentipide = app->collisions->AddCollider({ 618,170, 600, 800 }, Collider::Type::DETECTOR1, this);
 
 	return ret;
 }
@@ -111,7 +111,10 @@ bool EnemCentipide::Update(float dt)
 			}
 			CentipideC->SetPos(PEnemy.x, PEnemy.y);
 		}
-		
+		if (PEnemy.x < 550 || PEnemy.x > 1200)
+		{
+			PathDet = false;
+		}
 	//gravity
 	{
 		if (ECGrav == true && app->scene->EnterScreen == false)
@@ -180,6 +183,7 @@ void EnemCentipide::OnCollision(Collider* c1, Collider* c2)
 		{
 			PathDet = true;
 		}
+
 		else
 		{
 			PathDet = false;
