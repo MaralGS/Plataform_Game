@@ -196,7 +196,6 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					app->scene->Enable();
 					app->Centipide->PEnemy.x = 918;
 					app->Centipide->PEnemy.y = 870;
-					app->Centipide->ECGDead = false;
 					app->scene->EnterScreen = false;
 					MenuScreen = false;
 					app->player->dead = false;

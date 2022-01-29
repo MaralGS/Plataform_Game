@@ -114,7 +114,7 @@ bool EnemCentipide::Update(float dt)
 		
 	//gravity
 	{
-		if (ECGrav == true)
+		if (ECGrav == true && app->scene->EnterScreen == false)
 		{
 			PEnemy.y += ECyVel;
 		}
@@ -180,7 +180,7 @@ void EnemCentipide::OnCollision(Collider* c1, Collider* c2)
 		{
 			PathDet = true;
 		}
-		else
+		if (c1->type == Collider::Type::DETECTOR1 && c2->type != Collider::Type::PLAYER)
 		{
 			PathDet = false;
 		}
