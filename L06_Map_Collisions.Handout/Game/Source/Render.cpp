@@ -125,7 +125,7 @@ bool Render::SaveState(pugi::xml_node& data) const
 	pugi::xml_node cam = data.append_child("camera");
 	pugi::xml_node PPlay = data.append_child("player");
 	pugi::xml_node ECentipide = data.append_child("Enemy1");
-	pugi::xml_node EBloated = data.append_child("Enemy2");
+	pugi::xml_node Ebird = data.append_child("Enemy2");
 	pugi::xml_node Time = data.append_child("Time");
 	
 
@@ -139,11 +139,11 @@ bool Render::SaveState(pugi::xml_node& data) const
 	//ECentipide
 	ECentipide.append_attribute("x") = app->Centipide->PEnemy.x;
 	ECentipide.append_attribute("y") = app->Centipide->PEnemy.y;
-	ECentipide.append_attribute("v2") = app->Centipide->vides;
+	ECentipide.append_attribute("v1") = app->Centipide->vides;
 	//Ebloated
-	EBloated.append_attribute("x") = app->Bird->PEnemy.x;
-	EBloated.append_attribute("y") = app->Bird->PEnemy.y;
-	EBloated.append_attribute("v2") = app->Bird->vides;
+	Ebird.append_attribute("x") = app->Bird->PEnemy.x;
+	Ebird.append_attribute("y") = app->Bird->PEnemy.y;
+	Ebird.append_attribute("v2") = app->Bird->vides;
 	//time
 	Time.append_attribute("M") = app->hud->timerM;
 	Time.append_attribute("S") = app->hud->timerS;

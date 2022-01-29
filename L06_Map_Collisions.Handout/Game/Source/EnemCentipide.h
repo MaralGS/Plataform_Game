@@ -48,7 +48,7 @@ public:
 	//player General
 	float speed = 0.8f;
 	bool Debug = false;
-	bool vides;
+	int vides;
 	bool Move = false;
 	bool PathDet = false;
 	bool dead;
