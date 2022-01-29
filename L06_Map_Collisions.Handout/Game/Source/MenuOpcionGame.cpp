@@ -188,10 +188,11 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 			{
 				if (control->id == 20)
 				{
-
+					app->audio->MusicVolumeControl(Volume->GetValue());
 				}
 				if (control->id == 21)
 				{
+					app->audio->FxVolumeControl(FX->GetValue());
 
 				}
 				break;
