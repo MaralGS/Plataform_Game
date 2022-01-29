@@ -46,10 +46,10 @@ bool MenuOpcionGame::Start()
 	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 
-	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 150, 150, 90 }, this);
-	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "Test1", { 950, 150, 150, 90 }, this);
-	btnOpt = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 8, "Test1", { 150, 500, 150, 90 }, this);
-	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 9, "Test1", { 950, 500, 150, 90 }, this);
+	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "Test1", { 150, 150, 150, 90 }, this);
+	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 8, "Test1", { 950, 150, 150, 90 }, this);
+	btnOpt = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 9, "Test1", { 150, 500, 150, 90 }, this);
+	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 10, "Test1", { 950, 500, 150, 90 }, this);
 	return true;
 }
 
@@ -96,7 +96,7 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 			case GuiControlType::BUTTON:
 			{
 				//Checks the GUI element ID
-				if (control->id == 6)
+				if (control->id == 7)
 				{
 					Disable();
 					app->scene->Enable();
@@ -105,7 +105,7 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 
 				}
 
-				if (control->id == 7)
+				if (control->id == 8)
 				{
 					Disable();
 					app->menu->Enable();
@@ -115,7 +115,7 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 
 				}
 
-				if (control->id == 8)
+				if (control->id == 10)
 				{
 					EndGame = true;
 				}

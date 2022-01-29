@@ -51,6 +51,8 @@ private:
 
 	SDL_Texture* Cred;
 
+	SDL_Texture* Credclick;
+
 	
 
 	SDL_Texture* Enter = nullptr;
@@ -64,6 +66,8 @@ private:
 	GuiButton* btnConf;
 	GuiButton* btnOpt;
 	GuiButton* btnExit;
+	GuiButton* creditExit;
+	GuiButton* credit;
 	GuiButton* btnOpt1;
 	GuiButton* btnOpt2;
 

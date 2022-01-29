@@ -48,13 +48,15 @@ bool Menu_Screen::Start()
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 	Cred = app->tex->Load("Assets/textures/Screen/credits.png");
+	Credclick = app->tex->Load("Assets/textures/Screen/creditsclick.png");
 
 	// L14: TODO 2: Declare a GUI Button and create it using the GuiManager
 	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 150, 150, 150, 90 }, this);
 	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Test1", { 950, 150, 150, 90 }, this);
 	btnOpt  = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "Test1", { 150, 500, 150, 90 }, this);
 	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, 500, 150, 90 }, this);
-	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 478, 598, 383, 100 }, this);
+	credit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 550, 600, 150, 90 }, this);
+	creditExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 478, 598, 383, 100 }, this);
 	//btnOpt1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 950, 300, 150, 90 }, this);
 	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
 
@@ -88,6 +90,7 @@ bool Menu_Screen::Update(float dt)
 		app->render->DrawTexture(ConS, 950, 150);
 		app->render->DrawTexture(OptS, 150, 500);
 		app->render->DrawTexture(ExS, 950, 500);
+		app->render->DrawTexture(Credclick, 550, 600);
 	}
 
 	if (Credits == true)
@@ -166,9 +169,15 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 
 					}
 
-					else if (control->id == 3)
+					else if (control->id == 6)
 					{
 						Credits = true;
+						LOG("Click on button 2");
+					}
+					
+					else if (control->id == 3)
+					{
+						
 						LOG("Click on button 2");
 					}
 
