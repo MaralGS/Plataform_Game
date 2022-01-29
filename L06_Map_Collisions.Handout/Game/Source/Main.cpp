@@ -92,6 +92,18 @@ int main(int argc, char* args[])
 			case LOOP:
 			if(app->Update() == false)
 				state = CLEAN;
+
+			if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
+			{
+				if (app->Maxfps == true)
+				{
+					app->Maxfps = false;
+				}
+				else
+				{
+					app->Maxfps = true;
+				}
+			}
 			if (app->Maxfps == true)
 			{
 				dt = 32.f;
