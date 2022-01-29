@@ -48,6 +48,8 @@ public:
 
 	SDL_Texture* TextureCoin = nullptr;
 
+	int coinFx = 0;
+
 	CoinsS coin[NUM_COINS] = { nullptr };
 
 	CoinsS CreateCoin(int x, int y, SDL_Texture* t);

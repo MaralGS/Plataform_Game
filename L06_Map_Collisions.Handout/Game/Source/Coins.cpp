@@ -5,6 +5,7 @@
 #include "Collisions.h"
 #include "Scene.h"
 #include "Hud.h"
+#include "Audio.h"
 
 
 Coins::Coins() : Module()
@@ -28,6 +29,8 @@ bool Coins::Start()
 	bool ret = true;
 
 	TextureCoin = app->tex->Load("Assets/Textures/Coins/coins.png");
+	coinFx = app->audio->LoadFx("Assets/audio/fx/coin.wav");
+
 	
 	for (int i = 0; i < NUM_COINS; i++)
 	{
@@ -135,6 +138,7 @@ void Coins::OnCollision(Collider* c1, Collider* c2)
 			{
 				coin[i].Destroyed = true;
 				app->hud->score += 100;
+				app->audio->PlayFx(coinFx);
 			}
 		}
 	}
