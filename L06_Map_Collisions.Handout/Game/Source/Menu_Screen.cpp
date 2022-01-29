@@ -101,17 +101,17 @@ bool Menu_Screen::Update(float dt)
 
 
 	
-	if (EnterScreen == true)
+	if (EScreen == true)
 	{
 		app->render->DrawTexture(Enter, 0, 0);
 		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 		{
-			EnterScreen = false;
+			EScreen = false;
 		}
 	}
 
 
-	if (EnterScreen == false && Credits == false)
+	if (EScreen == false && Credits == false)
 	{
 		LOG("hola");
 		app->render->DrawTexture(MbS, 0, 0);

@@ -109,6 +109,7 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 					Disable();
 					app->scene->Enable();
 					app->guiManager->Sec = 1;
+					app->scene->EnterScreen = false;
 					app->hud->pause = false;
 					LOG("Click on button 1");
 
