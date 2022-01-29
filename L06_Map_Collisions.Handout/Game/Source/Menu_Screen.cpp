@@ -68,7 +68,8 @@ bool Menu_Screen::Start()
 	FPS->checked = false;
 	CloseOpt = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 14, "Test1", { 830,215, 35, 35 }, this);
 
-	Volume = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 15, "Test1", { 500, 500, 157, 30 }, this);
+	Volume = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 15, "Test1", { 410, 323, 180, 30 }, this);
+	FX = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 16, "Test1", { 410, 448, 180, 30 }, this);
 	if (app->scene->active == true)
 	{
 		app->scene->Disable();
@@ -130,7 +131,7 @@ bool Menu_Screen::Update(float dt)
 		btnOpt->Draw(app->render);
 		btnExit->Draw(app->render);
 		credit->Draw(app->render);
-		Volume->Draw(true,app->render,app->input);
+	
 	}
 	if (Opt == true) {
 		app->render->DrawTexture(MbS, 0, 0);
@@ -138,6 +139,9 @@ bool Menu_Screen::Update(float dt)
 		btnFullScreen->Draw(app->render);
 		FPS->Draw(app->render);
 		CloseOpt->Draw(app->render);
+		Volume->Draw(true, app->render, app->input);
+		FX->Draw(true, app->render, app->input);
+
 	}
 	return true;
 }

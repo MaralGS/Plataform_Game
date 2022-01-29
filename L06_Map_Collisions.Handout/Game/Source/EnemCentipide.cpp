@@ -79,7 +79,7 @@ bool EnemCentipide::Start()
 
 bool EnemCentipide::Update(float dt)
 {
-	pathfind(dt);
+	pathfind();
 	
 	// move
 		if (ECGDead == false  && PathDet == false) {
@@ -188,7 +188,7 @@ void EnemCentipide::OnCollision(Collider* c1, Collider* c2)
 
 } 
 
-void EnemCentipide::pathfind(float dt) {
+void EnemCentipide::pathfind() {
 	if (PathDet == true)
 	{
 		app->pathfinding->CreatePath(app->map->WorldToMap(PEnemy.x, PEnemy.y), app->map->WorldToMap(app->player->PPlayer.x, app->player->PPlayer.y));

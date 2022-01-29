@@ -79,6 +79,7 @@ private:
 	GuiButton* CloseOpt;
 	GuiButton* btnOpt2;
 	GuiSlider* Volume;
+	GuiSlider* FX;
 
 };
 
