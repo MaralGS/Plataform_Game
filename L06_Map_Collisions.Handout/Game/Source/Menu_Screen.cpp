@@ -119,6 +119,11 @@ bool Menu_Screen::Update(float dt)
 	
 	if (EScreen == true)
 	{
+		btnExit->state = GuiControlState::DISABLED;
+		btnConf->state = GuiControlState::DISABLED;
+		btnPlay->state = GuiControlState::DISABLED;
+		btnOpt->state = GuiControlState::DISABLED;
+		credit->state = GuiControlState::DISABLED;
 		app->render->DrawTexture(Enter, 0, 0);
 		if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 		{
