@@ -10,6 +10,7 @@
 #include "EnemCentipide.h"
 #include "MenuOpcionGame.h"
 #include "GuiManager.h"
+#include "Hud.h"
 
 
 
@@ -93,7 +94,7 @@ bool Menu_Screen::Update(float dt)
 
 	if (Credits == true)
 	{
-		LOG("Polla");
+		LOG("hola");
 		app->render->DrawTexture(Cred, 0, 0);
 		creditExit->Draw(app->render);
 	}
@@ -112,7 +113,7 @@ bool Menu_Screen::Update(float dt)
 
 	if (EnterScreen == false && Credits == false)
 	{
-		LOG("Polla");
+		LOG("hola");
 		app->render->DrawTexture(MbS, 0, 0);
 		app->render->DrawTexture(playS, 150, 150);
 		app->render->DrawTexture(ConS, 950, 150);
@@ -165,6 +166,7 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 						app->player->PPlayer.y = 875;
 						app->guiManager->T1 = false;
 						app->guiManager->Sec = 1;
+						app->hud->pause = false;
 						LOG("Click on button 1");
 
 					}
@@ -178,6 +180,7 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 						MenuScreen = false;
 						app->guiManager->T1 = false;
 						app->guiManager->Sec = 1;
+						app->hud->pause = false;
 						LOG("Click on button 2");
 
 					}

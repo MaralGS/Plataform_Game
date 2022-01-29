@@ -10,6 +10,7 @@
 #include "Menu_Screen.h"
 #include "EnemCentipide.h"
 #include "GuiManager.h"
+#include "Hud.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -108,6 +109,7 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 					Disable();
 					app->scene->Enable();
 					app->guiManager->Sec = 1;
+					app->hud->pause = false;
 					LOG("Click on button 1");
 
 				}

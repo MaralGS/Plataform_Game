@@ -68,23 +68,28 @@ bool Hud::Update(float dt)
 
 	}
 	
-	if (comodin <= 60) {
-		comodin++;
-	}
-	if (comodin == 60) {
-		comodin = 0;
-		if (timerM != 60 || timerS != 60)
-		{
-			timerS++;
+	if (pause == false)
+	{
+		if (comodin <= 60) {
+			comodin++;
+		}
+		if (comodin == 60) {
+			comodin = 0;
+			if (timerM != 60 || timerS != 60)
+			{
+				timerS++;
+
+			}
 
 		}
+		if (timerS == 60) {
 
+			timerM++;
+			timerS = 0;
+		}
 	}
-	if (timerS == 60) {
 
-		timerM++;
-		timerS = 0;
-	}
+	
 	return true;
 }
 

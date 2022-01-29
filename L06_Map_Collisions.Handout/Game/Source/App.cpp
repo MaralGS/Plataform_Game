@@ -45,18 +45,19 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	pathfinding = new PathFinding();
 	collisions = new Collisions();
 	OpcionMenu = new MenuOpcionGame();
+	menu = new Menu_Screen();
 	player = new Player();
 	Centipide = new EnemCentipide();
 	Bird = new EnemBird();
 	heal = new Heal();
 	attack = new Attack();
 	autos = new AutoSave();
-	menu = new Menu_Screen();
 	hud = new Hud();
 	coins = new Coins();
 	fonts = new ModuleFonts();
 	fadetoblack = new FadetoBlack();
 	guiManager = new GuiManager();
+
 
 
 	// Ordered for awake / Start / Update
@@ -66,11 +67,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(scene);
-	AddModule(menu);
 	AddModule(pathfinding);
 	AddModule(fonts);
 	AddModule(hud);
-	AddModule(OpcionMenu);
 	AddModule(map);
 	AddModule(guiManager);
 	AddModule(collisions);
@@ -80,8 +79,10 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(heal);
 	AddModule(autos);
 	AddModule(fadetoblack);
-
+	AddModule(OpcionMenu);
+	AddModule(menu);
 	AddModule(player);
+	
 	
 	// Render last to swap buffer
 	AddModule(render);
