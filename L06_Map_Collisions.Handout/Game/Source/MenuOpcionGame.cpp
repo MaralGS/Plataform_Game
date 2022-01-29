@@ -45,7 +45,7 @@ bool MenuOpcionGame::Start()
 	OptS = app->tex->Load("Assets/textures/Screen/Options.png");
 	ExS = app->tex->Load("Assets/textures/Screen/Exit.png");
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
-	ClickFx = app->audio->LoadFx("Assets/audio/fx/Click.wav");
+	ClickFx = app->audio->LoadFx("Assets/audio/fx/click.wav");
 	
 
 	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "Test1", { 150, 150, 150, 90 }, this);

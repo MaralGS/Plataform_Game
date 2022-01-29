@@ -3,7 +3,6 @@
 
 #include "GuiControl.h"
 #include "Render.h"
-#include "App.h"
 #include "Audio.h"
 
 #include "Point.h"

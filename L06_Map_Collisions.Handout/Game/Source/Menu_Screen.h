@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Point.h"
 #include "GuiButton.h"
+#include "GuiCheckBox.h"
 struct SDL_Texture;
 
 class Menu_Screen : public Module
@@ -70,7 +71,7 @@ private:
 	GuiButton* btnExit;
 	GuiButton* creditExit;
 	GuiButton* credit;
-	GuiButton* btnOpt1;
+	GuiCheckBox* btnFullScreen;
 	GuiButton* btnOpt2;
 
 };

@@ -12,6 +12,7 @@
 #include "GuiManager.h"
 
 
+
 #include "Defs.h"
 #include "Log.h"
 
@@ -49,7 +50,7 @@ bool Menu_Screen::Start()
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 	Cred = app->tex->Load("Assets/textures/Screen/credits.png");
 	Credclick = app->tex->Load("Assets/textures/Screen/creditsclick.png");
-	ClickFx = app->audio->LoadFx("Assets/audio/fx/Click.wav");
+	ClickFx = app->audio->LoadFx("Assets/audio/fx/click.wav");
 
 	// L14: TODO 2: Declare a GUI Button and create it using the GuiManager
 	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Test1", { 150, 150, 150, 90 }, this);
@@ -58,7 +59,8 @@ bool Menu_Screen::Start()
 	btnExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "Test1", { 950, 500, 150, 90 }, this);
 	creditExit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 478, 598, 383, 100 }, this);
 	credit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 550, 600, 150, 90 }, this);
-	//btnOpt1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "Test1", { 950, 300, 150, 90 }, this);
+	btnFullScreen = new GuiCheckBox(6, { 300, 300, 50, 50 }, "FullScreen");
+	btnFullScreen->SetObserver(this);
 	//btnOpt2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "Test1", { 150, 300, 150, 90 }, this);
 
 	if (app->scene->active == true)
@@ -122,6 +124,7 @@ bool Menu_Screen::Update(float dt)
 		btnOpt->Draw(app->render);
 		btnExit->Draw(app->render);
 		credit->Draw(app->render);
+		btnFullScreen->Draw(app->render);
 	}
 	return true;
 }
