@@ -168,7 +168,6 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 				//Checks the GUI element ID
 				if (control->id == 1)
 				{
-
 					Disable();
 					app->scene->Enable();
 					app->Centipide->PEnemy.x = 918;
@@ -184,7 +183,6 @@ bool Menu_Screen::OnGuiMouseClickEvent(GuiControl* control)
 					app->guiManager->Sec = 1;
 					app->hud->pause = false;
 					LOG("Click on button 1");
-
 				}
 
 				else if (control->id == 2)

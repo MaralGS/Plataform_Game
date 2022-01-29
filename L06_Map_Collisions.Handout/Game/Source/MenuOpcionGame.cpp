@@ -11,6 +11,7 @@
 #include "EnemCentipide.h"
 #include "GuiManager.h"
 #include "Hud.h"
+#include "Collisions.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -47,7 +48,7 @@ bool MenuOpcionGame::Start()
 	ExS = app->tex->Load("Assets/textures/Screen/exit.png");
 	MbS = app->tex->Load("Assets/textures/Screen/menu_screen_fons.png");
 	ClickFx = app->audio->LoadFx("Assets/audio/fx/click.wav");
-	
+
 
 	btnPlay = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "Test1", { 150, 150, 150, 90 }, this);
 	btnConf = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 8, "Test1", { 950, 150, 150, 90 }, this);
@@ -142,6 +143,5 @@ bool MenuOpcionGame::OnGuiMouseClickEvent(GuiControl* control)
 bool MenuOpcionGame::CleanUp()
 {
 	LOG("Freeing scene");
-
 	return true;
 }

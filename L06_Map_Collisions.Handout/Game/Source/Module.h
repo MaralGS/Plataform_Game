@@ -83,7 +83,7 @@ public:
 		if (!active)
 		{
 			active = true;
-			Start();
+			//Start();
 		}
 	}
 
